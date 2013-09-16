@@ -1,0 +1,72 @@
+\chapter{Costruzione ed analisi dello schema Semi-Lagrangiano}
+In questo capitolo costruiremo ed analizeremo uno schema semi-lagrangiano per l'equatione di curvatura media di evoluzione di una superficie chiusa in $\mathbb{R}^3$.
+Ricordiamo la nostra equazione :
+\begin{equation}
+\label{eq:cp3-01}
+\begin{cases}
+u_t = \Div\left(\frac{Du}{|Du|}\right)|Du|\quad (x_1,x_2,x_3)\in\mathbb{R}^3,t\in(0,T) \\
+u(x,0) = u_o(x) \qquad \quad \mathbb{R}^3\times\{t = 0\}
+\end{cases}
+\end{equation}
+\section{Costruzione dello schema MCM}
+Partiamo dall'equazione \eqref{eq:cp3-01} e operiamo alcune manipolazioni algebriche, al fine di scrivere meglio il termine del flusso. 
+\begin{proposizione}
+Vale la seguente serie di uguaglianze:
+\[
+\Div\left(\frac{Du}{|Du|}\right)|Du|=\trace\left(\left(I-\frac{DuDu^t}{|Du|^2}\right)D^2u\right)=\vec{v_1^t}D^2u\vec{v_1}+\vec{v_2^t}D^2u\vec{v_2}.
+\]
+con $\vec{v_1}$ e $\vec{v_2}$ autovettori della matrice $P=I-\frac{DuDu^t}{|Du|^2}$; rispettivamente :
+\[
+\vec{v_1}=
+\begin{bmatrix}
+\frac{-u_{x_3}}{\sqrt{u_{x_1}^2+u_{x_3}^2}} \\
+0 \\
+\frac{u_{x_1}}{\sqrt{u_{x_1}^2+u_{x_3}^2}}
+\end{bmatrix}
+\quad
+\vec{v_2}=\frac{1}{|Du|}
+\begin{bmatrix}
+\frac{-u_{x_1}u_{x_2}}{\sqrt{u_{x_1}^2+u_{x_3}^2}} \\
+\sqrt{u_{x_1}^2+u_{x_3}^2} \\
+\frac{-u_{x_2}u_{x_3}}{\sqrt{u_{x_1}^2+u_{x_3}^2}}
+\end{bmatrix}
+\]
+\end{proposizione}
+\begin{proof}
+Iniziamo con la prima uguaglianza, svolgendo esplicitamente $\Div\left(\frac{Du}{|Du|}\right)$ (senza riportare tutti i conti) otteniamo :
+\[
+|Du|\Div\left(\frac{Du}{|Du|}\right)=|Du|\left(\frac{\Div(Du)}{|Du|} -(Du)^tD^2u\frac{Du}{|Du|^3}\right) =
+\]
+\[
+= \Delta u - \left<D^2u\frac{Du}{|Du|},\frac{Du}{|Du|}\right> .
+\]
+Ora ricordando che $\Delta u$ rappresenta il laplaciano della funzione $u$ e osservando che :
+\[
+\left<D^2u\frac{Du}{|Du|},\frac{Du}{|Du|}\right> = \left<\frac{1}{|Du|}(u_{x_1}(D^2u)^1,u_{x_2}(D^2u)^2,u_{x_3}(D^2u)^3)^t,\frac{Du}{|Du|}\right> =
+\]
+\[
+=\frac{1}{|Du|^2}(u_{x_1}^2(D^2u)^1+u_{x_2}^2(D^2u)^2+u_{x_3}^2(D^2u)^3 = \trace\left(\frac{DuDu^t}{|Du|^2}D^2u\right),
+\]
+avendo indicato con $(D^2u)^n$ l'$n$-esima colonna della matrice delle derivate seconde della funzione $u$, giungiamo all'uguaglianza cercata:
+\[
+\Div\left(\frac{Du}{|Du|}\right)|Du| = \trace\left(\left(I-{\frac{DuDu^t}{|Du|^2}}\right)D^2u\right).
+\] 
+Ora occupiamoni della seconda uguaglianza. Iniziamo co fare alcune osservazioni sulla matrice $P=I-\frac{DuDu^t}{|Du|^2}$. Questa è una matrice di proiezione, $3x3$ a valori in $\mathbb{R}$, simmetrica ($P^t=P$) e idempotente ($P^2=P$), ammette due autovettori $\vec{v_1}$,$\vec{v_2}$ e vale la seguente decomposizione
+\[
+P=\sum_{i=1}^2\vec{v_i}\vec{v_i}^t=\sigma\sigma^t\quad\text{ con } \sigma=[\vec{v_1},\vec{v_2}],
+\]
+con $\sigma$ matrice $3x2$ che ha come colonne gli autovettori di $P$. Detto ciò abbiamo: 
+\[
+\trace\left(\left(I-{\frac{DuDu^t}{|Du|^2}}\right)D^2u\right)=\trace\left(\sigma\sigma^tD^2\right)=\trace\left([\vec{v_1},\vec{v_2}][\vec{v_1},\vec{v_2}]^tD^2u\right)=
+\]
+\[
+=\trace\left((\vec{v_1}\vec{v_1}^t+\vec{v_2}\vec{v_2}^t)D^2u\right)=\trace\left(\vec{v_1}\vec{v_1}^tD^2u\right)+\trace\left(\vec{v_2}\vec{v_2}^tD^2u\right)
+\]
+Ricordando i calcoli fatti nella dimostrazione della prima uguaglianza possiamo scrivere:
+\[
+\begin{split}
+&\trace\left(\vec{v_1}\vec{v_1}^tD^2u\right)+\trace\left(\vec{v_2}\vec{v_2}^tD^2u\right)=\left<D^2u\vec{v_1},\vec{v_1}\right>+\left<D^u\vec{v_2},\vec{v_2}\right>=\\
+& =\vec{v_1}^tD^2u\vec{v_1}+\vec{v_2}^tD^2u\vec{v_2}.
+\end{split}
+\]
+\end{proof}
