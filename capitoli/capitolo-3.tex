@@ -13,9 +13,9 @@ Partiamo dall'equazione \eqref{eq:cp3-01} e operiamo alcune manipolazioni algebr
 \begin{proposizione}
 Vale la seguente serie di uguaglianze:
 \[
-\Div\left(\frac{Du}{|Du|}\right)|Du|=\trace\left(\left(I-\frac{DuDu^t}{|Du|^2}\right)D^2u\right)=\vec{v_1^t}D^2u\vec{v_1}+\vec{v_2^t}D^2u\vec{v_2}.
+\Div\left(\frac{Du}{|Du|}\right)|Du|=\trace\left(\left(I-\frac{DuDu^t}{|Du|^2}\right)D^2u\right)=\vec{v}_1^tD^2u\vec{v}_1+\vec{v}_2^tD^2u\vec{v}_2.
 \]
-con $\vec{v_1}$ e $\vec{v_2}$ autovettori della matrice $P=I-\frac{DuDu^t}{|Du|^2}$; rispettivamente :
+con $\vec{v}_1$ e $\vec{v}_2$ autovettori della matrice $P=I-\frac{DuDu^t}{|Du|^2}$; rispettivamente :
 \[
 \vec{v_1}=
 \begin{bmatrix}
@@ -51,22 +51,47 @@ avendo indicato con $(D^2u)^n$ l'$n$-esima colonna della matrice delle derivate 
 \[
 \Div\left(\frac{Du}{|Du|}\right)|Du| = \trace\left(\left(I-{\frac{DuDu^t}{|Du|^2}}\right)D^2u\right).
 \] 
-Ora occupiamoni della seconda uguaglianza. Iniziamo co fare alcune osservazioni sulla matrice $P=I-\frac{DuDu^t}{|Du|^2}$. Questa è una matrice di proiezione, $3x3$ a valori in $\mathbb{R}$, simmetrica ($P^t=P$) e idempotente ($P^2=P$), ammette due autovettori $\vec{v_1}$,$\vec{v_2}$ e vale la seguente decomposizione
+Ora occupiamoni della seconda uguaglianza. Iniziamo co fare alcune osservazioni sulla matrice $P=I-\frac{DuDu^t}{|Du|^2}$. Questa è una matrice di proiezione, $3x3$ a valori in $\mathbb{R}$, simmetrica ($P^t=P$) e idempotente ($P^2=P$), ammette due autovettori $\vec{v}_1$,$\vec{v}_2$ e vale la seguente decomposizione
 \[
-P=\sum_{i=1}^2\vec{v_i}\vec{v_i}^t=\sigma\sigma^t\quad\text{ con } \sigma=[\vec{v_1},\vec{v_2}],
+P=\sum_{i=1}^2\vec{v}_i\vec{v}_i^t=\sigma\sigma^t\quad\text{ con } \sigma=[\vec{v_1},\vec{v_2}],
 \]
 con $\sigma$ matrice $3x2$ che ha come colonne gli autovettori di $P$. Detto ciò abbiamo: 
 \[
-\trace\left(\left(I-{\frac{DuDu^t}{|Du|^2}}\right)D^2u\right)=\trace\left(\sigma\sigma^tD^2\right)=\trace\left([\vec{v_1},\vec{v_2}][\vec{v_1},\vec{v_2}]^tD^2u\right)=
+\trace\left(\left(I-{\frac{DuDu^t}{|Du|^2}}\right)D^2u\right)=\trace\left(\sigma\sigma^tD^2\right)=\trace\left([\vec{v}_1,\vec{v}_2][\vec{v}_1,\vec{v}_2]^tD^2u\right)=
 \]
 \[
-=\trace\left((\vec{v_1}\vec{v_1}^t+\vec{v_2}\vec{v_2}^t)D^2u\right)=\trace\left(\vec{v_1}\vec{v_1}^tD^2u\right)+\trace\left(\vec{v_2}\vec{v_2}^tD^2u\right)
+=\trace\left((\vec{v}_1\vec{v}_1^t+\vec{v}_2\vec{v}_2^t)D^2u\right)=\trace\left(\vec{v}_1\vec{v}_1^tD^2u\right)+\trace\left(\vec{v}_2\vec{v}_2^tD^2u\right)
 \]
 Ricordando i calcoli fatti nella dimostrazione della prima uguaglianza possiamo scrivere:
 \[
 \begin{split}
-&\trace\left(\vec{v_1}\vec{v_1}^tD^2u\right)+\trace\left(\vec{v_2}\vec{v_2}^tD^2u\right)=\left<D^2u\vec{v_1},\vec{v_1}\right>+\left<D^u\vec{v_2},\vec{v_2}\right>=\\
-& =\vec{v_1}^tD^2u\vec{v_1}+\vec{v_2}^tD^2u\vec{v_2}.
+&\trace\left(\vec{v}_1\vec{v}_1^tD^2u\right)+\trace\left(\vec{v}_2\vec{v}_2^tD^2u\right)=\left<D^2u\vec{v}_1,\vec{v}_1\right>+\left<D^u\vec{v}_2,\vec{v}_2\right>=\\
+& =\vec{v}_1^tD^2u\vec{v}_1+\vec{v}_2^tD^2u\vec{v}_2.
 \end{split}
 \]
 \end{proof}
+
+Riformuliamo l'equazione \eqref{eq:cp3-01} nel seguente modo :
+\begin{equation}
+u_t=\vec{v}_1^tD^2u\vec{v}_1 + \vec{v}_2^tD^2u\vec{v}_2,
+\end{equation}
+e costruiamoci il metodo.
+Approssimiano la derivata temporale con le differenze finite in avanti, mentre per il termine del flusso utilizziamo le derivate direzionali scegliendo come incremento $\sqrt{2\Delta t}$.
+Quindi nel caso in cui $Du \ne 0$ e $u_{x_1}^2+u_{x_3}^2\ne 0$ otteniamo :
+\[
+\begin{split}
+&\frac{u(x,t+\Delta t)-u(x,t)}{\Delta t} = \frac{1}{4\Delta t}\bigl[u(x+\sqrt{2\Delta t}(\vec{v}_1+\vec{v}_2),t) +\\
+& +u(x+\sqrt{2\Delta t}(-\vec{v}_1+\vec{v}_2),t) + u(x+\sqrt{2\Delta t}(\vec{v}_1-\vec{v}_2),t) \\
+& + u(x+\sqrt{2\Delta t}(-\vec{v}_1-\vec{v}_2),t) - 4u(x,t)\bigr] + O(\Delta t)
+\end{split}
+\]
+
+Osservando tale approssimazione, possiamo notare che i punti  \\
+$(x + \sqrt{2\Delta t}(\pm\vec{v}_1 \pm\vec{v}_2))$ non necessariamente saranno i nodi della griglia, quindi è necessario introdurre l'operatore di interpolazione $I[.]$.
+Per completare la costruzione consideriamo una griglia spaziale $x_j=(j_1\Delta c,j_2\Delta x)$ con $j=(j_1,j_2)$ multi-indice in $\mathbb{Z}^2$ ed una griglia temporale $t^n=n\Delta t$ con $n\in\mathbb{N}$.
+Indichiamo con $u_j^n$ l'approssimazione di $u$ nel punto della griglia $(x_j,t^n)$ e con $D_j^n$ l'approssimazione del gradiente di $u$ nel suddetto punto. Quindi il nostro schema semi-lagrangiano risulta :
+\begin{equation}
+u_j^{n+1} = \frac{1}{4}\sum_{\pm}I[u^n](x_j+\sqrt{2\Delta t}(\pm\vec{v}_1\pm\vec{v}_2))
+\end{equation} 
+
+\section{Consistenza dello schema}
