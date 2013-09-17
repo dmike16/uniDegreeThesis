@@ -82,7 +82,7 @@ Quindi nel caso in cui $Du \ne 0$ e $u_{x_1}^2+u_{x_3}^2\ne 0$ otteniamo :
 \begin{split}
 &\frac{u(x,t+\Delta t)-u(x,t)}{\Delta t} = \frac{1}{4\Delta t}\bigl[u(x+\sqrt{2\Delta t}(\vec{v}_1+\vec{v}_2),t) +\\
 & +u(x+\sqrt{2\Delta t}(-\vec{v}_1+\vec{v}_2),t) + u(x+\sqrt{2\Delta t}(\vec{v}_1-\vec{v}_2),t) \\
-& + u(x+\sqrt{2\Delta t}(-\vec{v}_1-\vec{v}_2),t) - 4u(x,t)\bigr] + O(\Delta t)
+& + u(x+\sqrt{2\Delta t}(-\vec{v}_1-\vec{v}_2),t) - 4u(x,t)\bigr] + o(\Delta t)
 \end{split}
 \]
 
@@ -92,8 +92,19 @@ Per completare la costruzione consideriamo una griglia spaziale $x_j=(j_1\Delta 
 Indichiamo con $u_j^n$ l'approssimazione di $u$ nel punto della griglia $(x_j,t^n)$ e con $D_j^n$ l'approssimazione del gradiente di $u$ nel suddetto punto. Quindi il nostro schema semi-lagrangiano risulta :
 \begin{equation}
 \label{eq:cp3-02}
-u_j^{n+1} = \frac{1}{4}\sum_{\pm}I[u^n](x_j+\sqrt{2\Delta t}(\pm\vec{v}_1\pm\vec{v}_2))
+u_j^{n+1} = \frac{1}{4}\sum_{+,-}I[u^n](x_j+\sqrt{2\Delta t}(\pm\vec{v}_1\pm\vec{v}_2)).
 \end{equation} 
+\begin{osservazione}
+Questa costruzione non è applicabile nel caso in cui 
+\begin{equation}
+\label{eq:cp3-01-add}
+Du = 0 \text{ o } u_{x_1}^2+u_{x_2}^2 = 0. 
+\end{equation}
+Quindi per distinguere i due casi dal punto di vista numerico, introduciamo una soglia $s$ ed una costante $C$. In modo tale che il verificarsi del caso \eqref{eq:cp3-01-add} è rappresentato numericamente dalle disequazioni
+\[
+|Du_j^n|\le C\Delta x^s\text{ e }|u_{x_1}^2+u_{x_2}^2|\le C\Delta x^s.
+\]
+\end{osservazione}
 *** Manca da trattare il caso discontinuo ****
 
 \section{Consistenza dello schema}
@@ -111,17 +122,17 @@ In generale un metodo si dirà consistente quando il suo LTE è infinitesimo ris
 \] 
 Nel nostro caso, in quanto l'equazione che approssimiamo è singolare quando il gradiente è $Du$ si annulla oppure quando $u_{x_1}^2+u_{x_2}^2=0$, è necessario introdurre una definizione di consistenza più generale.
 \begin{definizione}
-Sia $(\Delta x_m,\Delta t_m)$ una seguenza generica di parametri di discretizzazione e sia $(x_{j_m},t_{n_m})\in G\times{0,\dots,\Delta t_mN}$ una seguenza generica di nodi della griglia $G$, tale che per $m\to\infty$,
+Sia $(\Delta x_m,\Delta t_m)$ una seguenza generica di parametri di discretizzazione e sia $(x_{j_m},t^{n_m})\in G\times{0,\dots,\Delta t_mN}$ una seguenza generica di nodi della griglia $G$, tale che per $m\to\infty$,
 \[
-(\Delta x_m,\Delta t_m)\to0 \quad\text{ e } (x_{j_m},t_{n_m})\to(x,t).
+(\Delta x_m,\Delta t_m)\to0 \quad\text{ e } (x_{j_m},t^{n_m})\to(x,t).
 \]
-E sia inoltre $\phi\in C^{\infty}(\mathbb{R}^3\times(0,t])$ e $\phi^{n_m-1}\equiv(\phi(x_{j_m},t_{n_m-1})_{x_{j_m}}$. Allora lo schema $S$ è detto consistente se
+E sia inoltre $\phi\in C^{\infty}(\mathbb{R}^3\times(0,t])$ e $\phi^{n_m-1}\equiv(\phi(x_{j_m},t^{n_m-1})_{x_{j_m}}$. Allora lo schema $S$ è detto consistente se
 \begin{equation}
 \label{eq:cp3-03}
 \begin{split}
 &\phi_t(x,t)+\underline{F}(D\phi(x,t),D^2\phi(x,t))\le \\
-&\le\liminf_{m\to\infty}\frac{\phi(x_{j_m},t_{n_m})-S(x_{j_m},\phi_{j_m}^{n_m-1},D\phi_{j_m}^{n_m-1})}{\Delta t_m}\le \\
-&\le\limsup_{m\to\infty}\frac{\phi(x_{j_m},t_{n_m})-S(x_{j_m},\phi_{j_m}^{n_m-1},D\phi_{j_m}^{n_m-1})}{\Delta t_m}\le \\
+&\le\liminf_{m\to\infty}\frac{\phi(x_{j_m},t^{n_m})-S(x_{j_m},\phi_{j_m}^{n_m-1},D\phi_{j_m}^{n_m-1})}{\Delta t_m}\le \\
+&\le\limsup_{m\to\infty}\frac{\phi(x_{j_m},t^{n_m})-S(x_{j_m},\phi_{j_m}^{n_m-1},D\phi_{j_m}^{n_m-1})}{\Delta t_m}\le \\
 &\le\phi_t(x,t)+\overline{F}(D\phi(x,t),D^2\phi(x,t)).
 \end{split}
 \end{equation}
@@ -129,3 +140,69 @@ E sia inoltre $\phi\in C^{\infty}(\mathbb{R}^3\times(0,t])$ e $\phi^{n_m-1}\equi
 \begin{osservazione}
 Osserviamo che se $F$ è continua allora il $\limsup$ ed il $\liminf$ nell'espressione \eqref{eq:cp3-03} coincidono, quindi la definizione si riduce a quella classica di consistenza.
 \end{osservazione}
+
+Indichiamo con $u(x,t)$ una soluzione regolare di \eqref{eq:cp3-01} e con $u(x_j,t^n)$ il suo valore sui nodi della griglia.
+Prima di procedere con la consistenza, facciamo le seguenti ipotesi sull'errore commesso nell'approssimazione del gradiente e nell'interpolazione:
+\begin{gather}
+\label{eq:cp3-04}
+||I[u^n](\cdot)-u(\cdot,t^n)||_{\infty}\le C_1\Delta x^r\quad\forall n\in\mathbb{N} \\
+\label{eq:cp3-05}
+|D_j[u^n]-Du(x_j,t^n)|\le C_2\Delta x^q\quad\forall n\in\mathbb{N}\quad\forall x_j, 
+\end{gather}
+con $C_1$ e $C_2$ costanti positive che dipendono così come gli ordini $r$ e $q$ dal metodo scelto per l'interpolazione e per l'approssimazioni del gradiente. Nel nostro caso abbiamo scelto entrambi i metodi di ordine $2$, quindi $r=q=2$.
+
+Consideriamo il caso in cui $Du\ne 0$ e $u_{x_1}^2+u_{x_3}^2\ne 0$, vista la regolarità di $u$, esiste un intorno in cui le due espressioni precedenti si mantengono vere. Quindi l'approssimazione del gradiente verifica le seguenti diseguaglianze :
+\[
+|D_j^n|\ge C\Delta x^s\text{ e }|((u_{x_1})_j^n)^2+((u_{x_3})_j^n)^2|\ge C\Delta x^s
+\]
+per cui possiamo applicare lo schema nella forma \eqref{eq:cp3-02}.
+\begin{osservazione}
+Abbiamo definito $\sigma=[\vec{v}_1,\vec{v}_2]^t$ quindi ponendo  $\vec{b}=[\pm1,\pm1]^t$ possiamo riscrivere il termine generico della sommatoria in \eqref{eq:cp3-02} come
+\[
+I[u^n](x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b}).
+\]
+Ora calcolando lo jacobiano si $\sigma$ per un qualsiasi vettore $p$ in $\mathbb{R}^3$ (senza riportare tutto il conto) si dimostra che:
+\[
+\left|J_{\sigma}(p)\right|^2=\frac{1}{|p|^2},
+\]
+dove come norma è stata scelta quella di Forbenius. Quindi applicando $\sigma[\cdot]$ al gradiente e sfruttando il fatto che $|D_j^n|\ge C\Delta x^s$, possiamo concludere che la funzione $\sigma$ risulta lipschitziana con costante $L_{\sigma}\le\frac{1}{C\Delta x^s}$.
+Inoltre, ricordando di aver preso la $u$ sufficientemente regolare, anche essa sarà lipschitiziana con costatne $L_u$.
+\end{osservazione}
+
+ Analizziamo il prima addendo della sommatoria nell'espressione \eqref{eq:cp3-02} e facciamo alcune manipolazioni algebriche
+\begin{equation}
+\label{eq:cp3-06}
+\begin{split}
+& I[u^n](x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b}) = I[u^n](x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b}) - u(x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b},t^n) + \\
+& + u(x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b},t^n) - u(x_j+\sigma(Du(x_j,t^n))\sqrt{2\Delta t}\vec{b},t^n)+ \\
+& + u(x_j+\sigma(Du(x_j,t^n))\sqrt{2\Delta t}\vec{b},t^n).
+\end{split}
+\end{equation}
+Stimiamo la parte destra di \eqref{eq:cp3-06}. per la prima differenza applichiamo la stima per l'errore di interpolazione quindi
+\begin{equation}
+\label{eq:cp3-07}
+|I[u^n](x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b}) - u(x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b},t^n)|\le C_1\Delta x^r,
+\end{equation}
+mentre per la seconda utilizzando la lipschitianità di $u$ , di $\sigma$ e la stima dell'errore di aprrossimazione del gradiente otteniamo:
+\begin{equation}
+\label{eq:cp3-08}
+|u(x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b},t^n) - u(x_j+\sigma(Du(x_j,t^n))\sqrt{2\Delta t}\vec{b},t^n)|\le L_u\sqrt{2\Delta t}\frac{C_2}{C}\Delta x^{q-s}.
+\end{equation}
+Usando \eqref{eq:cp3-07} e \eqref{eq:cp3-08} in \eqref{eq:cp3-06} otteniamo
+\[
+\begin{split}
+&I[u^n](x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b})=u(x_j+\sigma(Du(x_j,t^n))\sqrt{2\Delta t}\vec{b},t^n)+O(\Delta x^r)+ \\
+& +O(\Delta x^{q-s}\sqrt{2\Delta t}).
+\end{split}
+\]
+Sviluppiamo ora $u(x_j+\sigma(Du(x_j,t^n))\sqrt{2\Delta t}\vec{b},t^n)$ con una serie di Taylor del terzo ordine in un intorno del punto $x_j$:
+\begin{equation}
+\label{eq:cp3-09}
+\begin{split}
+&u(x_j+\sigma(Du(x_j,t^n))\sqrt{2\Delta t}\vec{b},t^n) = u(x_j,t^n)+ \\
+&+\left<Du(x_j,t^n),\sigma(Du(x_j,t^n))\vec{b}\right>\sqrt{2}\Delta t^{\frac{1}{2}} +\\
+&+\left<D^2u(x_j,t^n)\sigma(Du(x_j,t^n))\vec{b},\sigma(Du(x_j,t^n))\vec{b}\right>\Delta t + \\
+&+T_3(\Delta t^{\frac{3}{2}}\sigma(Du(x_j,t^n))\vec{b},D^3u(x_j,t^n))+O(\Delta t^2), 
+\end{split}
+\end{equation}
+non abbiamo esplicitato i termini del terzo ordine in quanto , mettondo tutto insiemi si eliminano cosi come i termini del primo ordine, data la simmetria dei $4$ punti $x_j+\sigma(Du(x_j,t^n))\vec{b}\sqrt{2\Delta t}$ con $b=[\pm 1,\pm 1]^t$.
