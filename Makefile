@@ -37,8 +37,12 @@ export RM
 
 #Use as default ps viwer *gv*, you can change it setting by CMD line
 #-----------------------------
-ifeq "$(PS_VIEWER)"""
+ifeq "$(PS_VIEWER)" ""
+ifeq "$(call file-exists, /usr/bin/gv)" ""
+PS_VIEWER	:= evince
+else
 PS_VIEWER 	:= gv
+endif
 endif
 
 # $(call file-existes, file-name)

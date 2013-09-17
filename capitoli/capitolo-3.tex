@@ -91,7 +91,41 @@ $(x + \sqrt{2\Delta t}(\pm\vec{v}_1 \pm\vec{v}_2))$ non necessariamente saranno 
 Per completare la costruzione consideriamo una griglia spaziale $x_j=(j_1\Delta c,j_2\Delta x)$ con $j=(j_1,j_2)$ multi-indice in $\mathbb{Z}^2$ ed una griglia temporale $t^n=n\Delta t$ con $n\in\mathbb{N}$.
 Indichiamo con $u_j^n$ l'approssimazione di $u$ nel punto della griglia $(x_j,t^n)$ e con $D_j^n$ l'approssimazione del gradiente di $u$ nel suddetto punto. Quindi il nostro schema semi-lagrangiano risulta :
 \begin{equation}
+\label{eq:cp3-02}
 u_j^{n+1} = \frac{1}{4}\sum_{\pm}I[u^n](x_j+\sqrt{2\Delta t}(\pm\vec{v}_1\pm\vec{v}_2))
 \end{equation} 
+*** Manca da trattare il caso discontinuo ****
 
 \section{Consistenza dello schema}
+Occupiamoci ora dell'analisi della consitenza dello schema. Prima di tutto ricordiamo che , per un dato schema numerico $S(x_j,u_j^n,Du_j^n)$ , l'errore di troncamento locale (o LTE) $\tau_j^n$ è l'errore che si genera pretendendo che la soluzione esatta soddisfi lo schema numerico :
+\[
+\tau_j^n=\frac{u(x_j,t^{n+1})-S(x_j,u(x_j,t^n),Du(x_j,t^n))}{\Delta t}
+\]
+Si definisce anche errore di troncamento totale la quantità
+\[
+\tau(\Delta t,\Delta x) := \max_{j,n} |\tau_j^n|.
+\]
+In generale un metodo si dirà consistente quando il suo LTE è infinitesimo rispetto all'incremento. Mentre si dirà consitente di ordine p in tempo e q in spazio se :
+\[
+\tau(\Delta t,\Delta x) = O(\Delta t^p +\Delta x^q).
+\] 
+Nel nostro caso, in quanto l'equazione che approssimiamo è singolare quando il gradiente è $Du$ si annulla oppure quando $u_{x_1}^2+u_{x_2}^2=0$, è necessario introdurre una definizione di consistenza più generale.
+\begin{definizione}
+Sia $(\Delta x_m,\Delta t_m)$ una seguenza generica di parametri di discretizzazione e sia $(x_{j_m},t_{n_m})\in G\times{0,\dots,\Delta t_mN}$ una seguenza generica di nodi della griglia $G$, tale che per $m\to\infty$,
+\[
+(\Delta x_m,\Delta t_m)\to0 \quad\text{ e } (x_{j_m},t_{n_m})\to(x,t).
+\]
+E sia inoltre $\phi\in C^{\infty}(\mathbb{R}^3\times(0,t])$ e $\phi^{n_m-1}\equiv(\phi(x_{j_m},t_{n_m-1})_{x_{j_m}}$. Allora lo schema $S$ è detto consistente se
+\begin{equation}
+\label{eq:cp3-03}
+\begin{split}
+&\phi_t(x,t)+\underline{F}(D\phi(x,t),D^2\phi(x,t))\le \\
+&\le\liminf_{m\to\infty}\frac{\phi(x_{j_m},t_{n_m})-S(x_{j_m},\phi_{j_m}^{n_m-1},D\phi_{j_m}^{n_m-1})}{\Delta t_m}\le \\
+&\le\limsup_{m\to\infty}\frac{\phi(x_{j_m},t_{n_m})-S(x_{j_m},\phi_{j_m}^{n_m-1},D\phi_{j_m}^{n_m-1})}{\Delta t_m}\le \\
+&\le\phi_t(x,t)+\overline{F}(D\phi(x,t),D^2\phi(x,t)).
+\end{split}
+\end{equation}
+\end{definizione}
+\begin{osservazione}
+Osserviamo che se $F$ è continua allora il $\limsup$ ed il $\liminf$ nell'espressione \eqref{eq:cp3-03} coincidono, quindi la definizione si riduce a quella classica di consistenza.
+\end{osservazione}
