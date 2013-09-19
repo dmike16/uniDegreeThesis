@@ -120,7 +120,7 @@ In generale un metodo si dirà consistente quando il suo LTE è infinitesimo ris
 \[
 \tau(\Delta t,\Delta x) = O(\Delta t^p +\Delta x^q).
 \] 
-Nel nostro caso, in quanto l'equazione che approssimiamo è singolare quando il gradiente è $Du$ si annulla oppure quando $u_{x_1}^2+u_{x_2}^2=0$, è necessario introdurre una definizione di consistenza più generale.
+Nel nostro caso, in quanto l'equazione che approssimiamo è singolare quando il gradiente è $Du$ si annulla oppure quando $u_{x_1}^2+u_{x_3}^2=0$, è necessario introdurre una definizione di consistenza più generale.
 \begin{definizione}
 Sia $(\Delta x_m,\Delta t_m)$ una seguenza generica di parametri di discretizzazione e sia $(x_{j_m},t^{n_m})\in G\times{0,\dots,\Delta t_mN}$ una seguenza generica di nodi della griglia $G$, tale che per $m\to\infty$,
 \[
@@ -151,7 +151,7 @@ Prima di procedere con la consistenza, facciamo le seguenti ipotesi sull'errore 
 \end{gather}
 con $C_1$ e $C_2$ costanti positive che dipendono così come gli ordini $r$ e $q$ dal metodo scelto per l'interpolazione e per l'approssimazioni del gradiente. Nel nostro caso abbiamo scelto entrambi i metodi di ordine $2$, quindi $r=q=2$.
 
-Consideriamo il caso in cui $Du\ne 0$ e $u_{x_1}^2+u_{x_3}^2\ne 0$, vista la regolarità di $u$, esiste un intorno in cui le due espressioni precedenti si mantengono vere. Quindi l'approssimazione del gradiente verifica le seguenti diseguaglianze :
+Consideriamo il caso in cui $Du(x,t)\ne 0$ e $u_{x_1}(x,t)^2+u_{x_3}(x,t)^2\ne 0$, vista la regolarità di $u$, esiste un intorno di $(x,t)$ in cui le due espressioni precedenti si mantengono vere. Quindi l'approssimazione del gradiente verifica le seguenti diseguaglianze :
 \[
 |D_j^n|\ge C\Delta x^s\text{ e }|((u_{x_1})_j^n)^2+((u_{x_3})_j^n)^2|\ge C\Delta x^s
 \]
@@ -166,7 +166,7 @@ Ora calcolando lo jacobiano si $\sigma$ per un qualsiasi vettore $p$ in $\mathbb
 \left|J_{\sigma}(p)\right|^2=\frac{1}{|p|^2},
 \]
 dove come norma è stata scelta quella di Forbenius. Quindi applicando $\sigma[\cdot]$ al gradiente e sfruttando il fatto che $|D_j^n|\ge C\Delta x^s$, possiamo concludere che la funzione $\sigma$ risulta lipschitziana con costante $L_{\sigma}\le\frac{1}{C\Delta x^s}$.
-Inoltre, ricordando di aver preso la $u$ sufficientemente regolare, anche essa sarà lipschitiziana con costatne $L_u$.
+Inoltre, avendo preso la $u$ sufficientemente regolare, anche essa sarà lipschitiziana con costatne $L_u$ e con $|Du|< M$. Assumiamo anche che $|u_{tt}(x,t)|\le C$ in modo tale da limitare l'errore di troncamento per l'approssimazione temporale.
 \end{osservazione}
 
  Analizziamo il prima addendo della sommatoria nell'espressione \eqref{eq:cp3-02} e facciamo alcune manipolazioni algebriche
@@ -178,15 +178,15 @@ Inoltre, ricordando di aver preso la $u$ sufficientemente regolare, anche essa s
 & + u(x_j+\sigma(Du(x_j,t^n))\sqrt{2\Delta t}\vec{b},t^n).
 \end{split}
 \end{equation}
-Stimiamo la parte destra di \eqref{eq:cp3-06}. per la prima differenza applichiamo la stima per l'errore di interpolazione quindi
+Stimiamo la parte destra di \eqref{eq:cp3-06}. Per la prima differenza applichiamo la stima dell'errore di interpolazione quindi
 \begin{equation}
 \label{eq:cp3-07}
 |I[u^n](x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b}) - u(x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b},t^n)|\le C_1\Delta x^r,
 \end{equation}
-mentre per la seconda utilizzando la lipschitianità di $u$ , di $\sigma$ e la stima dell'errore di aprrossimazione del gradiente otteniamo:
+mentre per la seconda utilizzando la lipschitianità di $u$ , di $\sigma$ e la stima dell'errore di aprrossimazione del gradiente ottendo:
 \begin{equation}
 \label{eq:cp3-08}
-|u(x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b},t^n) - u(x_j+\sigma(Du(x_j,t^n))\sqrt{2\Delta t}\vec{b},t^n)|\le L_u\sqrt{2\Delta t}\frac{C_2}{C}\Delta x^{q-s}.
+|u(x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b},t^n) - u(x_j+\sigma(Du(x_j,t^n))\sqrt{2\Delta t}\vec{b},t^n)|\le M\sqrt{2\Delta t}\frac{C_2}{C}\Delta x^{q-s}.
 \end{equation}
 Usando \eqref{eq:cp3-07} e \eqref{eq:cp3-08} in \eqref{eq:cp3-06} otteniamo
 \[
@@ -205,4 +205,21 @@ Sviluppiamo ora $u(x_j+\sigma(Du(x_j,t^n))\sqrt{2\Delta t}\vec{b},t^n)$ con una 
 &+T_3(\Delta t^{\frac{3}{2}}\sigma(Du(x_j,t^n))\vec{b},D^3u(x_j,t^n))+O(\Delta t^2), 
 \end{split}
 \end{equation}
-non abbiamo esplicitato i termini del terzo ordine in quanto , mettondo tutto insiemi si eliminano cosi come i termini del primo ordine, data la simmetria dei $4$ punti $x_j+\sigma(Du(x_j,t^n))\vec{b}\sqrt{2\Delta t}$ con $b=[\pm 1,\pm 1]^t$.
+non abbiamo esplicitato i termini del terzo ordine in quanto , mettondo tutto insieme, si eliminano cosi come i termini del primo ordine data la simmetria dei $4$ punti $x_j+\sigma(Du(x_j,t^n))\vec{b}\sqrt{2\Delta t}$ con $b=[\pm 1,\pm 1]^t$. Alla fine otteniamo che:
+\begin{equation}
+\label{eq:cp3-010}
+\begin{split}
+& S(x_j,u(x_j,t^n),Du(x_j,t^n)) = \\
+& = u(x_j,t^n) + \vec{v}_1^tD^2u(x_j,t^n)\vec{v}_1 + \vec{v}_2^tD^2u(x_j,t^n)\vec{v}_2 + \\
+& + O(\Delta x^r) + O(\Delta x^{q-s}\Delta t^{\frac{1}{2}}) + O(\Delta t^2).
+\end{split}
+\end{equation}
+Ora sviluppando  anche il termine $u(x_j,t^{n+1})$ e applicando la definizione generale di consistenza \eqref{eq:cp3-03} otteniamo 
+\[
+\begin{split}
+&\frac{u(x_j,t^{n+1})-S(x_j,u(x_j,t^n),Du(x_j,t^n))}{\Delta t}= u_t(x_j,t^n) + \\
+&  -\vec{v}_1^tD^2u(x_j,t^n)\vec{v}_1 -\vec{v}_2^tD^2u(x_j,t^n)\vec{v}_2 + \\
+& +O(\frac{\Delta x^r}{\Delta t}) + O(\frac{\Delta x^{q-s}}{\Delta t^{\frac{1}{2}}}) + O(\Delta t)
+\end{split}
+\]
+questa per $(\Delta t,\Delta x)\to O$ e $(x_j,t^n)\to(x,t)$ risulta soddisfatta, nella forma classica, se $\Delta x = o(\Delta t^{\frac{1}{r}})$ e $\Delta x^{q-s}=o(\Delta t^{\frac{1}{2}})$
