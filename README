@@ -1,0 +1,15 @@
+% % % % % % % % % % % % % %  % % % % % % % % % % % % % % 
+%
+%	THESIS: A Method For Preserving Volume Mean Curvature Flow
+%
+%       Author: dmike16   
+%       Program: latex
+%
+% This my thesis project, the final goal is to create a pdf document 
+% that explains the theory beside the numerical method. 
+% To create it, type in the commad line :
+%    make pdf.
+%
+%
+%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % 

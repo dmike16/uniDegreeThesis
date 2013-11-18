@@ -1,0 +1,34 @@
+###
+# Generic definitions
+
+comma	  := ,
+squote	  := '
+empty	  := 
+space	  := $(empty) $(empty)
+
+###
+escsq = $(subst $(squote),'\$(squote)',$1)
+
+###
+	kecho := :
+ quiet_kecho  := echo
+silent_kecho  := :
+kecho := $($(quiet)kecho)
+
+###
+echo-cmd = $(if $($(quiet)cmd_$(1)),\
+         echo ' $(call escsq,$($(quiet)cmd_$(1)))';)
+cmd = @$(echo-cmd) $(cmd_$(1)) 
+
+###
+# $(call file-existes, file-name)
+# Return non-null if a file exists
+file-exists = $(wildcard $1)
+
+# $(call latex-compile,source_code)
+# Compile the main source code with latex
+define latex-compile
+ $(LATEX) $1 
+ $(LATEX) $1
+ $(LATEX) $1
+endef

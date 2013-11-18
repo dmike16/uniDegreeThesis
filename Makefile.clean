@@ -1,0 +1,20 @@
+##############################################################
+#
+# Define the files to clean. This file will be included in the principal
+# Makefile.
+#
+
+clean : rm-files := $(patsubst %,%/*~,$(SOURCE_INTRO_DIR))    \
+		$(patsubst %,%/*.aux,$(SOURCE_INTRO_DIR))    \
+		$(patsubst %,%/*.log,$(SOURCE_INTRO_DIR))    \
+		$(patsubst %,%/*.toc,$(SOURCE_INTRO_DIR))  
+
+clean : rm-files += $(patsubst %,%/*~,$(SOURCE_CHAPTER_DIR))  \
+		$(patsubst %,%/*.aux,$(SOURCE_CHAPTER_DIR))  \
+		$(patsubst %,%/*.log,$(SOURCE_CHAPTER_DIR))  \
+		$(patsubst %,%/*.toc,$(SOURCE_CHAPTER_DIR))
+	 
+
+clean : rm-files  += *~ *.aux *.log *.toc
+
+clean : rm-dirs	  := $(OUTPUT_DIR)

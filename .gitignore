@@ -1,0 +1,11 @@
+# Latex generated files
+*.aux
+*.log
+*.toc
+*.pdf
+*.ps
+*.dvi
+
+# Editor Backuped Fils
+*~
+#*#
