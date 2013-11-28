@@ -1,13 +1,14 @@
 \chapter{Costruzione ed analisi dello schema Semi-Lagrangiano}
-In questo capitolo costruiremo ed analizeremo uno schema semi-lagrangiano per l'equatione di curvatura media di evoluzione di una superficie chiusa in $\mathbb{R}^3$.
+In questo capitolo costruiremo ed analizzeremo uno schema Semi-Lagrangiano per l'equazione di curvatura media in $\mathbb{R}^3$.
 Ricordiamo la nostra equazione :
 \begin{equation}
 \label{eq:cp3-01}
 \begin{cases}
 u_t = \Div\left(\frac{Du}{|Du|}\right)|Du|\quad (x_1,x_2,x_3)\in\mathbb{R}^3,t\in(0,T) \\
-u(x,0) = u_o(x) \qquad \quad \mathbb{R}^3\times\{t = 0\}
+u(x,0) = u_0(x) \qquad \quad \mathbb{R}^3\times\{t = 0\}
 \end{cases}
 \end{equation}
+con $Du$ il gradiente di $u$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Section 3.1 Costruzione dello schema
 %
@@ -19,7 +20,7 @@ Vale la seguente serie di uguaglianze:
 \[
 \Div\left(\frac{Du}{|Du|}\right)|Du|=\trace\left(\left(I-\frac{DuDu^t}{|Du|^2}\right)D^2u\right)=\vec{v}_1^tD^2u\vec{v}_1+\vec{v}_2^tD^2u\vec{v}_2.
 \]
-con $\vec{v}_1$ e $\vec{v}_2$ autovettori della matrice $P=I-\frac{DuDu^t}{|Du|^2}$; rispettivamente :
+con $\vec{v}_1$ e $\vec{v}_2$ autovettori della matrice $P=I-\frac{DuDu^t}{|Du|^2}$, definiti da :
 \[
 \vec{v_1}=
 \begin{bmatrix}
@@ -46,20 +47,20 @@ Iniziamo con la prima uguaglianza, svolgendo esplicitamente $\Div\left(\frac{Du}
 \]
 Ora ricordando che $\Delta u$ rappresenta il laplaciano della funzione $u$ e osservando che :
 \[
-\left<D^2u\frac{Du}{|Du|},\frac{Du}{|Du|}\right> = \left<\frac{1}{|Du|}(u_{x_1}(D^2u)^1,u_{x_2}(D^2u)^2,u_{x_3}(D^2u)^3)^t,\frac{Du}{|Du|}\right> =
+\left<D^2u\frac{Du}{|Du|},\frac{Du}{|Du|}\right> = \left<\frac{1}{|Du|}(u_{x_1}(D^2u)^1+u_{x_2}(D^2u)^2+u_{x_3}(D^2u)^3),\frac{Du}{|Du|}\right> =
 \]
 \[
-=\frac{1}{|Du|^2}(u_{x_1}^2(D^2u)^1+u_{x_2}^2(D^2u)^2+u_{x_3}^2(D^2u)^3 = \trace\left(\frac{DuDu^t}{|Du|^2}D^2u\right),
+=\frac{1}{|Du|^2}(u_{x_1}<(D^2u)^1,Du>+u_{x_2}<(D^2u)^2,Du>+u_{x_3}<(D^2u)^3,Du> = \trace\left(\frac{DuDu^t}{|Du|^2}D^2u\right),
 \]
 avendo indicato con $(D^2u)^n$ l'$n$-esima colonna della matrice delle derivate seconde della funzione $u$, giungiamo all'uguaglianza cercata:
 \[
 \Div\left(\frac{Du}{|Du|}\right)|Du| = \trace\left(\left(I-{\frac{DuDu^t}{|Du|^2}}\right)D^2u\right).
 \] 
-Ora occupiamoni della seconda uguaglianza. Iniziamo co fare alcune osservazioni sulla matrice $P=I-\frac{DuDu^t}{|Du|^2}$. Questa è una matrice di proiezione, $3x3$ a valori in $\mathbb{R}$, simmetrica ($P^t=P$) e idempotente ($P^2=P$), ammette due autovettori $\vec{v}_1$,$\vec{v}_2$ e vale la seguente decomposizione
+Ora occupiamoni della seconda uguaglianza. Iniziamo co fare alcune osservazioni sulla matrice $P=I-\frac{DuDu^t}{|Du|^2}$. Questa è una matrice di proiezione, $3\times3$ a valori in $\mathbb{R}$, simmetrica ($P^t=P$) e idempotente ($P^2=P$), ammette due autovettori $\vec{v}_1$,$\vec{v}_2$ e vale la seguente decomposizione
 \[
 P=\sum_{i=1}^2\vec{v}_i\vec{v}_i^t=\sigma\sigma^t\quad\text{ con } \sigma=[\vec{v_1},\vec{v_2}],
 \]
-con $\sigma$ matrice $3x2$ che ha come colonne gli autovettori di $P$. Detto ciò abbiamo: 
+con $\sigma$ matrice $3\times2$ che ha come colonne gli autovettori di $P$. Detto ciò abbiamo: 
 \[
 \trace\left(\left(I-{\frac{DuDu^t}{|Du|^2}}\right)D^2u\right)=\trace\left(\sigma\sigma^tD^2\right)=\trace\left([\vec{v}_1,\vec{v}_2][\vec{v}_1,\vec{v}_2]^tD^2u\right)=
 \]
@@ -69,7 +70,7 @@ con $\sigma$ matrice $3x2$ che ha come colonne gli autovettori di $P$. Detto ci�
 Ricordando i calcoli fatti nella dimostrazione della prima uguaglianza possiamo scrivere:
 \[
 \begin{split}
-&\trace\left(\vec{v}_1\vec{v}_1^tD^2u\right)+\trace\left(\vec{v}_2\vec{v}_2^tD^2u\right)=\left<D^2u\vec{v}_1,\vec{v}_1\right>+\left<D^u\vec{v}_2,\vec{v}_2\right>=\\
+&\trace\left(\vec{v}_1\vec{v}_1^tD^2u\right)+\trace\left(\vec{v}_2\vec{v}_2^tD^2u\right)=\left<D^2u\vec{v}_1,\vec{v}_1\right>+\left<D^2u\vec{v}_2,\vec{v}_2\right>=\\
 & =\vec{v}_1^tD^2u\vec{v}_1+\vec{v}_2^tD^2u\vec{v}_2.
 \end{split}
 \]
@@ -84,15 +85,15 @@ Approssimiano la derivata temporale con le differenze finite in avanti, mentre p
 Quindi nel caso in cui $Du \ne 0$ e $u_{x_1}^2+u_{x_3}^2\ne 0$ otteniamo :
 \[
 \begin{split}
-&\frac{u(x,t+\Delta t)-u(x,t)}{\Delta t} = \frac{1}{4\Delta t}\bigl[u(x+\sqrt{2\Delta t}(\vec{v}_1+\vec{v}_2),t) +\\
+&\frac{u(x,t+\Delta t)-u(x,t)}{\Delta t} +O(\Delta t)= \frac{1}{4\Delta t}\bigl[u(x+\sqrt{2\Delta t}(\vec{v}_1+\vec{v}_2),t) +\\
 & +u(x+\sqrt{2\Delta t}(-\vec{v}_1+\vec{v}_2),t) + u(x+\sqrt{2\Delta t}(\vec{v}_1-\vec{v}_2),t) \\
-& + u(x+\sqrt{2\Delta t}(-\vec{v}_1-\vec{v}_2),t) - 4u(x,t)\bigr] + o(\Delta t)
+& + u(x+\sqrt{2\Delta t}(-\vec{v}_1-\vec{v}_2),t) - 4u(x,t)\bigr] + O(\Delta t)
 \end{split}
 \]
 
 Osservando tale approssimazione, possiamo notare che i punti  \\
 $(x + \sqrt{2\Delta t}(\pm\vec{v}_1 \pm\vec{v}_2))$ non necessariamente saranno i nodi della griglia, quindi è necessario introdurre l'operatore di interpolazione $I[.]$.
-Per completare la costruzione consideriamo una griglia spaziale $x_j=(j_1\Delta x,j_2\Delta x)$ con $j=(j_1,j_2)$ multi-indice in $\mathbb{Z}^2$ ed una griglia temporale $t^n=n\Delta t$ con $n\in\mathbb{N}$.
+Per completare la costruzione consideriamo una griglia spaziale $x_j=(j_1\Delta x,j_2\Delta x,j_3\Delta x)$ con $j=(j_1,j_2,j_3)$ multi-indice in $\mathbb{Z}^3$ ed una griglia temporale $t^n=n\Delta t$ con $n\in\mathbb{N}$.
 Indichiamo con $u_j^n$ l'approssimazione di $u$ nel punto della griglia $(x_j,t^n)$ e con $D_j^n$ l'approssimazione del gradiente di $u$ nel suddetto punto. Quindi il nostro schema semi-lagrangiano risulta :
 \begin{equation}
 \label{eq:cp3-02}
@@ -102,11 +103,11 @@ u_j^{n+1} = \frac{1}{4}\sum_{+,-}I[u^n](x_j+\sqrt{2\Delta t}(\pm\vec{v}_1\pm\vec
 Questa costruzione non è applicabile nel caso in cui 
 \begin{equation}
 \label{eq:cp3-01-add}
-Du = 0 \text{ o } u_{x_1}^2+u_{x_2}^2 = 0. 
+Du = 0 \text{ o } u_{x_1}^2+u_{x_3}^2 = 0. 
 \end{equation}
 Quindi per distinguere i due casi dal punto di vista numerico, introduciamo una soglia $s$ ed una costante $C$. In modo tale che il verificarsi del caso \eqref{eq:cp3-01-add} è rappresentato numericamente dalle disequazioni
 \[
-|Du_j^n|\le C\Delta x^s\text{ e }|u_{x_1}^2+u_{x_2}^2|\le C\Delta x^s.
+|D_j^n|\le C\Delta x^s\text{ e }|(D_j^n)_1^2+(D_j^n)_3^2|\le C\Delta x^s.
 \]
 \end{osservazione}
 *** Manca da trattare il caso discontinuo ****
@@ -128,9 +129,9 @@ In generale un metodo si dirà consistente quando il suo LTE è infinitesimo ris
 \[
 \tau(\Delta t,\Delta x) = O(\Delta t^p +\Delta x^q).
 \] 
-Nel nostro caso, in quanto l'equazione che approssimiamo è singolare quando il gradiente è $Du$ si annulla oppure quando $u_{x_1}^2+u_{x_3}^2=0$, è necessario introdurre una definizione di consistenza più generale.
+Nel nostro caso, in quanto l'equazione che approssimiamo è singolare quando il gradiente  $Du$ si annulla oppure quando $u_{x_1}^2+u_{x_3}^2=0$, è necessario introdurre una definizione di consistenza più generale.
 \begin{definizione}
-Sia $(\Delta x_m,\Delta t_m)$ una seguenza generica di parametri di discretizzazione e sia $(x_{j_m},t^{n_m})\in G\times{0,\dots,\Delta t_mN}$ una seguenza generica di nodi della griglia $G$, tale che per $m\to\infty$,
+Sia $(\Delta x_m,\Delta t_m)$ una seguenza generica di parametri di discretizzazione e sia $(x_{j_m},t^{n_m})\in G\times\left\{0,\dots,\Delta t_mN\right\}$ una seguenza generica di nodi, tale che per $m\to\infty$,
 \[
 (\Delta x_m,\Delta t_m)\to0 \quad\text{ e } (x_{j_m},t^{n_m})\to(x,t).
 \]
@@ -161,7 +162,7 @@ con $C_1$ e $C_2$ costanti positive che dipendono così come gli ordini $r$ e $q
 
 Consideriamo il caso in cui $Du(x,t)\ne 0$ e $u_{x_1}(x,t)^2+u_{x_3}(x,t)^2\ne 0$, vista la regolarità di $u$, esiste un intorno di $(x,t)$ in cui le due espressioni precedenti si mantengono vere. Quindi l'approssimazione del gradiente verifica le seguenti diseguaglianze :
 \[
-|D_j^n|\ge C\Delta x^s\text{ e }|((u_{x_1})_j^n)^2+((u_{x_3})_j^n)^2|\ge C\Delta x^s
+|D_j^n|\ge C\Delta x^s\text{ e }|(D_j^n)_1^2+((D_j^n)_3^2|\ge C\Delta x^s
 \]
 per cui possiamo applicare lo schema nella forma \eqref{eq:cp3-02}.
 \begin{osservazione}
@@ -171,9 +172,9 @@ I[u^n](x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b}).
 \]
 Ora calcolando lo jacobiano si $\sigma$ per un qualsiasi vettore $p$ in $\mathbb{R}^3$ (senza riportare tutto il conto) si dimostra che:
 \[
-\left|J_{\sigma}(p)\right|^2=\frac{1}{|p|^2},
+\left|J_{\sigma}(p)\right|^2=\frac{1}{p_1^2+p_3^2},
 \]
-dove come norma è stata scelta quella di Forbenius. Quindi applicando $\sigma[\cdot]$ al gradiente e sfruttando il fatto che $|D_j^n|\ge C\Delta x^s$, possiamo concludere che la funzione $\sigma$ risulta lipschitziana con costante $L_{\sigma}\le\frac{1}{C\Delta x^s}$.
+dove come norma è stata scelta quella di Forbenius. Quindi applicando $\sigma[\cdot]$ al gradiente e sfruttando il fatto che $(D_j^n)_1^2+(D_j^n)_3^2\ge C\Delta x^s$, possiamo concludere che la funzione $\sigma$ risulta lipschitziana con costante $L_{\sigma}\le\frac{1}{C\Delta x^s}$.
 Inoltre, avendo preso la $u$ sufficientemente regolare, anche essa sarà lipschitiziana con costatne $L_u$ e con $|Du|< M$. Assumiamo anche che $|u_{tt}(x,t)|\le C$ in modo tale da limitare l'errore di troncamento per l'approssimazione temporale.
 \end{osservazione}
 
