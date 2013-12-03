@@ -7,6 +7,7 @@
               }
 \begin{document}
 \titlepage{
+
 \begin{center}
 \huge{\textsc{SAPIENZA}} \\
 \small{UNIVERSITA DI ROMA}\\
@@ -16,12 +17,19 @@
 \scriptsize{Corso di Laurea Magistrale in Matematica per le Applicazioni}
 \end{center}
 \vspace{150pt}
+\begin{center}
 {\onehalfspacing
-\begin{center}
-\huge{\textsf{Uno Schema Semi-Lagrangiano per il Moto per Curvatura Media che preserva il Volume}}
-\end{center}}
-\vspace{150pt}
-\begin{center}
+\huge{\textcolor{cyan}{\textsf{Uno Schema Semi-Lagrangiano per il Moto per Curvatura Media che preserva il Volume}}}}\\
+\bigskip
+\begin{tikzpicture}
+  \begin{axis}[colormap/cool,%
+    axis background/.style={shade,top color=white,bottom color=gray}]
+    \addplot3[mesh,z buffer=sort,%
+    samples=10,%
+    domain=0:1] expression
+    {x*(1-x)*y*(1-y)};    
+ \end{axis}
+\end{tikzpicture}
 \begin{multicols}{2}
 Relatrice:\\
 Prof.Elisabetta Carlini\\
@@ -32,7 +40,6 @@ Michele Cipolla
 Anno Accademico 32039-23902
 \end{center}
 }
-
 \tableofcontents
 
 \include{introduzione/intro}
