@@ -16,7 +16,11 @@ L'applicazione $\mathcal{S}$ si dice parametrizzazione regolare in un intorno de
 
 Siano $u$ e $v$ coordinate su $U\subset\mathbb{R}^2$ e $p=\mathcal{S}(u_0,v_0)$; si definisce spazio tangente ad $S$ nel punto $p$, e si indica con $T_pS$, l'immgine di $\mathbb{R}^2$ tramite l'applicazione $d\mathcal{S}_{(u_0,v_0)}$:
 \[
-(a,b)\in\mathbb{R}^2\quad d\mathcal{S}_{(u_0,v_0)}(a,b)=\frac{d}{dt}\mathcal{S}(u_0+at,v_0+bt)|_{t=0}=a\mathcal{S}_u(u_0,v_0)+b\mathcal{S}_v(u_0,v_0),
+(a,b)\in\mathbb{R}^2\quad d\mathcal{S}_{(u_0,v_0)}(a,b)= 
+\frac{d}{dt}\mathcal{S}(u_0+at,v_0+bt)|_{t=0}=
+\]
+\[
+=a\mathcal{S}_u(u_0,v_0)+b\mathcal{S}_v(u_0,v_0),
 \]
 con $\mathcal{S}_u(u_0,v_0)$ e $\mathcal{S}_v(u_0,v_0)$ colonne della matrice:
 \[
@@ -27,7 +31,11 @@ d\mathcal{S}=
   z_u & z_v 
 \end{bmatrix}
 \]
-avendo tale matrice rango massimo, per definizione di superficie regolare, i vettori $\mathcal{S}_u$ e $\mathcal{S}_v$ sono dunque una base per $T_pS$.
+avendo tale matrice rango massimo, per definizione di superficie regolare, i vettori $\mathcal{S}_u$ e $\mathcal{S}_v$ sono dunque una base per $T_pS$. Poichè il loro prodotto vettoriale è non nullo, in quanto linearmente indipendenti, e ortogonale al piano da essi individuato, definiamo il versore normale alla superficie nel punto $p$ come (vedere figura \ref{fig:cp-11}):
+\begin{equation}
+  \label{eq:cp-10}
+  \vec{n} = \frac{\mathcal{S}_u\wedge\mathcal{S}_v}{||\mathcal{S}_u\wedge\mathcal{S}_v||}.
+\end{equation}
 \begin{figure}[!hp]
   \tdplotsetmaincoords{60}{40}
   \begin{tikzpicture}[tdplot_main_coords]
@@ -35,15 +43,15 @@ avendo tale matrice rango massimo, per definizione di superficie regolare, i vet
     \coordinate (O) at (0,0,0);
 
     \tdplotsetcoord{P}{1.5}{90}{240};
-    \tdplotsetcoord{P1}{4.0}{90}{100};
-    \tdplotsetcoord{P2}{4.2}{90}{-20};
-    \tdplotsetcoord{P3}{5.5}{90}{45}
+    \tdplotsetcoord{P1}{2.5}{90}{105};
+    \tdplotsetcoord{P2}{2.7}{90}{-30};
+    \tdplotsetcoord{P3}{3.4}{90}{45}
 
     
-    \draw[thick,->,blue] (0,0,0)node[anchor=east]{$(u_0,v_0)$} -- 
-    (3,0,0) node[anchor=south]{$\mathcal{S}_u$};
-    \draw[thick,->,blue] (0,0,0) -- (0,3,0) node[anchor=north]{$\mathcal{S}_v$};
-    \draw[thick,->,blue] (0,0,0) -- (0,0,3) node[anchor=north east]{$\vec{n}$};
+    \draw[thick,->,blue] (0,0,0)node[anchor=east]{$p$} -- 
+    (2,0,0) node[anchor=south]{$\mathcal{S}_u$};
+    \draw[thick,->,blue] (0,0,0) -- (0,2,0) node[anchor=north]{$\mathcal{S}_v$};
+    \draw[thick,->,blue] (0,0,0) -- (0,0,2.5) node[anchor=north east]{$\vec{n}$};
     
     \draw (P) -- (P1) -- (P3) -- (P2) -- (P);
     
@@ -56,10 +64,14 @@ avendo tale matrice rango massimo, per definizione di superficie regolare, i vet
     \draw[dashed] (W2) .. controls (3,0,0) and (3,0.5,0) .. (W3);
     \draw (W) to[out=60,in=60] (W2);
     \draw (W) to[out=240,in=240](W2);
-    \draw[dashed] (W1) to[out=210,in=210] (W3);
-    \draw (W1) to[out=30,in=30] (W3);
+    \draw[dashed] (W1) to[out=190,in=190] (W3);
+    \draw (W1) to[out=10,in=10] (W3);
 
   \end{tikzpicture}
 
-  \caption{Piano tangente e vettore normale alla superficie $S$ nel punto $(u_0,v_0)$.}
+  \caption{Piano tangente e versore normale alla superficie $S$ nel punto $p$.}
+  \label{fig:cp-11}
 \end{figure}
+
+
+
