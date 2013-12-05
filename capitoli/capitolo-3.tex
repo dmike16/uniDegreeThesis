@@ -14,6 +14,7 @@ con $Du$ il gradiente di $u$.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Costruzione dello schema MCM}
+
 Partiamo dall'equazione \eqref{eq:cp3-01} e operiamo alcune manipolazioni algebriche, al fine di scrivere meglio il termine del flusso. 
 \begin{proposizione}
 Vale la seguente serie di uguaglianze:
@@ -185,20 +186,26 @@ Inoltre, avendo preso la $u$ sufficientemente regolare, anche essa sarà lipschi
 \begin{equation}
 \label{eq:cp3-06}
 \begin{split}
-& I[u^n](x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b}) = I[u^n](x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b}) - u(x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b},t^n) + \\
-& + u(x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b},t^n) - u(x_j+\sigma(Du(x_j,t^n))\sqrt{2\Delta t}\vec{b},t^n)+ \\
-& + u(x_j+\sigma(Du(x_j,t^n))\sqrt{2\Delta t}\vec{b},t^n).
+& I[u^n](x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b}) = I[u^n](x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b}) - \\
+& +u(x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b},t^n) + u(x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b},t^n)- \\
+& + u(x_j+\sigma(Du(x_j,t^n))\sqrt{2\Delta t}\vec{b},t^n)+ u(x_j+\sigma(Du(x_j,t^n))\sqrt{2\Delta t}\vec{b},t^n).
 \end{split}
 \end{equation}
 Stimiamo la parte destra di \eqref{eq:cp3-06}. Per la prima differenza applichiamo la stima dell'errore di interpolazione quindi
 \begin{equation}
-\label{eq:cp3-07}
-|I[u^n](x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b}) - u(x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b},t^n)|\le C_1\Delta x^r,
+  \label{eq:cp3-07}
+  \begin{split}
+    |I[u^n](x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b}) &- u(x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b},t^n)|\le \\
+    & \le C_1\Delta x^r,
+\end{split}
 \end{equation}
 mentre per la seconda utilizzando la lipschitianità di $u$ , di $\sigma$ e la stima dell'errore di aprrossimazione del gradiente ottendo:
 \begin{equation}
-\label{eq:cp3-08}
-|u(x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b},t^n) - u(x_j+\sigma(Du(x_j,t^n))\sqrt{2\Delta t}\vec{b},t^n)|\le M\sqrt{2\Delta t}\frac{C_2}{C}\Delta x^{q-s}.
+  \label{eq:cp3-08}
+  \begin{split}
+    |u(x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b},t^n) &- u(x_j+\sigma(Du(x_j,t^n))\sqrt{2\Delta t}\vec{b},t^n)|\le \\
+    & \le M\sqrt{2\Delta t}\frac{C_2}{C}\Delta x^{q-s}.
+  \end{split}
 \end{equation}
 Usando \eqref{eq:cp3-07} e \eqref{eq:cp3-08} in \eqref{eq:cp3-06} otteniamo
 \[
