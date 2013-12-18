@@ -31,9 +31,9 @@ d\mathcal{S}=
   z_u & z_v 
 \end{bmatrix}
 \]
-avendo tale matrice rango massimo, per definizione di superficie regolare, i vettori $\mathcal{S}_u$ e $\mathcal{S}_v$ sono dunque una base per $T_pS$. Poichè il loro prodotto vettoriale è non nullo, in quanto linearmente indipendenti, e ortogonale al piano da essi individuato, definiamo il versore normale alla superficie nel punto $p$ come (vedere figura \ref{fig:cp-11}):
+avendo tale matrice rango massimo, per definizione di superficie regolare, i vettori $\mathcal{S}_u$ e $\mathcal{S}_v$ sono dunque una base per $T_pS$. Poichè il loro prodotto vettoriale è non nullo, in quanto linearmente indipendenti, e ortogonale al piano da essi individuato, definiamo il versore normale alla superficie nel punto $p$ come (vedere figura \ref{fig:cp-111}):
 \begin{equation}
-  \label{eq:cp-10}
+  \label{eq:cp-111}
   \vec{n} = \frac{\mathcal{S}_u\wedge\mathcal{S}_v}{||\mathcal{S}_u\wedge\mathcal{S}_v||}=\frac{1}{\sqrt{\det(g)}}(\mathcal{S}_u\wedge\mathcal{S}_v),
 \end{equation}
 \begin{figure}[!hp]
@@ -70,13 +70,13 @@ avendo tale matrice rango massimo, per definizione di superficie regolare, i vet
   \end{tikzpicture}
 
   \caption{Piano tangente e versore normale alla superficie $S$ nel punto $p$.}
-  \label{fig:cp-11}
+  \label{fig:cp-111}
 \end{figure}
 con $g$ \emph{prima forma fondamentale della parametrizzazione} $\mathcal{S}$, definita da:
 \begin{definizione}
 L'applicazione differenziabile $g:U\longrightarrow gl(2,\mathbb{R})$ è definita da $g(u)=(g_{ij}(u))$, con:
 \begin{equation}
-\label{eq:cp-11}
+\label{eq:cp-112}
 g_{ij}(u) = <\mathcal{S}_i,\mathcal{S}_j>\quad i,j=u,v.
 \end{equation}
 \end{definizione}
@@ -95,7 +95,7 @@ Se $\tilde{u}$,$\tilde{v}$ sono un nuovo sisteme di coordinate su $U$, vale:
 \]
 quindi $\vec{n}$ resta invariato o cambia segno a seconda del segno del determinante della trasformazione parametrica.
 \end{osservazione}
-Il versore normale \eqref{eq:cp-10} individua un'applicazione differenziabile, che ad ogni punto della supeficie $S$ associa un punto della sfera unitaria $S^2$ in $\mathbb{R}^3$. Tale mappa, $N: S\longrightarrow S^2$, viene detta \emph{applicazione di Gauss}. Fissiamo, ora, un punto $p\in S$ , consideriamo un'applicazione  $F: T_pS\longrightarrow T_pS$ e vediamo come definirla. A tal proposito consideriamo una curva  $\alpha : (-\epsilon,\epsilon)\longrightarrow S$ sulla superficie $S$, tale che $\alpha(0)=p$. Per ogni $t\in (-\epsilon,\epsilon)$ vale che :
+Il versore normale \eqref{eq:cp-111} individua un'applicazione differenziabile, che ad ogni punto della supeficie $S$ associa un punto della sfera unitaria $S^2$ in $\mathbb{R}^3$. Tale mappa, $N: S\longrightarrow S^2$, viene detta \emph{applicazione di Gauss}. Fissiamo, ora, un punto $p\in S$ , consideriamo un'applicazione  $F: T_pS\longrightarrow T_pS$ e vediamo come definirla. A tal proposito consideriamo una curva  $\alpha : (-\epsilon,\epsilon)\longrightarrow S$ sulla superficie $S$, tale che $\alpha(0)=p$. Per ogni $t\in (-\epsilon,\epsilon)$ vale che :
 \[
 <N(\alpha(t)),N(\alpha(t))> = 1,
 \] 
@@ -115,14 +115,14 @@ essendo $\mathcal{S}_{ij}=\mathcal{S}_{ji}$, per il Teorema dell'invertibilità 
 \end{definizione}
 Facendo riferimento all'applicazione $F$ appena introdotta, possiamo riscrivere la seconda forma fondamentale:
 \begin{equation}
-\label{eq:cp-12}
+\label{eq:cp-113}
 b_{ij}=<F(\mathcal{S}_i),\mathcal{S}_j>,
 \end{equation}
 da ciò deduciamo che l'endomorfismo $F$ è autoaggiunto rispetto al prodotto scalare indotto su $\mathbb{R}^3$. Quindi, in una base ortonormale di $T_pS$, l'operatore $F$ è rappresentato da una matrice simmetrica ed è dunque diagonalizzabile con matrici ortogonali; e gli autovalori $k_1$, $k_2$ di $F$ si dicono \emph{curvaure principali} di $S$ in $p$. Rappresentado $F$ nella base $\mathcal{S}_u$, $\mathcal{S}_v$, abbiamo:
 \[
 F(\mathcal{S}_i) = f_i^1\mathcal{S}_u + f_i^2\mathcal{S}_v,\quad i=u,v,
 \]
-con $f_i^j$ i coefficenti della matrice dell'applicazione $F$. Sostituendo quest ultima equazione in \eqref{eq:cp-12} si dimostra che
+con $f_i^j$ i coefficenti della matrice dell'applicazione $F$. Sostituendo quest ultima equazione in \eqref{eq:cp-113} si dimostra che
 \[
 \det(F) = \frac{\det(b)}{\det(g)}=k_1k_2.
 \]
@@ -131,9 +131,69 @@ In conclusione,si definiscono \emph{curvatura media} e \emph{curvatura gaussiana
 \[
 H=\frac{1}{2}(k_1+k_2)=\frac{1}{2}\trace(F),\quad K=k_1k_2=\det(F).
 \]
+\begin{osservazione}
+La definizione precedente è usata in giometria. Esiste un'altra definizione di curvatura media per una superficie $S\subseteq\mathbb{R}^3$, che noi unseremo del prossimo capitolo:
+\[
+\tilde{H}(x):= \Div(\vec{n}(x)), \quad x\in S\subseteq\mathbb{R}^3
+\]
+dove $\vec{n}(x)$ indica la normale esterna nel punto $x$ della supeficie.
+Osserviamo che $\tilde{H}(x)=2H(x)$, quindi esse differiscono soltanto per una costante moltiplicativa.
+\end{osservazione}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % Section 1.2
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Moto per curvatura media \emph{Volum Preserving}}
+
+Consideriamo superfici che si evolvono nel tempo. \\
+Sia $\mathcal{S}(\tilde{p},t):U\times[0,T)\longrightarrow\mathbb{R}^3$, con $U\subseteq\mathbb{R}^2$, una famiglia di superfici regolari, dove $t$ parametrizza la famiglia e $\tilde{p}$ la superficie. Assumiamo che essa odebisce alla seguente PDE:
+\begin{equation}
+  \label{eq:cp121}
+  \frac{\partial\mathcal{S}(\tilde{p},t)}{\partial t} = \alpha(\tilde{p},t)\vec{t}(\tilde{p},t) + \beta(\tilde{p},t)\vec{n}(\tilde{p},t)
+\end{equation}
+con $\mathcal{S}_0(\tilde{p})$ condizione iniziale. Indichiamo con $\vec{t}$ e $\vec{n}$ ripsettivamente, il versore tangente e il versore normale esterno alla superficie; mentre $\alpha$ e $\beta$ sono le componenti tangenziale e normale della velocità con cui si deforma la superfcie. Essendo interessati alla sola deformazione geometrica ed non a come cambia la parametrizzazino, Il PDE \eqref{eq:cp121} può essere semplificata applicando il seguente lemma:
+\begin{lemma}
+Se $\beta$ non dipende dalla parametrizzazione, ma è una caratteristica geometrica intrinseca della curava, tipo la curvatura, allora l'imagine di $\mathcal{S}(\tilde{p},t)$ che soddisfa \eqref{eq:cp121} è identica all'imagine della famiglia $\mathcal{S}(p,t)$ che soddisfa
+\begin{equation}
+  \label{eq:cp122}
+  \frac{\partial\mathcal{S}(p,t)}{\partial t} =\beta(p,t)\vec{n}(p,t).
+\end{equation}
+\end{lemma}
+
+\begin{figure}[!hp]
+  \begin{center}
+  \tdplotsetmaincoords{60}{40}
+  \begin{tikzpicture}[tdplot_main_coords]
+    [place/.style={shape=circle,draw=blue!50,fill=blue!20}]
+    
+    \coordinate (O) at (0,0,0);
+
+       
+    %\draw[thick,->,blue] (0,0,0)node[anchor=east]{$O$} -- 
+    %(2,0,0) node[anchor=south]{$x$};
+    %\draw[thick,->,blue] (0,0,0) -- (0,2,0) node[anchor=north]{$y$};
+    %\draw[thick,->,blue] (0,0,0) -- (0,0,2.5) node[anchor=north east]{$z$};
+
+    \tdplotsetcoord{P}{2.0}{90}{45};
+    \tdplotsetcoord{P2}{5.5}{90}{45};
+    \tdplotsetcoord{P3}{5.5}{90}{40};
+
+    \draw [->,blue!52,thick](P) to[out=50,in=130](P2);
+    \node[shape=circle,draw=blue!50,fill=blue!12,inner sep=0pt,minimum size=1mm]
+    (origin) at (O) {};
+    \node [blue,left] at (origin.south) {$O$};
+    \node[shape=circle,draw=gray,fill=gray,inner sep=0pt,minimum size=2mm]
+    (end) at (P3) {};
+    \node [blue,below] at (end.south) {$O$};
+
+    \draw  [gray,tdplot_main_coords,dashed,thick] (O) ellipse (42pt and 20pt);
+    \tdplotsetthetaplanecoords{40};
+    \draw [gray,thick,tdplot_rotated_coords](1.5,0,0) arc (0:360:1.5);
+    
+        
+  \end{tikzpicture}
+  \end{center}
+  \caption{Evoluzione della sfera di raggio $R$, per curvatura media}
+  \label{fig:cp-121}
+\end{figure}
