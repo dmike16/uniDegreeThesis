@@ -38,7 +38,7 @@ avendo tale matrice rango massimo, per definizione di superficie regolare, i vet
 \end{equation}
 \begin{figure}[!hp]
   \tdplotsetmaincoords{60}{40}
-  \begin{tikzpicture}[tdplot_main_coords]
+  \begin{tikzpicture}[tdplot_main_coords,gray,thick]
 
     \coordinate (O) at (0,0,0);
 
@@ -48,10 +48,10 @@ avendo tale matrice rango massimo, per definizione di superficie regolare, i vet
     \tdplotsetcoord{P3}{3.4}{90}{45}
 
     
-    \draw[thick,->,blue] (0,0,0)node[anchor=east]{$p$} -- 
+    \draw[->,blue] (0,0,0)node[anchor=east]{$p$} -- 
     (2,0,0) node[anchor=south]{$\mathcal{S}_u$};
-    \draw[thick,->,blue] (0,0,0) -- (0,2,0) node[anchor=north]{$\mathcal{S}_v$};
-    \draw[thick,->,blue] (0,0,0) -- (0,0,2.5) node[anchor=north east]{$\vec{n}$};
+    \draw[->,blue] (0,0,0) -- (0,2,0) node[anchor=north]{$\mathcal{S}_v$};
+    \draw[->,blue] (0,0,0) -- (0,0,2.5) node[anchor=north east]{$\vec{n}$};
     
     \draw (P) -- (P1) -- (P3) -- (P2) -- (P);
     
@@ -132,12 +132,13 @@ In conclusione,si definiscono \emph{curvatura media} e \emph{curvatura gaussiana
 H=\frac{1}{2}(k_1+k_2)=\frac{1}{2}\trace(F),\quad K=k_1k_2=\det(F).
 \]
 \begin{osservazione}
-La definizione precedente è usata in giometria. Esiste un'altra definizione di curvatura media per una superficie $S\subseteq\mathbb{R}^3$, che noi unseremo del prossimo capitolo:
-\[
-\tilde{H}(x):= \Div(\vec{n}(x)), \quad x\in S\subseteq\mathbb{R}^3
-\]
-dove $\vec{n}(x)$ indica la normale esterna nel punto $x$ della supeficie.
-Osserviamo che $\tilde{H}(x)=2H(x)$, quindi esse differiscono soltanto per una costante moltiplicativa.
+La definizione precedente è usata in giometria. Esiste un'altra definizione di curvatura media per una superficie $S\subseteq\mathbb{R}^3$:
+\begin{equation}
+  \label{eq:cp-114}
+  \tilde{H}(x):= \Div(\vec{n}(x)), \quad x\in S\subseteq\mathbb{R}^3
+\end{equation}
+dove $\vec{n}(x)$ indica la normale $x$ della supeficie.
+Si può provare che $\tilde{H}(x)=2H(x)$, quindi esse differiscono soltanto per una costante moltiplicativa.
 \end{osservazione}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -147,39 +148,70 @@ Osserviamo che $\tilde{H}(x)=2H(x)$, quindi esse differiscono soltanto per una c
 \section{Moto per curvatura media \emph{Volum Preserving}}
 
 Consideriamo superfici che si evolvono nel tempo. \\
-Sia $\mathcal{S}(\tilde{p},t):U\times[0,T)\longrightarrow\mathbb{R}^3$, con $U\subseteq\mathbb{R}^2$, una famiglia di superfici regolari, dove $t$ parametrizza la famiglia e $\tilde{p}$ la superficie. Assumiamo che essa odebisce alla seguente PDE:
+Sia $\mathcal{S}(\tilde{p},t):U\times[0,T)\longrightarrow\mathbb{R}^3$, con $U\subseteq\mathbb{R}^2$, una famiglia di superfici regolari, dove $t$ parametrizza la famiglia e $\tilde{p}$ la superficie. Assumiamo che essa obedisce alla seguente PDE:
 \begin{equation}
   \label{eq:cp121}
   \frac{\partial\mathcal{S}(\tilde{p},t)}{\partial t} = \alpha(\tilde{p},t)\vec{t}(\tilde{p},t) + \beta(\tilde{p},t)\vec{n}(\tilde{p},t)
 \end{equation}
-con $\mathcal{S}_0(\tilde{p})$ condizione iniziale. Indichiamo con $\vec{t}$ e $\vec{n}$ ripsettivamente, il versore tangente e il versore normale esterno alla superficie; mentre $\alpha$ e $\beta$ sono le componenti tangenziale e normale della velocità con cui si deforma la superfcie. Essendo interessati alla sola deformazione geometrica ed non a come cambia la parametrizzazino, Il PDE \eqref{eq:cp121} può essere semplificata applicando il seguente lemma:
+con $\mathcal{S}_0(\tilde{p})$ condizione iniziale. Indichiamo con $\vec{t}$ e $\vec{n}$ ripsettivamente, il versore tangente e il versore normale interno alla superficie; mentre $\alpha$ e $\beta$ sono le componenti tangenziale e normale della velocità con cui si deforma la superfcie. L'equazione scritta sopra risulta essere molto generale, infatti notiamo che per una qualsiasi velocità di deformazione $\vec{V}$ si ha $\alpha=<\vec{V},\vec{t}>$ e $\beta=<\vec{V},\vec{n}>$. Essendo interessati alla sola deformazione geometrica ed non a come cambia la parametrizzazione, Il PDE \eqref{eq:cp121} può essere semplificata applicando il seguente lemma:
 \begin{lemma}
-Se $\beta$ non dipende dalla parametrizzazione, ma è una caratteristica geometrica intrinseca della curava, tipo la curvatura, allora l'imagine di $\mathcal{S}(\tilde{p},t)$ che soddisfa \eqref{eq:cp121} è identica all'imagine della famiglia $\mathcal{S}(p,t)$ che soddisfa
+Se $\beta$ non dipende dalla parametrizzazione, ma è una caratteristica geometrica intrinseca della superficie, tipo la curvatura, allora l'imagine di $\mathcal{S}(\tilde{p},t)$ che soddisfa \eqref{eq:cp121} è identica all'imagine della famiglia $\mathcal{S}(p,t)$ che soddisfa
 \begin{equation}
   \label{eq:cp122}
   \frac{\partial\mathcal{S}(p,t)}{\partial t} =\beta(p,t)\vec{n}(p,t).
 \end{equation}
 \end{lemma}
 
+Per la dimostrazione del lemma si veda **RIF**, soffermiamoci sulle conseguenze.
+In poche parole, se la componente normale della velocità dipende soltato da caratteristiche geometriche della curva, l'evoluzione della famiglia è influenzata solo da quest'ultima componente; mentre la componente tangenziale influisce esclusivamente sulla parametrizzazione.
+Detto ciò, un generico flusso geometrico di superfici ha la forma:
+\[
+\frac{\partial\mathcal{S}}{\partial t} = \beta(H,K)\vec{n},
+\] 
+cioè la velocità è una funzione delle due curvature principali (media e gaussiana). Il flusso che vogliamo studiare è quello per curvatura media, quindi l'equazione precedente diventa:
+\begin{equation}
+  \label{eq:cp-123}
+  \frac{\partial\mathcal{S}}{\partial t} = H\vec{n}
+\end{equation}
+con $\mathcal{S}(p,0)=S_0$ dato iniziale.
+\begin{osservazione}
+Questo flusso è quello che in letteratura viene anche chiamato \emph{gradient discendent flow} , in quanto la superficie si evolve cercando di minimizzare l'area. 
+\end{osservazione}
+\begin{osservazione}
+Come provato negli articoli **ref** , questo flusso deforma superfici convesse in un punto, ma superfici non covesse posso ,per esempio, dividersi prima di diventare convesse generando delle singolarità. Facciamo alcuni semplici esempi.
+\end{osservazione}
+
+\begin{esempio}[The Sphere]
+Vogliamo calcolarci la soluzione esatta nel caso della sfera che si evolve secondo la \eqref{eq:cp-123}. Sia $\mathcal{S}(p,t) = S^2(R(t))$, cioè una famiglia di sfere in $\mathbb{R}^3$ di raggio $R(t)$ e centro l'origine, e $\mathcal{S}(p,0) = S^2(R_0)$ il nostro dato iniziale. Calcoliamoci la curvatura media, utilizzando l'espressione \eqref{eq:cp-114} e ricordando che la normale interna alla sfera è $\vec{n}(x(t))=-\frac{x(t)}{|x(t)|}$ con $x(t)\in S^2(R(t))$:
+\[
+H(x(t)) = \Div(\vec{n}(x(t))=\Div\left(-\frac{x(t)}{|x(t)|}\right)=-\frac{2}{R(t)}.   
+\]
+Allora la nostra equazione \eqref{eq:cp-123} diventa:
+\[
+\overset{.}{R}(t)=-\frac{2}{R(t)}, \text{ con } R(0) = R_0,
+\]
+risolvendo otteniamo:
+\[
+R(t)=\sqrt{R_0^2-4t}.
+\]
+Notiamo che:
+\[
+R(\hat{t})=0 \Longleftrightarrow \hat{t}=\frac{R_0^2}{4}.
+\]
+Quindi la sfera si ridurrà ad un punto in un tempo finito $\hat{t}$, che è chiamato tempo di collasso (figura \ref{fig:cp-121}).
+
 \begin{figure}[!hp]
   \begin{center}
   \tdplotsetmaincoords{60}{40}
-  \begin{tikzpicture}[tdplot_main_coords]
-    [place/.style={shape=circle,draw=blue!50,fill=blue!20}]
-    
+  \begin{tikzpicture}[tdplot_main_coords,gray,thick]
+   
     \coordinate (O) at (0,0,0);
-
        
-    %\draw[thick,->,blue] (0,0,0)node[anchor=east]{$O$} -- 
-    %(2,0,0) node[anchor=south]{$x$};
-    %\draw[thick,->,blue] (0,0,0) -- (0,2,0) node[anchor=north]{$y$};
-    %\draw[thick,->,blue] (0,0,0) -- (0,0,2.5) node[anchor=north east]{$z$};
-
     \tdplotsetcoord{P}{2.0}{90}{45};
     \tdplotsetcoord{P2}{5.5}{90}{45};
     \tdplotsetcoord{P3}{5.5}{90}{40};
-
-    \draw [->,blue!52,thick](P) to[out=50,in=130](P2);
+    
+    \draw [->,blue!52](P) to[out=50,in=130](P2);
     \node[shape=circle,draw=blue!50,fill=blue!12,inner sep=0pt,minimum size=1mm]
     (origin) at (O) {};
     \node [blue,left] at (origin.south) {$O$};
@@ -187,9 +219,9 @@ Se $\beta$ non dipende dalla parametrizzazione, ma è una caratteristica geometr
     (end) at (P3) {};
     \node [blue,below] at (end.south) {$O$};
 
-    \draw  [gray,tdplot_main_coords,dashed,thick] (O) ellipse (42pt and 20pt);
+    \draw  [tdplot_main_coords,dashed] (O) ellipse (42pt and 20pt);
     \tdplotsetthetaplanecoords{40};
-    \draw [gray,thick,tdplot_rotated_coords](1.5,0,0) arc (0:360:1.5);
+    \draw [thick,tdplot_rotated_coords](1.5,0,0) arc (0:360:1.5);
     
         
   \end{tikzpicture}
@@ -197,3 +229,111 @@ Se $\beta$ non dipende dalla parametrizzazione, ma è una caratteristica geometr
   \caption{Evoluzione della sfera di raggio $R$, per curvatura media}
   \label{fig:cp-121}
 \end{figure}
+\end{esempio}
+
+\begin{esempio}[The Dumbbell]
+Il manubrio(dumbbell) può essere considerato come due spfere di equal raggio, connesse da un cilindro. Assumendo che le due sfere sono molto grandi ed il cilindro lungo e fino; l'evoluzione per curvatura media mi fa collassare velocemente il cilindro in una linea e le due sfere si evolvono più lentamente sempre in sfere più piccole. Dopo un certo tempo il manubrio si divide in due sfere disconnesse, in questa situazione si è verificato un cambiamento della topologia della superficie e quindi non si può più parlare di vettore normale e di curvatura. A questo punto le due sfere si evolvono separatamente fin a collassare in due punti (ved figura \ref{fig:cp-122}). 
+
+\begin{figure}[!hptb]
+\begin{center}
+ \tdplotsetmaincoords{60}{40}
+ \begin{tikzpicture}[tdplot_main_coords,gray,thick]
+   
+   \coordinate (O) at (0,0,0);
+      
+   \tdplotsetcoord{P}{3.5}{90}{5};
+   \tdplotsetcoord{P2}{5.5}{90}{-30};
+   \tdplotsetcoord{P3}{7.5}{90}{40};
+   
+   \draw [->,blue!52](P) to[out=190,in=150](P2);
+   \node[shape=circle,draw=blue!50,fill=blue!12,inner sep=0pt,minimum size=1mm]
+   (origin) at (O) {};
+   \node [blue,below] at (origin.south) {$O$};
+   \node[shape=circle,draw=blue!50,fill=blue!12,inner sep=0pt,minimum size=1mm]
+   (end) at (P3) {};
+   \node [blue,below] at (end.south) {$P$};
+
+   \draw  [tdplot_main_coords,dashed] (O) ellipse (42pt and 20pt);
+   \tdplotsetthetaplanecoords{40};
+   \draw [thick,tdplot_rotated_coords](1.5,0,0) arc (0:360:1.5);
+
+   \draw  [tdplot_main_coords,dashed] (P3) ellipse (42pt and 20pt);
+   \tdplotsetthetaplanecoords{40};
+   \draw [tdplot_rotated_coords] (P3) circle (1.5);
+  
+   \draw (1.8,0,0.2) -- (5.4,3.0,0.2);
+   \draw (1.9,0,1.2) -- (5.5,2.9,1.2);
+        
+ \end{tikzpicture}
+
+
+ \tdplotsetmaincoords{60}{40}
+ \begin{tikzpicture}[tdplot_main_coords,gray,thick]
+   
+   \coordinate (O) at (0,0,0);
+      
+   \tdplotsetcoord{P}{2.0}{90}{10};
+   \tdplotsetcoord{P2}{3.5}{90}{-30};
+   \tdplotsetcoord{P3}{7.5}{90}{40};
+   
+   \draw [->,blue!52](P) to[out=190,in=150](P2);
+   \node[shape=circle,draw=blue!50,fill=blue!12,inner sep=0pt,minimum size=1mm]
+   (origin) at (O) {};
+   \node [blue,below] at (origin.south) {$O$};
+   \node[shape=circle,draw=blue!50,fill=blue!12,inner sep=0pt,minimum size=1mm]
+   (end) at (P3) {};
+   \node [blue,below] at (end.south) {$P$};
+
+   \draw  [tdplot_main_coords,dashed] (O) ellipse (22pt and 5pt);
+   \tdplotsetthetaplanecoords{40};
+   \draw [tdplot_rotated_coords](O) circle (0.8);
+
+   \draw  [tdplot_main_coords,dashed] (P3) ellipse (22pt and 5pt);
+   \tdplotsetthetaplanecoords{40};
+   \draw [tdplot_rotated_coords] (P3) circle (0.8);
+  
+   \draw (1.0,0.0,0.4) -- (6.2,3.0,1.0);
+        
+ \end{tikzpicture}
+
+ \tdplotsetmaincoords{60}{40}
+ \begin{tikzpicture}[tdplot_main_coords,gray,thick]
+   
+   \coordinate (O) at (0,0,0);
+      
+   \tdplotsetcoord{P}{2.0}{90}{45};
+   \tdplotsetcoord{P2}{4.5}{90}{45};
+   \tdplotsetcoord{P3}{3.0}{90}{40};
+   \tdplotsetcoord{P4}{6.5}{90}{45};
+   \tdplotsetcoord{P5}{6.7}{90}{40};
+   \tdplotsetcoord{P6}{8.0}{90}{40};
+
+   \draw [->,blue!52](P2) to[out=50,in=130](P4);
+   \node[shape=circle,draw=blue!50,fill=blue!12,inner sep=0pt,minimum size=1mm]
+   (origin) at (O) {};
+   \node [blue,below] at (origin.south) {$O$};
+   \node[shape=circle,draw=blue!50,fill=blue!12,inner sep=0pt,minimum size=1mm]
+   (end) at (P3) {};
+   \node [blue,below] at (end.south) {$P$};
+   \node[shape=circle,draw=gray,fill=gray,inner sep=0pt,minimum size=2mm]
+   (end) at (P5) {};
+   \node [blue,below] at (end.south) {$0$};
+   \node[shape=circle,draw=gray,fill=gray,inner sep=0pt,minimum size=2mm]
+   (end) at (P6) {};
+   \node [blue,below] at (end.south) {$P$};
+
+   \draw  [tdplot_main_coords,dashed] (O) ellipse (13pt and 5pt);
+   \tdplotsetthetaplanecoords{40};
+   \draw [tdplot_rotated_coords](O) circle (0.5);
+
+   \draw  [tdplot_main_coords,dashed] (P3) ellipse (13pt and 5pt);
+   \tdplotsetthetaplanecoords{40};
+   \draw [tdplot_rotated_coords] (P3) circle (0.5);
+      
+ \end{tikzpicture}
+\end{center}
+  \caption{Evoluzione del dumbbell  per curvatura media}
+  \label{fig:cp-122}
+\end{figure}
+\end{esempio}
+Questi due esempi ci confermano quanto detto sopra, cioè superfici convesse collassano in un punto e superfici non convesse posso generare delle discontinuità, vedimao come aggirare questi due problemi. 
