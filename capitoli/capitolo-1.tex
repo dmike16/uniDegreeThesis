@@ -137,7 +137,7 @@ La definizione precedente è usata in giometria. Esiste un'altra definizione di 
   \label{eq:cp-114}
   \tilde{H}(x):= \Div(\vec{n}(x)), \quad x\in S\subseteq\mathbb{R}^3
 \end{equation}
-dove $\vec{n}(x)$ indica la normale $x$ della supeficie.
+dove $\vec{n}(x)$ indica la normale esterna nel punto $x$ della supeficie.
 Si può provare che $\tilde{H}(x)=2H(x)$, quindi esse differiscono soltanto per una costante moltiplicativa.
 \end{osservazione}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -182,9 +182,9 @@ Come provato negli articoli **ref** , questo flusso deforma superfici convesse i
 \end{osservazione}
 
 \begin{esempio}[The Sphere]
-Vogliamo calcolarci la soluzione esatta nel caso della sfera che si evolve secondo la \eqref{eq:cp-123}. Sia $\mathcal{S}(p,t) = S^2(R(t))$, cioè una famiglia di sfere in $\mathbb{R}^3$ di raggio $R(t)$ e centro l'origine, e $\mathcal{S}(p,0) = S^2(R_0)$ il nostro dato iniziale. Calcoliamoci la curvatura media, utilizzando l'espressione \eqref{eq:cp-114} e ricordando che la normale interna alla sfera è $\vec{n}(x(t))=-\frac{x(t)}{|x(t)|}$ con $x(t)\in S^2(R(t))$:
+Vogliamo calcolarci la soluzione esatta nel caso della sfera che si evolve secondo la \eqref{eq:cp-123}. Sia $\mathcal{S}(p,t) = S^2(R(t))$, cioè una famiglia di sfere in $\mathbb{R}^3$ di raggio $R(t)$ e centro l'origine, e $\mathcal{S}(p,0) = S^2(R_0)$ il nostro dato iniziale. Calcoliamoci la curvatura media, utilizzando l'espressione \eqref{eq:cp-114} e ricordando che la normale esterna alla sfera è $\vec{n}(x(t))=\frac{x(t)}{|x(t)|}$ con $x(t)\in S^2(R(t))$:
 \[
-H(x(t)) = \Div(\vec{n}(x(t))=\Div\left(-\frac{x(t)}{|x(t)|}\right)=-\frac{2}{R(t)}.   
+H(x(t)) = \Div(\vec{n}(x(t))=\Div\left(\frac{x(t)}{|x(t)|}\right)=\frac{2}{R(t)}.   
 \]
 Allora la nostra equazione \eqref{eq:cp-123} diventa:
 \[
