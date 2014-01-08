@@ -145,7 +145,7 @@ Si può provare che $\tilde{H}(x)=2H(x)$, quindi esse differiscono soltanto per 
 % Section 1.2
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Moto per curvatura media \emph{Volum Preserving}}
+\section{Moto per curvatura media \emph{Volume Preserving}}
 
 Consideriamo superfici che si evolvono nel tempo. \\
 Sia $\mathcal{S}(\tilde{p},t):U\times[0,T)\longrightarrow\mathbb{R}^3$, con $U\subseteq\mathbb{R}^2$, una famiglia di superfici regolari, dove $t$ parametrizza la famiglia e $\tilde{p}$ la superficie. Assumiamo che essa obedisce alla seguente PDE:
@@ -155,6 +155,7 @@ Sia $\mathcal{S}(\tilde{p},t):U\times[0,T)\longrightarrow\mathbb{R}^3$, con $U\s
 \end{equation}
 con $\mathcal{S}_0(\tilde{p})$ condizione iniziale. Indichiamo con $\vec{t}$ e $\vec{n}$ ripsettivamente, il versore tangente e il versore normale interno alla superficie; mentre $\alpha$ e $\beta$ sono le componenti tangenziale e normale della velocità con cui si deforma la superfcie. L'equazione scritta sopra risulta essere molto generale, infatti notiamo che per una qualsiasi velocità di deformazione $\vec{V}$ si ha $\alpha=<\vec{V},\vec{t}>$ e $\beta=<\vec{V},\vec{n}>$. Essendo interessati alla sola deformazione geometrica ed non a come cambia la parametrizzazione, Il PDE \eqref{eq:cp121} può essere semplificata applicando il seguente lemma:
 \begin{lemma}
+\label{lemm:cp-121}
 Se $\beta$ non dipende dalla parametrizzazione, ma è una caratteristica geometrica intrinseca della superficie, tipo la curvatura, allora l'imagine di $\mathcal{S}(\tilde{p},t)$ che soddisfa \eqref{eq:cp121} è identica all'imagine della famiglia $\mathcal{S}(p,t)$ che soddisfa
 \begin{equation}
   \label{eq:cp122}
@@ -337,3 +338,99 @@ Il manubrio(dumbbell) può essere considerato come due spfere di equal raggio, c
 \end{figure}
 \end{esempio}
 Questi due esempi ci confermano quanto detto sopra, cioè superfici convesse collassano in un punto e superfici non convesse posso generare delle discontinuità, vedimao come aggirare questi due problemi. 
+
+Partiamo dal primo. Quello che vogliamo fara è normalizzare l'equazione \eqref{eq:cp-123} così che il volume viene preservato. Tale processo di normalizzazione, viene raggiunto cambiando la scala temporale, passando da $t$ a $\tau$, in modo tale che la nosta superficie diventa:
+\[
+\mathcal{\tilde{S}}(\tau):=\psi(t)\mathcal{S}(t),
+\]
+con $\psi(t)$ rappresentante il fattore di normalizzazione (\emph{time-scaling}) dato da:
+\[
+\psi^n(t) = \frac{\partial \tau}{\partial t},
+\]
+con $n$ tale che $\psi^{-n+1}(t)H=\tilde{H}$. Uno dei vantaggi di questa normalizzazione è che le due superfici hanno la stesse proprietà geometriche e quindi il loro comportamento è identico. Il nuovo tempo $\tau$ deve essere scelto in modo da ottenere $V_{\tau}\equiv 0$. Ricordando che la nostra superficie $\mathcal{S}(t)$ si evolve secondo l'equazione \eqref{eq:cp-123}, allora otteniamo la seguente evoluzione per $\mathcal{\tilde{S}}(\tau)$ : 
+\[
+\begin{aligned}
+  &\frac{\partial\mathcal{\tilde{S}}(\tau)}{\partial\tau} =  \frac{\partial\mathcal{\tilde{S}}(t(\tau))}{\partial\tau} = \frac{\partial t}{\partial\tau}\frac{\partial\mathcal{\tilde{S}}(t(\tau))}{\partial t} =\\
+  &=\psi^{-n}\left(\psi_t\mathcal{S}(t)+\psi(t)\mathcal{S}_t(t)\right)=\psi^{-n}\psi_t\mathcal{S}(t)+\psi^{-n+1}H\vec{n}=\\
+  &=\psi^{-n}\psi_t\mathcal{S}(t)+\tilde{H}\vec{n}=\psi^{-n-1}\psi_t\mathcal{\tilde{S}}(\tau)+\tilde{H}\vec{n}.
+\end{aligned}
+\]
+
+Poichè la geometria dell'evolulzione è influenzata solo dalla componente normale della velocità, utilizzando il lemma \ref{lemm:cp-121} otteniamo:
+\[
+\frac{\partial\mathcal{\tilde{S}}(\tau)}{\partial\tau}=\psi^{-n-1}\psi_t\left<\mathcal{\tilde{S}}(\tau),\vec{n}\right>+\tilde{H}\vec{n}.
+\]
+Definiamo la funzione supporto $\rho$ come:
+\[
+\rho:=-\left<\mathcal{S},\vec{n}\right>,
+\]
+allora
+\[
+\frac{\partial\mathcal{\tilde{S}}(\tau)}{\partial\tau}=-\psi^{-n-1}\psi_t\tilde{\rho}+\tilde{H}\vec{n}.
+\]
+Rricordando che, se una superficie evolve secondo un'equazione del tipo
+\[
+\frac{\partial \mathcal{S}}{\partial t}=\beta\vec{n},
+\]
+allora il tasso di cambiamento del volume è dato da
+\begin{equation}
+\label{eq:cp-124}
+\frac{d V}{d t}=-\iint\beta d\mu
+\end{equation}
+con $d\mu$ elemento infinitesimo di superficie, vedere osservazione \ref{oss:cp-122}.
+ Applicando la \eqref{eq:cp-124} giungiamo a:
+\[
+\tilde{V}_{\tau}=\iint(\psi^{-n-1}\psi_t\tilde{\rho}-\tilde{H})d\tilde{\mu},
+\]
+se noi richiediamo che $\tilde{V}_{\tau}\equiv 0$, allora:
+\[
+\psi^{-n-1}\psi_t\iint\tilde{\rho}d\mu = \iint\tilde{H}d\tilde{\mu}.
+\]
+ Tenedo presente che il volume di una superficie è pari a :
+\begin{equation}
+  \label{eq:cp-125}
+V=\frac{1}{3}\iint-\left<\mathcal{S},\vec{n}\right>d\mu,
+\end{equation}
+in quanto $\vec{n}$ indica la normale interna (ved oss \ref{oss:cp-121}), e che rimane costante nel tempo (cosi da noi richiesto) possiamo scrivere:
+\[
+V(0)=\tilde{V}(\tau)=\frac{1}{3}\iint\tilde{\rho}d\tilde{\mu};
+\]
+mettendo insieme questa con l'espressione precedente otteniamo:
+\[
+\psi^{-n-1}\psi_t=\frac{\iint\tilde{H}d\tilde{\mu}}{3V_0},
+\]
+e finalmente l'equazione \emph{volume preserving} cercata:
+\begin{equation}
+\label{eq:cp-126}
+\frac{\partial\mathcal{\tilde{S}}(\tau)}{\partial\tau}=\left(\tilde{H}-\frac{\tilde{\rho}\iint\tilde{H}d\tilde{\mu}}{3V_0}\right).
+\end{equation}
+\begin{osservazione}[Calcolo del Volume]
+\label{oss:cp-121}
+Vediamo da dove deriva l'espressione \eqref{eq:cp-125}. Prendiamo un insieme $\Omega\subset\mathbb{R}^3$ limitato, la cui frontiera è costituita da una superficie regolare e orientabile, ed un campo vettoriale $F$ regolare in esso, allora vale il \emph{Teorema della Divergenza} cioè:
+\[
+\int_{\Omega}\Div{F(\vec{x})}dV =\int_{\partial\Omega}\left<F(\vec{x}),\vec{n}(\vec{x})\right>d\mu
+\]
+dove $\vec{n}(\vec{x})$,in tal caso, indica la normale esterna e $dV$,$d\mu$ rispettivamente elemento di volume ed elemento di superficie. Prendiamo come campo vettoriale $F(\vec{x})=\frac{1}{3}\vec{x}$, quindi il volume di $\Omega$ è pari a:
+\[
+vol(\Omega)=\int_{\Omega}1dV=\int_{\Omega}\Div{(F(\vec{x}))}dV=\frac{1}{3}\int_{\partial\Omega}\left<\vec{x},\vec{n}\right>d\mu,
+\]
+essendo l'ultimo integrale fatto su $\partial\Omega$, il vettore $\vec{x}$ rappresenta un punto della supeficie, quindi equivale a \eqref{eq:cp-125}.
+\end{osservazione}
+
+\begin{osservazione}[Tasso di variazione del Volume]
+\label{oss:cp-122}
+Consideriamo un insieme $\Omega(t)\subset\mathbb{R}^3$ \emph{time-dependent}, la cui frontiera è costituita da una superficie regolare e orientabile, ed un campo vettoriale $F(t,\vec{x})$ regolare a valori reali. Calcoliamoci il tasso di cambiamento dell'integrale:
+\[
+\begin{aligned}
+\frac{d}{dt}&\int_{\Omega(t)}F(t,\vec{x})dV(t) = \int_{\Omega(t)}\frac{d}{dt}\left(F(t,\vec{x})dx(t)dy(t)dz(t)\right)=\\
+ =&\int_{\Omega(t)}\left(\frac{d}{dt}F + F\frac{d}{dt}(dx_1)dx_2dx_3 + Fdx_1\frac{d}{dt}(dx_2)dx_3 + Fdx_1dx_2\frac{d}{dt}(dx_3)\right)=\\
+=&\int_{\Omega(t)}\left(\frac{d}{dt}F + F\frac{\partial v_1}{\partial x_1}+ F\frac{\partial v_2}{\partial x_2} + F\frac{\partial v_3}{\partial x_3}\right)dx_1dx_2dx_3\\
+=& \int_{\Omega(t)}\left(\frac{d}{dt}F + F\Div{\vec{v}}\right)dV = \int_{\Omega(t)}\left(\frac{\partial F}{\partial t} + \Div{F\vec{v}}\right)dV.
+\end{aligned}
+\]
+Applichiamo il \emph{Teorema della divergenza} all'ultima espressione
+\[
+\frac{d}{dt}\int_{\Omega(t)}F(t,\vec{x})dV(t)=\int_{\Omega(t)}\frac{\partial F}{\partial t}dV + \int_{\partial \Omega(t)}F\left<\vec{v},\vec{n}\right>d\mu.
+\]
+Per ottenere il volume nel primo integrale dobbiamo scegliere $F(t,\vec{x})\equiv 1$ e quindi otteniamo la \eqref{eq:cp-124}, eccenzion fatta per il segno in quanto in questo caso $\vec{n}$ rappresenta la normale esterna.
+\end{osservazione}
