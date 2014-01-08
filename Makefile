@@ -46,7 +46,6 @@ include Kbuild.include
 
 shell		:= bash
 CP		:= cp
-PDF_VIEWER      := acroread
 MKDIR		:= mkdir -p
 MV		:= mv
 RM		:= rm -rf
@@ -62,6 +61,18 @@ ifeq "$(call file-exists, /usr/bin/gv)" ""
 PS_VIEWER	:= evince
 else
 PS_VIEWER 	:= gv
+endif
+endif
+
+#Use as default pdf viwer *evince*, you can change it setting by CMD line
+#-----------------------------
+ifeq "$(PDF_VIEWER)" ""
+ifneq "$(call file-exists, /usr/bin/evince)" ""
+PDF_VIEWER      := evince
+else ifneq "$(call file-exists, /usr/bin/acroread)" ""
+PDF_VIEWER	:= acroread
+else
+PDF_VIEWER	:= ghostscipt
 endif
 endif
 
