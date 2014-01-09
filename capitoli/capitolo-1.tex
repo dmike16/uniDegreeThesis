@@ -135,10 +135,21 @@ H=\frac{1}{2}(k_1+k_2)=\frac{1}{2}\trace(F),\quad K=k_1k_2=\det(F).
 La definizione precedente è usata in giometria. Esiste un'altra definizione di curvatura media per una superficie $S\subseteq\mathbb{R}^3$:
 \begin{equation}
   \label{eq:cp-114}
-  \tilde{H}(x):= \Div(\vec{n}(x)), \quad x\in S\subseteq\mathbb{R}^3
+  \tilde{H}(x):= -\Div(\vec{n}(x)), \quad x\in S\subseteq\mathbb{R}^3
 \end{equation}
-dove $\vec{n}(x)$ indica la normale esterna nel punto $x$ della supeficie.
-Si può provare che $\tilde{H}(x)=2H(x)$, quindi esse differiscono soltanto per una costante moltiplicativa.
+dove $\vec{n}(x)$ è il vettore unitàrio normale.
+Si può provare che $\tilde{H}(x)=2H(x)$, quindi esse differiscono soltanto per una costante moltiplicativa. Senza entrare nel dettaglio, si definisce divergenza di superfice di un campo vettoriale $X$ $C^1$ sulla superficie $S$ in $\mathbb{R}^3$:
+\[
+(\Div_{S}X)(x) = \sum_{j=1}^{3}{\left<(D_\tau X)(x),\tau^j\right>},
+\]
+con $\tau^j$ base ortonormale di $TS$ e $D_\tau X$ derivata del campo nella direzione $\tau\in TS$, o meglio se prendiamo una curva $\alpha(t)$ su $S$ tale che $\alpha(0) = x$ e $\frac{d\alpha}{dt}(0)=\tau$ allora
+\[
+(D_\tau X)(x)=\frac{d}{dt}\left(X(\alpha(t))\right)\left|_{t=0}\right. =(\tau\cdot D)X=\sum_{j=1}^3\tau_j\frac{\partial}{\partial x_j}X.
+\]
+Prendiamo come campo $X$ il versone normale $\vec{n}(x)$ , ricordando la definizione della seconda forma fondamentale e della curvatura media otteniamo:
+\[
+H(x)= \sum_{j=1}^{3}{\left<F(\tau_j),\tau_j\right>} = -\sum_{j=1}^{3}{\left<(D_\tau \vec{n})(x),\tau^j\right>}=-(\Div_{S}\vec{n})(x).
+\]
 \end{osservazione}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -183,9 +194,9 @@ Come provato negli articoli **ref** , questo flusso deforma superfici convesse i
 \end{osservazione}
 
 \begin{esempio}[The Sphere]
-Vogliamo calcolarci la soluzione esatta nel caso della sfera che si evolve secondo la \eqref{eq:cp-123}. Sia $\mathcal{S}(p,t) = S^2(R(t))$, cioè una famiglia di sfere in $\mathbb{R}^3$ di raggio $R(t)$ e centro l'origine, e $\mathcal{S}(p,0) = S^2(R_0)$ il nostro dato iniziale. Calcoliamoci la curvatura media, utilizzando l'espressione \eqref{eq:cp-114} e ricordando che la normale esterna alla sfera è $\vec{n}(x(t))=\frac{x(t)}{|x(t)|}$ con $x(t)\in S^2(R(t))$:
+Vogliamo calcolarci la soluzione esatta nel caso della sfera che si evolve secondo la \eqref{eq:cp-123}. Sia $\mathcal{S}(p,t) = S^2(R(t))$, cioè una famiglia di sfere in $\mathbb{R}^3$ di raggio $R(t)$ e centro l'origine, e $\mathcal{S}(p,0) = S^2(R_0)$ il nostro dato iniziale. Calcoliamoci la curvatura media, utilizzando l'espressione \eqref{eq:cp-114} e ricordando che la normale interna alla sfera è $\vec{n}(x(t))=-\frac{x(t)}{|x(t)|}$ con $x(t)\in S^2(R(t))$:
 \[
-H(x(t)) = \Div(\vec{n}(x(t))=\Div\left(\frac{x(t)}{|x(t)|}\right)=\frac{2}{R(t)}.   
+H(x(t)) =-\Div(\vec{n}(x(t))=\Div\left(\frac{x(t)}{|x(t)|}\right)=\frac{2}{R(t)}.   
 \]
 Allora la nostra equazione \eqref{eq:cp-123} diventa:
 \[
@@ -408,11 +419,11 @@ e finalmente l'equazione \emph{volume preserving} cercata:
 \label{oss:cp-121}
 Vediamo da dove deriva l'espressione \eqref{eq:cp-125}. Prendiamo un insieme $\Omega\subset\mathbb{R}^3$ limitato, la cui frontiera è costituita da una superficie regolare e orientabile, ed un campo vettoriale $F$ regolare in esso, allora vale il \emph{Teorema della Divergenza} cioè:
 \[
-\int_{\Omega}\Div{F(\vec{x})}dV =\int_{\partial\Omega}\left<F(\vec{x}),\vec{n}(\vec{x})\right>d\mu
+\int_{\Omega}\Div{F(x)}dV =\int_{\partial\Omega}\left<F(x),\vec{n}(x)\right>d\mu
 \]
-dove $\vec{n}(\vec{x})$,in tal caso, indica la normale esterna e $dV$,$d\mu$ rispettivamente elemento di volume ed elemento di superficie. Prendiamo come campo vettoriale $F(\vec{x})=\frac{1}{3}\vec{x}$, quindi il volume di $\Omega$ è pari a:
+dove $\vec{n}(x)$,in tal caso, indica la normale esterna e $dV$,$d\mu$ rispettivamente elemento di volume ed elemento di superficie. Prendiamo come campo vettoriale $F(x)=\frac{1}{3}x$, quindi il volume di $\Omega$ è pari a:
 \[
-vol(\Omega)=\int_{\Omega}1dV=\int_{\Omega}\Div{(F(\vec{x}))}dV=\frac{1}{3}\int_{\partial\Omega}\left<\vec{x},\vec{n}\right>d\mu,
+vol(\Omega)=\int_{\Omega}1dV=\int_{\Omega}\Div{(F(x))}dV=\frac{1}{3}\int_{\partial\Omega}\left<x,\vec{n}\right>d\mu,
 \]
 essendo l'ultimo integrale fatto su $\partial\Omega$, il vettore $\vec{x}$ rappresenta un punto della supeficie, quindi equivale a \eqref{eq:cp-125}.
 \end{osservazione}
@@ -422,15 +433,15 @@ essendo l'ultimo integrale fatto su $\partial\Omega$, il vettore $\vec{x}$ rappr
 Consideriamo un insieme $\Omega(t)\subset\mathbb{R}^3$ \emph{time-dependent}, la cui frontiera è costituita da una superficie regolare e orientabile, ed un campo vettoriale $F(t,\vec{x})$ regolare a valori reali. Calcoliamoci il tasso di cambiamento dell'integrale:
 \[
 \begin{aligned}
-\frac{d}{dt}&\int_{\Omega(t)}F(t,\vec{x})dV(t) = \int_{\Omega(t)}\frac{d}{dt}\left(F(t,\vec{x})dx(t)dy(t)dz(t)\right)=\\
+\frac{d}{dt}&\int_{\Omega(t)}F(t,x)dV(t) = \int_{\Omega(t)}\frac{d}{dt}\left(F(t,\vec{x})dx(t)dy(t)dz(t)\right)=\\
  =&\int_{\Omega(t)}\left(\frac{d}{dt}F + F\frac{d}{dt}(dx_1)dx_2dx_3 + Fdx_1\frac{d}{dt}(dx_2)dx_3 + Fdx_1dx_2\frac{d}{dt}(dx_3)\right)=\\
 =&\int_{\Omega(t)}\left(\frac{d}{dt}F + F\frac{\partial v_1}{\partial x_1}+ F\frac{\partial v_2}{\partial x_2} + F\frac{\partial v_3}{\partial x_3}\right)dx_1dx_2dx_3\\
-=& \int_{\Omega(t)}\left(\frac{d}{dt}F + F\Div{\vec{v}}\right)dV = \int_{\Omega(t)}\left(\frac{\partial F}{\partial t} + \Div{F\vec{v}}\right)dV.
+=& \int_{\Omega(t)}\left(\frac{d}{dt}F + F\Div{\vec{v}}\right)dV = \int_{\Omega(t)}\left(\frac{\partial F}{\partial t} + \Div{(F\vec{v})}\right)dV.
 \end{aligned}
 \]
 Applichiamo il \emph{Teorema della divergenza} all'ultima espressione
 \[
-\frac{d}{dt}\int_{\Omega(t)}F(t,\vec{x})dV(t)=\int_{\Omega(t)}\frac{\partial F}{\partial t}dV + \int_{\partial \Omega(t)}F\left<\vec{v},\vec{n}\right>d\mu.
+\frac{d}{dt}\int_{\Omega(t)}F(t,x)dV(t)=\int_{\Omega(t)}\frac{\partial F}{\partial t}dV + \int_{\partial \Omega(t)}F\left<\vec{v},\vec{n}\right>d\mu.
 \]
-Per ottenere il volume nel primo integrale dobbiamo scegliere $F(t,\vec{x})\equiv 1$ e quindi otteniamo la \eqref{eq:cp-124}, eccenzion fatta per il segno in quanto in questo caso $\vec{n}$ rappresenta la normale esterna.
+Per ottenere il volume nel primo integrale dobbiamo scegliere $F(t,x)\equiv 1$ e quindi otteniamo la \eqref{eq:cp-124}, eccenzion fatta per il segno in quanto in questo caso $\vec{n}$ rappresenta la normale esterna.
 \end{osservazione}
