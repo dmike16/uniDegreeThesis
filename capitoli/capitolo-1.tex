@@ -138,9 +138,9 @@ La definizione precedente è usata in giometria. Esiste un'altra definizione di 
   \tilde{H}(x):= -\Div(\vec{n}(x)), \quad x\in S\subseteq\mathbb{R}^3
 \end{equation}
 dove $\vec{n}(x)$ è il vettore unitàrio normale.
-Si può provare che $\tilde{H}(x)=2H(x)$, quindi esse differiscono soltanto per una costante moltiplicativa. Senza entrare nel dettaglio, si definisce divergenza di superfice di un campo vettoriale $X$ $C^1$ sulla superficie $S$ in $\mathbb{R}^3$:
+Si può provare che $\tilde{H}(x)=2H(x)$, quindi esse differiscono soltanto per una costante moltiplicativa. Senza entrare nel dettaglio, si definisce divergenza di superfice di un campo vettoriale $X$ ,$C^1$, sulla superficie $S$ in $\mathbb{R}^3$:
 \[
-(\Div_{S}X)(x) = \sum_{j=1}^{3}{\left<(D_\tau X)(x),\tau^j\right>},
+(\Div_{S}X)(x) = \sum_{j=1}^{2}{\left<(D_{\tau^j} X)(x),\tau^j\right>},
 \]
 con $\tau^j$ base ortonormale di $TS$ e $D_\tau X$ derivata del campo nella direzione $\tau\in TS$, o meglio se prendiamo una curva $\alpha(t)$ su $S$ tale che $\alpha(0) = x$ e $\frac{d\alpha}{dt}(0)=\tau$ allora
 \[
@@ -148,8 +148,16 @@ con $\tau^j$ base ortonormale di $TS$ e $D_\tau X$ derivata del campo nella dire
 \]
 Prendiamo come campo $X$ il versone normale $\vec{n}(x)$ , ricordando la definizione della seconda forma fondamentale e della curvatura media otteniamo:
 \[
-H(x)= \sum_{j=1}^{3}{\left<F(\tau_j),\tau_j\right>} = -\sum_{j=1}^{3}{\left<(D_\tau \vec{n})(x),\tau^j\right>}=-(\Div_{S}\vec{n})(x).
+H(x)= \sum_{j=1}^{2}{\left<F(\tau_j),\tau_j\right>} = -\sum_{j=1}^{2}{\left<(D_\tau \vec{n})(x),\tau^j\right>}=-(\Div_{S}\vec{n})(x).
 \]
+Ora riprendendo la definizione di divergenza di superficie ed operando alcune manipolazioni algebriche, senza entrare troppo nel dettaglio (per tutti i passaggi e le ipotesi da fare vedere **RIF**),possimao scrivere:
+\[
+\begin{aligned}
+(\Div_{S}\vec{n})(x) &= \trace\left(\sum_{j=1}^2{(\tau_j\otimes\tau_j)}D\vec{n}(x)\right)=\\
+&\trace\big((I-\vec{n}(x)\otimes\vec{n}(x))D\vec{n}(x)\big)=\Div\left(\vec{n}(x)\right).
+\end{aligned}
+\]
+dove $p\otimes p=p^tp$ con $p$ vettore colonna in $\mathbb{R}^3$ e $(I-\vec{n}(x)\otimes\vec{n}(x))$ matrice di proiezione che associa a un punto $\zeta \in T_x\mathbb{R}^3=\mathbb{R}^3$ un punto su $T_xS$ con $x\in S$.
 \end{osservazione}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -445,3 +453,29 @@ Applichiamo il \emph{Teorema della divergenza} all'ultima espressione
 \]
 Per ottenere il volume nel primo integrale dobbiamo scegliere $F(t,x)\equiv 1$ e quindi otteniamo la \eqref{eq:cp-124}, eccenzion fatta per il segno in quanto in questo caso $\vec{n}$ rappresenta la normale esterna.
 \end{osservazione}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+% Section 1.3 
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Approccio \emph{level-set}}  
+
+Nella sezione precedente abbiamo visto come risolvere il problema del collasso, cioè in un tempo finito il volume diventa nullo. Tuttavia quando si implementa numericamente tale flusso (scopo finale di questo lavoro !!), ci si imbatte in altri problemi :
+\begin{itemize}
+
+  \item Il nostro algoritmo deve essere robusto in quanto deve approssimare un flusso continuo. Una semplice approssimazione Lagrangiana basata sulle particelle che si muovono lungo la superficie richiede un passo temporale impraticabile, poichè le particelle possono trovarsi molto vicine o molto lontane durante la deformazione.
+
+   \item Lo svilupparsi di singolarità, è un altro problema che dobbiamo tener presente. Quindi abbiamo bisogno di uno schema che trovi ,in tal caso, la corretta soluzione debole.
+   
+   \item Cambiamenti topologici possono verificarsi (fusione o divisione) e tener traccia di questi con tracciamenti di particelle è un compito alquano arduo.
+
+\end{itemize}
+
+Tutti questi problemi ha portato allo svilupparsi ti tecniche \emph{level-set}. Introduciamo alcuni concetti base e riformuliamo la nostra equazione con un \emph{approccio level-set}.%
+\footnote{Per maggiori chiamrimenti o approfondimente consultare \emph{Surface Evolution Equations-- a level set method --,Giga}.}    %
+
+
+
+
