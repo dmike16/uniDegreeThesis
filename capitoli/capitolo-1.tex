@@ -191,7 +191,7 @@ Detto ciò, un generico flusso geometrico di superfici ha la forma:
 cioè la velocità è una funzione delle due curvature principali (media e gaussiana). Il flusso che vogliamo studiare è quello per curvatura media, quindi l'equazione precedente diventa:
 \begin{equation}
   \label{eq:cp-123}
-  \frac{\partial\mathcal{S}}{\partial t} = H\vec{n}
+  \frac{\partial\mathcal{S}}{\partial t} = \vec{V} = H\vec{n}
 \end{equation}
 con $\mathcal{S}(p,0)=S_0$ dato iniziale.
 \begin{osservazione}
@@ -220,7 +220,7 @@ R(\hat{t})=0 \Longleftrightarrow \hat{t}=\frac{R_0^2}{4}.
 \]
 Quindi la sfera si ridurrà ad un punto in un tempo finito $\hat{t}$, che è chiamato tempo di collasso (figura \ref{fig:cp-121}).
 
-\begin{figure}[!hp]
+\begin{figure}[!htbp]
   \begin{center}
   \tdplotsetmaincoords{60}{40}
   \begin{tikzpicture}[tdplot_main_coords,gray,thick]
@@ -465,7 +465,7 @@ Per ottenere il volume nel primo integrale dobbiamo scegliere $F(t,x)\equiv 1$ e
 Nella sezione precedente abbiamo visto come risolvere il problema del collasso, cioè in un tempo finito il volume diventa nullo. Tuttavia quando si implementa numericamente tale flusso (scopo finale di questo lavoro !!), ci si imbatte in altri problemi :
 \begin{itemize}
 
-  \item Il nostro algoritmo deve essere robusto in quanto deve approssimare un flusso continuo. Una semplice approssimazione Lagrangiana basata sulle particelle che si muovono lungo la superficie richiede un passo temporale impraticabile, poichè le particelle possono trovarsi molto vicine o molto lontane durante la deformazione.
+  \item Il nostro algoritmo deve essere robusto in quanto deve approssimare un flusso continuo. Una semplice approssimazione Lagrangiana basata sulle particelle che si muovono lungo la superficie richiederebbe un passo temporale impraticabile, poichè le particelle possono trovarsi molto vicine o molto lontane durante la deformazione.
 
    \item Lo svilupparsi di singolarità, è un altro problema che dobbiamo tener presente. Quindi abbiamo bisogno di uno schema che trovi ,in tal caso, la corretta soluzione debole.
    
@@ -473,9 +473,64 @@ Nella sezione precedente abbiamo visto come risolvere il problema del collasso, 
 
 \end{itemize}
 
-Tutti questi problemi ha portato allo svilupparsi ti tecniche \emph{level-set}. Introduciamo alcuni concetti base e riformuliamo la nostra equazione con un \emph{approccio level-set}.%
-\footnote{Per maggiori chiamrimenti o approfondimente consultare \emph{Surface Evolution Equations-- a level set method --,Giga}.}    %
+Tutti questi problemi hanno portato allo svilupparsi di tecniche \emph{level-set}. Introduciamo alcuni concetti base e riformuliamo la nostra equazione con un \emph{approccio level-set}.%
+\footnote{Per maggiori chiamrimenti o approfondimenti consultare \emph{Surface Evolution Equations-- a level set method --,Giga}.}    %
 
+Alla base di questo approccio c'è l'idea di vedere la nostra superficie come  insieme di levello di una funzione. Più precisamente,
+un insieme $S\subset\mathbb{R}^3$ è chiamato $C^m$ superfice (o ipersuperficie se siamo in $\mathbb{R}^N$ con $N>3$) intorno ad un punto $x_0$ di $S$ se esiste una $C^m$ funzione $u(x)$ definita in un intorno $U$ di $x_0$ tale che
+\[
+S\cap U=\left\{x\in U; u(x)=0\right\}
+\]
+e il gradiente di $u$
+\[
+ Du=\left(\frac{\partial u}{\partial x_1},\dots,\frac{\partial u}{\partial x_3}\right)
+\]
+non svanisce su $S$. Tale rappresentazione è chiamta \emph{level-set}. Se $u$ può essere presa $C^{\infty}$ in $U$, diremo che la superficie $S$ è regolare intorno ad $x_0$ e se $u$ è anche definita intorno ad ogni punto di $x_0\in S$, allora si parla semplicemetne di superficie regolare. Questa reappresentazione può essere estesa anche ad insiemi dipendenti dal tempo. Difatti diremo che una famiglia $S_t$ è una superficie regolare che si evolve nel tempo se esiste una funzione $u(x.t)$ definita per ogni $x\in S_t$ e $t\in I$ tale che:
+\[
+S_t=\left\{x\in S_t; u(x,t)=0\right\},
+\]
+e tale che il gradiente spaziale di $u$ non svanisca su $S_t$. Ora, consideriamo una curva $\alpha(t)$ in $\mathbb{R}^3$ su $S_t$ definita in $(t-\delta,t+\delta)$, con $\delta>0$ tale che $\alpha(t)\in S_t$ e $\alpha(t_0)=x_0$. Dalla definizione di $S_t$ deve essere $u(\alpha(t),t)=0$ per $t$ vicino a $t_0$, quindi differenziando  $u(\alpha(t),t)$ ed evelutandola nel punto $(x_0,t_0)$ otteniamo:
+\[
+u_t(x_0,t_0)+\left<\frac{dx}{dt}(t_0),Du(x_0,t_0)\right>=0,
+\]
+ricordando che la normale $\vec{n}=-\frac{Du}{|Du|}$(vedi oss \ref{oss:cp-131}), abbiamo:
+\[
+u_t(x_0,t_0)-|Du(x_0,t_0)|\left<\frac{dx}{dt}(t_0),\vec{n}\right>=0.
+\]
+Il prodotto scalare che compare nell'espressione precedente rappresenta la velocità normale di $S_t$ nel punto $x_0$ al tempo $t_0$ per cui: 
+\[
+V=\frac{u_t(x_0,t_0)}{|Du(x_0,t_0)|},
+\]
+chiaramente  $V$ non dipende dalla scelta della curva $\alpha(t)$. Poichè nel moto per curvatura media la velocità normale è uguale alla curvatura media otteniamo:
+\[
+u_t(x,t)=|Du(x,t)|\Div{\left(\frac{D(x,t)}{|D(x,t)|}\right)}
+\]
+che rappresenta la formulazione level-set dell'equazione \eqref{eq:cp-123}. Inseriamo anche il termine che preserva il volume:
+\begin{equation}
+  \label{eq:cp-131}
+  u_t(x,t)=|Du(x,t)|\left(\Div{\left(\frac{D(x,t)}{|D(x,t)|}\right)}-\frac{\rho\iint\Div{\left(\frac{D(x,t)}{|D(x,t)|}\right)}dx}{3V_0}\right)
+\end{equation}
+Quindi, ricapitolando, quando una funzione si muove secondo la \eqref{eq:cp-131}, i suoi insiemi di livello si muovono secondo la \eqref{eq:cp-126}. Tale formulazione ci consente di superare i problemi messi in risalto ad inizio paragrafo, infatti:
+\begin{itemize}
+  \item Riusciamo a risolver il problema di creare un metodo robusto e stabile, in quanto la formulazione level-set è scritta in un sistema di coordinate fisso quindi non dobbiamo tener traccia di come evolvono tutte le particelle.
 
+  \item L'emrgere di discontinuità viene risolto utilizzando la teoria viscosa, in quanto è stato dimostrata per alcune velocità (tra cui anche quella presa in esame da noi) l'esistenza e l'unicità di soluzioni viscose per il flusso level-set.
+
+   \item I cambiamenti topologici della superficie non sono più un problema, poichè la topologia di $u$ è fissa. Tali cambiamenti vengono scoperti solo quando viene calcolato il corrispondente insieme di livello. 
+
+\end{itemize}
+
+\begin{osservazione}[vettore unitario in rappresentazione level-set]
+\label{oss:cp-131}
+Supponiamo che $S$ sia una superfice intorno a $x_0\in S$, in rappresentazione level-set. Se $\vec{n}(x)$ è un vettore normale unitario in $x$ vicino $x_0$ e esso dipende da $x$ in modo almeno continuo, diremo che $\vec{n}$ è un campo unitario normale di orientazione (attorno a $x_0$) di $S$. Vediamo che esiste, almeno in un intorno di $x_0$. Per $x\in S\cap U$ sia $\alpha(t)$ una curva su $S$ tale che $\alpha(0)=x$. Deriviamo $u(\alpha(t)) = 0$ e cancoliamolo in $t=0$
+\[
+\left<Du(x),\frac{d\alpha}{dt}(0)\right> = 0.
+\]
+Questo ci dice che il gradiente in $x$ di $u$ è ortogonale al piano tangente a $S$ in $x$. Per la formulazione level-set $u\in C^m$ , $Du\in C^{m-1}$ quindi almeno continua e $Du$ non svanisce intorno a $x_0$; per cio possiamo definire il vetore normale (campo vettoriale unitario di orientazione) come
+\[
+\vec{n}(x)=-\frac{Du(x)}{|Du(x)|},
+\]
+il segno meno è per fissare le idee.
+\end{osservazione}
 
 
