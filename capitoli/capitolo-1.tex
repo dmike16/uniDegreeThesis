@@ -126,19 +126,20 @@ con $f_i^j$ i coefficenti della matrice dell'applicazione $F$. Sostituendo quest
 \[
 \det(F) = \frac{\det(b)}{\det(g)}=k_1k_2.
 \]
-Inoltre siccome la matrice $g$ è invertibile, i polinomi $\det(bg^{-1}-tI)$ e $\det(b-tg)$ differiscono solo per una costante moltiplicativa; quindi $k_1$, $k_2$ coincidono con le radici del polinomio $\det(b-tg)$.
-In conclusione,si definiscono \emph{curvatura media} e \emph{curvatura gaussiana} rispettivamente,
+Inoltre siccome la matrice $g$ è invertibile, i polinomi $\det(bg^{-1}-tI)$ e $\det(b-tg)$ differiscono solo per una costante moltiplicativa; quindi $k_1$, $k_2$ coincidono con le radici del polinomio $\det(b-tg)$. \\
+In conclusione, si definiscono \emph{curvatura media} 
+\footnote{In alcuni testi è definita coma la media delle curvature principali, quindi differisce dalla nostra defnizione solo per un fattore moltiplicativo. Vedere rif **}    %
+e \emph{curvatura gaussiana} rispettivamente,
 \[
-H=\frac{1}{2}(k_1+k_2)=\frac{1}{2}\trace(F),\quad K=k_1k_2=\det(F).
+H=k_1+k_2=\trace(F),\quad K=k_1k_2=\det(F).
 \]
 \begin{osservazione}
-La definizione precedente è usata in giometria. Esiste un'altra definizione di curvatura media per una superficie $S\subseteq\mathbb{R}^3$:
+La definizione precedente di curvatura media è equivalente alla seguente:
 \begin{equation}
   \label{eq:cp-114}
   \tilde{H}(x):= -\Div(\vec{n}(x)), \quad x\in S\subseteq\mathbb{R}^3
 \end{equation}
-dove $\vec{n}(x)$ è il vettore unitàrio normale.
-Si può provare che $\tilde{H}(x)=2H(x)$, quindi esse differiscono soltanto per una costante moltiplicativa. Senza entrare nel dettaglio, si definisce divergenza di superfice di un campo vettoriale $X$ ,$C^1$, sulla superficie $S$ in $\mathbb{R}^3$:
+dove $\vec{n}(x)$ è il vettore unitàrio normale. Senza entrare nel dettaglio, si definisce divergenza di superfice di un campo vettoriale $X$ ,$C^1$, sulla superficie $S$ in $\mathbb{R}^3$:
 \[
 (\Div_{S}X)(x) = \sum_{j=1}^{2}{\left<(D_{\tau^j} X)(x),\tau^j\right>},
 \]
@@ -377,7 +378,7 @@ con $n$ tale che $\psi^{-n+1}(t)H=\tilde{H}$. Uno dei vantaggi di questa normali
 
 Poichè la geometria dell'evolulzione è influenzata solo dalla componente normale della velocità, utilizzando il lemma \ref{lemm:cp-121} otteniamo:
 \[
-\frac{\partial\mathcal{\tilde{S}}(\tau)}{\partial\tau}=\psi^{-n-1}\psi_t\left<\mathcal{\tilde{S}}(\tau),\vec{n}\right>+\tilde{H}\vec{n}.
+\frac{\partial\mathcal{\tilde{S}}(\tau)}{\partial\tau}=\psi^{-n-1}\psi_t\left<\mathcal{\tilde{S}}(\tau),\vec{n}\right>\vec{n}+\tilde{H}\vec{n}.
 \]
 Definiamo la funzione supporto $\rho$ come:
 \[
@@ -385,7 +386,7 @@ Definiamo la funzione supporto $\rho$ come:
 \]
 allora
 \[
-\frac{\partial\mathcal{\tilde{S}}(\tau)}{\partial\tau}=-\psi^{-n-1}\psi_t\tilde{\rho}+\tilde{H}\vec{n}.
+\frac{\partial\mathcal{\tilde{S}}(\tau)}{\partial\tau}=\left(-\psi^{-n-1}\psi_t\tilde{\rho}+\tilde{H}\right)\vec{n}.
 \]
 Rricordando che, se una superficie evolve secondo un'equazione del tipo
 \[
@@ -502,15 +503,17 @@ Il prodotto scalare che compare nell'espressione precedente rappresenta la veloc
 V=\frac{u_t(x_0,t_0)}{|Du(x_0,t_0)|},
 \]
 chiaramente  $V$ non dipende dalla scelta della curva $\alpha(t)$. Poichè nel moto per curvatura media la velocità normale è uguale alla curvatura media otteniamo:
-\[
-u_t(x,t)=|Du(x,t)|\Div{\left(\frac{D(x,t)}{|D(x,t)|}\right)}
-\]
-che rappresenta la formulazione level-set dell'equazione \eqref{eq:cp-123}. Inseriamo anche il termine che preserva il volume:
 \begin{equation}
   \label{eq:cp-131}
-  u_t(x,t)=|Du(x,t)|\left(\Div{\left(\frac{D(x,t)}{|D(x,t)|}\right)}-\frac{\rho\iint\Div{\left(\frac{D(x,t)}{|D(x,t)|}\right)}dx}{3V_0}\right)
+  u_t(x,t)=|Du(x,t)|\Div{\left(\frac{D(x,t)}{|D(x,t)|}\right)}
 \end{equation}
-Quindi, ricapitolando, quando una funzione si muove secondo la \eqref{eq:cp-131}, i suoi insiemi di livello si muovono secondo la \eqref{eq:cp-126}. Tale formulazione ci consente di superare i problemi messi in risalto ad inizio paragrafo, infatti:
+che rappresenta la formulazione level-set dell'equazione \eqref{eq:cp-123}. 
+Quindi, ricapitolando, quando una funzione si muove secondo la \eqref{eq:cp-131}, i suoi insiemi di livello si muovono secondo la \eqref{eq:cp-123}. Inseriamo anche il termine che preserva il volume:
+\begin{equation}
+  \label{eq:cp-132}
+  u_t(x,t)=|Du(x,t)|\Div{\left(\frac{D(x,t)}{|D(x,t)|}\right)}-\frac{\iint\Div{\left(\frac{D(x,t)}{|D(x,t)|}\right)}dx}{3V_0}x^tDu
+\end{equation}
+ Tale formulazione ci consente di superare i problemi messi in risalto ad inizio paragrafo, infatti:
 \begin{itemize}
   \item Riusciamo a risolver il problema di creare un metodo robusto e stabile, in quanto la formulazione level-set è scritta in un sistema di coordinate fisso quindi non dobbiamo tener traccia di come evolvono tutte le particelle.
 
@@ -526,11 +529,9 @@ Supponiamo che $S$ sia una superfice intorno a $x_0\in S$, in rappresentazione l
 \[
 \left<Du(x),\frac{d\alpha}{dt}(0)\right> = 0.
 \]
-Questo ci dice che il gradiente in $x$ di $u$ è ortogonale al piano tangente a $S$ in $x$. Per la formulazione level-set $u\in C^m$ , $Du\in C^{m-1}$ quindi almeno continua e $Du$ non svanisce intorno a $x_0$; per cio possiamo definire il vetore normale (campo vettoriale unitario di orientazione) come
+Questo ci dice che il gradiente in $x$ di $u$ è ortogonale al piano tangente a $S$ in $x$. Per la formulazione level-set $u\in C^m$ , $Du\in C^{m-1}$ ($m>0$) quindi almeno continua e $Du$ non svanisce intorno a $x_0$; per cio possiamo definire il vetore normale (campo vettoriale unitario di orientazione) come
 \[
 \vec{n}(x)=-\frac{Du(x)}{|Du(x)|},
 \]
 il segno meno è per fissare le idee.
 \end{osservazione}
-
-
