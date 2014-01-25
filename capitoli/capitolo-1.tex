@@ -127,9 +127,8 @@ con $f_i^j$ i coefficenti della matrice dell'applicazione $F$. Sostituendo quest
 \det(F) = \frac{\det(b)}{\det(g)}=k_1k_2.
 \]
 Inoltre siccome la matrice $g$ è invertibile, i polinomi $\det(bg^{-1}-tI)$ e $\det(b-tg)$ differiscono solo per una costante moltiplicativa; quindi $k_1$, $k_2$ coincidono con le radici del polinomio $\det(b-tg)$. \\
-In conclusione, si definiscono \emph{curvatura media} 
-\footnote{In alcuni testi è definita coma la media delle curvature principali, quindi differisce dalla nostra defnizione solo per un fattore moltiplicativo. Vedere rif **}    %
-e \emph{curvatura gaussiana} rispettivamente,
+In conclusione, si definiscono \emph{curvatura media}\footnote{In alcuni testi è definita coma la media delle curvature principali, quindi differisce dalla nostra defnizione solo per un fattore moltiplicativo. Vedere rif.} \,%
+ e \emph{curvatura gaussiana} rispettivamente,
 \[
 H=k_1+k_2=\trace(F),\quad K=k_1k_2=\det(F).
 \]
@@ -511,7 +510,7 @@ che rappresenta la formulazione level-set dell'equazione \eqref{eq:cp-123}.
 Quindi, ricapitolando, quando una funzione si muove secondo la \eqref{eq:cp-131}, i suoi insiemi di livello si muovono secondo la \eqref{eq:cp-123}. Inseriamo anche il termine che preserva il volume:
 \begin{equation}
   \label{eq:cp-132}
-  u_t(x,t)=|Du(x,t)|\Div{\left(\frac{D(x,t)}{|D(x,t)|}\right)}-\frac{\iint\Div{\left(\frac{D(x,t)}{|D(x,t)|}\right)}dx}{3V_0}x^tDu
+  u_t(x,t)=|Du(x,t)|\Div{\left(\frac{D(x,t)}{|D(x,t)|}\right)}-\frac{\iint\Div{\left(\frac{D(x,t)}{|D(x,t)|}\right)}d\mu}{3V_0}x^tDu
 \end{equation}
  Tale formulazione ci consente di superare i problemi messi in risalto ad inizio paragrafo, infatti:
 \begin{itemize}
