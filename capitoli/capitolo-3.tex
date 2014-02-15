@@ -15,7 +15,7 @@ con $Du$ il gradiente di $u$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Costruzione dello schema MCM}
 
-Partiamo dall'equazione \eqref{eq:cp3-01} e operiamo alcune manipolazioni algebriche, al fine di scrivere meglio il termine del flusso. 
+Partiamo dall'equazione \eqref{eq:cp3-01} e operiamo alcune manipolazioni algebriche, al fine di scrivere diversamente il termine del flusso. 
 \begin{proposizione}
 Vale la seguente serie di uguaglianze:
 \[
@@ -60,7 +60,7 @@ avendo indicato con $(D^2u)^n$ l'$n$-esima colonna della matrice delle derivate 
 \[
 \Div\left(\frac{Du}{|Du|}\right)|Du| = \trace\left(\left(I-{\frac{DuDu^t}{|Du|^2}}\right)D^2u\right).
 \] 
-Ora occupiamoni della seconda uguaglianza. Iniziamo co fare alcune osservazioni sulla matrice $P=I-\frac{DuDu^t}{|Du|^2}$. Questa è una matrice di proiezione, $3\times3$ a valori in $\mathbb{R}$, simmetrica ($P^t=P$) e idempotente ($P^2=P$), ammette due autovettori $\vec{v}_1$,$\vec{v}_2$ e vale la seguente decomposizione
+Ora occupiamoni della seconda uguaglianza. Iniziamo con il fare alcune osservazioni sulla matrice $P=I-\frac{DuDu^t}{|Du|^2}$. Questa è una matrice di proiezione, $3\times3$ a valori in $\mathbb{R}$, simmetrica ($P^t=P$) e idempotente ($P^2=P$), ammette due autovettori $\vec{v}_1$,$\vec{v}_2$ e vale la seguente decomposizione
 \[
 P=\sum_{i=1}^2\vec{v}_i\vec{v}_i^t=\sigma\sigma^t\quad\text{ con } \sigma=[\vec{v_1},\vec{v_2}],
 \]
@@ -94,9 +94,7 @@ Quindi nel caso in cui $Du \ne 0$ e $u_{x_1}^2+u_{x_3}^2\ne 0$ otteniamo :
 & + u(x+\sqrt{2\Delta t}(-\vec{v}_1-\vec{v}_2),t) - 4u(x,t)\bigr] + O(\Delta t)
 \end{split}
 \]
-
-Osservando tale approssimazione, possiamo notare che i punti  \\
-$(x + \sqrt{2\Delta t}(\pm\vec{v}_1 \pm\vec{v}_2))$ non necessariamente saranno i nodi della griglia, quindi è necessario introdurre l'operatore di interpolazione $I[.]$.
+Osservando tale approssimazione, possiamo notare che i punti $(x + \sqrt{2\Delta t}(\pm\vec{v}_1 \pm\vec{v}_2))$ non necessariamente saranno i nodi della griglia, quindi è necessario introdurre un operatore di interpolazione $I[\cdot]$.
 Per completare la costruzione consideriamo una griglia spaziale $x_j=(j_1\Delta x,j_2\Delta x,j_3\Delta x)$ con $j=(j_1,j_2,j_3)$ multi-indice in $\mathbb{Z}^3$ ed una griglia temporale $t^n=n\Delta t$ con $n\in\mathbb{N}$.
 Indichiamo con $u_j^n$ l'approssimazione di $u$ nel punto della griglia $(x_j,t^n)$ e con $D_j^n$ l'approssimazione del gradiente di $u$ nel suddetto punto. Quindi il nostro schema semi-lagrangiano risulta :
 \begin{equation}
@@ -129,7 +127,7 @@ Si definisce anche errore di troncamento totale la quantità
 \[
 \tau(\Delta t,\Delta x) := \max_{j,n} |\tau_j^n|.
 \]
-In generale un metodo si dirà consistente quando il suo LTE è infinitesimo rispetto all'incremento. Mentre si dirà consitente di ordine p in tempo e q in spazio se :
+In generale un metodo si dirà consistente quando il suo LTE è infinitesimo rispetto all'incremento. Mentre si dirà consitente di ordine $p$ in tempo e $q$ in spazio se :
 \[
 \tau(\Delta t,\Delta x) = O(\Delta t^p +\Delta x^q).
 \] 
@@ -163,25 +161,24 @@ Prima di procedere con la consistenza, facciamo le seguenti ipotesi sull'errore 
 |D_j[u^n]-Du(x_j,t^n)|\le C_2\Delta x^q\quad\forall n\in\mathbb{N}\quad\forall x_j, 
 \end{gather}
 con $C_1$ e $C_2$ costanti positive che dipendono così come gli ordini $r$ e $q$ dal metodo scelto per l'interpolazione e per l'approssimazioni del gradiente. Nel nostro caso abbiamo scelto entrambi i metodi di ordine $2$, quindi $r=q=2$.
+\subsection{Caso $Du \ne 0$}
 
-Consideriamo il caso in cui $Du(x,t)\ne 0$ e $u_{x_1}(x,t)^2+u_{x_3}(x,t)^2\ne 0$, vista la regolarità di $u$, esiste un intorno di $(x,t)$ in cui le due espressioni precedenti si mantengono vere. Quindi l'approssimazione del gradiente verifica le seguenti diseguaglianze :
+Consideriamo il caso in cui $Du(x,t)\ne 0$ e $u_{x_1}(x,t)^2+u_{x_3}(x,t)^2\ne 0$, vista la regolarità di $u$, esiste un intorno di $(x,t)$ in cui le due espressioni precedenti si mantengono vere, quindi almeno asintoticamente:
 \[
 |D_j^n|\ge C\Delta x^s\text{ e }|(D_j^n)_1^2+((D_j^n)_3^2|\ge C\Delta x^s
 \]
 per cui possiamo applicare lo schema nella forma \eqref{eq:cp3-02}.
-\begin{osservazione}
+
 Abbiamo definito $\sigma=[\vec{v}_1,\vec{v}_2]^t$ quindi ponendo  $\vec{b}=[\pm1,\pm1]^t$ possiamo riscrivere il termine generico della sommatoria in \eqref{eq:cp3-02} come
 \[
 I[u^n](x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b}).
 \]
-Ora calcolando lo jacobiano si $\sigma$ per un qualsiasi vettore $p$ in $\mathbb{R}^3$ (senza riportare tutto il conto) si dimostra che:
+Ora calcolando lo jacobiano di $\sigma$ per un qualsiasi vettore $p$ in $\mathbb{R}^3$ (senza riportare tutto il conto) si dimostra che:
 \[
 \left|J_{\sigma}(p)\right|^2=\frac{1}{p_1^2+p_3^2},
 \]
-dove come norma è stata scelta quella di Forbenius. Quindi applicando $\sigma[\cdot]$ al gradiente e sfruttando il fatto che $(D_j^n)_1^2+(D_j^n)_3^2\ge C\Delta x^s$, possiamo concludere che la funzione $\sigma$ risulta lipschitziana con costante $L_{\sigma}\le\frac{1}{C\Delta x^s}$.
+dove come norma è stata scelta quella di Frobenius. Quindi applicando $\sigma[\cdot]$ al gradiente e sfruttando il fatto che $(D_j^n)_1^2+(D_j^n)_3^2\ge C\Delta x^s$, possiamo concludere che la funzione $\sigma$ risulta lipschitziana con costante $L_{\sigma}\le\frac{1}{C\Delta x^s}$.
 Inoltre, avendo preso la $u$ sufficientemente regolare, anche essa sarà lipschitiziana con costatne $L_u$ e con $|Du|< M$. Assumiamo anche che $|u_{tt}(x,t)|\le C$ in modo tale da limitare l'errore di troncamento per l'approssimazione temporale.
-\end{osservazione}
-
  Analizziamo il prima addendo della sommatoria nell'espressione \eqref{eq:cp3-02} e facciamo alcune manipolazioni algebriche
 \begin{equation}
 \label{eq:cp3-06}
@@ -219,7 +216,7 @@ Sviluppiamo ora $u(x_j+\sigma(Du(x_j,t^n))\sqrt{2\Delta t}\vec{b},t^n)$ con una 
 \label{eq:cp3-09}
 \begin{split}
 &u(x_j+\sigma(Du(x_j,t^n))\sqrt{2\Delta t}\vec{b},t^n) = u(x_j,t^n)+ \\
-&+\left<Du(x_j,t^n),\sigma(Du(x_j,t^n))\vec{b}\right>\sqrt{2}\Delta t^{\frac{1}{2}} +\\
+&+\left<Du(x_j,t^n),\sigma(Du(x_j,t^n))\vec{b}\right>\sqrt{2\Delta t} +\\
 &+\left<D^2u(x_j,t^n)\sigma(Du(x_j,t^n))\vec{b},\sigma(Du(x_j,t^n))\vec{b}\right>\Delta t + \\
 &+T_3(\Delta t^{\frac{3}{2}}\sigma(Du(x_j,t^n))\vec{b},D^3u(x_j,t^n))+O(\Delta t^2), 
 \end{split}

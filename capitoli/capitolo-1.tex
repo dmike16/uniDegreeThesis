@@ -7,14 +7,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Qualcosa sulle Superfici in $\mathbb{R}^3$}
 
-Consideriamo un sottoinsieme $S\subseteq\mathbb{R}^3$, diremo che è una superficie regolare se per ogni punto $p\in S$ esiste un intorno $V$ di $p$ in $\mathbb{R}^3$, un aperto $U\subset\mathbb{R}^2$ e un'applicazione differenziabile $\mathcal{S}:U\longrightarrow V\cap S$ tale che:
+Consideriamo un sottoinsieme $S\subseteq\mathbb{R}^3$, diremo che è una superficie regolare se per ogni punto $p\in S$ esiste un intorno $V$ di $p$ in $\mathbb{R}^3$, un aperto $U\subset\mathbb{R}^2$ e un'applicazione differenziabile $\mathcal{S}:U\longrightarrow V\cap S$,$(u,v)\longrightarrow\mathcal{S}=(x(u,v),y(u,v),z(u,v))$, tale che:
 \begin{enumerate}
   \item $\mathcal{S}$ è un omeomorfismo,
   \item il differenziale $d\mathcal{S}$ ha rango massimo in ogni punto di $U$.
 \end{enumerate}
 L'applicazione $\mathcal{S}$ si dice parametrizzazione regolare in un intorno del punto $p$. Mentre l'insieme $V\cap S=\mathcal{S}(U)$ si dice porzione di superficie parametrica regolare. La condizione di regolarità, ci esclude superfici che intersecano se stesse.
 
-Siano $u$ e $v$ coordinate su $U\subset\mathbb{R}^2$ , $S = \mathcal{S}(U)$ e $p=\mathcal{S}(u_0,v_0)$; si definisce spazio tangente ad $S$ nel punto $p$, e si indica con $T_pS$, l'immgine di $\mathbb{R}^2$ tramite l'applicazione $d\mathcal{S}_{(u_0,v_0)}$:
+Siano $u$ e $v$ coordinate su $U\subset\mathbb{R}^2$ , $S = \mathcal{S}(U)$ e $p=\mathcal{S}(u_0,v_0)$; si definisce spazio tangente ad $S$ nel punto $p$, e si indica con $T_pS$, l'immagine di $\mathbb{R}^2$ tramite l'applicazione $d\mathcal{S}_{(u_0,v_0)}$:
 \[
 (a,b)\in\mathbb{R}^2\quad d\mathcal{S}_{(u_0,v_0)}(a,b)= 
 \frac{d}{dt}\mathcal{S}(u_0+at,v_0+bt)|_{t=0}=
@@ -74,7 +74,7 @@ avendo tale matrice rango massimo, per definizione di superficie regolare, i vet
 \end{figure}
 con $g$ \emph{prima forma fondamentale della parametrizzazione} $\mathcal{S}$, definita da:
 \begin{definizione}
-L'applicazione differenziabile $g:U\longrightarrow gl(2,\mathbb{R})$ è definita da $g(u)=(g_{ij}(u))$, con:
+L'applicazione differenziabile $g:U\longrightarrow gl(2,\mathbb{R})$, dove $gl(2,\mathbb{R})$ rappresenta il gruppo di tutte le matrici invertibili $2\times2$ con coefficenti reali,  è definita da $g(u)=(g_{ij}(u))$, con:
 \begin{equation}
 \label{eq:cp-112}
 g_{ij}(u) = <\mathcal{S}_i,\mathcal{S}_j>\quad i,j=u,v.
@@ -89,30 +89,32 @@ Si noti anche che :
 \end{osservazione}
 
 \begin{osservazione}
-Se $\tilde{u}$,$\tilde{v}$ sono un nuovo sisteme di coordinate su $U$, vale:
+Se $\tilde{u}$,$\tilde{v}$ sono un nuovo sistema di coordinate su $U$ con $u\equiv u(\tilde{u},\tilde{v})$ e $v\equiv v(\tilde{u},\tilde{v})$, vale:
 \[
 \mathcal{S}_{\tilde{u}}\wedge\mathcal{S}_{\tilde{v}}=\det(\frac{\partial u,v}{\partial \tilde{u},\tilde{v}})\mathcal{S}_u\wedge\mathcal{S}_v
 \]
-quindi $\vec{n}$ resta invariato o cambia segno a seconda del segno del determinante della trasformazione parametrica.
+quindi $\vec{n}$ resta invariato o cambia segno a seconda del segno del determinante dello jacobiano della trasformazione per il cambio di variabili.
 \end{osservazione}
-Il versore normale \eqref{eq:cp-111} individua un'applicazione differenziabile, che ad ogni punto della supeficie $S$ associa un punto della sfera unitaria $S^2$ in $\mathbb{R}^3$. Tale mappa, $N: S\longrightarrow S^2$, viene detta \emph{applicazione di Gauss}. Fissiamo, ora, un punto $p\in S$ , consideriamo un'applicazione  $F: T_pS\longrightarrow T_pS$ e vediamo come definirla. A tal proposito consideriamo una curva  $\alpha : (-\epsilon,\epsilon)\longrightarrow S$ sulla superficie $S$, tale che $\alpha(0)=p$. Per ogni $t\in (-\epsilon,\epsilon)$ vale che :
+Il versore normale \eqref{eq:cp-111} individua un'applicazione differenziabile, che ad ogni punto della supeficie $S$ associa un punto della sfera unitaria $S^2$ in $\mathbb{R}^3$. Tale mappa, $N: S\longrightarrow S^2$, viene detta \emph{applicazione di Gauss}. Fissiamo, ora, un punto $p\in S$ , consideriamo un'applicazione  $F: T_pS\longrightarrow T_pS$ cha andremo a definire. A tal proposito consideriamo una curva  $\alpha : (-\epsilon,\epsilon)\longrightarrow S$ sulla superficie $S$, tale che $\alpha(0)=p$. Per ogni $t\in (-\epsilon,\epsilon)$ vale che :
 \[
 <N(\alpha(t)),N(\alpha(t))> = 1,
 \] 
 deriviamo rispetto a $t$ in $t=0$:
 \[
-0 = <\frac{dN\alpha}{dt}(0),N(\alpha(0))>+<N(\alpha(0)),\frac{dN\alpha}{dt}(0)>.
+0 = {<\frac{dN(\alpha(t))}{dt},N(\alpha(t))>}_{\big{|}_{t=0}}+{<N(\alpha(t)),\frac{dN(\alpha(t))}{dt}>}_{\big{|}_{t=0}}.
 \]
 Poniamo per definizione $\tilde{F}(\alpha) = -\frac{dN\alpha}{dt}(0)$. Dalla relazione precedente segue che $<\tilde{F}(\alpha),N(p)> = 0$ e quindi $\tilde{F}(\alpha)\in T_pS$. Senza entrare nel dettaglio, si dimostra che $\tilde{F}(\alpha)$ dipende solo dalla mappa di Gauss e dal vettore $\alpha'(0)\in T_pS$. Definiamo dunque $F(\alpha'(0))=\tilde{F}(\alpha)$, in tal modo la nostra $F$ risulta essere ben definita, lineare e inolte per ogni vettore $\theta\in T_pS$ esiste una curva $\alpha$ tale che $\alpha'(0)=\theta$.
 
 Introduciamo la \emph{seconda forma fondamentale}:
 \begin{definizione}
-Sia $b_{ij}=<\mathcal{S}_{ij},\vec{n}>$, per $i,j=u,v$. L'applicazione $b:\longrightarrow gl(2,\mathbb{R})$,tale che $b(u)=(b_{ij}(u))$ è detta seconda forma fondamentale della parametrizzazione $\mathcal{S}$; con
+Sia $b_{ij}=<\mathcal{S}_{ij},\vec{n}>$, per $i,j=u,v$. L'applicazione $b:U\longrightarrow gl(2,\mathbb{R})$,tale che $b(u)=(b_{ij}(u))$ è detta seconda forma fondamentale della parametrizzazione $\mathcal{S}$; con
 \[
 \mathcal{S}_{ij}=\frac{\partial^2\mathcal{S}}{\partial i\partial j}\quad i,j = u,v,
 \]
-essendo $\mathcal{S}_{ij}=\mathcal{S}_{ji}$, per il Teorema dell'invertibilità dell'ordine di derivazione, essa è dunque simmetrica.
 \end{definizione}
+\begin{osservazione}
+Essendo $\mathcal{S}_{ij}=\mathcal{S}_{ji}$, per il Teorema dell'invertibilità dell'ordine di derivazione, $b(u)$ è dunque simmetrica.
+\end{osservazione}
 Facendo riferimento all'applicazione $F$ appena introdotta, possiamo riscrivere la seconda forma fondamentale:
 \begin{equation}
 \label{eq:cp-113}
@@ -144,7 +146,7 @@ dove $\vec{n}(x)$ è il vettore unitàrio normale. Senza entrare nel dettaglio, 
 \]
 con $\tau^j$ base ortonormale di $TS$ e $D_\tau X$ derivata del campo nella direzione $\tau\in TS$, o meglio se prendiamo una curva $\alpha(t)$ su $S$ tale che $\alpha(0) = x$ e $\frac{d\alpha}{dt}(0)=\tau$ allora
 \[
-(D_\tau X)(x)=\frac{d}{dt}\left(X(\alpha(t))\right)\left|_{t=0}\right. =(\tau\cdot D)X=\sum_{j=1}^3\tau_j\frac{\partial}{\partial x_j}X.
+(D_\tau X)(x)=\frac{d}{dt}\left(X(\alpha(t))\right)_{\big|_{t=0}} =(\tau\cdot D)X=\sum_{j=1}^3\tau_j\frac{\partial}{\partial x_j}X.
 \]
 Prendiamo come campo $X$ il versone normale $\vec{n}(x)$ , ricordando la definizione della seconda forma fondamentale e della curvatura media otteniamo:
 \[
@@ -167,12 +169,12 @@ dove $p\otimes p=p^tp$ con $p$ vettore colonna in $\mathbb{R}^3$ e $(I-\vec{n}(x
 \section{Moto per curvatura media \emph{Volume Preserving}}
 
 Consideriamo superfici che si evolvono nel tempo. \\
-Sia $\mathcal{S}(\tilde{p},t):U\times[0,T)\longrightarrow\mathbb{R}^3$, con $U\subseteq\mathbb{R}^2$, una famiglia di superfici regolari, dove $t$ parametrizza la famiglia e $\tilde{p}$ la superficie. Assumiamo che essa obedisce alla seguente PDE:
+Sia $\mathcal{S}(\tilde{p},t):U\times[0,T)\longrightarrow\mathbb{R}^3$, con $U\subseteq\mathbb{R}^2$, una famiglia di superfici regolari, dove $t$ parametrizza la famiglia e $\tilde{p}$ la superficie. Assumiamo che essa obedisce alla seguente equazione alle derivate parziali:
 \begin{equation}
   \label{eq:cp121}
   \frac{\partial\mathcal{S}(\tilde{p},t)}{\partial t} = \alpha(\tilde{p},t)\vec{t}(\tilde{p},t) + \beta(\tilde{p},t)\vec{n}(\tilde{p},t)
 \end{equation}
-con $\mathcal{S}_0(\tilde{p})$ condizione iniziale. Indichiamo con $\vec{t}$ e $\vec{n}$ ripsettivamente, il versore tangente e il versore normale interno alla superficie; mentre $\alpha$ e $\beta$ sono le componenti tangenziale e normale della velocità con cui si deforma la superfcie. L'equazione scritta sopra risulta essere molto generale, infatti notiamo che per una qualsiasi velocità di deformazione $\vec{V}$ si ha $\alpha=<\vec{V},\vec{t}>$ e $\beta=<\vec{V},\vec{n}>$. Essendo interessati alla sola deformazione geometrica ed non a come cambia la parametrizzazione, Il PDE \eqref{eq:cp121} può essere semplificata applicando il seguente lemma:
+con $\mathcal{S}_0(\tilde{p})$ condizione iniziale. Indichiamo con $\vec{t}$ e $\vec{n}$ ripsettivamente, il versore tangente e il versore normale interno alla superficie; mentre $\alpha$ e $\beta$ sono le componenti tangenziale e normale della velocità con cui si deforma la superfcie. L'equazione scritta sopra risulta essere molto generale, infatti notiamo che per una qualsiasi velocità di deformazione $\vec{V}$ si ha $\alpha=<\vec{V},\vec{t}>$ e $\beta=<\vec{V},\vec{n}>$. Essendo interessati alla sola deformazione geometrica e non a come cambia la parametrizzazione, l'equazione \eqref{eq:cp121} può essere semplificata applicando il seguente lemma:
 \begin{lemma}
 \label{lemm:cp-121}
 Se $\beta$ non dipende dalla parametrizzazione, ma è una caratteristica geometrica intrinseca della superficie, tipo la curvatura, allora l'imagine di $\mathcal{S}(\tilde{p},t)$ che soddisfa \eqref{eq:cp121} è identica all'imagine della famiglia $\mathcal{S}(p,t)$ che soddisfa
@@ -182,13 +184,13 @@ Se $\beta$ non dipende dalla parametrizzazione, ma è una caratteristica geometr
 \end{equation}
 \end{lemma}
 
-Per la dimostrazione del lemma si veda **RIF**, soffermiamoci sulle conseguenze.
+Per la dimostrazione del lemma si veda **RIF**, soffermiamoci qui solo sulle conseguenze.
 In poche parole, se la componente normale della velocità dipende soltato da caratteristiche geometriche della curva, l'evoluzione della famiglia è influenzata solo da quest'ultima componente; mentre la componente tangenziale influisce esclusivamente sulla parametrizzazione.
-Detto ciò, un generico flusso geometrico di superfici ha la forma:
+Consideriamo ora un flusso geometrico di superfici della forma:
 \[
-\frac{\partial\mathcal{S}}{\partial t} = \beta(H,K)\vec{n},
+\frac{\partial\mathcal{S}}{\partial t} = \beta(H)\vec{n},
 \] 
-cioè la velocità è una funzione delle due curvature principali (media e gaussiana). Il flusso che vogliamo studiare è quello per curvatura media, quindi l'equazione precedente diventa:
+dove la velocità $\beta$ è una funzione della curvatura media. In particolare se $\beta(H)=H$ l'equazione precedente diventa:
 \begin{equation}
   \label{eq:cp-123}
   \frac{\partial\mathcal{S}}{\partial t} = \vec{V} = H\vec{n}
@@ -202,13 +204,13 @@ Come provato negli articoli **ref** , questo flusso deforma superfici convesse i
 \end{osservazione}
 
 \begin{esempio}[The Sphere]
-Vogliamo calcolarci la soluzione esatta nel caso della sfera che si evolve secondo la \eqref{eq:cp-123}. Sia $\mathcal{S}(p,t) = S^2(R(t))$, cioè una famiglia di sfere in $\mathbb{R}^3$ di raggio $R(t)$ e centro l'origine, e $\mathcal{S}(p,0) = S^2(R_0)$ il nostro dato iniziale. Calcoliamoci la curvatura media, utilizzando l'espressione \eqref{eq:cp-114} e ricordando che la normale interna alla sfera è $\vec{n}(x(t))=-\frac{x(t)}{|x(t)|}$ con $x(t)\in S^2(R(t))$:
+Calcoliamo la soluzione esatta nel caso della sfera che si evolve secondo  \eqref{eq:cp-123}. Sia $\mathcal{S}(p,t) = S^2(R(t))$, cioè una famiglia di sfere in $\mathbb{R}^3$ di raggio $R(t)$ e centro l'origine, e $\mathcal{S}(p,0) = S^2(R_0)$ il nostro dato iniziale. Calcoliamoci la curvatura media, utilizzando l'espressione \eqref{eq:cp-114} e ricordando che la normale interna alla sfera è $\vec{n}(x(t))=-\frac{x(t)}{|x(t)|}$ con $x(t)\in S^2(R(t))$:
 \[
 H(x(t)) =-\Div(\vec{n}(x(t))=\Div\left(\frac{x(t)}{|x(t)|}\right)=\frac{2}{R(t)}.   
 \]
 Allora la nostra equazione \eqref{eq:cp-123} diventa:
 \[
-\overset{.}{R}(t)=-\frac{2}{R(t)}, \text{ con } R(0) = R_0,
+\overset{\displaystyle.}{R}(t)=-\frac{2}{R(t)}, \text{ con } R(0) = R_0,
 \]
 risolvendo otteniamo:
 \[
@@ -252,7 +254,7 @@ Quindi la sfera si ridurrà ad un punto in un tempo finito $\hat{t}$, che è chi
 \end{esempio}
 
 \begin{esempio}[The Dumbbell]
-Il manubrio(dumbbell) può essere considerato come due spfere di equal raggio, connesse da un cilindro. Assumendo che le due sfere sono molto grandi ed il cilindro lungo e fino; l'evoluzione per curvatura media mi fa collassare velocemente il cilindro in una linea e le due sfere si evolvono più lentamente sempre in sfere più piccole. Dopo un certo tempo il manubrio si divide in due sfere disconnesse, in questa situazione si è verificato un cambiamento della topologia della superficie e quindi non si può più parlare di vettore normale e di curvatura. A questo punto le due sfere si evolvono separatamente fin a collassare in due punti (ved figura \ref{fig:cp-122}). 
+Il manubrio(dumbbell) può essere considerato come due spfere di equal raggio, connesse da un cilindro. Assumendo che le due sfere sono molto grandi ed il cilindro lungo e fino; l'evoluzione per curvatura media fa collassare velocemente il cilindro in una linea e le due sfere si evolvono più lentamente sempre in sfere più piccole. Dopo un certo tempo il manubrio si divide in due sfere disconnesse, in questa situazione si è verificato un cambiamento della topologia della superficie e quindi non si può più parlare di vettore normale e di curvatura. A questo punto le due sfere si evolvono separatamente fin a collassare in due punti (ved figura \ref{fig:cp-122}). 
 
 \begin{figure}[!hptb]
 \begin{center}
@@ -356,9 +358,9 @@ Il manubrio(dumbbell) può essere considerato come due spfere di equal raggio, c
   \label{fig:cp-122}
 \end{figure}
 \end{esempio}
-Questi due esempi ci confermano quanto detto sopra, cioè superfici convesse collassano in un punto e superfici non convesse posso generare delle discontinuità, vedimao come aggirare questi due problemi. 
+Questi due esempi ci confermano quanto detto sopra, cioè superfici convesse collassano in un punto e superfici non convesse posso generare delle discontinuità, vediamo come aggirare questi due problemi. 
 
-Partiamo dal primo. Quello che vogliamo fara è normalizzare l'equazione \eqref{eq:cp-123} così che il volume viene preservato. Tale processo di normalizzazione, viene raggiunto cambiando la scala temporale, passando da $t$ a $\tau$, in modo tale che la nosta superficie diventa:
+Partiamo dal primo. Quello che vogliamo fare è normalizzare l'equazione \eqref{eq:cp-123} così che il volume vega preservato. Tale processo di normalizzazione, viene raggiunto cambiando la scala temporale, passando da $t$ a $\tau$, in modo tale che la nosta superficie diventi:
 \[
 \mathcal{\tilde{S}}(\tau):=\psi(t)\mathcal{S}(t),
 \]
@@ -370,12 +372,12 @@ con $n$ tale che $\psi^{-n+1}(t)H=\tilde{H}$. Uno dei vantaggi di questa normali
 \[
 \begin{aligned}
   &\frac{\partial\mathcal{\tilde{S}}(\tau)}{\partial\tau} =  \frac{\partial\mathcal{\tilde{S}}(t(\tau))}{\partial\tau} = \frac{\partial t}{\partial\tau}\frac{\partial\mathcal{\tilde{S}}(t(\tau))}{\partial t} =\\
-  &=\psi^{-n}\left(\psi_t\mathcal{S}(t)+\psi(t)\mathcal{S}_t(t)\right)=\psi^{-n}\psi_t\mathcal{S}(t)+\psi^{-n+1}H\vec{n}=\\
-  &=\psi^{-n}\psi_t\mathcal{S}(t)+\tilde{H}\vec{n}=\psi^{-n-1}\psi_t\mathcal{\tilde{S}}(\tau)+\tilde{H}\vec{n}.
+  &=\psi^{-n}\left(\psi_t\mathcal{S}+\psi\mathcal{S}_t\right)=\psi^{-n}\psi_t\mathcal{S}+\psi^{-n+1}H\vec{n}=\\
+  &=\psi^{-n}\psi_t\mathcal{S}+\tilde{H}\vec{n}=\psi^{-n-1}\psi_t\mathcal{\tilde{S}}+\tilde{H}\vec{n}.
 \end{aligned}
 \]
 
-Poichè la geometria dell'evolulzione è influenzata solo dalla componente normale della velocità, utilizzando il lemma \ref{lemm:cp-121} otteniamo:
+Poichè la geometria dell'evolulzione è influenzata solo dalla componente normale della velocità, utilizzando il Lemma \ref{lemm:cp-121} otteniamo:
 \[
 \frac{\partial\mathcal{\tilde{S}}(\tau)}{\partial\tau}=\psi^{-n-1}\psi_t\left<\mathcal{\tilde{S}}(\tau),\vec{n}\right>\vec{n}+\tilde{H}\vec{n}.
 \]
@@ -387,7 +389,7 @@ allora
 \[
 \frac{\partial\mathcal{\tilde{S}}(\tau)}{\partial\tau}=\left(-\psi^{-n-1}\psi_t\tilde{\rho}+\tilde{H}\right)\vec{n}.
 \]
-Rricordando che, se una superficie evolve secondo un'equazione del tipo
+Ricordando che, se una superficie evolve secondo un'equazione del tipo
 \[
 \frac{\partial \mathcal{S}}{\partial t}=\beta\vec{n},
 \]
@@ -396,7 +398,7 @@ allora il tasso di cambiamento del volume è dato da
 \label{eq:cp-124}
 \frac{d V}{d t}=-\iint\beta d\mu
 \end{equation}
-con $d\mu$ elemento infinitesimo di superficie, vedere osservazione \ref{oss:cp-122}.
+con $d\mu$ elemento infinitesimo di superficie, vedere \emph{Osservazione} \ref{oss:cp-122}.
  Applicando la \eqref{eq:cp-124} giungiamo a:
 \[
 \tilde{V}_{\tau}=\iint(\psi^{-n-1}\psi_t\tilde{\rho}-\tilde{H})d\tilde{\mu},
@@ -405,12 +407,12 @@ se noi richiediamo che $\tilde{V}_{\tau}\equiv 0$, allora:
 \[
 \psi^{-n-1}\psi_t\iint\tilde{\rho}d\mu = \iint\tilde{H}d\tilde{\mu}.
 \]
- Tenedo presente che il volume di una superficie è pari a :
+ Tenendo presente che il volume di una superficie è pari a:
 \begin{equation}
   \label{eq:cp-125}
 V=\frac{1}{3}\iint-\left<\mathcal{S},\vec{n}\right>d\mu,
 \end{equation}
-in quanto $\vec{n}$ indica la normale interna (ved oss \ref{oss:cp-121}), e che rimane costante nel tempo (cosi da noi richiesto) possiamo scrivere:
+con $\vec{n}$ che indica la normale interna (ved \emph{Osservazione} \ref{oss:cp-121}), e che rimane costante nel tempo (come da noi richiesto) possiamo scrivere:
 \[
 V(0)=\tilde{V}(\tau)=\frac{1}{3}\iint\tilde{\rho}d\tilde{\mu};
 \]
@@ -429,11 +431,11 @@ Vediamo da dove deriva l'espressione \eqref{eq:cp-125}. Prendiamo un insieme $\O
 \[
 \int_{\Omega}\Div{F(x)}dV =\int_{\partial\Omega}\left<F(x),\vec{n}(x)\right>d\mu
 \]
-dove $\vec{n}(x)$,in tal caso, indica la normale esterna e $dV$,$d\mu$ rispettivamente elemento di volume ed elemento di superficie. Prendiamo come campo vettoriale $F(x)=\frac{1}{3}x$, quindi il volume di $\Omega$ è pari a:
+dove $\vec{n}(x)$, in tal caso, indica la normale esterna e $dV$,$d\mu$ rispettivamente elemento di volume ed elemento di superficie. Prendiamo come campo vettoriale $F(x)=\frac{1}{3}x$, quindi il volume di $\Omega$ è pari a:
 \[
 vol(\Omega)=\int_{\Omega}1dV=\int_{\Omega}\Div{(F(x))}dV=\frac{1}{3}\int_{\partial\Omega}\left<x,\vec{n}\right>d\mu,
 \]
-essendo l'ultimo integrale fatto su $\partial\Omega$, il vettore $\vec{x}$ rappresenta un punto della supeficie, quindi equivale a \eqref{eq:cp-125}.
+essendo l'ultimo integrale fatto su $\partial\Omega$, il vettore $x$ rappresenta un punto della supeficie, quindi equivale a \eqref{eq:cp-125}.
 \end{osservazione}
 
 \begin{osservazione}[Tasso di variazione del Volume]
@@ -462,7 +464,7 @@ Per ottenere il volume nel primo integrale dobbiamo scegliere $F(t,x)\equiv 1$ e
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Approccio \emph{level-set}}  
 
-Nella sezione precedente abbiamo visto come risolvere il problema del collasso, cioè in un tempo finito il volume diventa nullo. Tuttavia quando si implementa numericamente tale flusso (scopo finale di questo lavoro !!), ci si imbatte in altri problemi :
+Nella sezione precedente abbiamo visto come risolvere il problema del collasso, cioè evitare che in un tempo finito il volume diventa nullo. Tuttavia quando si implementa numericamente tale flusso, ci si imbatte in altri problemi:
 \begin{itemize}
 
   \item Il nostro algoritmo deve essere robusto in quanto deve approssimare un flusso continuo. Una semplice approssimazione Lagrangiana basata sulle particelle che si muovono lungo la superficie richiederebbe un passo temporale impraticabile, poichè le particelle possono trovarsi molto vicine o molto lontane durante la deformazione.
@@ -473,11 +475,9 @@ Nella sezione precedente abbiamo visto come risolvere il problema del collasso, 
 
 \end{itemize}
 
-Tutti questi problemi hanno portato allo svilupparsi di tecniche \emph{level-set}. Introduciamo alcuni concetti base e riformuliamo la nostra equazione con un \emph{approccio level-set}.%
-\footnote{Per maggiori chiamrimenti o approfondimenti consultare \emph{Surface Evolution Equations-- a level set method --,Giga}.}    %
-
-Alla base di questo approccio c'è l'idea di vedere la nostra superficie come  insieme di levello di una funzione. Più precisamente,
-un insieme $S\subset\mathbb{R}^3$ è chiamato $C^m$ superfice (o ipersuperficie se siamo in $\mathbb{R}^N$ con $N>3$) intorno ad un punto $x_0$ di $S$ se esiste una $C^m$ funzione $u(x)$ definita in un intorno $U$ di $x_0$ tale che
+Tutti questi problemi hanno portato allo svilupparsi di tecniche \emph{level-set}. Introduciamo alcuni concetti base e riformuliamo la nostra equazione con un \emph{approccio level-set}, per maggiori chiamrimenti o approfondimenti consultare **RIF**.
+Alla base di questo approccio c'è l'idea di vedere la nostra superficie come  insieme di livello di una funzione. Più precisamente,
+un insieme $S\subset\mathbb{R}^3$ è chiamato superfice di classe $C^m$ (o ipersuperficie se siamo in $\mathbb{R}^N$ con $N>3$) intorno ad un punto $x_0$ di $S$ se esiste una funzione $u(x)$ di classe $C^m$ definita in un intorno $U$ di $x_0$ tale che
 \[
 S\cap U=\left\{x\in U; u(x)=0\right\}
 \]
@@ -489,13 +489,13 @@ non svanisce su $S$. Tale rappresentazione è chiamta \emph{level-set}. Se $u$ p
 \[
 S_t=\left\{x\in S_t; u(x,t)=0\right\},
 \]
-e tale che il gradiente spaziale di $u$ non svanisca su $S_t$. Ora, consideriamo una curva $\alpha(t)$ in $\mathbb{R}^3$ su $S_t$ definita in $(t-\delta,t+\delta)$, con $\delta>0$ tale che $\alpha(t)\in S_t$ e $\alpha(t_0)=x_0$. Dalla definizione di $S_t$ deve essere $u(\alpha(t),t)=0$ per $t$ vicino a $t_0$, quindi differenziando  $u(\alpha(t),t)$ ed evelutandola nel punto $(x_0,t_0)$ otteniamo:
+e tale che il gradiente spaziale di $u$ non svanisca su $S_t$. Ora, consideriamo una curva $\alpha(t)$ in $\mathbb{R}^3$ su $S_t$ definita in $(t-\delta,t+\delta)$, con $\delta>0$ tale che $\alpha(t)\in S_t$ e $\alpha(t_0)=x_0$. Dalla definizione di $S_t$ deve essere $u(\alpha(t),t)=0$ per $t$ vicino a $t_0$, quindi differenziando  $u(\alpha(t),t)$ ed evalutandola nel punto $(x_0,t_0)$ otteniamo:
 \[
-u_t(x_0,t_0)+\left<\frac{dx}{dt}(t_0),Du(x_0,t_0)\right>=0,
+u_t(x_0,t_0)+\left<\frac{d\alpha}{dt}(t_0),Du(x_0,t_0)\right>=0,
 \]
-ricordando che la normale $\vec{n}=-\frac{Du}{|Du|}$(vedi oss \ref{oss:cp-131}), abbiamo:
+ricordando che la normale $\vec{n}=-\frac{Du}{|Du|}$(vedi \emph{Osservazione} \ref{oss:cp-131}), abbiamo:
 \[
-u_t(x_0,t_0)-|Du(x_0,t_0)|\left<\frac{dx}{dt}(t_0),\vec{n}\right>=0.
+u_t(x_0,t_0)-|Du(x_0,t_0)|\left<\frac{d\alpha}{dt}(t_0),\vec{n}\right>=0.
 \]
 Il prodotto scalare che compare nell'espressione precedente rappresenta la velocità normale di $S_t$ nel punto $x_0$ al tempo $t_0$ per cui: 
 \[
