@@ -112,7 +112,48 @@ Quindi per distinguere i due casi dal punto di vista numerico, introduciamo una 
 |D_j^n|\le C\Delta x^s\text{ e }|(D_j^n)_1^2+(D_j^n)_3^2|\le C\Delta x^s.
 \]
 \end{osservazione}
-*** Manca da trattare il caso discontinuo ****
+Nel caso in cui siamo sotto la soglia, possiamo procedere in due modi diversi.
+\begin{enumerate}
+  \item Approssimiamo la nostra soluzione nel punto $(x_j,t^{n+1})$, con la media dei primi vicini:
+    \begin{equation}
+      \label{eq:cp3-03-add}
+      u_j^{n+1}=\frac{1}{6}\sum_{i\in\delta(j)}u_i^n,
+    \end{equation}
+dove $\delta(j)=\left\{(j_1\pm 1,j_2,j_3),(j_1,j_2\pm 1,j_3),(j_1,j_2,j_3\pm 1)\right\}$. Questa rappresentazione, non è altro che un'approssimazione dell'equazione del calore $u_t=\Delta u$ in $\mathbb{R}^3\times(0,T)$. Difatti usando Eulero in avanti per la derivata temporale e differenze finite centrate per quella spaziale abbiamo:
+\[
+\begin{aligned}
+  \frac{u_j^{n+1}-u_j^n}{\Delta t}=\varepsilon&\frac{u_{j_1 + 1,j_2,j_3}^n +
+    u_{j_1 - 1,j_2,j_3}^n + u_{j_1,j_2 + 1,j_3}^n + u_{j_1,j_2 - 1,j_3}^n}{\Delta x^2} + \\
+    &+ \frac{u_{j_1,j_2,j_3 + 1}^n + u_{j_1,j_2,j_3 - 1}^n - 6u_j^n}{\Delta x^2},
+\end{aligned}
+\]
+scegliendo $\varepsilon=\frac{\Delta x^2}{6\Delta t}$ otteniamo la \eqref{eq:cp3-03-add}.
+Tale scelta è giustificata dal fatto che, come vedremo nella sezione successiva, il moto per curvature media è consistente con l'approssimazione dell'equazione del calore a patto di adottare, come soluzione viscosa, la definizione (riferimento formula) proposta da \emph{Crandall} in **ref.
+
+  \item Utilizziamo l'approssimazione dell'equazione $u_t=\frac{1}{2}\Delta u$:
+    \begin{equation}
+      \label{eq:cp-04-add}
+      u_j^{n+1}=u_j^n +\frac{1}{2}\frac{\Delta t}{\Delta x^2}\left(6u_j^n - \sum_{i\in\delta(j)}u_i^n\right).
+    \end{equation}
+Tale scelta è giustificata, in quanto il moto per curvatura media risulta essere consistente con l'equazione $u_t=\frac{1}{2}\Delta u$, (vedi sezione successiva) prendendo come soluzione viscosa la definizione standard (riferimento formula) presente in **rif. L'unico problema è che la \eqref{eq:cp-04-add}
+richiede una CFL parabolica, che non è presente nel nostro schema essendo \emph{semi-lagrangiano}; un modo per aggirare il problema è quello di usare uno schema implicito nell'approssimazione di  $u_t=\frac{1}{2}\Delta u$.
+\end{enumerate}
+Scegliendo, ad esempio, la prima alternativa il nostro schema MCM completo diventa:
+\begin{equation}
+  \label{eq:mcm-schema}
+  u_j^{n+1}=
+  \left\{
+  \begin{aligned}
+    &   &\scriptstyle|D_j^n|>&\scriptstyle C\Delta x^s\\ 
+    &\frac{1}{4}\sum_{+,-}I[u^n](x_j+\sqrt{2\Delta t}(\pm\vec{v}_1\pm\vec{v}_2)),  &\scriptstyle\mathbf{and} \\
+    &  &\scriptstyle|(D_j^n)_1^2+(D_j^n)_3^2|&\scriptstyle >C\Delta x^2 \\
+    &  &  \\
+    &  &\scriptstyle|D_j^n|\leq&\scriptstyle C\Delta x^s \\
+     & \frac{1}{6}\sum_{i\in\delta(j)}u_i^n,   &\scriptstyle\mathbf{and} \\
+  &  &\scriptstyle|(D_j^n)_1^2+(D_j^n)_3^2| &\scriptstyle\leq C\Delta x^s.
+  \end{aligned}   
+  \right.
+\end{equation}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Section 3.2 Consistenza dello schema
@@ -161,6 +202,11 @@ Prima di procedere con la consistenza, facciamo le seguenti ipotesi sull'errore 
 |D_j[u^n]-Du(x_j,t^n)|\le C_2\Delta x^q\quad\forall n\in\mathbb{N}\quad\forall x_j, 
 \end{gather}
 con $C_1$ e $C_2$ costanti positive che dipendono così come gli ordini $r$ e $q$ dal metodo scelto per l'interpolazione e per l'approssimazioni del gradiente. Nel nostro caso abbiamo scelto entrambi i metodi di ordine $2$, quindi $r=q=2$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SubSection 3.2.1 Caso DU != 0
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Caso $Du \ne 0$}
 
 Consideriamo il caso in cui $Du(x,t)\ne 0$ e $u_{x_1}(x,t)^2+u_{x_3}(x,t)^2\ne 0$, vista la regolarità di $u$, esiste un intorno di $(x,t)$ in cui le due espressioni precedenti si mantengono vere, quindi almeno asintoticamente:
