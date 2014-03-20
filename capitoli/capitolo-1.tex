@@ -91,7 +91,11 @@ Si noti anche che :
 \begin{osservazione}
 Se $\tilde{u}$,$\tilde{v}$ sono un nuovo sistema di coordinate su $U$ con $u\equiv u(\tilde{u},\tilde{v})$ e $v\equiv v(\tilde{u},\tilde{v})$, vale:
 \[
-\mathcal{S}_{\tilde{u}}\wedge\mathcal{S}_{\tilde{v}}=\det(\frac{\partial u,v}{\partial \tilde{u},\tilde{v}})\mathcal{S}_u\wedge\mathcal{S}_v
+\mathcal{S}_{\tilde{u}}\wedge\mathcal{S}_{\tilde{v}}=\det(\frac{\partial u,v}{\partial \tilde{u},\tilde{v}})\mathcal{S}_u\wedge\mathcal{S}_v\,,\quad \det(\frac{\partial u,v}{\partial \tilde{u},\tilde{v}})=
+\begin{vmatrix}
+  \partial_{\tilde{u}}u & \partial_{\tilde{v}}u \\
+  \partial_{\tilde{u}}v & \partial_{\tilde{v}}v
+\end{vmatrix}
 \]
 quindi $\vec{n}$ resta invariato o cambia segno a seconda del segno del determinante dello jacobiano della trasformazione per il cambio di variabili.
 \end{osservazione}
@@ -131,9 +135,10 @@ con $f_i^j$ i coefficenti della matrice dell'applicazione $F$. Sostituendo quest
 Inoltre siccome la matrice $g$ è invertibile, i polinomi $\det(bg^{-1}-tI)$ e $\det(b-tg)$ differiscono solo per una costante moltiplicativa; quindi $k_1$, $k_2$ coincidono con le radici del polinomio $\det(b-tg)$. \\
 In conclusione, si definiscono \emph{curvatura media}\footnote{In alcuni testi è definita coma la media delle curvature principali, quindi differisce dalla nostra defnizione solo per un fattore moltiplicativo. Vedere rif.} \,%
  e \emph{curvatura gaussiana} rispettivamente,
-\[
+\begin{equation}
+\label{eq:cp-111-add}
 H=k_1+k_2=\trace(F),\quad K=k_1k_2=\det(F).
-\]
+\end{equation}
 \begin{osservazione}
 La definizione precedente di curvatura media è equivalente alla seguente:
 \begin{equation}
@@ -148,7 +153,7 @@ con $\tau^j$ base ortonormale di $TS$ e $D_\tau X$ derivata del campo nella dire
 \[
 (D_\tau X)(x)=\frac{d}{dt}\left(X(\alpha(t))\right)_{\big|_{t=0}} =(\tau\cdot D)X=\sum_{j=1}^3\tau_j\frac{\partial}{\partial x_j}X.
 \]
-Prendiamo come campo $X$ il versone normale $\vec{n}(x)$ , ricordando la definizione della seconda forma fondamentale e della curvatura media otteniamo:
+Prendiamo come campo $X$ il versone normale $\vec{n}(x)$ , ricordando la definizione della seconda forma fondamentale \eqref{eq:cp-113} e della curvatura media  \eqref{eq:cp-111-add} otteniamo:
 \[
 H(x)= \sum_{j=1}^{2}{\left<F(\tau_j),\tau_j\right>} = -\sum_{j=1}^{2}{\left<(D_\tau \vec{n})(x),\tau^j\right>}=-(\Div_{S}\vec{n})(x).
 \]
@@ -440,20 +445,42 @@ essendo l'ultimo integrale fatto su $\partial\Omega$, il vettore $x$ rappresenta
 
 \begin{osservazione}[Tasso di variazione del Volume]
 \label{oss:cp-122}
-Consideriamo un insieme $\Omega(t)\subset\mathbb{R}^3$ \emph{time-dependent}, la cui frontiera è costituita da una superficie regolare e orientabile, ed un campo vettoriale $F(t,\vec{x})$ regolare a valori reali. Calcoliamoci il tasso di cambiamento dell'integrale:
+Cerchiamo di dare una spiegazione all'equazione \eqref{eq:cp-124}. Partiamo da una superficie $\Gamma$ regolare immersa orientabiile chiusa in $\mathbb{R}^3$
+e una funzione regolare $\gamma=\gamma(x,\vec{n},H)$, che dipende dal punto di superficie $x$, dalla normale unitaria $\vec{n}$ e dalla curvatura media $H$.
+Consideriamo un dominio $\mathcal{D}$ che contiene la superficie $\Gamma$ ed un campo vettoriale $\vec{V}$ definito su $\mathcal{D}$, il quale definisce la seguenza continua di superfici perturbate $\left\{\Gamma_t\right\}_{t\ge 0}$ con $\Gamma_0:=\Gamma$. Ed ogni punto $x\in \Gamma_0$ è deformato da un equazione differenziale ordinaria definita dal campo $\vec{V}$:
 \[
-\begin{aligned}
-\frac{d}{dt}&\int_{\Omega(t)}F(t,x)dV(t) = \int_{\Omega(t)}\frac{d}{dt}\left(F(t,\vec{x})dx(t)dy(t)dz(t)\right)=\\
- =&\int_{\Omega(t)}\left(\frac{d}{dt}F + F\frac{d}{dt}(dx_1)dx_2dx_3 + Fdx_1\frac{d}{dt}(dx_2)dx_3 + Fdx_1dx_2\frac{d}{dt}(dx_3)\right)=\\
-=&\int_{\Omega(t)}\left(\frac{d}{dt}F + F\frac{\partial v_1}{\partial x_1}+ F\frac{\partial v_2}{\partial x_2} + F\frac{\partial v_3}{\partial x_3}\right)dx_1dx_2dx_3\\
-=& \int_{\Omega(t)}\left(\frac{d}{dt}F + F\Div{\vec{v}}\right)dV = \int_{\Omega(t)}\left(\frac{\partial F}{\partial t} + \Div{(F\vec{v})}\right)dV.
-\end{aligned}
+\frac{dx}{dt}=\vec{V}(x(t)),\quad \forall t\in[0,T],\quad x(0)=X\in\Gamma_0=\Gamma.
 \]
-Applichiamo il \emph{Teorema della divergenza} all'ultima espressione
+Ora prendiamo il seguente funzionale $J(\Gamma)$:
 \[
-\frac{d}{dt}\int_{\Omega(t)}F(t,x)dV(t)=\int_{\Omega(t)}\frac{\partial F}{\partial t}dV + \int_{\partial \Omega(t)}F\left<\vec{v},\vec{n}\right>d\mu.
+J(\Gamma) = \int_{\Gamma}\gamma(x,\vec{n},H)dS,
 \]
-Per ottenere il volume nel primo integrale dobbiamo scegliere $F(t,x)\equiv 1$ e quindi otteniamo la \eqref{eq:cp-124}, eccenzion fatta per il segno in quanto in questo caso $\vec{n}$ rappresenta la normale esterna.
+si definisce \emph{shape derivate} o derivata Euleriana di $J(\Gamma)$ in $\Gamma$ nella direzione del campo vettoriale $\vec{V}$ il limite
+\[
+dJ(\Gamma;\vec{V}) = \lim_{t\to 0}\frac{1}{t}(J(\Gamma_t)-J(\Gamma)).
+\]
+Per ottenere la \eqref{eq:cp-124} dobbiamo calcolarci questa shape derivate e per farlo useremo il \emph{Corollario 4.1} dell'articolo **ref con $\gamma$ dipendente solo dal punto $x$ e dalla normale unitaria $\vec{n}$: 
+\begin{equation}
+\label{eq:cp-121-add}
+\gamma(x,\vec{n})=-\frac{1}{3}<\mathcal{S},\vec{n}> = -\frac{1}{3}\sum_{i=1}^3x_in_i.
+\end{equation}
+Secondo tale corollario otteniamo:
+\[
+dJ(\Gamma;\vec{V}) = \int_{\Gamma}(H\gamma+\partial_{n}\gamma+\Div_{\Gamma}[\gamma_y]_{\Gamma})VdS.
+\]
+dove:
+\begin{itemize}
+  \item $\partial_n\gamma=<D_x\gamma,\vec{n}>$, sarebbe la derivata partiale rispetto ad $x$ nella direzione della normale;
+  \item $\gamma_y=D_n\gamma$, indica il grandiente di $\gamma$ rispetto alla normale;
+  \item $[\cdot]_{\Gamma}$, rappresenta la proiezione sul piano tangente;
+  \item $\Div_{\Gamma}\vec{W}=\left(\Div\vec{W}-\vec{n}\cdot D\vec{W} \cdot \vec{n}\right)_{|\Gamma}$, denota la divergenza tangensiale di $\vec{W}$, propriamente esteso in un intorno di $\Gamma$;
+  \item $\Div_{\Gamma}[\gamma_y]_{\Gamma}=\Div_{\Gamma}[\gamma_y]-H<\gamma_y,\vec{n}>$, con $\Div_{\Gamma}[\gamma_y]$ calcolata nel \emph{Lemma 3.3} di **rif;
+  \item $V=<\vec{V},\vec{n}>$, componente normale del campo vettoriale.
+\end{itemize}
+Calcolandoci queste quantità per $\gamma$ pari a \eqref{eq:cp-121-add} e ricordando che nel nostro caso la componente normale del campo è $\beta$,  otteniamo:
+\[
+dJ(\Gamma;\vec{V})=\int_{\Gamma}(H\gamma -\frac{1}{3} -1 +\frac{1}{3} -H\gamma)\beta dS=-\int_{\Gamma}\beta dS.
+\]
 \end{osservazione}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
