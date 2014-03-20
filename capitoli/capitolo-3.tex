@@ -136,16 +136,16 @@ Tale scelta è giustificata dal fatto che, come vedremo nella sezione successiva
       u_j^{n+1}=u_j^n +\frac{1}{2}\frac{\Delta t}{\Delta x^2}\left(6u_j^n - \sum_{i\in\delta(j)}u_i^n\right).
     \end{equation}
 Tale scelta è giustificata, in quanto il moto per curvatura media risulta essere consistente con l'equazione $u_t=\frac{1}{2}\Delta u$, (vedi sezione successiva) prendendo come soluzione viscosa la definizione standard (riferimento formula) presente in **rif. L'unico problema è che la \eqref{eq:cp-04-add}
-richiede una CFL parabolica, che non è presente nel nostro schema essendo \emph{semi-lagrangiano}; un modo per aggirare il problema è quello di usare uno schema implicito nell'approssimazione di  $u_t=\frac{1}{2}\Delta u$.
+richiede una $\mathit{CFL}$ parabolica, che non è presente nel nostro schema essendo \emph{semi-lagrangiano}; un modo per aggirare il problema è quello di usare uno schema implicito nell'approssimazione di  $u_t=\frac{1}{2}\Delta u$.
 \end{enumerate}
-Scegliendo, ad esempio, la prima alternativa il nostro schema MCM completo diventa:
+Scegliendo, ad esempio, la prima alternativa il nostro schema $\mathit{MCM}$ completo diventa:
 \begin{equation}
   \label{eq:mcm-schema}
   u_j^{n+1}=
   \left\{
   \begin{aligned}
     &   &\scriptstyle|D_j^n|>&\scriptstyle C\Delta x^s\\ 
-    &\frac{1}{4}\sum_{+,-}I[u^n](x_j+\sqrt{2\Delta t}(\pm\vec{v}_1\pm\vec{v}_2)),  &\scriptstyle\mathbf{and} \\
+    &\frac{1}{4}\sum_{+,-}I[u^n](x_j+\sqrt{2\Delta t}(\pm\vec{v}_{1,j}^n\pm\vec{v}_{2,j}^n)),  &\scriptstyle\mathbf{and} \\
     &  &\scriptstyle|(D_j^n)_1^2+(D_j^n)_3^2|&\scriptstyle >C\Delta x^2 \\
     &  &  \\
     &  &\scriptstyle|D_j^n|\leq&\scriptstyle C\Delta x^s \\
@@ -154,6 +154,7 @@ Scegliendo, ad esempio, la prima alternativa il nostro schema MCM completo diven
   \end{aligned}   
   \right.
 \end{equation}
+dove $\vec{v}_{1,j}^n=\vec{v}_1^n(D_j^n)$ e $\vec{v}_{2,j}^n=\vec{v}_2^n(D_j^n)$. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Section 3.2 Consistenza dello schema
