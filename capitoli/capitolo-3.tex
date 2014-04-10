@@ -119,7 +119,7 @@ Nel caso in cui siamo sotto la soglia, possiamo procedere in due modi diversi.
       \label{eq:cp3-03-add}
       u_j^{n+1}=\frac{1}{6}\sum_{i\in\delta(j)}u_i^n,
     \end{equation}
-dove $\delta(j)=\left\{(j_1\pm 1,j_2,j_3),(j_1,j_2\pm 1,j_3),(j_1,j_2,j_3\pm 1)\right\}$. Questa rappresentazione, non è altro che un'approssimazione dell'equazione del calore $u_t=\Delta u$ in $\mathbb{R}^3\times(0,T)$. Difatti usando Eulero in avanti per la derivata temporale e differenze finite centrate per quella spaziale abbiamo:
+dove $\delta(j)=\left\{(j_1\pm 1,j_2,j_3),(j_1,j_2\pm 1,j_3),(j_1,j_2,j_3\pm 1)\right\}$. Questa rappresentazione, non è altro che un'approssimazione dell'equazione del calore $u_t=\varepsilon\Delta u$ in $\mathbb{R}^3\times(0,T)$. Difatti usando Eulero in avanti per la derivata temporale e differenze finite centrate per quella spaziale abbiamo:
 \[
 \begin{aligned}
   \frac{u_j^{n+1}-u_j^n}{\Delta t}=\varepsilon&\frac{u_{j_1 + 1,j_2,j_3}^n +
@@ -157,7 +157,7 @@ Scegliendo, ad esempio, la prima alternativa il nostro schema $\mathit{MCM}$ com
 dove $\vec{v}_{1,j}^n=\vec{v}_1^n(D_j^n)$ e $\vec{v}_{2,j}^n=\vec{v}_2^n(D_j^n)$. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Section 3.2 Consistenza dello schema
+%              Section 3.2 Consistenza dello schema
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Consistenza dello schema}
@@ -194,7 +194,7 @@ E sia inoltre $\phi\in C^{\infty}(\mathbb{R}^3\times(0,t])$ e $\phi^{n_m-1}\equi
 Osserviamo che se $F$ è continua allora il $\limsup$ ed il $\liminf$ nell'espressione \eqref{eq:cp3-03} coincidono, quindi la definizione si riduce a quella classica di consistenza.
 \end{osservazione}
 
-Indichiamo con $u(x,t)$ una soluzione regolare di \eqref{eq:cp3-01} e con $u(x_j,t^n)$ il suo valore sui nodi della griglia.
+Indichiamo con $u(x,t)$ una soluzione regolare di \eqref{eq:cp3-01}, con $(x_{j_m},t^{n_m})$ una successione di nodi che tende a $(x,t)$ come sopra e con $u(x_{j_m},t^{n_m})$ il suo valore su tali nodi; per semplicità notazionale indicheremo questa seguenza omettendo il pedice $m$.
 Prima di procedere con la consistenza, facciamo le seguenti ipotesi sull'errore commesso nell'approssimazione del gradiente e nell'interpolazione:
 \begin{gather}
 \label{eq:cp3-04}
@@ -205,7 +205,7 @@ Prima di procedere con la consistenza, facciamo le seguenti ipotesi sull'errore 
 con $C_1$ e $C_2$ costanti positive che dipendono così come gli ordini $r$ e $q$ dal metodo scelto per l'interpolazione e per l'approssimazioni del gradiente. Nel nostro caso abbiamo scelto entrambi i metodi di ordine $2$, quindi $r=q=2$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% SubSection 3.2.1 Caso DU != 0
+%                 SubSection 3.2.1 Caso DU != 0
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Caso $Du \ne 0$}
@@ -216,7 +216,7 @@ Consideriamo il caso in cui $Du(x,t)\ne 0$ e $u_{x_1}(x,t)^2+u_{x_3}(x,t)^2\ne 0
 \]
 per cui possiamo applicare lo schema nella forma \eqref{eq:cp3-02}.
 
-Abbiamo definito $\sigma=[\vec{v}_1,\vec{v}_2]^t$ quindi ponendo  $\vec{b}=[\pm1,\pm1]^t$ possiamo riscrivere il termine generico della sommatoria in \eqref{eq:cp3-02} come
+Abbiamo definito $\sigma=[\vec{v}_1,\vec{v}_2]$ quindi prendendo $\vec{b}$ in $\Pi=\{[1,1]^t,[-1,1]^t,$ $[1,-1]^t,[-1,-1]^t\}$ possiamo riscrivere il termine generico della sommatoria in \eqref{eq:cp3-02} come
 \[
 I[u^n](x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b}).
 \]
@@ -268,7 +268,7 @@ Sviluppiamo ora $u(x_j+\sigma(Du(x_j,t^n))\sqrt{2\Delta t}\vec{b},t^n)$ con una 
 &+T_3(\Delta t^{\frac{3}{2}}\sigma(Du(x_j,t^n))\vec{b},D^3u(x_j,t^n))+O(\Delta t^2), 
 \end{split}
 \end{equation}
-non abbiamo esplicitato i termini del terzo ordine in quanto , mettondo tutto insieme, si eliminano cosi come i termini del primo ordine data la simmetria dei $4$ punti $x_j+\sigma(Du(x_j,t^n))\vec{b}\sqrt{2\Delta t}$ con $b=[\pm 1,\pm 1]^t$. Alla fine otteniamo che:
+non abbiamo esplicitato i termini del terzo ordine in quanto , mettondo tutto insieme, si eliminano cosi come i termini del primo ordine data la simmetria dei $4$ punti $x_j+\sigma(Du(x_j,t^n))\vec{b}\sqrt{2\Delta t}$ con $b\in\Pi$. Alla fine otteniamo che:
 \begin{equation}
 \label{eq:cp3-010}
 \begin{split}
@@ -285,4 +285,73 @@ Ora sviluppando  anche il termine $u(x_j,t^{n+1})$ e applicando la definizione g
 & +O(\frac{\Delta x^r}{\Delta t}) + O(\frac{\Delta x^{q-s}}{\Delta t^{\frac{1}{2}}}) + O(\Delta t)
 \end{split}
 \]
-questa per $(\Delta t,\Delta x)\to O$ e $(x_j,t^n)\to(x,t)$ risulta soddisfatta, nella forma classica, se $\Delta x = o(\Delta t^{\frac{1}{r}})$ e $\Delta x^{q-s}=o(\Delta t^{\frac{1}{2}})$
+questa per $(\Delta t,\Delta x)\to 0$ e $(x_j,t^n)\to(x,t)$ risulta soddisfatta, nella forma classica, se $\Delta x = o(\Delta t^{\frac{1}{r}})$ e $\Delta x^{q-s}=o(\Delta t^{\frac{1}{2}})$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                   SubSection 3.2.2 Caso DU = 0
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Caso $Du = 0$}
+
+Nel caso in cui il gradiente è nullo le successioni convergenti a $(x,t)$ possono avere sottosuccessioni di nodi sia sotto che sopra la soglia, quindi dobbiamo distinguere due casi:
+\begin{itemize}
+  \item \textsf{Caso} $\mathrm{|D_j^n|\ge C\Delta x^s\land|(D_j^n)_1^2+((D_j^n)_3^2|\ge C\Delta x^s}$. In questo caso ci troviamo sopra la soglia. Quindi possiamo utilizzare lo schema nella forma \eqref{eq:cp3-02} e ripetere i passaggi precedenti eliminado qualsiasi riferimento a $\sigma(Du(x_t,t^n))$, in quanto non possiamo assicurare la convergenza di $\sigma(D_j^n)$ a $\sigma(Du(x_t,t^n))$. In particolare abbiamo:
+\[
+  \begin{split}
+    & I[u^n](x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b}) = I[u^n](x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b}) - \\
+    & +u(x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b},t^n) + u(x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b},t^n),
+  \end{split}
+\]
+utilizzando l'errore di interpolazione abbiamo
+\[
+I[u^n](x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b})=u(x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b},t^n) + O(\Delta x^r).
+\]
+Ripetendo questi passaggi al variare di $\vec{b}\in\Pi$ giungiamo a:
+\[
+ S(x_j,u(x_j,t^n),Du(x_j,t^n))=\frac{1}{4}\left(\sum_{\vec{b}\in\Pi}u(x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b},t^n)\right) + O(\Delta x^r).
+\]
+Esprimendo il valore di $u$ nei punti $x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b}$ con una serie di Taylor del terzo ordine e cancellando i termini simmetrici otteniamo
+\begin{equation}
+  \label{eq:cp3-11}
+  \begin{split}
+    &S(x_j,u(x_j,t^n),Du(x_j,t^n)) = u(x_j,t^n) + \\
+    &\Delta t\left(\vec{v}_1^tD^2u(x_j,t^n)\vec{v}_1 + \vec{v}_2^tD^2u(x_j,t^n)\vec{v}_2\right) + O(\Delta t^2) + O(\Delta x^r).
+   \end{split}
+\end{equation}
+Inserendo quest'ultima espressione nella definizione di consistenza generalizzata risulta che
+\[
+\begin{split}
+  &\frac{u(x_j,t^{n+1})-S(x_j,u(x_j,t^n),Du(x_j,t^n))}{\Delta t}= \frac{u(x_j,t^{n+1})-u(x_j,t^n)}{\Delta t} + \\
+  &  -\vec{v}_1^tD^2u(x_j,t^n)\vec{v}_1 -\vec{v}_2^tD^2u(x_j,t^n)\vec{v}_2 + 
+   + O(\Delta t) + O(\frac{\Delta x^r}{\Delta t}).
+\end{split}
+\]
+Quindi per  $(\Delta t,\Delta x)\to 0$ e $(x_j,t^n)\to(x,t)$ sotto la condizione che $\Delta x^r = o(\Delta t)$ la \eqref{eq:cp3-03} risulta soddisfatta, in quanto il termine $\vec{v}_1^tD^2u(x_j,t^n)\vec{v}_1 +\vec{v}_2^tD^2u(x_j,t^n)\vec{v}_2 $ è sempre compreso tra il suo lim inf e lim sup :
+\[
+\begin{split}
+  &\underline{F}(Du(x,t),D^2u(x,t))\le-\vec{v}_1^tD^2u(x_j,t^n)\vec{v}_1
+  -\vec{v}_2^tD^2u(x_j,t^n)\vec{v}_2\le \\
+  &\le\overline{F}(Du(x,t),D^2u(x,t))
+\end{split}
+\]
+con $F(Du(x,t),D^2u(x,t))=-\vec{v}_1^tD^2u(x_j,t^n)\vec{v}_1 -\vec{v}_2^tD^2u(x_j,t^n)\vec{v}_2$.
+  \item \textsf{Caso} $\mathrm{|D_j^n|< C\Delta x^s\land |(D_j^n)_1^2+((D_j^n)_3^2|< C\Delta x^s}$. Tale disuguaglianze implicano che ci troviamo sotto la soglia. Per cui utilizziamo, ad esempio, lo schema nella forma \eqref{eq:cp3-03-add}, che rappresenta una discretizzazione dell'equazione del calore:
+\[
+S(x_j,u(x_j,t^n),Du(x_j,t^n))=\frac{1}{6}\sum_{i\in\delta(j)}u(x_i,t^n).
+\]
+per cui scrivendo la serie si Taylor del terzo ordine per $u$ nei punti $x\pm e_i\Delta x$, con $e_i$ vettori della base canonica di $\mathbb{R}^3$, otteniamo:
+\[
+S(x_j,u(x_j,t^n),Du(x_j,t^n))=u(x_j,t^n) + \varepsilon\Delta t\Delta u + O(\Delta t^2).
+\]
+La precedente uguaglianza implica che
+\[
+\begin{split}
+  &\frac{u(x_j,t^{n+1})-S(x_j,u(x_j,t^n),Du(x_j,t^n))}{\Delta t}= \frac{u(x_j,t^{n+1})-u(x_j,t^n)}{\Delta t} + \\
+  &  -\varepsilon\Delta u(x_j,t^n) + O(\Delta t),
+\end{split}
+\]
+sotto la condizione che $\Delta x^2=o(\Delta t)$ abbiamo che $\varepsilon\to 0$ per $\Delta t\to 0$, quindi la condizione di consistenza generalizzata che si traduce nella seguente diseguaglianza
+\[
+\underline{F}(Du(x,t),D^2u(x,t))\le\varepsilon\Delta u(x_j,t^n)\le\overline{F}(Du(x,t),D^2u(x,t)),
+\]
+con $\underline{F}$ e $\overline{F}$ definite come in (rif), risulta soddisfatta.  
+\end{itemize}
