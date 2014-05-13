@@ -49,7 +49,7 @@ CP		:= cp
 MKDIR		:= mkdir -p
 MV		:= mv
 RM		:= rm -rf
-LATEX		:= latex
+LATEX		:= pdflatex
 DVIPS		:= dvips
 PSPDF		:= ps2pdf
 SETTINGS	:= -o
@@ -84,6 +84,9 @@ ALL_SOURCE     := $(wildcard $(SOURCE_CHAPTER_DIR)/*.tex)  \
 		  $(wildcard $(SOURCE_INTRO_DIR)/*.tex)
 MAIN_SOURCE    := thesis_degree.tex
 
+# Using the latex compiler
+ifeq "$(LATEX)" "latex"
+
 # Primary target dependecies
 all : $(THESIS_PS_OUT)
 
@@ -96,18 +99,14 @@ PHONY += show_ps
 show_ps : $(THESIS_PS_OUT)
 	$(PS_VIEWER) $<
 
-#Build and show pdf output
-PHONY += show_pdf
-show_pdf : $(THESIS_PDF_OUT)
-	$(PDF_VIEWER) $<
+ifeq "$(MAKECMDGOALS)" "pdf"
+.INTERMEDIATE: $(THESIS_PS_OUT)
+endif
 
 # Generate the pdf file
 #
 $(THESIS_PDF_OUT): $(THESIS_PS_OUT)
 
-ifeq "$(MAKECMDGOALS)" "pdf"
-.INTERMEDIATE: $(THESIS_PS_OUT)
-endif
 
 # Generate ps format file
 #
@@ -122,6 +121,24 @@ $(THESIS_DVI_OUT): $(ALL_SOURCE) $(SETTING_LATEX)
 	$(call latex-compile,$(MAIN_SOURCE))
 	$(MV) $(notdir $@) $(OUTPUT_DIR)
 $(SETTING_LATEX):
+endif
+
+#Using the pdflatex compiler
+ifeq "$(LATEX)" "pdflatex"
+# Primary target dependecies
+all : $(THESIS_PDF_OUT)
+
+$(THESIS_PDF_OUT): $(ALL_SOURCE) $(SETTING_LATEX)
+	$(call latex-compile,$(MAIN_SOURCE))
+	$(MV) $(notdir $@) $(OUTPUT_DIR)
+$(SETTING_LATEX):
+endif
+
+#Build and show pdf output
+PHONY += show_pdf
+show_pdf : $(THESIS_PDF_OUT)
+	$(PDF_VIEWER) $<
+
 
 # %.pdf- Pattern rule to produce pdf output from ps input
 %.pdf: %.ps
