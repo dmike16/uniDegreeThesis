@@ -307,7 +307,10 @@ I[u^n](x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b})=u(x_j+\sigma(D_j^n)\sqrt{2\Delt
 \]
 Ripetendo questi passaggi al variare di $\vec{b}\in\Pi$ giungiamo a:
 \[
- S(x_j,u(x_j,t^n),Du(x_j,t^n))=\frac{1}{4}\left(\sum_{\vec{b}\in\Pi}u(x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b},t^n)\right) + O(\Delta x^r).
+ \begin{split}
+ S(x_j,u(x_j,t^n),Du(x_j,t^n))&=\frac{1}{4}\left(\sum_{\vec{b}\in\Pi}u(x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b},t^n)\right)+\\
+  &+ O(\Delta x^r).
+ \end{split}
 \]
 Esprimendo il valore di $u$ nei punti $x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b}$ con una serie di Taylor del terzo ordine e cancellando i termini simmetrici otteniamo
 \begin{equation}
