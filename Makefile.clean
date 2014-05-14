@@ -15,6 +15,6 @@ clean : rm-files += $(patsubst %,%/*~,$(SOURCE_CHAPTER_DIR))  \
 		$(patsubst %,%/*.toc,$(SOURCE_CHAPTER_DIR))
 	 
 
-clean : rm-files  += *~ *.aux *.log *.toc *.out *.out.ps
+clean : rm-files  += *~ *.aux *.log *.toc *.out *.out.ps *.lof
 
 clean : rm-dirs	  := $(OUTPUT_DIR)
