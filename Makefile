@@ -32,6 +32,7 @@ _all: all
 OUTPUT_DIR         := realese
 SOURCE_CHAPTER_DIR := capitoli
 SOURCE_INTRO_DIR   := introduzione 
+SOURCE_BIB_DIR     := bibliography
 SETTING_LATEX      := setting-my-thesis.sty
 
 quiet = quiet_
@@ -50,6 +51,7 @@ MKDIR		:= mkdir -p
 MV		:= mv
 RM		:= rm -rf
 LATEX		:= pdflatex
+BIB		:= biber
 DVIPS		:= dvips
 PSPDF		:= ps2pdf
 SETTINGS	:= -o
@@ -76,12 +78,15 @@ PDF_VIEWER	:= ghostscipt
 endif
 endif
 
+THESIS_BIB_OUT := thesis_degree.bcf
 THESIS_PS_OUT  := $(OUTPUT_DIR)/thesis_degree.ps
 THESIS_PDF_OUT := $(subst ps,pdf,$(THESIS_PS_OUT))
 THESIS_DVI_OUT := $(subst ps,dvi,$(THESIS_PS_OUT))
 ALL_SOURCE     := $(wildcard $(SOURCE_CHAPTER_DIR)/*.tex)  \
                   $(wildcard *.tex)                        \
-		  $(wildcard $(SOURCE_INTRO_DIR)/*.tex)
+		  $(wildcard $(SOURCE_INTRO_DIR)/*.tex)    \
+		  $(wildcard $(SOURCE_BIB_DIR)/*.bib)
+BIB_SOURCE     := $(wildcard $(SOURCE_BIB_DIR)/*.bib)
 MAIN_SOURCE    := thesis_degree.tex
 
 # Using the latex compiler
@@ -117,10 +122,11 @@ $(THESIS_PS_OUT): $(THESIS_DVI_OUT)
 #
 
 .INTERMEDIATE: $(THESIS_DVI_OUT) 
-$(THESIS_DVI_OUT): $(ALL_SOURCE) $(SETTING_LATEX)
-	$(call latex-compile,$(MAIN_SOURCE))
+$(THESIS_DVI_OUT): $(THESIS_BIB_OUT) $(ALL_SOURCE) $(SETTING_LATEX)
+	$(if $(call file-exists, $(THESIS_BIB_OUT)), \
+	$(call latex-biber-compile,$(MAIN_SOURCE), $(THESIS_BIB_OUT)),\
+	$(call latex-compile,$(MAIN_SOURCE)))
 	$(MV) $(notdir $@) $(OUTPUT_DIR)
-$(SETTING_LATEX):
 endif
 
 #Using the pdflatex compiler
@@ -128,12 +134,16 @@ ifeq "$(LATEX)" "pdflatex"
 # Primary target dependecies
 all : $(THESIS_PDF_OUT)
 
-$(THESIS_PDF_OUT): $(ALL_SOURCE) $(SETTING_LATEX)
-	$(call latex-compile,$(MAIN_SOURCE))
+$(THESIS_PDF_OUT):  $(THESIS_BIB_OUT) $(ALL_SOURCE) $(SETTING_LATEX)
+	$(if $(call file-exists, $(THESIS_BIB_OUT)),\
+	$(call latex-biber-compile,$(MAIN_SOURCE), $(THESIS_BIB_OUT)),\
+	$(call latex-compile,$(MAIN_SOURCE)))
 	$(MV) $(notdir $@) $(OUTPUT_DIR)
-$(SETTING_LATEX):
 endif
 
+$(THESIS_BIB_OUT): $(BIB_SOURCE)
+	$(call latex-compile,$(MAIN_SOURCE))
+$(SETTING_LATEX):
 #Build and show pdf output
 PHONY += show_pdf
 show_pdf : $(THESIS_PDF_OUT)
@@ -182,7 +192,7 @@ help:
 	@echo ' clean		-Remove all the files in the current dir and in the subdirs except the source files and remove the outputfile too'
 	@echo ''
 	@echo ' Other generics targets:'
-	@echo ' all		-build the document in postscript format'
+	@echo ' all		-build the document in pdf format using pdflatex'
 	@echo ' show_ps        -build the document in ps format and show it with *evince*'
 	@echo ' pdf		-build the document in pdf format'
 	@echo ' show_pdf	-build the document in pdf format and show it with *acroread* (the linux program for AdobeReader)'
