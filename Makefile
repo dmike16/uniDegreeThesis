@@ -123,9 +123,7 @@ $(THESIS_PS_OUT): $(THESIS_DVI_OUT)
 
 .INTERMEDIATE: $(THESIS_DVI_OUT) 
 $(THESIS_DVI_OUT): $(THESIS_BIB_OUT) $(ALL_SOURCE) $(SETTING_LATEX)
-	$(if $(call file-exists, $(THESIS_BIB_OUT)), \
-	$(call latex-biber-compile,$(MAIN_SOURCE), $(THESIS_BIB_OUT)),\
-	$(call latex-compile,$(MAIN_SOURCE)))
+	$(call latex-compile,$(MAIN_SOURCE))
 	$(MV) $(notdir $@) $(OUTPUT_DIR)
 endif
 
@@ -135,14 +133,12 @@ ifeq "$(LATEX)" "pdflatex"
 all : $(THESIS_PDF_OUT)
 
 $(THESIS_PDF_OUT):  $(THESIS_BIB_OUT) $(ALL_SOURCE) $(SETTING_LATEX)
-	$(if $(call file-exists, $(THESIS_BIB_OUT)),\
-	$(call latex-biber-compile,$(MAIN_SOURCE), $(THESIS_BIB_OUT)),\
-	$(call latex-compile,$(MAIN_SOURCE)))
+	$(call latex-compile,$(MAIN_SOURCE))
 	$(MV) $(notdir $@) $(OUTPUT_DIR)
 endif
 
 $(THESIS_BIB_OUT): $(BIB_SOURCE)
-	$(call latex-compile,$(MAIN_SOURCE))
+	$(call latex-biber-compile,$(MAIN_SOURCE),$@)
 $(SETTING_LATEX):
 #Build and show pdf output
 PHONY += show_pdf
