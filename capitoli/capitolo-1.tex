@@ -5,7 +5,7 @@
 % Section 1.1
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Qualcosa sulle Superfici in $\mathbb{R}^3$}
+\section{Qualcosa sulle Superfici}
 
 Consideriamo un sottoinsieme $S\subseteq\mathbb{R}^3$, diremo che è una superficie regolare se per ogni punto $p\in S$ esiste un intorno $V$ di $p$ in $\mathbb{R}^3$, un aperto $U\subset\mathbb{R}^2$ e un'applicazione differenziabile $\mathcal{S}:U\longrightarrow V\cap S$,$(u,v)\longrightarrow\mathcal{S}=(x(u,v),y(u,v),z(u,v))$, tale che:
 \begin{enumerate}
@@ -133,7 +133,7 @@ con $f_i^j$ i coefficenti della matrice dell'applicazione $F$. Sostituendo quest
 \det(F) = \frac{\det(b)}{\det(g)}=k_1k_2.
 \]
 Inoltre siccome la matrice $g$ è invertibile, i polinomi $\det(bg^{-1}-tI)$ e $\det(b-tg)$ differiscono solo per una costante moltiplicativa; quindi $k_1$, $k_2$ coincidono con le radici del polinomio $\det(b-tg)$. \\
-In conclusione, si definiscono \emph{curvatura media}\footnote{In alcuni testi è definita coma la media delle curvature principali, quindi differisce dalla nostra defnizione solo per un fattore moltiplicativo. Vedere rif.} \,%
+In conclusione, si definiscono \emph{curvatura media}\footnote{In alcuni testi è definita coma la media delle curvature principali, quindi differisce dalla nostra defnizione solo per un fattore moltiplicativo. \cite[vedi][cp 1.3]{giga:main}.} \,%
  e \emph{curvatura gaussiana} rispettivamente,
 \begin{equation}
 \label{eq:cp-111-add}
@@ -157,7 +157,7 @@ Prendiamo come campo $X$ il versone normale $\vec{n}(x)$ , ricordando la definiz
 \[
 H(x)= \sum_{j=1}^{2}{\left<F(\tau_j),\tau_j\right>} = -\sum_{j=1}^{2}{\left<(D_\tau \vec{n})(x),\tau^j\right>}=-(\Div_{S}\vec{n})(x).
 \]
-Ora riprendendo la definizione di divergenza di superficie ed operando alcune manipolazioni algebriche, senza entrare troppo nel dettaglio (per tutti i passaggi e le ipotesi da fare vedere **RIF**),possimao scrivere:
+Ora riprendendo la definizione di divergenza di superficie ed operando alcune manipolazioni algebriche, senza entrare troppo nel dettaglio (per tutti i passaggi e le ipotesi da fare \cite[vedi][cp 1]{giga:main}), possimao scrivere:
 \[
 \begin{aligned}
 (\Div_{S}\vec{n})(x) &= \trace\left(\sum_{j=1}^2{(\tau_j\otimes\tau_j)}D\vec{n}(x)\right)=\\
@@ -189,7 +189,7 @@ Se $\beta$ non dipende dalla parametrizzazione, ma è una caratteristica geometr
 \end{equation}
 \end{lemma}
 
-Per la dimostrazione del lemma si veda **RIF**, soffermiamoci qui solo sulle conseguenze.
+Per la dimostrazione del lemma \cite[vedi][cp 2]{gui:sapiro}, soffermiamoci qui solo sulle conseguenze.
 In poche parole, se la componente normale della velocità dipende soltato da caratteristiche geometriche della curva, l'evoluzione della famiglia è influenzata solo da quest'ultima componente; mentre la componente tangenziale influisce esclusivamente sulla parametrizzazione.
 Consideriamo ora un flusso geometrico di superfici della forma:
 \[
