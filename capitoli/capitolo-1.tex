@@ -205,7 +205,7 @@ con $\mathcal{S}(p,0)=S_0$ dato iniziale.
 Questo flusso è quello che in letteratura viene anche chiamato \emph{gradient discendent flow} , in quanto la superficie si evolve cercando di minimizzare l'area. 
 \end{osservazione}
 \begin{osservazione}
-Come provato negli articoli **ref** , questo flusso deforma superfici convesse in un punto, ma superfici non covesse posso ,per esempio, dividersi prima di diventare convesse generando delle singolarità. Facciamo alcuni semplici esempi.
+Come provato nell'articolo \cite[vedi][]{bi:chow} , questo flusso deforma superfici convesse in un punto, ma superfici non covesse posso, per esempio, dividersi prima di diventare convesse generando delle singolarità. Facciamo alcuni semplici esempi.
 \end{osservazione}
 
 \begin{esempio}[The Sphere]
@@ -365,7 +365,7 @@ Il manubrio(dumbbell) può essere considerato come due spfere di equal raggio, c
 \end{esempio}
 Questi due esempi ci confermano quanto detto sopra, cioè superfici convesse collassano in un punto e superfici non convesse posso generare delle discontinuità, vediamo come aggirare questi due problemi. 
 
-Partiamo dal primo. Quello che vogliamo fare è normalizzare l'equazione \eqref{eq:cp-123} così che il volume vega preservato. Tale processo di normalizzazione, viene raggiunto cambiando la scala temporale, passando da $t$ a $\tau$, in modo tale che la nosta superficie diventi:
+Partiamo dal primo. Quello che vogliamo fare è normalizzare l'equazione \eqref{eq:cp-123} così che il volume vega preservato. Tale processo di normalizzazione, viene raggiunto cambiando la scala temporale, passando da $t$ a $\tau$, in modo tale che la nostra superficie diventi:
 \[
 \mathcal{\tilde{S}}(\tau):=\psi(t)\mathcal{S}(t),
 \]
@@ -445,7 +445,7 @@ essendo l'ultimo integrale fatto su $\partial\Omega$, il vettore $x$ rappresenta
 
 \begin{osservazione}[Tasso di variazione del Volume]
 \label{oss:cp-122}
-Cerchiamo di dare una spiegazione all'equazione \eqref{eq:cp-124}. Partiamo da una superficie $\Gamma$ regolare immersa orientabiile chiusa in $\mathbb{R}^3$
+Cerchiamo di dare una spiegazione all'equazione \eqref{eq:cp-124}. Partiamo da una superficie $\Gamma$ regolare immersa orientabile chiusa in $\mathbb{R}^3$
 e una funzione regolare $\gamma=\gamma(x,\vec{n},H)$, che dipende dal punto di superficie $x$, dalla normale unitaria $\vec{n}$ e dalla curvatura media $H$.
 Consideriamo un dominio $\mathcal{D}$ che contiene la superficie $\Gamma$ ed un campo vettoriale $\vec{V}$ definito su $\mathcal{D}$, il quale definisce la seguenza continua di superfici perturbate $\left\{\Gamma_t\right\}_{t\ge 0}$ con $\Gamma_0:=\Gamma$. Ed ogni punto $x\in \Gamma_0$ è deformato da un equazione differenziale ordinaria definita dal campo $\vec{V}$:
 \[
@@ -459,7 +459,7 @@ si definisce \emph{shape derivate} o derivata Euleriana di $J(\Gamma)$ in $\Gamm
 \[
 dJ(\Gamma;\vec{V}) = \lim_{t\to 0}\frac{1}{t}(J(\Gamma_t)-J(\Gamma)).
 \]
-Per ottenere la \eqref{eq:cp-124} dobbiamo calcolarci questa shape derivate e per farlo useremo il \emph{Corollario 4.1} dell'articolo **ref con $\gamma$ dipendente solo dal punto $x$ e dalla normale unitaria $\vec{n}$: 
+Per ottenere la \eqref{eq:cp-124} dobbiamo calcolarci questa shape derivate e per farlo useremo il \emph{Corollario 4.1} dell'articolo \cite[vedi][]{dog:noch} con $\gamma$ dipendente solo dal punto $x$ e dalla normale unitaria $\vec{n}$: 
 \begin{equation}
 \label{eq:cp-121-add}
 \gamma(x,\vec{n})=-\frac{1}{3}<\mathcal{S},\vec{n}> = -\frac{1}{3}\sum_{i=1}^3x_in_i.
@@ -474,7 +474,7 @@ dove:
   \item $\gamma_y=D_n\gamma$, indica il grandiente di $\gamma$ rispetto alla normale;
   \item $[\cdot]_{\Gamma}$, rappresenta la proiezione sul piano tangente;
   \item $\Div_{\Gamma}\vec{W}=\left(\Div\vec{W}-\vec{n}\cdot D\vec{W} \cdot \vec{n}\right)_{|\Gamma}$, denota la divergenza tangensiale di $\vec{W}$, propriamente esteso in un intorno di $\Gamma$;
-  \item $\Div_{\Gamma}[\gamma_y]_{\Gamma}=\Div_{\Gamma}[\gamma_y]-H<\gamma_y,\vec{n}>$, con $\Div_{\Gamma}[\gamma_y]$ calcolata nel \emph{Lemma 3.3} di **rif;
+  \item $\Div_{\Gamma}[\gamma_y]_{\Gamma}=\Div_{\Gamma}[\gamma_y]-H<\gamma_y,\vec{n}>$, con $\Div_{\Gamma}[\gamma_y]$ calcolata nel \emph{Lemma 3.3} di \cite[vedi][]{dog:noch};
   \item $V=<\vec{V},\vec{n}>$, componente normale del campo vettoriale.
 \end{itemize}
 Calcolandoci queste quantità per $\gamma$ pari a \eqref{eq:cp-121-add} e ricordando che nel nostro caso la componente normale del campo è $\beta$,  otteniamo:
@@ -502,7 +502,7 @@ Nella sezione precedente abbiamo visto come risolvere il problema del collasso, 
 
 \end{itemize}
 
-Tutti questi problemi hanno portato allo svilupparsi di tecniche \emph{level-set}. Introduciamo alcuni concetti base e riformuliamo la nostra equazione con un \emph{approccio level-set}, per maggiori chiamrimenti o approfondimenti consultare **RIF**.
+Tutti questi problemi hanno portato allo svilupparsi di tecniche \emph{level-set}. Introduciamo alcuni concetti base e riformuliamo la nostra equazione con un \emph{approccio level-set}, per maggiori chiamrimenti o approfondimenti \cite[vedi][]{giga:main}.
 Alla base di questo approccio c'è l'idea di vedere la nostra superficie come  insieme di livello di una funzione. Più precisamente,
 un insieme $S\subset\mathbb{R}^3$ è chiamato superfice di classe $C^m$ (o ipersuperficie se siamo in $\mathbb{R}^N$ con $N>3$) intorno ad un punto $x_0$ di $S$ se esiste una funzione $u(x)$ di classe $C^m$ definita in un intorno $U$ di $x_0$ tale che
 \[

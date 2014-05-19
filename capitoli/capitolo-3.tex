@@ -128,14 +128,14 @@ dove $\delta(j)=\left\{(j_1\pm 1,j_2,j_3),(j_1,j_2\pm 1,j_3),(j_1,j_2,j_3\pm 1)\
 \end{aligned}
 \]
 scegliendo $\varepsilon=\frac{\Delta x^2}{6\Delta t}$ otteniamo la \eqref{eq:cp3-03-add}.
-Tale scelta è giustificata dal fatto che, come vedremo nella sezione successiva, il moto per curvature media è consistente con l'approssimazione dell'equazione del calore a patto di adottare, come soluzione viscosa, la definizione (riferimento formula) proposta da \emph{Crandall} in **ref.
+Tale scelta è giustificata dal fatto che, come vedremo nella sezione successiva, il moto per curvature media è consistente con l'approssimazione dell'equazione del calore a patto di adottare, come soluzione viscosa, la definizione (riferimento formula) proposta da \emph{Crandall} \cite[vedi][]{crand:lion}.
 
   \item Utilizziamo l'approssimazione dell'equazione $u_t=\frac{1}{2}\Delta u$:
     \begin{equation}
       \label{eq:cp-04-add}
       u_j^{n+1}=u_j^n +\frac{1}{2}\frac{\Delta t}{\Delta x^2}\left(6u_j^n - \sum_{i\in\delta(j)}u_i^n\right).
     \end{equation}
-Tale scelta è giustificata, in quanto il moto per curvatura media risulta essere consistente con l'equazione $u_t=\frac{1}{2}\Delta u$, (vedi sezione successiva) prendendo come soluzione viscosa la definizione standard (riferimento formula) presente in **rif. L'unico problema è che la \eqref{eq:cp-04-add}
+Tale scelta è giustificata, in quanto il moto per curvatura media risulta essere consistente con l'equazione $u_t=\frac{1}{2}\Delta u$, (vedi sezione successiva) prendendo come soluzione viscosa la definizione standard (riferimento formula) \cite[vedi][]{fed:drag}. L'unico problema è che la \eqref{eq:cp-04-add}
 richiede una $\mathit{CFL}$ parabolica, che non è presente nel nostro schema essendo \emph{semi-lagrangiano}; un modo per aggirare il problema è quello di usare uno schema implicito nell'approssimazione di  $u_t=\frac{1}{2}\Delta u$.
 \end{enumerate}
 Scegliendo, ad esempio, la prima alternativa il nostro schema $\mathit{MCM}$ completo diventa:
