@@ -5,7 +5,11 @@
 *.pdf
 *.ps
 *.dvi
-
+*.bbl
+*.bcf
+*.blg
+*.lof
+*.xml
 # Editor Backuped Fils
 *~
 #*#
