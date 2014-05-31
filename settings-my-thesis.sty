@@ -26,10 +26,14 @@
 \newtheorem{definizione}{Definizione}[chapter]
 \newtheorem{esempio}{Esempio}[section]
 \theoremstyle{remark}
-\newtheorem{osservazione}{Osservazione}[chapter]
+\newtheorem{osservazione}{Osservazione}[section]
 \theoremstyle{plain}
 \newtheorem{proposizione}{Proposizione}[chapter]
 \newtheorem{teorema}{Teorema}[chapter]
 \newtheorem{lemma}{Lemma}[chapter]
 \graphicspath{{./graphics/logo/}}
 \addbibresource{bibliography/thesis_degree.bib}
+\newcounter{lei}
+\newenvironment{enumi}{\begin{list}
+{(\emph{\roman{lei}})}{\usecounter{lei}
+\setlength{\rightmargin}{\leftmargin}}}{\end{list}}
