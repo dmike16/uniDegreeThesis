@@ -99,9 +99,9 @@ ogniqualvolta $\phi\in C^2$ e $\hat{x}$ massimo locale di $u-\phi$.
 Inoltre  per $x$ vicino a $\hat{x}$ è vero che $u(x)\leq u(\hat{x})-\phi(\hat{x}) + \phi(\hat{x})$, poichè $\phi\in C^2$ usando Taylor otteniamo
 \begin{equation}
   \label{eq:cp2-05}
-  u(x)\leq u(\hat{x})-\left<p,x-\hat{x}\right> + \frac{1}{2}\left<X(x-\hat{x}),x-\hat{x}\right> + o(|x-\hat{x}|^2)\,\, x\to\hat{x}
+  u(x)\leq u(\hat{x})+\left<p,x-\hat{x}\right> + \frac{1}{2}\left<X(x-\hat{x}),x-\hat{x}\right> + o(|x-\hat{x}|^2)\,\, x\to\hat{x}
 \end{equation}
-con $p=D\phi(\hat{x})$ e $X=D^2\phi(\hat{x})$. Possiamo osservare che se la \eqref{eq:cp2-05} è soddisfatta per qualche $(p,X)\in\mathbb{R}^n\times S(N)$ e $u$ è due volte differenziabile, allora $p=Du(\hat{x})$ e $D^2u(\hat{x})\leq X$. Quindi se $u$ è una soluzione classica per $F\leq 0$ segue che $F(x,u(x),p,X)\leq 0$ ogni qual volta è vera la \eqref{eq:cp2-05}. Ora possiamo dare la definizione di soluzione viscosa, che si basa proprio sulla \eqref{eq:cp2-05}
+con $p=D\phi(\hat{x})$ e $X=D^2\phi(\hat{x})$. Possiamo osservare che se la \eqref{eq:cp2-05} è soddisfatta per qualche $(p,X)\in\mathbb{R}^n\times S(N)$ e $u$ è due volte differenziabile, allora $p=Du(\hat{x})$ e $D^2u(\hat{x})\leq X$ (vedere \emph{osservazione} \ref{oss:cp2-01}). Quindi se $u$ è una soluzione classica per $F\leq 0$ segue che $F(x,u(x),p,X)\leq 0$ ogni qual volta è vera la \eqref{eq:cp2-05}. Ora possiamo dare la definizione di soluzione viscosa, che si basa proprio sulla \eqref{eq:cp2-05}
 \begin{definizione}
 \label{def:cp2-01}
 Sia $F$ propria ed ellittica degenere e $\mathcal{O}\subset\mathbb{R}^n$.
@@ -118,7 +118,7 @@ Similmente, una sopra soluzione viscosa di $F=0$ su $\mathcal{O}$ è una funzion
 Infine, $u$ è una soluzione viscosa se è sia sotto che sopra soluzione.
 \end{definizione}
 Dove $J_{\mathcal{O}}^{2,+}u(x)$ rappresenta il \emph{superjet} del secondo ordine di $u$ nel puto $x$. Più precisamente sia $\mathcal{O}\subset\mathbb{R}^N$ arbitrario%
-\footnote{Nelle dimostrazio di esistenza, unicità e confronto sarà richiesto essere localmente compatto \cite[vedi][10]{crand:lion}}
+\footnote{Nelle dimostrazioni di esistenza, unicità e confronto viene preso localmento compatto \cite[vedi][10 §1]{crand:lion}.}
 ,  $u:\mathcal{O}\to\mathbb{R}$ e $\hat{x}\in\mathcal{O}$ allora
 \[
 J_{\mathcal{O}}^{2,+}u(\hat{x}) = \left\{(p,X)\in\mathbb{R}^n\times S(N):\,\text{ vale la \eqref{eq:cp2-05} per }\mathcal{O}\ni x\to\hat{x}\right\},
@@ -129,23 +129,71 @@ Come si può notare dalla definizione, il ``superjet'' (lo stesso vale per il ``
 \end{osservazione}
 
 \begin{osservazione}
-Nella definizione di soluzione viscosa, la richiesta di continuità di $u$ può essere sostituita con quella di semicontinuà superiore(\emph{upper semicontinuos}) per le sotto soluzione e semicontinuà inferiore(\emph{lower semicontinuos}) per le sopra soluzione. Inoltre, notare che una funzione semicontinua sia superiormente che inferiormente è continua. Ricordiamo che  $u:\mathcal{O}\to\mathbb{R}$ è
+\label{oss:cp2-01}
+Nella definizione di soluzione viscosa, la richiesta di continuità di $u$ può essere sostituita con quella di semicontinuà superiore(\emph{upper semicontinuos}) per le sotto soluzione e semicontinuà inferiore(\emph{lower semicontinuos}) per le sopra soluzione. Inoltre, notare che una funzione semicontinua sia superiormente che inferiormente è continua. Ricordiamo che  $u:L \to\mathbb{R}$ è
 \begin{enumerate}
-  \item \emph{upper semicontinuos} in $\hat{x}\in\mathcal{O}$ se:
+  \item \emph{upper semicontinuos} in $\hat{x}\in L$ se:
     \[
-      \limsup_{x\to\hat{x}}u(x)\leq u(\hat{x}).
+      \limsup_{x\downarrow\hat{x}}u(x)\leq u(\hat{x}).
     \]
-  \item \emph{lower semicontinuos} in $\hat{x}\in\mathcal{O}$ se:
+  \item \emph{lower semicontinuos} in $\hat{x}\in L$ se:
     \[
-      \liminf_{x\to\hat{x}}u(x)\geq u(\hat{x}).
+      \liminf_{x\downarrow\hat{x}}u(x)\geq u(\hat{x}).
     \]
 \end{enumerate}  
 
 Seguendo la discussione fatta ad inizio sezione, se $u$ è una soluzione viscosa di $F\leq 0$, $\phi\in C^2$ in un intorno di $\mathcal{O}$ e $u-\phi$ ha un massimo locale in $\hat{x}\in\mathcal{O}$, allora è vera la \eqref{eq:cp2-01-add} ( stesso ragionamento per le sopra soluzioni). Questo motiva la richiesta per $u$ di essere semicontinua dall'alto (rispettivamente dal basso per le sopra soluzioni), in quanto è facile produrre massimi per funzioni semicontinue dall'alto.
-Possiamo dire di più, la validità di \eqref{eq:cp2-01-add} per tutte le $\phi\in C^2$ tale che $u-\phi$ ha un massimo locale relativo ad $\mathcal{O}$, con $u$ semicontinua dall'alto, equivale a dire che $u$ è una sotto soluzione viscosa.  Infatti si può mostrare che se $\hat{x}\in\mathcal{O}$ allora
+Possiamo dire di più, la validità di \eqref{eq:cp2-01-add} per tutte le $\phi\in C^2$ tale che $u-\phi$ ha un massimo locale relativo ad $\mathcal{O}$, con $u$ semicontinua dall'alto, equivale a dire che $u$ è una sotto soluzione viscosa.  Infatti si può mostrare il seguente lemma (per maggiori dettagli \cite[vedi][§3]{giga:main})
+\begin{lemma}
+  \label{lem:cp2-01}
+ Sia $\hat{x}\in\mathcal{O}$ localmente compatto%
+\footnote{ Ricordiamo che un insieme di uno spazio metrico si dice localmente compatto se ogni punto ammette un intorno compatto.}
+ e $u$ semicontinua dall'alto allora
+\begin{enumi}
+  \item  vale la seguente uguaglianza
 \[
-J_{\mathcal{O}}^{2,+}u(\hat{x}) = \left\{(D\phi(\hat{x}),D^2\phi(\hat{x})):\,\phi\in C^2\text{ e $u-\phi$ ha massimo locale in $\hat{x}$}\right\},
+J_{\mathcal{O}}^{2,+}u(\hat{x}) = \left\{(D\phi(\hat{x}),D^2\phi(\hat{x})):\,\phi\in C^2\text{ e $u-\phi$ ha massimo locale in $\hat{x}$}\right\}
 \]
+  \item  In $(i)$ $\mathcal{O}$ può essere rimpiazzato da un intorno $\mathcal{O}'$ di $\hat{x}$ in $\mathcal{O}$.
+\end{enumi}
+\end{lemma}
+
+\begin{proof}
+Denotiamo con $J$ l'insieme a destra dell'uguaglianza in $(i)$ e poniamo $\hat{x}=0$ se così non fosse possiamo sempre traslare il tutto.
+\begin{enumi}
+\item  Prendiamo un elemento in $J$, allora $u-\phi$ ha massimo locale in $\hat{x}=0$ quindi
+\[
+\begin{aligned}
+u(x) - u(0)\leq\phi(x) -\phi(0)&=\left<D\phi(0),x\right> + \frac{1}{2}\left<D^2\phi(0)x,x\right> +\\
++ o(|x|^2)\text{ per }x\to 0,
+\end{aligned}
+\]
+avendo utilizzato un espansione di Taylor per $\phi$. Questo ci dice che $J_{\mathcal{O}}^{2,+}u(0)\supseteq J$.
+
+Ora prendiamo $(p,X)\in J_{\mathcal{O}}^{2,+}u(0)$, cioè
+\[
+u(x) - u(0)\leq\left<p,x\right> + \frac{1}{2}\left<Xx,x\right> + \varepsilon(x),
+\]
+con $\varepsilon(x)/|x|^2\to 0$ per $x\to 0$.
+Il problema è che $\varepsilon(x)$ non è detto che sia $C^2$. Poniamo 
+\[
+\omega_0(\sigma)=\sup\left\{\frac{|\varepsilon(x)|}{|x|^2}; |x|\leq\sigma,x\in\mathcal{O}\right\}
+\]
+così che $\omega_0$ è una funzione da $[0,\infty)$ in $[0,\infty)$ non decrescente e continua in $\sigma=0$ con $\omega_0(0)=0$, applicando un risultato noto \cite[vedi][§2 Lemma 2.1.9]{giga:main}, allora esiste una funzione $\theta\in C^2[0,\infty)$ tale che
+\[
+\begin{aligned}
+&\omega_0(\sigma)|\sigma|^2\leq\theta(\sigma)\text{ per }\sigma\geq 0,\\
+&\theta(0)=\theta'(0)=\theta''(0)=0,\,\theta'''(\sigma)\geq 0\text{ per }\sigma\geq 0.
+\end{aligned}
+\]
+Poichè $|\varepsilon(x)|\leq\omega_0(|x|)|x|^2$, prendiamo una funzione $C^2$ del tipo
+\[
+\phi(x)=<p,x> + \frac{1}{2}<Xx,x> +\theta(|x|)
+\]
+così che $u-\phi$ ha massimo locale su $\mathcal{O}$ in $\hat{x}=0$ e $p=D\phi(0)$, $X=D^2\phi(0)$. Quindi $J_{\mathcal{O}}^{2,+}u(0)\subseteq J$.
+\item  Segue dalla dimostrazione di $(i)$.
+\end{enumi}
+\end{proof}
 
 \end{osservazione}
 
@@ -186,6 +234,86 @@ e una sopra soluzione una funzione semicontinua dal basso tale che
 a+F(t,x,u(t,x),p,X)\geq 0\text{ per }(t,x)\in\mathcal{O}_T,(a,p,X)\in\mathcal{P}_{\mathcal{O}}^{2,-}u(t,x),
 \]
 e quindi un soluzione viscosa se sono verificate entrambe le diseguaglianze.
-Le definizioni si posso estendere anche nel caso in cui ci siano delle discontinutà sia per $u$ che per $F$, prima di procedere richiamiamo la definizione di inviluppo semicontinuo.
 
-Per risultati di esistenza, unicità e confronto sia per equazioni del tipo \eqref{eq:cp2-02} che \eqref{eq:cp2-08} \cite[vedi][]{crand:lion,giga:main}.
+\begin{osservazione}
+Osserviamo che anche in questo caso $F$ soddisfa le proprietà \eqref{eq:cp2-03} e \eqref{eq:cp2-04}. Ed inoltre anche per i ``semijets'' parbolici vale un lemma del tipo \ref{lem:cp2-01} \cite[vedi][§3]{giga:main}.
+\end{osservazione}
+
+Le definizioni si posso estendere anche per $u$ ed $F$ arbitrarie, non necessariamente continue. Prima di vedere come, richiamiamo la definizione di inviluppo semicontinuo. Sia $h$ una funzione definita in $L\subset\mathbb{R}$ a valori in $\tilde{\mathbb{R}}=\mathbb{R}\cup\{\pm\infty\}$, definiamo inviluppo semicontinuo superiore $h^*$ e inferiore $h_*$ nel seguente modo
+\[
+\begin{aligned}
+  h^*(x) &= \lim_{r\downarrow 0}\sup_{\substack{|x-y|<r \\ y\in L}}h(y),\quad x\in\overline{L} \\
+  h_*(x) &= \lim_{r\downarrow 0}\inf_{\substack{|x-y|<r \\ y\in L}}h(y),\quad x\in\overline{L}
+\end{aligned}
+\]
+sono rispettivamente funzioni definite sulla chiusura di $L$ a valori in $\tilde{\mathbb{R}}$. In altre parole $h_*$ è la piu grande funzione semicontinua dal basso su $\overline{L}$ che è più piccola di $h$ su $L$, mentre $h^*$ è la più piccola funzione semicontinua dall'alto in $\overline{L}$ più grande di $h$ in $L$.
+Prendiamo $\mathcal{O}\subset\mathbb{R}^N$ e consideriamo un sottoinsieme denso $W$ di $\Omega(\mathcal{O})=\mathcal{O}\times\mathbb{R}\times\mathbb{R}^N\times S(N)$ e sia $F=F(x,s,p,X):W\to\mathbb{R}$. Poichè $W$ è denso in $\Omega(\mathcal{O})$, gli inviluppi semicontinui $F_*$, $F^*$ sono definiti in $\Omega(\mathcal{O})$ con valori in $\tilde{\mathbb{R}}$.
+\begin{definizione}
+Una funzione $u:\mathcal{O}\to\mathbb{R}$ è chiamata una sotto soluzione viscosa (rispettivamente sopra soluzione) in $\mathcal{O}$ di \eqref{eq:cp2-02} se $u^*<\infty$ (resp. $u_*>-\infty$) in $\mathcal{O}$ e per ogni coppia $\phi\in C^2(\mathcal{O})$ e $\hat{x}\in\mathcal{O}$ soddisfacente $\max_{\mathcal{O}}(u^*-\phi)=(u^*-\phi)(\hat{x})$ (resp. $\min_{\mathcal{O}}(u_*-\phi)=(u_*-\phi)(\hat{x})$), vale che
+\[
+\begin{aligned}
+&F_*(\hat{x},u^*(\hat{x}),D\phi(\hat{x}),D^2\phi(\hat{x}))\leq 0 \\
+(\text{resp. }&F^*(\hat{x},u_*(\hat{x}),D\phi(\hat{x}),D^2\phi(\hat{x}))\geq 0)
+\end{aligned}
+\]
+\end{definizione}
+\begin{osservazione}
+Applicando il lemma \ref{lem:cp2-01} possiamo dara una definizione generica di soluzione viscosa per l'equazione \eqref{eq:cp2-02} utilizzando i ``superjets'' e ``subjets''.
+\end{osservazione}
+Una definizione generica analoga vale anche nel caso di equazioni paraboliche del tipo \eqref{eq:cp2-08}.
+\begin{definizione}
+Una funzione $u:\mathcal{O}_T\to\mathbb{R}$ è chiamata una sotto soluzione viscosa (rispettivamente sopra soluzione) in $\mathcal{O}_T$ di \eqref{eq:cp2-08} se $u^*<\infty$ (resp. $u_*>-\infty$) in $\mathcal{O}_T$ e per ogni coppia $\phi\in C^2(\mathcal{O}_T)$ e $(\hat{x},\hat{t})\in\mathcal{O}_T$ soddisfacente $\max_{\mathcal{O}_T}(u^*-\phi)=(u^*-\phi)(\hat{x},\hat{t})$ (resp. $\min_{\mathcal{O}_T}(u_*-\phi)=(u_*-\phi)(\hat{x},\hat{t})$), vale che
+\[
+\begin{aligned}
+&\phi_t(\hat{x},\hat{t}) + F_*(\hat{x},\hat{t},u^*(\hat{x},\hat{t}),D\phi(\hat{x},\hat{t}),D^2\phi(\hat{x},\hat{t}))\leq 0 \\
+(\text{resp. }&\phi_t(\hat{x},\hat{t})+F^*(\hat{x},\hat{t},u_*(\hat{x},\hat{t}),D\phi(\hat{x},\hat{t}),D^2\phi(\hat{x},\hat{t}))\geq 0)
+\end{aligned}
+\]
+\end{definizione}
+\begin{osservazione}
+In questo caso chiaramente $F$ è definita in $W_T$ denso in $\mathcal{O}_T\times\mathbb{R}\times\mathbb{R}^N\times S(N)$. E anche in questo caso possiamo dara una definizione che coinvolge i ``superjets'' e ``subjets'' parabolici, grazie ad una variante del lemma \ref{lem:cp2-01}. 
+\end{osservazione}
+Per risultati di esistenza, unicità e confronto sia per equazioni del tipo \eqref{eq:cp2-02} che \eqref{eq:cp2-08} \cite[vedi][]{crand:lion,giga:main,yun:giga}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%                            Section 2.2
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Soluzioni viscose per il moto per curvatura media}
+In questa sezione tratteremo equazioni paraboliche degeneri (cioè che verificano \eqref{eq:cp2-04}) del tipo
+\begin{equation}
+  \label{eq:cp2-09}
+u_t + F(x,t,Du,D^2u) = 0
+\end{equation}
+in particolare nel caso in cui rappresenta un'equazione di evoluzione per superfici di livello di $u$; e supporremo che $F$ sia geometrica cioè
+\begin{equation}
+  \label{eq:cp2-10}
+F(x,t,\lambda p,\lambda X + \sigma p\otimes p) = \lambda F(x,t,p,X),\quad\lambda>0,\,\sigma\in\mathbb{R},
+\end{equation}
+per $p\in\mathbb{R}^N$ diverso da zero, $X\in S(N)$ e $\otimes$ denota il prodotto tensoriale in $\mathbb{R}^N$. Un tipico esempio di equazione che rientra in questo caso è
+\[
+u_t - |Du|\Div(\frac{Du}{|Du|}) = 0,
+\]
+l'equazione del moto per curvatura media. Iniziamo col vedere, tramite semplici conti, che questa verifica la condizione geometrica e di degenere ellitticità.
+Come vedremo in dettaglio nella sezione successiva l'equazione per curvatura media si può riscrivere nel seguente modo
+\[
+u_t+F(Du,D^2u)=0,\quad\text{ con }F(p,X) = -\trace\left(\left(I-\frac{p}{|p|}\otimes\frac{p}{|p|}\right)X\right),
+\]
+con $I$ matrice identità $N\times N$.
+Un semplice calcolo mostra che
+\[
+\begin{aligned}
+F(\lambda p,\lambda X +\sigma p\otimes p)&=-\trace\left(\left(I-\frac{p}{|p|}\otimes\frac{p}{|p|}\right)\left(\lambda X+\sigma p\otimes p\right)\right)=\\
+&=\lambda F(p,X)-\sigma\trace\left(\left(I-\frac{p}{|p|}\otimes\frac{p}{|p|}\right)p\otimes p\right).
+\end{aligned}
+\]
+Poichè $(\overline{p}\otimes\overline{p})(p\otimes p)=p\otimes p$, con $\overline{p}=p/|p|$, la \eqref{eq:cp2-10} è banalmente verificata. Per dimostrare la condizione di degenere ellitticità basta mostrare che
+\[
+-\trace\left(\left(I-\frac{p}{|p|}\otimes\frac{p}{|p|}\right)\left(X-Y\right)\right)\leq 0\text{ con }X\geq Y,
+\]
+per farlo sfruttiamo il fatto che la traccia del prodotto di due matrici definite non negative è non negativo. Osserviamo che $X-Y\geq 0$, quindi basta mostrare che la matrice $B(p)= I-\overline{p}\otimes\overline{p}$, con $\overline{p}$ come sopra, è non negative per $p\ne 0$, cioè che $\forall x\in\mathbb{R}^N$ $x^tB(p)x\geq 0$:
+\[
+x^tB(p)x=x^tx-x^t\frac{p}{|p|}\otimes\frac{p}{|p|}x=|x^2|-\frac{|p^tx|^2}{|p|^2}\geq |x|^2-\frac{|p|^2}{|x|^2}{|p|^2}=0
+\]
+nel penultimo passaggio abbiamo sfruttato la disuguaglianza di Cauchy-Schwartz.
