@@ -35,5 +35,7 @@
 \addbibresource{bibliography/thesis_degree.bib}
 \newcounter{lei}
 \newenvironment{enumi}{\begin{list}
-{(\emph{\roman{lei}})}{\usecounter{lei}
+{\emph{\roman{lei}})}{\usecounter{lei}
 \setlength{\rightmargin}{\leftmargin}}}{\end{list}}
+\newcommand{\subtag}[1]{\tag{\theparentequation \ensuremath{_{#1}}}}
+\newcommand{\uptag}[1]{\tag{\theparentequation \ensuremath{^{#1}}}}
