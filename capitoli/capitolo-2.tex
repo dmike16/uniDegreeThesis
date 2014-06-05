@@ -448,18 +448,19 @@ per induzione su $n$.
   \item $N=1$, ovvia niente da dimostrare
   \item $N=2$, otteniamo che
 \[
-\sum_{i=1}^2q_i^2\lambda_i(X)=\lambda_{\text{min}}(X) + q_{\text{max}}^2(\lambda_{\text{max}}(X)-\lambda_{\text{min}}(X)),
+\sum_{i=1}^2q_i^2\lambda_i=\lambda_{\text{min}} + q_{\text{max}}^2(\lambda_{\text{max}}-\lambda_{\text{min}}),
 \]
-quindi essendo $q_{\text{max}}^2\leq 1$ il valore della somma precedente è sempre compresa tra il minimo ed il massimo degli autovalori. Notare che ha senso parlare di minimo e di massimo poichè essendo $X$ simmetrica a valori reali, i suoi autovalori sono in $\mathbb{R}$.
-  \item $N=n$, supponiamo per semplicità che $\lambda_{\text{min}}(X)=\lambda_1(X)$
+quindi essendo $q_{\text{max}}^2\leq 1$ il valore della somma precedente è sempre compresa tra il minimo ed il massimo dei valori $\lambda_{1,2}$ che ricordiamo essere numeri reali.
+  \item $N=n$, supponiamo per semplicità che $\lambda_{\text{min}}=\lambda_1$
 \[
-\sum_{i=1}^nq_i^2\lambda_i(X)=\lambda_1(X)+\sum_{i=1}^{n-1}\hat{q}_i^2\hat{\lambda}_i(X),
+\sum_{i=1}^nq_i^2\lambda_i=\lambda_1+\sum_{i=1}^{n-1}\hat{q}_i^2\hat{\lambda}_i,
 \]
-con $\hat{\lambda}_i=(\lambda_i-\lambda_1)>0$ e $\hat{q}=(q_2,\dots,q_n)$. Ora per ipotesi induttiva abbiamo
+con $\hat{\lambda}_i=(\lambda_i-\lambda_1)>0$ e $\hat{q}=(q_2,\dots,q_n)$, $|\hat{q}|\leq 1$. Ora supponiamo, sempre per semplicità, $\hat{\lambda}_1$ il minimo dei $\hat{\lambda}_i$ e applicando l'ipotesi induttiva abbiamo
 \begin{align}
-0<\hat{\lambda}_{\text{min}}&\leq\sum_{i=1}^{n-1}\hat{q}_i^2\hat{\lambda}_i(X)\leq\hat{\lambda}_{\text{max}} \notag\\
+0\leq\sum_{i=1}^{n-1}\hat{q}_i^2\hat{\lambda}_i(X)&=\hat{\lambda}_1|\hat{q}|+\sum_{i=2}^{n-1}\hat{q}_i^2(\hat{\lambda}_i-\hat{\lambda}_1) \notag\\
+\hat{\lambda}_1|\hat{q}|+\sum_{i=2}^{n-1}\hat{q}_i^2(\hat{\lambda}_i-\hat{\lambda}_1)&\leq \hat{\lambda}_1+\sum_{i=2}^{n-1}\hat{q}_i^2(\hat{\lambda}_i-\hat{\lambda}_1)\leq\hat{\lambda}_{\text{max}}\notag \\
 \intertext{e quindi}
-\lambda_{\text{min}}&\leq\sum_{i=1}^nq_i^2\lambda_i(X)\leq\lambda_{\text{max}}\notag
+\lambda_1=\lambda_{\text{min}}&\leq\sum_{i=1}^nq_i^2\lambda_i\leq\lambda_{\text{max}}\notag
 \end{align}
 
 \end{itemize}
@@ -481,8 +482,15 @@ con $\hat{\lambda}_i=(\lambda_i-\lambda_1)>0$ e $\hat{q}=(q_2,\dots,q_n)$. Ora p
   \end{cases} \subtag{cl^*}
 \end{align}
 \end{subequations}
-Queste come si può osservare sono semicontinue inferiormente \eqref{eq:cp2-14-1}e superiormente \eqref{eq:cp2-14-2}.
+Queste come si può osservare sono  \eqref{eq:cp2-14-1} semicontinua inferiormente e \eqref{eq:cp2-14-2} superiormente , \cite[vedi][§9]{crand:lion}.
 \end{enumi}
+\begin{osservazione}
+Osserviamo che, i teoremi sopra esposti valgono nel caso di moto per curvaura media classico. Tuttavia possono essere estesi(?) anche nel caso dell'equzione del moto per curvatura media che preserva il volume
+\begin{equation}
+  \label{eq:cp2-15}
+  u_t(x,t)=|Du(x,t)|\Div{\left(\frac{D(x,t)}{|D(x,t)|}\right)}-\frac{\iint\Div{\left(\frac{D(x,t)}{|D(x,t)|}\right)}d\mu}{3V_0}x^tDu
+\end{equation}
+\end{osservazione}
 
 
 
