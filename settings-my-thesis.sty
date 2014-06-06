@@ -34,8 +34,12 @@
 \graphicspath{{./graphics/logo/}}
 \addbibresource{bibliography/thesis_degree.bib}
 \newcounter{lei}
+\newcounter{np}
 \newenvironment{enumi}{\begin{list}
 {\emph{\roman{lei}})}{\usecounter{lei}
+\setlength{\rightmargin}{\leftmargin}}}{\end{list}}
+\newenvironment{enump}[1]{\begin{list}
+{\emph{#1}\ped{\arabic{np}})}{\usecounter{np}
 \setlength{\rightmargin}{\leftmargin}}}{\end{list}}
 \newcommand{\subtag}[1]{\tag{\theparentequation \ensuremath{_{#1}}}}
 \newcommand{\uptag}[1]{\tag{\theparentequation \ensuremath{^{#1}}}}
