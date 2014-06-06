@@ -391,7 +391,7 @@ Applicando tale lemma con $c_{\pm}(\sigma)=\sup_{|\overline{p}|=1}\trace\left(A(
 \[
 u^{\pm}=\pm\left(t+\frac{|x|^2}{2(N-1)}\right).
 \]
-una sotto ($^-$) e sopra soluzione ($^+$) del moto per curvatura media.
+è una soluzione viscosa del moto per curvatura media. 
 \end{osservazione}
 Grazie al lavoro di Giga, Chen e Goto sono stati dimostrati teoremi di esistenza, confronto e unicità per \eqref{eq:cp2-09} e dato iniziale \eqref{eq:cp2-02-add}, noi qui riportiamo solo l'enunciato del teoremdi esistenza; per approfondimenti e dimostrazioni \cite[vedi][§4-6]{yun:giga}.
 \begin{teorema}[Esistenza globale]
@@ -428,13 +428,13 @@ Quindi $F^*$ e $F_*$ da usare nella definizione \ref{def:cp2-02} di soluzioni vi
   \begin{cases}
    -\trace\left(\left(I-\overline{p}\otimes\overline{p}\right)X\right) &\text{ se } p\ne 0 \\
    -\trace\left(X\right)+\lambda_{\text{min}}(X) & \text{ se }p = 0
-  \end{cases} \subtag{mc_*}\\
+  \end{cases} \subtag{lse}\\
   \label{eq:cp2-13-2}%
   F^*(p,X) &=%
   \begin{cases}
    -\trace\left(\left(I-\overline{p}\otimes\overline{p}\right)X\right) &\text{ se } p\ne 0 \\
    -\trace\left(X\right)+\lambda_{\text{max}}(X) & \text{ se }p = 0
-  \end{cases} \subtag{mc^*}
+  \end{cases} \subtag{use}
 \end{align}
 \end{subequations}
 \begin{osservazione}
@@ -482,14 +482,49 @@ con $\hat{\lambda}_i=(\lambda_i-\lambda_1)>0$ e $\hat{q}=(q_2,\dots,q_n)$, $|\ha
   \end{cases} \subtag{cl^*}
 \end{align}
 \end{subequations}
-Queste come si può osservare sono  \eqref{eq:cp2-14-1} semicontinua inferiormente e \eqref{eq:cp2-14-2} superiormente , \cite[vedi][§9]{crand:lion}.
+Queste  sono(?)  \eqref{eq:cp2-14-1} semicontinua inferiormente e \eqref{eq:cp2-14-2} superiormente, \cite[vedi][§9]{crand:lion}.
 \end{enumi}
 \begin{osservazione}
-Osserviamo che, i teoremi sopra esposti valgono nel caso di moto per curvaura media classico. Tuttavia possono essere estesi(?) anche nel caso dell'equzione del moto per curvatura media che preserva il volume
+Osserviamo che i teoremi sopra esposti valgono nel caso di moto per curvaura media, come abbiamo mostrato,  ed anche per la sua  generalizzazione cioè
+\[
+u_t -|Du|\Div\left(\frac{Du}{|Du|}\right) - \nu|Du| = 0,\quad\nu\in\mathbb{R},
+\]
+il cui flusso continua a verificare le ipotesi del teorema.
+ Tuttavia possiamo estendere risultati di confronto ed esistenza(?), anche nel caso dell'equazione del moto per curvatura media che preserva il volume
 \begin{equation}
   \label{eq:cp2-15}
   u_t(x,t)=|Du(x,t)|\Div{\left(\frac{D(x,t)}{|D(x,t)|}\right)}-\frac{\iint\Div{\left(\frac{D(x,t)}{|D(x,t)|}\right)}d\mu}{3V_0}x^tDu
 \end{equation}
+Sia $u:\Omega\times(0,T)\to\mathbb{R}$, una funzione level set di qualche superficie, allora l'intgrale dell'equazione precedente lo possiamo riscrivere (vedi §\ref{cp:cp3-3})
+\[
+C(t)=\frac{\int_{\Omega}-F(Du,D^2u)\delta(u(x,t))dx}{3V_0},
+\]
+quindi \eqref{eq:cp2-15} diventa
+\[
+u_t + F(Du,D^2u) - f(t,x,Du) = u_t +\tilde{F}(x,t,Du,D^2u)=0,
+\]
+con $F$ la stessa del moto per curvatura media e $f(x,t,Du)=C(t)<x,Du>$.
+Possiamo osservare che il flusso precedente rientra in 
+\begin{equation}
+\label{eq:cp2-16}
+F(x,t,r,p,X) = F_0(t,r,p,X)+F_1(x,t,p),
+\end{equation}
+con $F_0$ soddisfacente le seguenti proprietà
+\begin{enump}{f}
+  \item $F_0:\overline{\Omega}\times[0,T]\times\mathbb{R}\times(\mathbb{R}^N\setminus{0})\times S(N)\to\mathbb{R}$ è continua
+  \item $F_0$ ellittica degenere, cioè verifica la \eqref{eq:cp2-04}
+  \item $ -\infty<F_*(x,t,0,O) = F^*(x,t,0,O)<\infty$
+  \item Per qualche costante $c_0$ 
+\[
+      r\to F(x,t,r,p,X)+c_0r
+\]
+è una funzione non decrescente
+\end{enump}
+ed $F_1\in C(\overline{\Omega}\times[0,T]\times\mathbb{R}^N)$ tale che
+\[
+|F_1(x,t,p)-F_1(y,t,p)|\leq C(1+|p|)|x-y|,
+\]
+con qualche costante $C>0$ indipendente da $x$, $y\in\overline{\Omega}$ e $p\in\mathbb{R}^N$. Sotto queste ipotesi, risultati di confronto e esistenza vengono raggiunti da Crandal e Lions, Giga e Goto, nel caso $\Omega$ limitato, per approfondimenti, teoremi e dimostrazioni \cite[vedi][§8,§3]{crand:lion,giga:main}.
 \end{osservazione}
 
 
