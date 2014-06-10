@@ -5,37 +5,39 @@
 % Section 1.1
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Qualcosa sulle Superfici}
+\section{Superfici in rappresentazione level-set}
+\label{sec:cp1-00}
+Un insieme $S\subset\mathbb{R}^3$ è chiamato superfice di classe $C^m$ (o ipersuperficie se siamo in $\mathbb{R}^N$ con $N>3$) intorno ad un punto $x_0$ di $S$ se esiste una funzione $u(x)$ di classe $C^m$ definita in un intorno $U$ di $x_0$ tale che
+\[
+S\cap U=\left\{x\in U; u(x)=0\right\}
+\]
+e il gradiente di $u$
+\[
+ Du=\left(\frac{\partial u}{\partial x_1},\dots,\frac{\partial u}{\partial x_3}\right)
+\]
+non svanisce su $S$. Tale rappresentazione è chiamta \emph{level-set}. Se $u$ può essere presa $C^{\infty}$ in $U$, diremo che la superficie $S$ è regolare intorno ad $x_0$ e se $u$ è anche definita intorno ad ogni punto di $x_0\in S$, allora si parla semplicemetne di superficie regolare. Questa rappresentazione può essere estesa anche ad insiemi dipendenti dal tempo. Difatti diremo che una famiglia $S_t$ è una superficie regolare che si evolve nel tempo se esiste una funzione $u(x.t)$ definita per ogni $x\in S_t$ e $t\in I$ tale che:
+\[
+S_t=\left\{x\in S_t; u(x,t)=0\right\},
+\]
+e tale che il gradiente spaziale di $u$ non svanisca su $S_t$.
+\begin{osservazione}
+ La superfice può essere rappresentata anche tramite cordinate locali. Un sottoinsieme $S\subset\mathbb{R}^3$ rappresenta una superficie intorno ad un punto $x_0$ di $S$, attraverso l'immagine $\varphi(U^{'})$ di una qualche mappa $\varphi$ di classe $C^m$ da un insieme aperto $U^{'}\subset\mathbb{R}^2$ in $\mathbb{R}^3$ con rango massimo, cioè la matrice Jacobiana $\nabla\varphi$ ha le colonne linearmenti indipendenti.
+L'equivalenza tra le due rappresentazioni è garantita dal teorema della funzione implicita.
+\end{osservazione} 
 
-Consideriamo un sottoinsieme $S\subseteq\mathbb{R}^3$, diremo che è una superficie regolare se per ogni punto $p\in S$ esiste un intorno $V$ di $p$ in $\mathbb{R}^3$, un aperto $U\subset\mathbb{R}^2$ e un'applicazione differenziabile $\mathcal{S}:U\longrightarrow V\cap S$,$(u,v)\longrightarrow\mathcal{S}=(x(u,v),y(u,v),z(u,v))$, tale che:
-\begin{enumerate}
-  \item $\mathcal{S}$ è un omeomorfismo,
-  \item il differenziale $d\mathcal{S}$ ha rango massimo in ogni punto di $U$.
-\end{enumerate}
-L'applicazione $\mathcal{S}$ si dice parametrizzazione regolare in un intorno del punto $p$. Mentre l'insieme $V\cap S=\mathcal{S}(U)$ si dice porzione di superficie parametrica regolare. La condizione di regolarità, ci esclude superfici che intersecano se stesse.
+Supponiamo che $S$ sia una superfice intorno a $x_0\in S$. Un vettore $\tau\in\mathbb{R}^3$ è chiamato \emph{vettore tangente} di $S$ in $x_0$, se esiste una curva $\zeta\in C^1$ su $S$ tale che $\zeta = x_0$ e $d\zeta(t)/dt = \tau$ in $t=0$, dove $\zeta$ è definita almeno in un intorno di $0$. Lo spazio dei vettori tangenti in $x_0$ è chiamato \emph{spazio tangente} di $S$ in $x_0$ ed è denotato con $T_{x_0}S$. Un \emph{vettore unitario normale} $\vec{n}(x_0)$ in $x_0$ a $S$ è un vettore di $\mathbb{R}^3$ con norma uno ortogonale al $T_{x_0}S$, ed è unico a meno del segno. Se $\vec{n}(x)$ è un vettore normale unitario in $x$ vicino $x_0$ e esso dipende da $x$ in modo almeno continuo, diremo che $\vec{n}$ è un campo unitario normale di orientazione (attorno a $x_0$) di $S$. Vediamo che esiste almeno in un intorno di $x_0$. Per $x\in S\cap U$ sia $\zeta(t)$ una curva su $S$ tale che $\zeta(0)=x$. Deriviamo $u(\zeta(t)) = 0$ e cancoliamolo in $t=0$
+\[
+\left<Du(x),\frac{d\zeta}{dt}(0)\right> = 0.
+\]
+Questo ci dice che il gradiente in $x$ di $u$ è ortogonale al piano tangente a $S$ in $x$. Per la formulazione level-set $u\in C^m$ , $Du\in C^{m-1}$ ($m>0$) quindi almeno continua e $Du$ non svanisce intorno a $x_0$; quindi
+\[
+\vec{n}(x)=-\frac{Du(x)}{|Du(x)|},
+\]
+è un campo vettoriale unitario di orientazione intorno ad $x_0$. Il segno meno è per fissare le idee. Quindi lo spazio tangente per $x\in S$ intorno a $x_0$ è dato da
+\[
+T_xS = \left\{\tau\in\mathbb{R}^3;<\tau,\vec{n}(x)>=0\right\}.
+\]
 
-Siano $u$ e $v$ coordinate su $U\subset\mathbb{R}^2$ , $S = \mathcal{S}(U)$ e $p=\mathcal{S}(u_0,v_0)$; si definisce spazio tangente ad $S$ nel punto $p$, e si indica con $T_pS$, l'immagine di $\mathbb{R}^2$ tramite l'applicazione $d\mathcal{S}_{(u_0,v_0)}$:
-\[
-(a,b)\in\mathbb{R}^2\quad d\mathcal{S}_{(u_0,v_0)}(a,b)= 
-\frac{d}{dt}\mathcal{S}(u_0+at,v_0+bt)|_{t=0}=
-\]
-\[
-=a\mathcal{S}_u(u_0,v_0)+b\mathcal{S}_v(u_0,v_0),
-\]
-con $\mathcal{S}_u(u_0,v_0)$ e $\mathcal{S}_v(u_0,v_0)$ colonne della matrice:
-\[
-d\mathcal{S}=
-\begin{bmatrix}
-  x_u & x_v \\
-  y_u & y_v \\
-  z_u & z_v 
-\end{bmatrix}
-\]
-avendo tale matrice rango massimo, per definizione di superficie regolare, i vettori $\mathcal{S}_u$ e $\mathcal{S}_v$ sono dunque una base per $T_pS$. Poichè il loro prodotto vettoriale è non nullo, in quanto linearmente indipendenti, e ortogonale al piano da essi individuato, definiamo il versore normale alla superficie nel punto $p$ come (vedere figura \ref{fig:cp-111}):
-\begin{equation}
-  \label{eq:cp-111}
-  \vec{n} = \frac{\mathcal{S}_u\wedge\mathcal{S}_v}{||\mathcal{S}_u\wedge\mathcal{S}_v||}=\frac{1}{\sqrt{\det(g)}}(\mathcal{S}_u\wedge\mathcal{S}_v),
-\end{equation}
 \begin{figure}[!hp]
   \tdplotsetmaincoords{60}{40}
   \begin{tikzpicture}[tdplot_main_coords,gray,thick]
@@ -48,9 +50,9 @@ avendo tale matrice rango massimo, per definizione di superficie regolare, i vet
     \tdplotsetcoord{P3}{3.4}{90}{45}
 
     
-    \draw[->,blue] (0,0,0)node[anchor=east]{$p$} -- 
-    (2,0,0) node[anchor=south]{$\mathcal{S}_u$};
-    \draw[->,blue] (0,0,0) -- (0,2,0) node[anchor=north]{$\mathcal{S}_v$};
+    \draw[->,blue] (0,0,0)node[anchor=east]{$x$} -- 
+    (2,0,0) node[anchor=south]{${\tau}^2$};
+    \draw[->,blue] (0,0,0) -- (0,2,0) node[anchor=north]{${\tau}^1$};
     \draw[->,blue] (0,0,0) -- (0,0,2.5) node[anchor=north east]{$\vec{n}$};
     
     \draw (P) -- (P1) -- (P3) -- (P2) -- (P);
@@ -69,102 +71,118 @@ avendo tale matrice rango massimo, per definizione di superficie regolare, i vet
 
   \end{tikzpicture}
 
-  \caption{Piano tangente e versore normale alla superficie $S$ nel punto $p$.}
+  \caption{Piano tangente e versore normale alla superficie $S$ nel punto $x$.}
   \label{fig:cp-111}
 \end{figure}
-con $g$ \emph{prima forma fondamentale della parametrizzazione} $\mathcal{S}$, definita da:
-\begin{definizione}
-L'applicazione differenziabile $g:U\longrightarrow gl(2,\mathbb{R})$, dove $gl(2,\mathbb{R})$ rappresenta il gruppo di tutte le matrici invertibili $2\times2$ con coefficenti reali,  è definita da $g(u)=(g_{ij}(u))$, con:
-\begin{equation}
-\label{eq:cp-112}
-g_{ij}(u) = <\mathcal{S}_i,\mathcal{S}_j>\quad i,j=u,v.
-\end{equation}
-\end{definizione}
-\begin{osservazione}
-La prima forma fondamentale è simmetrica ,definita positiva e rappresenta il prodotto scalare in $T_pS$ nella base $\mathcal{S}_u$,$\mathcal{S}_v$. 
-Si noti anche che :
-\[
-\det(g) = ||\mathcal{S}_u||^2||\mathcal{S}_v||^2-<\mathcal{S}_u,\mathcal{S}_v>^2 = ||\mathcal{S}_u\wedge\mathcal{S}_v||^2> 0.
-\]
-\end{osservazione}
 
-\begin{osservazione}
-Se $\tilde{u}$,$\tilde{v}$ sono un nuovo sistema di coordinate su $U$ con $u\equiv u(\tilde{u},\tilde{v})$ e $v\equiv v(\tilde{u},\tilde{v})$, vale:
+Sia $S$ una superfice in $\mathbb{R}^3$, per un punto $x_0$ sia $\tau$ un vettore tangente di $S$ in $x_0$ e sia $X$ un campo vettoriale $C^1$ su $S$ intorno a $x_0$. Qui $C^1$ vuol dire che può essere esteso ad una funzione $C^1$ in un intorno di $x_0$ in $\mathbb{R}^3$. Sia $\zeta$ una curva su $S$ tale che
 \[
-\mathcal{S}_{\tilde{u}}\wedge\mathcal{S}_{\tilde{v}}=\det(\frac{\partial u,v}{\partial \tilde{u},\tilde{v}})\mathcal{S}_u\wedge\mathcal{S}_v\,,\quad \det(\frac{\partial u,v}{\partial \tilde{u},\tilde{v}})=
-\begin{vmatrix}
-  \partial_{\tilde{u}}u & \partial_{\tilde{v}}u \\
-  \partial_{\tilde{u}}v & \partial_{\tilde{v}}v
-\end{vmatrix}
+\zeta(0)=x_0,\quad\frac{d\zeta(t)}{dt}=\tau,
 \]
-quindi $\vec{n}$ resta invariato o cambia segno a seconda del segno del determinante dello jacobiano della trasformazione per il cambio di variabili.
-\end{osservazione}
-Il versore normale \eqref{eq:cp-111} individua un'applicazione differenziabile, che ad ogni punto della supeficie $S$ associa un punto della sfera unitaria $S^2$ in $\mathbb{R}^3$. Tale mappa, $N: S\longrightarrow S^2$, viene detta \emph{applicazione di Gauss}. Fissiamo, ora, un punto $p\in S$ , consideriamo un'applicazione  $F: T_pS\longrightarrow T_pS$ cha andremo a definire. A tal proposito consideriamo una curva  $\alpha : (-\epsilon,\epsilon)\longrightarrow S$ sulla superficie $S$, tale che $\alpha(0)=p$. Per ogni $t\in (-\epsilon,\epsilon)$ vale che :
+la derivata tangenziale nella direzione $\tau$ è così definita
 \[
-<N(\alpha(t)),N(\alpha(t))> = 1,
-\] 
-deriviamo rispetto a $t$ in $t=0$:
-\[
-0 = {<\frac{dN(\alpha(t))}{dt},N(\alpha(t))>}_{\big{|}_{t=0}}+{<N(\alpha(t)),\frac{dN(\alpha(t))}{dt}>}_{\big{|}_{t=0}}.
+(D_{\tau}X)(x_0)=\frac{d}{dt}\left(X(\zeta(t))\right)_{|_{t=0}}.
 \]
-Poniamo per definizione $\tilde{F}(\alpha) = -\frac{dN\alpha}{dt}(0)$. Dalla relazione precedente segue che $<\tilde{F}(\alpha),N(p)> = 0$ e quindi $\tilde{F}(\alpha)\in T_pS$. Senza entrare nel dettaglio, si dimostra che $\tilde{F}(\alpha)$ dipende solo dalla mappa di Gauss e dal vettore $\alpha'(0)\in T_pS$. Definiamo dunque $F(\alpha'(0))=\tilde{F}(\alpha)$, in tal modo la nostra $F$ risulta essere ben definita, lineare e inolte per ogni vettore $\theta\in T_pS$ esiste una curva $\alpha$ tale che $\alpha'(0)=\theta$.
-
-Introduciamo la \emph{seconda forma fondamentale}:
-\begin{definizione}
-Sia $b_{ij}=<\mathcal{S}_{ij},\vec{n}>$, per $i,j=u,v$. L'applicazione $b:U\longrightarrow gl(2,\mathbb{R})$,tale che $b(u)=(b_{ij}(u))$ è detta seconda forma fondamentale della parametrizzazione $\mathcal{S}$; con
-\[
-\mathcal{S}_{ij}=\frac{\partial^2\mathcal{S}}{\partial i\partial j}\quad i,j = u,v,
-\]
-\end{definizione}
-\begin{osservazione}
-Essendo $\mathcal{S}_{ij}=\mathcal{S}_{ji}$, per il Teorema dell'invertibilità dell'ordine di derivazione, $b(u)$ è dunque simmetrica.
-\end{osservazione}
-Facendo riferimento all'applicazione $F$ appena introdotta, possiamo riscrivere la seconda forma fondamentale:
+Se $X$ è esteso in un intorno di $x_0$ in $\mathbb{R}^3$, allora essendo $C^1$ è ben definita la matrice $3\times 3$ jacobiana $\nabla X$, quindi
 \begin{equation}
-\label{eq:cp-113}
-b_{ij}=<F(\mathcal{S}_i),\mathcal{S}_j>,
+\label{eq:cp1-1-01}
+(D_{\tau}X)(x_0)=(\tau\cdot\nabla)X=\sum_{j=1}^3\tau_j\frac{\partial}{\partial x_j}X,\quad\tau=(\tau_1,\tau_2,\tau_3).
 \end{equation}
-da ciò deduciamo che l'endomorfismo $F$ è autoaggiunto rispetto al prodotto scalare indotto su $\mathbb{R}^3$. Quindi, in una base ortonormale di $T_pS$, l'operatore $F$ è rappresentato da una matrice simmetrica ed è dunque diagonalizzabile con matrici ortogonali; e gli autovalori $k_1$, $k_2$ di $F$ si dicono \emph{curvaure principali} di $S$ in $p$. Rappresentado $F$ nella base $\mathcal{S}_u$, $\mathcal{S}_v$, abbiamo:
-\[
-F(\mathcal{S}_i) = f_i^1\mathcal{S}_u + f_i^2\mathcal{S}_v,\quad i=u,v,
-\]
-con $f_i^j$ i coefficenti della matrice dell'applicazione $F$. Sostituendo quest ultima equazione in \eqref{eq:cp-113} si dimostra che
-\[
-\det(F) = \frac{\det(b)}{\det(g)}=k_1k_2.
-\]
-Inoltre siccome la matrice $g$ è invertibile, i polinomi $\det(bg^{-1}-tI)$ e $\det(b-tg)$ differiscono solo per una costante moltiplicativa; quindi $k_1$, $k_2$ coincidono con le radici del polinomio $\det(b-tg)$. \\
-In conclusione, si definiscono \emph{curvatura media}\footnote{In alcuni testi è definita coma la media delle curvature principali, quindi differisce dalla nostra defnizione solo per un fattore moltiplicativo. \cite[vedi][cp 1.3]{giga:main}.} \,%
- e \emph{curvatura gaussiana} rispettivamente,
+Questo mostra che l'operatore $D_{\tau}$ è indipendente dalla scelta della curva $\zeta$ e vista la definizione di $D_{\tau}$ è anche indipendente dall'estensione di $X$ fuori da $S$; quindi è ben definito per ogni campo vettoriale su $S$.
+Ora supponiamo che $S$ è una superficie $C^2$ intorno ad $x\in S$ e sia $\vec{n}(x)$ il campo unitario normale intorno a $x$ il quale, per quanto detto alcune righe sopra, risulta essere $C^1$ su $S$. Per ogni $\tau\in T_xS$ poniamo
 \begin{equation}
-\label{eq:cp-111-add}
-H=k_1+k_2=\trace(F),\quad K=k_1k_2=\det(F).
+\label{eq:cp1-1-02}
+\vec{A}\tau=-D_{\tau}\vec{n}\in\mathbb{R}^3.
 \end{equation}
-\begin{osservazione}
-La definizione precedente di curvatura media è equivalente alla seguente:
+Iniziamo ad osservare che, poichè $|\vec{n}|=1$ allora
+\[
+\left<\vec{A}\tau,\vec{n}\right>=-\frac{1}{2}D_{\tau}(|n|^2)=0,
+\]
+quindi $\vec{A}\tau\in T_xS$. L'operatore lineare $\vec{A}=\vec{A}_x$ da $T_xS$ in se stesso è chiamato \emph{Weingarten map} nella direzione $\vec{n}(x)$. La forma bilineare da $T_xS\times T_xS$ associata ad $\vec{A}$ definita da
 \begin{equation}
-  \label{eq:cp-114}
-  \tilde{H}(x):= -\Div(\vec{n}(x)), \quad x\in S\subseteq\mathbb{R}^3
+\label{eq:cp1-1-03}
+B_x(\tau,\eta)=\left<\vec{A}\tau,\eta\right>
 \end{equation}
-dove $\vec{n}(x)$ è il vettore unitàrio normale. Senza entrare nel dettaglio, si definisce divergenza di superfice di un campo vettoriale $X$ ,$C^1$, sulla superficie $S$ in $\mathbb{R}^3$:
+è chiamata la \emph{seconda forma fondamentale} (nella direzione di $\vec{n}(x)$) in $x\in S$. Per vedere il significato geometrico di $B_x$, per $\tau,\eta\in  T_xS$ sia $\phi$ una funzione  definita da un intorno dell'origine di $\mathbb{R}^2$ in $S\subset\mathbb{R}^3$ tale che
 \[
-(\Div_{S}X)(x) = \sum_{j=1}^{2}{\left<(D_{\tau^j} X)(x),\tau^j\right>},
+\frac{\partial\phi}{\partial x_1}(0,0)=\tau,\quad\frac{\partial\phi}{\partial x_2}(0,0)=\eta,\quad\phi(0,0)=x.
 \]
-con $\tau^j$ base ortonormale di $TS$ e $D_\tau X$ derivata del campo nella direzione $\tau\in TS$, o meglio se prendiamo una curva $\alpha(t)$ su $S$ tale che $\alpha(0) = x$ e $\frac{d\alpha}{dt}(0)=\tau$ allora
+Poichè
+\begin{equation}
+\label{eq:cp1-1-04}
+\left<\vec{n}(\phi(x_1,x_2)),\frac{\partial\phi}{\partial x_1}(x_1,x_2)\right>=0,
+\end{equation}
+per $(x_1,x_2)$ vicini a $(0,0)$, derivando per $x_2$  otteniamo
 \[
-(D_\tau X)(x)=\frac{d}{dt}\left(X(\alpha(t))\right)_{\big|_{t=0}} =(\tau\cdot D)X=\sum_{j=1}^3\tau_j\frac{\partial}{\partial x_j}X.
+\left<(\eta\cdot\nabla)\vec{n},\tau\right>+\left<\vec{n},\frac{\partial^2\phi}{\partial x_1\partial x_2}\right> = 0,
 \]
-Prendiamo come campo $X$ il versone normale $\vec{n}(x)$ , ricordando la definizione della seconda forma fondamentale \eqref{eq:cp-113} e della curvatura media  \eqref{eq:cp-111-add} otteniamo:
+quindi
 \[
-H(x)= \sum_{j=1}^{2}{\left<F(\tau_j),\tau_j\right>} = -\sum_{j=1}^{2}{\left<(D_\tau \vec{n})(x),\tau^j\right>}=-(\Div_{S}\vec{n})(x).
+B_x(\eta,\tau)=\left<\vec{n},\frac{\partial^2\phi}{\partial x_1\partial x_2}\right>
 \]
-Ora riprendendo la definizione di divergenza di superficie ed operando alcune manipolazioni algebriche, senza entrare troppo nel dettaglio (per tutti i passaggi e le ipotesi da fare \cite[vedi][cp 1]{giga:main}), possimao scrivere:
+In particolare, ripetendo il calcolo con $\partial\phi/\partial x_2(x_1,x_2)$ in \eqref{eq:cp1-1-04} e derivando per $x_1$, si dimostra che la forma bilineare è simmetrica e che la mappa di Waingarten è anche essa simmetrica. Per cui esiste un base ortonormale in cui è diagonalizzabile, i suoi autovalori sono tutti reali e sono chiamati le \emph{curvature principali} di $S$ in $x$. Derivando \eqref{eq:cp1-1-04} in $x_1$ ed calcolandola in $(0,0)$ otteniamo
+\[
+B_x(\tau,\tau)=\left<\vec{n},\frac{\partial^2\phi}{\partial x_1^2}(0,0)\right>
+\]
+se $|\tau|=1$, questa quantità è chiamata \emph{curvatura normale} di $S$ nella direzione $\tau$. Sia $x\in S$, $\{\tau^l;l=1,2\}$ una base ortonormale di $T_xS$ ed  $X$ un campo vettoriale $C^1$ su $S$. Definiamo la \emph{divergenza di superficie} di $X$ come
+\[
+(\Div_S X)(x) = \sum_{l=1}^2\left<(D_{\tau^l}X(x),\tau^l\right>.
+\]
+Se estendiamo $X$ intorno a $S$ così che $\nabla X$ è ben definita come una matrice $3\times 3$, allora otteniamo
 \[
 \begin{aligned}
-(\Div_{S}\vec{n})(x) &= \trace\left(\sum_{j=1}^2{(\tau_j\otimes\tau_j)}D\vec{n}(x)\right)=\\
-&\trace\big((I-\vec{n}(x)\otimes\vec{n}(x))D\vec{n}(x)\big)=\Div\left(\vec{n}(x)\right).
+(\Div_S X)(x)&=\sum_{l=1}^2\left<\sum_{j=1}^3\tau_j^l\frac{\partial}{\partial x_j}X(x),\tau^l\right> =\sum_{l}\sum_{j}\left<\frac{\partial}{\partial x_j}X(x),\tau_j^l\tau^l\right> \\
+&=\sum_{l}\sum_{j}(\tau_j^l\tau^l)\left(\frac{\partial}{\partial x_j}X(x)\right)^t=\trace\left(\left(\sum_{l=1}^2\tau^l\otimes\tau^l\right) (\nabla X(x))^t\right)
 \end{aligned}
 \]
-dove $p\otimes p=p^tp$ con $p$ vettore colonna in $\mathbb{R}^3$ e $(I-\vec{n}(x)\otimes\vec{n}(x))$ matrice di proiezione che associa a un punto $\zeta \in T_x\mathbb{R}^3=\mathbb{R}^3$ un punto su $T_xS$ con $x\in S$.
+con $\otimes$ prodotto tensoriale. La definizione di $\Div_S X$ è indipendente dall'estensione di $X$, quindi l'espressione precedente è indipendente dall'estensione di $X$. Sfruttando che (vedi \emph{osservazione} \ref{oss:cp1-1-01})
+\begin{equation}
+\label{eq:cp1-1-05}
+\sum_{l=1}^2\tau^l\otimes\tau^l = I_3 - \vec{n}(x)\otimes\vec{n}(x)
+\end{equation}
+abbiamo
+\begin{equation}
+(\Div_S X)(x)=\trace\left(\left(I_3 - \vec{n}(x)\otimes\vec{n}(x)\right) (\nabla X(x))^t\right)
+\end{equation}
+dalla quale si evince che la divergenza di superfice è indipendente dalla scelta della base ortonormale di $T_xS$ e dall'orientazione di $\vec{n}(x)$.
+Ora, sia $\vec{n}$ un campo unitario normale su una $C^2$ superfice $S$ e $k_1(x),k_2(x)$ le sue curvature principali in $x$ nella direzione $\vec{n}$, cioè gli autovalori della mappa di Weigarten in un base ortonormale $\{\tau^l;l=1,2\}$ di $T_xS$. Si definiscono \emph{curvatura media}\footnote{In alcuni testi è definita coma la media delle curvature principali, quindi differisce dalla nostra defnizione solo per un fattore moltiplicativo. \cite[vedi][cp 1.3]{giga:main}.} \,%
+ e \emph{curvatura gaussiana} rispettivamente,
+\begin{equation}
+\label{eq:cp-1-1-06}
+H=k_1+k_2,\quad K=k_1k_2.
+\end{equation}
+Soffermiamoci sull'espressine della curvatura media, che ci sarà utile in seguito, e vediamo come possiamo riscriverla. Sfruttando la \eqref{eq:cp1-1-02},  \eqref{eq:cp1-1-03} e \eqref{eq:cp1-1-05}
+\[
+\begin{aligned}
+H &= k_1+k_2 = \sum_{l=1}^2B_x(\tau_l,\tau_l)=-\sum_{l}\left<D_{\tau^l}\vec{n}(x),\tau^l\right>=-\Div_{S}\vec{n}(x)=\\
+&=-\trace\left(\left(I_3 - \vec{n}(x)\otimes\vec{n}(x)\right) (\nabla \vec{n}(x))^t\right)=-\Div\left(\vec{n}(x)\right)+\\
++&\trace\left(\vec{n}(x)\otimes\vec{n}(x) (\nabla \vec{n}(x))^t\right)=-\Div\left(\vec{n}(x)\right)+ \sum_{j=1}^3n_j\left<\vec{n}(x),\frac{\partial}{\partial x_j}\vec{n}(x)\right>\\
+&=-\Div\left(\vec{n}(x)\right)+\sum_{j=1}^3n_j\frac{1}{2}\frac{\partial}{\partial x_j}(|\vec{n}(x)|^2)=-\Div(\vec{n}(x)),
+\end{aligned}
+\]
+quindi
+\begin{equation}
+\label{eq:cp1-1-07}
+H=-\Div\left(\vec{n}(x)\right),
+\end{equation}
+e poiche  $\vec{n}(x)=-Du/|Du|$, otteniamo
+\[
+H=\Div\left(\frac{Du}{|Du|}\right)(x).
+\]
+\begin{osservazione}
+\label{oss:cp1-1-01}
+Sia $S$ una $C^2$ superfice intorno ad un punto $x_0\in S$,  $\vec{n}$ un vettore unitario normale intorno ad $x_0$ e $\{\tau^l;l=1,2\}$ una base ortonormale di $T_xS$ . Vogliamo dare un senso a \eqref{eq:cp1-1-05}. Prendiamo $\theta\in\mathbb{R}^3$ e vediamo come agiscono le due matrici su tale vettore.
+\[
+\begin{aligned}
+&\left(\sum_{l=1}^2\tau^l\otimes\tau^l\right)\theta = \sum_l\underbrace{\left(\sum_{j=1}^3\theta_j\tau_j^l\right)}_{{}=\alpha_l}\tau^l=\nu \in T_{x_0}S\\
+&\left(I_3-\vec{n}(x_0)\otimes\vec{n}(x_0)\right)\theta = \theta - \left(\sum_{j=1}^3\theta_jn_j\right)\vec{n}(x_0)=\nu' 
+\end{aligned}
+\]
+osserviamo che, da calcolo diretto, $<\nu',\vec{n}(x_0)>=0$ quindi questo ci dice che anche $\nu'\in T_{x_0}S$, cioè esistono de $\beta_l$ tale che $\nu'=\sum_{l=1}^2\beta_l\tau^l$. Inoltre si può dimostrare, con un semplice calcolo, che entrambe le matrici quando vengo moltiplicate per un generico vettore $\tau\in T_{x_0}S$ (quindi che già appartiene allo spazio tangente) danno come risultato $\tau$ stesso. Quindi possiamo dire che le due matrici proiettano un vettore di $\mathbb{R}^3$ nello spazio tangente. Per dimostrare l'uguaglianza tra loro, basta provare che $\nu=\nu'$ questo è vero se e solo se $\alpha_l=\beta_l\,\forall l$. Ricordando che $\alpha_l=<\theta,\tau^l>$, calcoliamoci il genrico $\beta_l$
+\[
+\beta_l=<\nu',\tau^l>=<\theta,\tau^l>-\left(\sum_{j=1}^3\theta_jn_j\right)<\vec{n}(x_0),\tau^l>=\alpha_l
+\]
+questo conclude la dimostrazione.
 \end{osservazione}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -173,8 +191,7 @@ dove $p\otimes p=p^tp$ con $p$ vettore colonna in $\mathbb{R}^3$ e $(I-\vec{n}(x
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Moto per curvatura media \emph{Volume Preserving}}
 
-Consideriamo superfici che si evolvono nel tempo. \\
-Sia $\mathcal{S}(\tilde{p},t):U\times[0,T)\longrightarrow\mathbb{R}^3$, con $U\subseteq\mathbb{R}^2$, una famiglia di superfici regolari, dove $t$ parametrizza la famiglia e $\tilde{p}$ la superficie. Assumiamo che essa obedisce alla seguente equazione alle derivate parziali:
+Consideriamo superfici che si evolvono nel tempo. Utilizziamo, inizialmente la rappresentazione parametrica. Sia $\mathcal{S}(\tilde{p},t):U\times[0,T)\longrightarrow\mathbb{R}^3$, con $U\subseteq\mathbb{R}^2$, una famiglia di superfici regolari, dove $t$ parametrizza la famiglia e $\tilde{p}$ la superficie. Assumiamo che essa obedisce alla seguente equazione alle derivate parziali:
 \begin{equation}
   \label{eq:cp121}
   \frac{\partial\mathcal{S}(\tilde{p},t)}{\partial t} = \alpha(\tilde{p},t)\vec{t}(\tilde{p},t) + \beta(\tilde{p},t)\vec{n}(\tilde{p},t)
@@ -209,7 +226,7 @@ Come provato nell'articolo \cite[vedi][]{bi:chow} , questo flusso deforma superf
 \end{osservazione}
 
 \begin{esempio}[The Sphere]
-Calcoliamo la soluzione esatta nel caso della sfera che si evolve secondo  \eqref{eq:cp-123}. Sia $\mathcal{S}(p,t) = S^2(R(t))$, cioè una famiglia di sfere in $\mathbb{R}^3$ di raggio $R(t)$ e centro l'origine, e $\mathcal{S}(p,0) = S^2(R_0)$ il nostro dato iniziale. Calcoliamoci la curvatura media, utilizzando l'espressione \eqref{eq:cp-114} e ricordando che la normale interna alla sfera è $\vec{n}(x(t))=-\frac{x(t)}{|x(t)|}$ con $x(t)\in S^2(R(t))$:
+Calcoliamo la soluzione esatta nel caso della sfera che si evolve secondo  \eqref{eq:cp-123}. Sia $\mathcal{S}(p,t) = S^2(R(t))$, cioè una famiglia di sfere in $\mathbb{R}^3$ di raggio $R(t)$ e centro l'origine, e $\mathcal{S}(p,0) = S^2(R_0)$ il nostro dato iniziale. Calcoliamoci la curvatura media, utilizzando l'espressione \eqref{eq:cp1-1-07} e ricordando che la normale interna alla sfera è $\vec{n}(x(t))=-\frac{x(t)}{|x(t)|}$ con $x(t)\in S^2(R(t))$:
 \[
 H(x(t)) =-\Div(\vec{n}(x(t))=\Div\left(\frac{x(t)}{|x(t)|}\right)=\frac{2}{R(t)}.   
 \]
@@ -502,33 +519,19 @@ Nella sezione precedente abbiamo visto come risolvere il problema del collasso, 
 
 \end{itemize}
 
-Tutti questi problemi hanno portato allo svilupparsi di tecniche \emph{level-set}. Introduciamo alcuni concetti base e riformuliamo la nostra equazione con un \emph{approccio level-set}, per maggiori chiamrimenti o approfondimenti \cite[vedi][]{giga:main}.
-Alla base di questo approccio c'è l'idea di vedere la nostra superficie come  insieme di livello di una funzione. Più precisamente,
-un insieme $S\subset\mathbb{R}^3$ è chiamato superfice di classe $C^m$ (o ipersuperficie se siamo in $\mathbb{R}^N$ con $N>3$) intorno ad un punto $x_0$ di $S$ se esiste una funzione $u(x)$ di classe $C^m$ definita in un intorno $U$ di $x_0$ tale che
+Tutti questi problemi hanno portato allo svilupparsi di tecniche \emph{level-set}. Alla base di questo approccio c'è l'idea di vedere la nostra superficie come  insieme di livello di una funzione. Utilizziamo la rappresentazione introdotta in §\ref{sec:cp1-00} con $S_t$ una superfice regolare che si evolve nel tempo in qualche intervallo temporale. Consideriamo una curva $x(t)$ in $\mathbb{R}^3$ su $S_t$ definita in $(t-\delta,t+\delta)$, con $\delta>0$ tale che $x(t)\in S_t$ e $x(t_0)=x_0$. Dalla definizione di $S_t$ deve essere $u(x(t),t)=0$ per $t$ vicino a $t_0$, quindi differenziando  $u(x(t),t)$ ed evalutandola nel punto $(x_0,t_0)$ otteniamo:
 \[
-S\cap U=\left\{x\in U; u(x)=0\right\}
+u_t(x_0,t_0)+\left<\frac{dx}{dt}(t_0),Du(x_0,t_0)\right>=0,
 \]
-e il gradiente di $u$
+ricordando che la normale $\vec{n}=-\frac{Du}{|Du|}$, abbiamo:
 \[
- Du=\left(\frac{\partial u}{\partial x_1},\dots,\frac{\partial u}{\partial x_3}\right)
-\]
-non svanisce su $S$. Tale rappresentazione è chiamta \emph{level-set}. Se $u$ può essere presa $C^{\infty}$ in $U$, diremo che la superficie $S$ è regolare intorno ad $x_0$ e se $u$ è anche definita intorno ad ogni punto di $x_0\in S$, allora si parla semplicemetne di superficie regolare. Questa reappresentazione può essere estesa anche ad insiemi dipendenti dal tempo. Difatti diremo che una famiglia $S_t$ è una superficie regolare che si evolve nel tempo se esiste una funzione $u(x.t)$ definita per ogni $x\in S_t$ e $t\in I$ tale che:
-\[
-S_t=\left\{x\in S_t; u(x,t)=0\right\},
-\]
-e tale che il gradiente spaziale di $u$ non svanisca su $S_t$. Ora, consideriamo una curva $\alpha(t)$ in $\mathbb{R}^3$ su $S_t$ definita in $(t-\delta,t+\delta)$, con $\delta>0$ tale che $\alpha(t)\in S_t$ e $\alpha(t_0)=x_0$. Dalla definizione di $S_t$ deve essere $u(\alpha(t),t)=0$ per $t$ vicino a $t_0$, quindi differenziando  $u(\alpha(t),t)$ ed evalutandola nel punto $(x_0,t_0)$ otteniamo:
-\[
-u_t(x_0,t_0)+\left<\frac{d\alpha}{dt}(t_0),Du(x_0,t_0)\right>=0,
-\]
-ricordando che la normale $\vec{n}=-\frac{Du}{|Du|}$(vedi \emph{Osservazione} \ref{oss:cp-131}), abbiamo:
-\[
-u_t(x_0,t_0)-|Du(x_0,t_0)|\left<\frac{d\alpha}{dt}(t_0),\vec{n}\right>=0.
+u_t(x_0,t_0)-|Du(x_0,t_0)|\left<\frac{dx}{dt}(t_0),\vec{n}\right>=0.
 \]
 Il prodotto scalare che compare nell'espressione precedente rappresenta la velocità normale di $S_t$ nel punto $x_0$ al tempo $t_0$ per cui: 
 \[
 V=\frac{u_t(x_0,t_0)}{|Du(x_0,t_0)|},
 \]
-chiaramente  $V$ non dipende dalla scelta della curva $\alpha(t)$. Poichè nel moto per curvatura media la velocità normale è uguale alla curvatura media otteniamo:
+chiaramente  $V$ non dipende dalla scelta della curva $x(t)$. Poichè nel moto per curvatura media la velocità normale è uguale alla curvatura media otteniamo:
 \begin{equation}
   \label{eq:cp-131}
   u_t(x,t)=|Du(x,t)|\Div{\left(\frac{D(x,t)}{|D(x,t)|}\right)}
@@ -548,16 +551,3 @@ Quindi, ricapitolando, quando una funzione si muove secondo la \eqref{eq:cp-131}
    \item I cambiamenti topologici della superficie non sono più un problema, poichè la topologia di $u$ è fissa. Tali cambiamenti vengono scoperti solo quando viene calcolato il corrispondente insieme di livello. 
 
 \end{itemize}
-
-\begin{osservazione}[vettore unitario in rappresentazione level-set]
-\label{oss:cp-131}
-Supponiamo che $S$ sia una superfice intorno a $x_0\in S$, in rappresentazione level-set. Se $\vec{n}(x)$ è un vettore normale unitario in $x$ vicino $x_0$ e esso dipende da $x$ in modo almeno continuo, diremo che $\vec{n}$ è un campo unitario normale di orientazione (attorno a $x_0$) di $S$. Vediamo che esiste, almeno in un intorno di $x_0$. Per $x\in S\cap U$ sia $\alpha(t)$ una curva su $S$ tale che $\alpha(0)=x$. Deriviamo $u(\alpha(t)) = 0$ e cancoliamolo in $t=0$
-\[
-\left<Du(x),\frac{d\alpha}{dt}(0)\right> = 0.
-\]
-Questo ci dice che il gradiente in $x$ di $u$ è ortogonale al piano tangente a $S$ in $x$. Per la formulazione level-set $u\in C^m$ , $Du\in C^{m-1}$ ($m>0$) quindi almeno continua e $Du$ non svanisce intorno a $x_0$; per cio possiamo definire il vetore normale (campo vettoriale unitario di orientazione) come
-\[
-\vec{n}(x)=-\frac{Du(x)}{|Du(x)|},
-\]
-il segno meno è per fissare le idee.
-\end{osservazione}
