@@ -389,9 +389,9 @@ e per la definizione \ref{def:cp2-02}, $u$ è sotto soluzione viscosa di \eqref{
 \end{proof}
 Applicando tale lemma con $c_{\pm}(\sigma)=\sup_{|\overline{p}|=1}\trace\left(A(\overline{p})\right)=N-1$ con $A(\overline{p})=I-\overline{p}\otimes\overline{p}$ otteniamo che
 \[
-u^{\pm}=\pm\left(t+\frac{|x|^2}{2(N-1)}\right).
+u^{-}=-\left(t+\frac{|x|^2}{2(N-1)}\right).
 \]
-è una soluzione viscosa del moto per curvatura media. 
+è una soluzione viscosa del moto per curvatura media, che rappresenta sfere che si contraggono. 
 \end{osservazione}
 Grazie al lavoro di Giga, Chen e Goto sono stati dimostrati teoremi di esistenza, confronto e unicità per \eqref{eq:cp2-09} e dato iniziale \eqref{eq:cp2-02-add}, noi qui riportiamo solo l'enunciato del teoremdi esistenza; per approfondimenti e dimostrazioni \cite[vedi][§4-6]{yun:giga}.
 \begin{teorema}[Esistenza globale]
@@ -501,7 +501,7 @@ C(t)=\frac{\int_{\Omega}-F(Du,D^2u)\delta(u(x,t))dx}{3V_0},
 \]
 quindi \eqref{eq:cp2-15} diventa
 \[
-u_t + F(Du,D^2u) - f(t,x,Du) = u_t +\tilde{F}(x,t,Du,D^2u)=0,
+u_t + F(Du,D^2u) + f(t,x,Du) = u_t +\tilde{F}(x,t,Du,D^2u)=0,
 \]
 con $F$ la stessa del moto per curvatura media e $f(x,t,Du)=C(t)<x,Du>$.
 Possiamo osservare che il flusso precedente rientra in 
