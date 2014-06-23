@@ -1,5 +1,8 @@
 \chapter{Soluzioni di viscosità}
-In questa sezione richiamiamo alcune nozioni base sulle soluzioni viscose di equazioni alle derivate parziali (PDE) del secondo ordine e della loro variante parbolic; senza addentrarci nell'analisi dettagliata di teoremi e preposizioni per il cui approfondimento \cite[vedi][]{fed:drag,giga:main,crand:lion,yun:giga}.
+In questa sezione richiamiamo alcune nozioni base sulle soluzioni
+viscose di equazioni alle derivate parziali (PDE) del secondo ordine e
+della loro variante parbolica. Per un'analisi approfondita di teoremi
+e preposizioni rimandiamo il lettore ai lavori \cite[vedi][]{fed:drag,giga:main,crand:lion,yun:giga}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %                            Section 2.1
@@ -22,7 +25,7 @@ Supponiamo che esista una soluzione classica con condizioni di Dirichlet nulle, 
 \end{esempio}
 Da qui la necessità di una nozione più debole di soluzione. Pensando all'esempio precedente, una prima idea sarebbe di richiedere che l'equazione sia soddisfatta solo nei punti dove la derivata esiste, questo ci porta ad una definizione di soluzione quasi ovunque. Tuttavia, usando sempre l'equazione eiconale, possiamo vedere come questa nozione sia buona per l'esistenza ma pessima per l'unicità.
 \begin{esempio}[\emph{Funzioni di Rademacher}]
-Le funzioni $u(x)=-|x|+1$ e $v(x)=|x|-1$ sono due differenti soluzioni quasi ovunque di \eqref{eq:cp2-01} che si annullano al bordo. Più in generale, le funzioni di Readmacher(vedi figura \ref{fig:cp2-01}) ci danno infinite soluzioni quasi ovunque per \eqref{eq:cp2-01}.
+Le funzioni $u(x)=-|x|+1$ e $v(x)=|x|-1$ sono due differenti soluzioni quasi ovunque di \eqref{eq:cp2-01} che si annullano al bordo. Più in generale, le funzioni di Readmacher(vedi Fig \ref{fig:cp2-01}) ci danno infinite soluzioni quasi ovunque di \eqref{eq:cp2-01}.
 Queste sono cosi definite, per ogni $k\in \mathbb{N}$ e $i=0,1,\dots,2^{k-1}$
 \[
 u_k(x)=
@@ -41,7 +44,7 @@ u_k(x)=
       \draw[->] (0.0,-1.5) -- (0.0,1.5) node[anchor=south] {$y$};
 % Radmacher Functions
     %k=0
-      \begin{scope}[draw=blue,line width=1.2pt]
+      \begin{scope}[draw=Mahogany!80!Mulberry,line width=1.2pt]
         \draw (-1.0,0.0) -- (0.0,1.0);
         \draw (0.0,1.0)  -- (0.5,0.5) node[anchor=west] {$-|x|+1$} -- (1.0,0.0);
 
@@ -60,7 +63,7 @@ u_k(x)=
   \label{fig:cp2-01}
 \end{figure}
 
-Nel 1982 Crandal and lions introdussero una differente nozione di soluzione debole (soluzioni viscose \cite[vedi][]{crand:lion}) che si comporta bene per molti PDE del primo e del secondo ordine, soddisfacendo proprietà di esistenza, unicità e stabiltà. 
+Nel 1982 Crandal e Lions introdussero una differente nozione di soluzione debole (soluzioni viscose \cite[vedi][]{crand:lion}) per molte equazioni del primo e del secondo ordine, soddisfacente proprietà di esistenza, unicità e stabiltà. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %                            Section 2.2
@@ -73,7 +76,7 @@ Inziamo col introdurre la definizione di soluzione viscosa per PDE del secondo o
 \label{eq:cp2-02}
 F(x,u,Du,D^2u) = 0\text{ con }F:\mathbb{R}^N\times\mathbb{R}\times\mathbb{R}^N\times S(N)\to \mathbb{R},
 \end{equation}
-con $S(N)$ insieme delle matrici simmetriche $N\times N$, $u$ una funzione a volori reali definita in un sottoinsieme $\mathcal{O}$ di $\mathbb{R}^N$ e $Du$,$D^2u$ corrispondono al gradiente ed alla matrice delle derivate seconde di $u$. Al fine di applicare la teoria a un equazione del tipo \eqref{eq:cp2-02} (\cite[vedi][2]{crand:lion}), richiederemo che $F$ soddisfi le seguenti propietà
+con $S(N)$ insieme delle matrici simmetriche $N\times N$, $u$ una funzione a volori reali definita in un sottoinsieme $\mathcal{O}$ di $\mathbb{R}^N$ e $Du$,$D^2u$ corrispondono al gradiente ed alla matrice delle derivate seconde di $u$. Al fine di applicare la teoria a un equazione del tipo \eqref{eq:cp2-02} (\cite[][2]{crand:lion}), richiederemo che $F$ soddisfi le seguenti propietà
 \begin{gather}
 \label{eq:cp2-03}
 F(x,r,p,X) \leq F(x,s,p,X) \quad \forall\,r\leq s,\\
@@ -82,11 +85,17 @@ F(x,r,p,X) \leq F(x,r,p,Y) \quad \forall\,Y\leq X,
 \end{gather}
 con $r,s\in \mathbb{R},X,Y\in S(N)$ and $S(N)$ equipaggiato del solito ordine tra matrici. Se $F$ soddisfa \eqref{eq:cp2-03} allora si dirà \emph{ellitticamente degenere}, mentre se soddisfa \eqref{eq:cp2-04} si dirà \emph{propria}.
 
-Da qui in avanti assumeremo sempre che $F$ soddisfi \eqref{eq:cp2-03} e \eqref{eq:cp2-04} e che sia continua, a meno che non venga detto diversamente. Prima di enunciare la definizione vediamo un po qual è l'idea. Supponiamo che $u\in C^2$ su $\mathbb{R}^n$ e che
+Da qui in avanti assumeremo sempre che $F$ soddisfi \eqref{eq:cp2-03}
+e \eqref{eq:cp2-04} e che sia continua, a meno che non venga detto
+diversamente. Prima di enunciare la definizione di soluzione di
+viscosità, diamo una giustificazione euristica. Supponiamo che $u\in C^2$ su $\mathbb{R}^n$ e che
 \[
 F(x,u(x),Du(x),D^2u(x))\leq 0\, \forall x\in\mathbb{R}^n,
 \]
-cioè $u$ è una sottosoluzione classica di $F=0$. Supponiamo $\phi\in C^2$ e $\hat{x}$ sia un massimo locale per $u-\phi$, dall'analisi  questo implica che $Du(\hat{x})=D\phi(\hat{x})$ e $D^2u(\hat{x})\leq D^2\phi(\hat{x})$, quindi per \eqref{eq:cp2-03},
+cioè $u$ è una sottosoluzione classica di $F=0$. Supponiamo $\phi\in
+C^2$ e $\hat{x}$ sia un massimo locale per $u-\phi$, dall'analisi
+questo implica che $Du(\hat{x})=D\phi(\hat{x})$ e $D^2u(\hat{x})\leq
+D^2\phi(\hat{x})$, quindi dalla \eqref{eq:cp2-03} segue
 \[
 F(x,u(\hat{x}),D\phi(\hat{x}),D^2\phi(\hat{x}))\leq F(x,u(x),Du(x),D^2u(x))\leq 0.
 \]
@@ -96,12 +105,12 @@ Gli estremi di questa diseguaglianza non dipendono dalle derivate di $u$, quindi
   F(x,u(\hat{x}),D\phi(\hat{x}),D^2\phi(\hat{x}))\leq 0
 \end{equation}
 ogniqualvolta $\phi\in C^2$ e $\hat{x}$ massimo locale di $u-\phi$.
-Inoltre  per $x$ vicino a $\hat{x}$ è vero che $u(x)\leq u(\hat{x})-\phi(\hat{x}) + \phi(\hat{x})$, poichè $\phi\in C^2$ usando Taylor otteniamo
+Inoltre  per $x$ vicino a $\hat{x}$ è vero che $u(x)\leq u(\hat{x})-\phi(\hat{x}) + \phi(x)$, poichè $\phi\in C^2$ usando Taylor otteniamo
 \begin{equation}
   \label{eq:cp2-05}
   u(x)\leq u(\hat{x})+\left<p,x-\hat{x}\right> + \frac{1}{2}\left<X(x-\hat{x}),x-\hat{x}\right> + o(|x-\hat{x}|^2)\,\, x\to\hat{x}
 \end{equation}
-con $p=D\phi(\hat{x})$ e $X=D^2\phi(\hat{x})$. Possiamo osservare che se la \eqref{eq:cp2-05} è soddisfatta per qualche $(p,X)\in\mathbb{R}^n\times S(N)$ e $u$ è due volte differenziabile, allora $p=Du(\hat{x})$ e $D^2u(\hat{x})\leq X$ (vedere \emph{osservazione} \ref{oss:cp2-01}). Quindi se $u$ è una soluzione classica per $F\leq 0$ segue che $F(x,u(x),p,X)\leq 0$ ogni qual volta è vera la \eqref{eq:cp2-05}. Ora possiamo dare la definizione di soluzione viscosa, che si basa proprio sulla \eqref{eq:cp2-05}
+con $p=D\phi(\hat{x})$ e $X=D^2\phi(\hat{x})$. Possiamo osservare che se la \eqref{eq:cp2-05} è soddisfatta per qualche $(p,X)\in\mathbb{R}^n\times S(N)$ e $u$ è due volte differenziabile, allora $p=Du(\hat{x})$ e $D^2u(\hat{x})\leq X$ (\emph{Osservazione} \ref{oss:cp2-01}). Quindi se $u$ è una soluzione classica per $F\leq 0$ segue che $F(x,u(x),p,X)\leq 0$ ogni qual volta è vera la \eqref{eq:cp2-05}. Ora possiamo dare la definizione di soluzione viscosa, che si basa proprio sulla \eqref{eq:cp2-05}
 \begin{definizione}
 \label{def:cp2-01}
 Sia $F$ propria ed ellittica degenere e $\mathcal{O}\subset\mathbb{R}^n$.
@@ -130,7 +139,7 @@ Come si può notare dalla definizione, il ``superjet'' (lo stesso vale per il ``
 
 \begin{osservazione}
 \label{oss:cp2-01}
-Nella definizione di soluzione viscosa, la richiesta di continuità di $u$ può essere sostituita con quella di semicontinuà superiore(\emph{upper semicontinuos}) per le sotto soluzione e semicontinuà inferiore(\emph{lower semicontinuos}) per le sopra soluzione. Inoltre, notare che una funzione semicontinua sia superiormente che inferiormente è continua. Ricordiamo che  $u:L \to\mathbb{R}$ è
+Nella definizione di soluzione viscosa, la richiesta di continuità di $u$ può essere sostituita con quella di semicontinuà superiore(\emph{upper semicontinuos}) per le sotto soluzione e semicontinuà inferiore(\emph{lower semicontinuos}) per le sopra soluzione. Inoltre, notiamo che una funzione semicontinua sia superiormente che inferiormente è continua. Ricordiamo che  $u:L \to\mathbb{R}$ è
 \begin{enumerate}
   \item \emph{upper semicontinuos} in $\hat{x}\in L$ se:
     \[
@@ -284,7 +293,7 @@ In questo caso chiaramente $F$ è definita in $W_T$ denso in $\mathcal{O}_T\time
 Per risultati di esistenza, unicità e confronto sia per equazioni del tipo \eqref{eq:cp2-02} che \eqref{eq:cp2-08} \cite[vedi][]{crand:lion,giga:main,yun:giga}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%                            Section 2.2
+%                            Section 2.3
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -294,7 +303,7 @@ In questa sezione tratteremo equazioni paraboliche degeneri (cioè che verifican
   \label{eq:cp2-09}
 u_t + F(x,t,Du,D^2u) = 0
 \end{equation}
-in particolare nel caso in cui rappresenta un'equazione di evoluzione per superfici di livello di $u$; e supporremo che $F$ sia geometrica cioè
+in particolare nel caso in cui \eqref{eq:cp2-09} rappresenta un'equazione di evoluzione per superfici di livello di $u$.  Supporremo che $F$ sia geometrica cioè
 \begin{equation}
   \label{eq:cp2-10}
 F(x,t,\lambda p,\lambda X + \sigma p\otimes p) = \lambda F(x,t,p,X),\quad\lambda>0,\,\sigma\in\mathbb{R},
@@ -318,9 +327,10 @@ F(\lambda p,\lambda X +\sigma p\otimes p)&=-\trace\left(\left(I-\frac{p}{|p|}\ot
 \]
 Poichè $(\overline{p}\otimes\overline{p})(p\otimes p)=p\otimes p$, con $\overline{p}=p/|p|$, la \eqref{eq:cp2-10} è banalmente verificata. Per dimostrare la condizione di degenere ellitticità basta mostrare che
 \[
--\trace\left(\left(I-\frac{p}{|p|}\otimes\frac{p}{|p|}\right)\left(X-Y\right)\right)\leq 0\text{ con }X\geq Y,
+-\trace\left(\left(I-\frac{p}{|p|}\otimes\frac{p}{|p|}\right)\left(X-Y\right)\right)\leq 0\text{ con }X\geq Y.
 \]
-per farlo sfruttiamo il fatto che la traccia del prodotto di due matrici definite non negative è non negativo. Osserviamo che $X-Y\geq 0$, quindi basta mostrare che la matrice $B(p)= I-\overline{p}\otimes\overline{p}$, con $\overline{p}$ come sopra, è non negativa per $p\ne 0$, cioè che $\forall x\in\mathbb{R}^N$ $x^tB(p)x\geq 0$:
+Osserviamo che la traccia del prodotto di due matrici definite non
+negative è non negativo e poichè $X-Y\geq 0$,  basta mostrare che la matrice $B(p)= I-\overline{p}\otimes\overline{p}$, con $\overline{p}$ come sopra, è non negativa per $p\ne 0$, cioè che $\forall x\in\mathbb{R}^N$ $x^tB(p)x\geq 0$:
 \[
 x^tB(p)x=x^tx-x^t\frac{p}{|p|}\otimes\frac{p}{|p|}x=|x^2|-\frac{|p^tx|^2}{|p|^2}\geq |x|^2-\frac{|p|^2}{|x|^2}{|p|^2}=0
 \]
@@ -331,7 +341,7 @@ Risultati di esistenza, unicità e confronto sono stati dimostrati  per \eqref{e
 \label{eq:cp2-02-add}
 u(0,x)=a(x)\in C_{\alpha}(\mathbb{R}),
 \end{equation}
-cioè $a-\alpha$ è continua con supporto compatto in $\mathbb{R}^N$ ed $\alpha\in\mathbb{R}$ e per $F(x,t,p,X)$ ellitticamente degenere, giometrica, continua in $\mathbb{R}^N\times(0,T]\times(\mathbb{R}^N\setminus\{0\})\times S(N)$ e soddisfacente ulteriori due proprietà
+cioè $a(x)-\alpha$ è continua con supporto compatto in $\mathbb{R}^N$ ed $\alpha\in\mathbb{R}$ e per $F(x,t,p,X)$ ellitticamente degenere, geometrica, continua in $\mathbb{R}^N\times(0,T]\times(\mathbb{R}^N\setminus\{0\})\times S(N)$ e soddisfacente ulteriori due proprietà
 \begin{subequations}
   \label{eq:cp2-12}
   \begin{align}  \label{eq:cp2-12-1}
@@ -339,7 +349,7 @@ cioè $a-\alpha$ è continua con supporto compatto in $\mathbb{R}^N$ ed $\alpha\
      \label{eq:cp2-12-2} F^*(x,t,p,I)&\geq -c_{+}(|p|),  \subtag{+}
   \end{align}
 \end{subequations}
-per qualche $c_{\pm}(\sigma)\in C^1[0,\infty)$ e $c_{\pm}(\sigma)\geq c_0>0$ per qualche costante $c_0$. Iniziamo col notare che la $F$ del moto per curvatura media soddisfa le condizioni (\hyperref[eq:cp2-12-1]{\ref{eq:cp2-12}\ped{$\pm$}}); difatti $F(p,X)=-\trace\left(A(p)X\right)$ ed  essendo $F$ continua per $p\in\mathbb{R}^N\setminus\{0\}$ e giometrica  verifica le condizioni precedenti con
+per qualche $c_{\pm}(\sigma)\in C^1[0,\infty)$ e $c_{\pm}(\sigma)\geq c_0>0$ per qualche costante $c_0$. Iniziamo col notare che la $F$ del moto per curvatura media soddisfa le condizioni (\hyperref[eq:cp2-12-1]{\ref{eq:cp2-12}\ped{$\pm$}}); difatti $F(p,X)=-\trace\left(A(p)X\right)$ ed  essendo $F$ continua per $p\in\mathbb{R}^N\setminus\{0\}$ e geometrica  verifica le condizioni precedenti con
 \[
 c_{\pm}(\sigma)=\sup_{|p|=1}\trace\left(A(p)\right).
 \]  
@@ -358,10 +368,10 @@ Sotto le condizioni (\hyperref[eq:cp2-12-1]{\ref{eq:cp2-12}\ped{$\pm$}}), possia
 Supponiamo $F$ geometrica e soddisfacente (\hyperref[eq:cp2-12-1]{\ref{eq:cp2-12}\ped{$\pm$}}) per qualche $c_{\pm}(\sigma)\in C^1[0,\infty)$ e $c_{\pm}(\sigma)\geq c_0>0$ per qualche costante $c_0$. Poniamo \[
 u^{\pm}=\pm(t+\omega_{\pm}(\rho)),\quad \rho=|x|,\quad\omega_{\pm}(\rho)=\int_0^{\rho}\frac{\sigma}{c_{\pm}(\sigma)}d\sigma.
 \]
-Allora $u^-$ (resp. $u^+$) è una $C^2$ sotto soluzione di \eqref{eq:cp2-09} in $\mathbb{R}\times\mathbb{R}^N$.
+Allora $u^-$ (resp. $u^+$) è una  sotto soluzione $C^2$ di \eqref{eq:cp2-09} in $\mathbb{R}\times\mathbb{R}^N$.
 \end{lemma}
 \begin{proof}
-Dimostriamo il caso in cui $u^-$ è sotto soluzione se verifica la \eqref{eq:cp2-12-1}, l'altro è analogo. Per definizione di $u=u^-\in C^2(\mathbb{R}\times\mathbb{R}^N)$. Poichè $F_*$ è geometrica e
+Dimostriamo il caso in cui $u^-$ è sotto soluzione se verifica la \eqref{eq:cp2-12-1}, l'altro è analogo. Per definizione di $u^-\in C^2(\mathbb{R}\times\mathbb{R}^N)$. Poichè $F_*$ è geometrica e
 \[
 \begin{aligned}
 D&\omega_{-}(\rho)=\omega_{-}^{'}(\rho)D\rho \\
@@ -369,14 +379,14 @@ D^2\omega_{-}(\rho)&=\omega_{-}^{''}(\rho)D\rho\otimes D\rho+\omega_{-}^{'}(\rho
 &D^2\rho = \rho^{-1}(I-D\rho\otimes D\rho)
 \end{aligned}
 \]
-dove l'ultima uguaglianza deriva dal fatto che $D\rho = D|x| = x/\rho$, quindi derivando giungiamo al risultato riportato sopra, osservando che $\omega_{-}^{'}(\rho)> 0$ un semplice calcolo ci mostra che
+dove l'ultima uguaglianza deriva dal fatto che $D\rho = D|x| = x/\rho$, quindi derivando giungiamo al risultato riportato sopra. Osservando che $\omega_{-}^{'}(\rho)> 0$ un semplice calcolo ci mostra che
 \[
 \begin{aligned}
-F_*(x,t,Du,D^2) &= F_{*}(x,t,-\omega_{-}^{'}(\rho)D\rho,-\omega_{-}^{'}(\rho)\rho^{-1}I+\sigma D\rho\otimes D\rho) \\
+F_*(x,t,Du,D^2u) &= F_{*}(x,t,-\omega_{-}^{'}(\rho)D\rho,-\omega_{-}^{'}(\rho)\rho^{-1}I+\sigma D\rho\otimes D\rho) \\
 &=\omega_{-}^{'}(\rho)\rho^{-1}F_*(x,t,-\rho D\rho,-I),
 \end{aligned}
 \] 
-con $\sigma = -\rho C_{-}(\rho)^{'}/C_{-}(\rho)^2$.
+con $\sigma = -(\omega^{''}(\rho)-\omega^{'}(\rho))$.
 In conclusione abbiamo
 \[
 u_t + F_*(x,t,Du,D^2u) = -1 + \frac{1}{c_{-}(\rho)}F_*(x,t,-x,-I),
@@ -393,7 +403,10 @@ u^{-}=-\left(t+\frac{|x|^2}{2(N-1)}\right).
 \]
 è una soluzione viscosa del moto per curvatura media, che rappresenta sfere che si contraggono. 
 \end{osservazione}
-Grazie al lavoro di Giga, Chen e Goto sono stati dimostrati teoremi di esistenza, confronto e unicità per \eqref{eq:cp2-09} e dato iniziale \eqref{eq:cp2-02-add}, noi qui riportiamo solo l'enunciato del teoremdi esistenza; per approfondimenti e dimostrazioni \cite[vedi][§4-6]{yun:giga}.
+Nel lavoro di Giga, Chen e Goto sono stati dimostrati teoremi di
+esistenza, confronto e unicità per \eqref{eq:cp2-09} e dato iniziale
+\eqref{eq:cp2-02-add}, noi qui riportiamo solo l'enunciato del
+teoremi esistenza; per approfondimenti e dimostrazioni si veda \cite[][§4-6]{yun:giga}.
 \begin{teorema}[Esistenza globale]
 Sia $T>0$. Assumiamo che $F(t,p,X)$ sia continua in $(0,T]\times(\mathbb{R}^N\setminus\{0\})\times S(N)$, geometrica, ellitica degenere, soddisfacente le condizioni (\hyperref[eq:cp2-12-1]{\ref{eq:cp2-12}\ped{$\pm$}}) e tale che $ -\infty<F_*(t,0,O) = F^*(t,0,O)<\infty$, con  $O$ matrice $N\times N$ nulla. Allora per $a\in C_{\alpha}(\mathbb{R}^N)$ esiste una unica soluzione viscosa $u_a\in C_{\alpha}([0,T]\times\mathbb{R}^N)$ di \eqref{eq:cp2-09}-\eqref{eq:cp2-02-add} 
 \end{teorema}
@@ -405,13 +418,13 @@ in $p=0$, punto in cui è discontinua. In questo scenario c'è abbastanza arbitr
 \begin{enumi}
   \item Una prima possibilità è quella di calcolare esplicitamente gli inviluppi semicontinui $F_*$ e $F^*$ usando le definizione \eqref{eq:cp2-03-1-add} e \eqref{eq:cp2-03-2-add}, facciamo il conto per $F_*$
 \[
-F_*(0,X)=\lim_{r\downarrow 0}\inf_{\substack{|q|<r \\ q\in \mathbb{R}^N\setminus\{0\}}}F(q,X)=(*),
+F_*(0,X)=\lim_{r\downarrow 0}\inf_{\substack{|q|<r \\ q\in \mathbb{R}^N\setminus\{0\}}}F(q,X),
 \]
 ora $F(q,X)=-\trace\left(X\right)+\trace\left(\left(\overline{q}\otimes\overline{q}\right)X\right)$, con $\overline{q}=q/|q|$, quindi
 \[
-(*)=-\trace\left(X\right)+\inf_{\substack{|\overline{q}|=1 \\ \overline{q}\in \mathbb{R}^N\setminus\{0\}}}\trace\left(\left(\overline{q}\otimes\overline{q}\right)X\right).
+F_*(0,X)=-\trace\left(X\right)+\inf_{\substack{|\overline{q}|=1 \\ \overline{q}\in \mathbb{R}^N\setminus\{0\}}}\trace\left(\left(\overline{q}\otimes\overline{q}\right)X\right).
 \]
-Calcoliamoci il secondo addento dell'equazione precedente, per farlo ricordiamo che una matrice simmetrica a valori reali, come è $X$, è diagonalizzabile con matrici ortonormali (Teorema spttrale) quindi esiste $U$ tale che $UU^t=I$ e $X=U^t\Lambda U$, dove $\Lambda=diag(\lambda_i(X))_{\{i=1\dots n\}}$ con $\lambda_i$ autovalori di $X$. Applicando una propietà della traccia, ossia $\trace(AB)=\trace(BA)$, otteniamo che 
+Calcoliamoci il secondo addento dell'equazione precedente. Per farlo ricordiamo che una matrice simmetrica a valori reali, come è $X$, è diagonalizzabile con matrici ortonormali (Teorema spettrale) quindi esiste $U$ tale che $UU^t=I$ e $X=U^t\Lambda U$, dove $\Lambda=diag(\lambda_i(X))_{\{i=1\dots n\}}$ con $\lambda_i$ autovalori di $X$. Applicando una propietà della traccia, ossia $\trace(AB)=\trace(BA)$, otteniamo che 
 \[
 \trace\left((\overline{q}\otimes\overline{q})X\right)=\trace\left((\overline{q}\otimes\overline{q})\Lambda\right)
 \]
@@ -470,20 +483,21 @@ con $\hat{\lambda}_i=(\lambda_i-\lambda_1)>0$ e $\hat{q}=(q_2,\dots,q_n)$, $|\ha
 \label{eq:cp2-14}
 \begin{align}
   \label{eq:cp2-14-1}%
-  F_*(p,X) &=%
+  \underline{F}(p,X) &=%
   \begin{cases}
    -\trace\left(\left(I-\overline{p}\otimes\overline{p}\right)X\right) &\text{ se } p\ne 0 \\
    -2||X|| & \text{ se }p = 0
   \end{cases} \subtag{cl_*}\\
   \label{eq:cp2-14-2}%
-  F^*(p,X) &=%
+  \overline{F}(p,X) &=%
   \begin{cases}
    -\trace\left(\left(I-\overline{p}\otimes\overline{p}\right)X\right) &\text{ se } p\ne 0 \\
    +2||X|| & \text{ se }p = 0
   \end{cases} \subtag{cl^*}
 \end{align}
 \end{subequations}
-Queste  sono(?)  \eqref{eq:cp2-14-1} semicontinua inferiormente e \eqref{eq:cp2-14-2} superiormente, \cite[vedi][§9]{crand:lion}.
+Queste  sono  \eqref{eq:cp2-14-1} semicontinua inferiormente e
+\eqref{eq:cp2-14-2} superiormente per $n=2,3$, \cite[vedi][§9]{crand:lion}.
 \end{enumi}
 \begin{osservazione}
 Osserviamo che i teoremi sopra esposti valgono nel caso di moto per curvaura media, come abbiamo mostrato,  ed anche per la sua  generalizzazione cioè
@@ -491,20 +505,21 @@ Osserviamo che i teoremi sopra esposti valgono nel caso di moto per curvaura med
 u_t -|Du|\Div\left(\frac{Du}{|Du|}\right) - \nu|Du| = 0,\quad\nu\in\mathbb{R},
 \]
 il cui flusso continua a verificare le ipotesi del teorema.
- Tuttavia possiamo estendere risultati di confronto ed esistenza(?), anche nel caso dell'equazione del moto per curvatura media che preserva il volume
+ Tuttavia possiamo estendere risultati di confronto ed esistenza, anche nel caso dell'equazione del moto per curvatura media che preserva il volume
 \begin{equation}
   \label{eq:cp2-15}
-  u_t(x,t)=|Du(x,t)|\Div{\left(\frac{D(x,t)}{|D(x,t)|}\right)}-\frac{\iint\Div{\left(\frac{D(x,t)}{|D(x,t)|}\right)}d\mu}{3V_0}x^tDu
+  u_t(x,t)=|Du(x,t)|\Div{\left(\frac{Du(x,t)}{|Du(x,t)|}\right)}-\frac{\iint\Div{\left(\frac{D(x,t)}{|D(x,t)|}\right)}d\mu}{3V_0}x^tDu
 \end{equation}
-Sia $u:\Omega\times(0,T)\to\mathbb{R}$, una funzione level set di qualche superficie, allora l'intgrale dell'equazione precedente lo possiamo riscrivere (vedi §\ref{cp:cp3-3})
+Sia $u:\Omega\times(0,T)\to\mathbb{R}$, una funzione level set di qualche superficie, allora l'integrale dell'equazione precedente lo possiamo riscrivere (vedi §\ref{cp:cp3-3})
 \[
-C(t)=\frac{\int_{\Omega}-F(Du,D^2u)\delta(u(x,t))dx}{3V_0},
+\mathcal{I}(u(x,t),t)=\frac{\int_{\Omega}-F(Du,D^2u)\delta(u(x,t))dx}{3V_0},
 \]
-quindi \eqref{eq:cp2-15} diventa
+Se tale termine ha una dipendenza locale da $u$ (come nel caso della
+sfera in cui risulta essere costante vedi §\ref{cp:cp3-3}) allora la \eqref{eq:cp2-15} diventa
 \[
 u_t + F(Du,D^2u) + f(t,x,Du) = u_t +\tilde{F}(x,t,Du,D^2u)=0,
 \]
-con $F$ la stessa del moto per curvatura media e $f(x,t,Du)=C(t)<x,Du>$.
+con $F$ la stessa del moto per curvatura media e $f(x,t,Du)=\mathcal{I}(t)<x,Du>$.
 Possiamo osservare che il flusso precedente rientra in 
 \begin{equation}
 \label{eq:cp2-16}
@@ -525,7 +540,15 @@ ed $F_1\in C(\overline{\Omega}\times[0,T]\times\mathbb{R}^N)$ tale che
 \[
 |F_1(x,t,p)-F_1(y,t,p)|\leq C(1+|p|)|x-y|,
 \]
-con qualche costante $C>0$ indipendente da $x$, $y\in\overline{\Omega}$ e $p\in\mathbb{R}^N$. Sotto queste ipotesi, risultati di confronto e esistenza vengono raggiunti da Crandal e Lions, Giga e Goto, nel caso $\Omega$ limitato, per approfondimenti, teoremi e dimostrazioni \cite[vedi][§3]{giga:main} e \cite[][§8]{crand:lion}.
+con qualche costante $C>0$ indipendente da $x$,
+$y\in\overline{\Omega}$ e $p\in\mathbb{R}^N$. Sotto queste ipotesi,
+risultati di confronto e esistenza vengono raggiunti da Crandal e
+Lions, Giga e Goto, nel caso $\Omega$ limitato, per approfondimenti,
+teoremi e dimostrazioni \cite[vedi][§3]{giga:main} e
+\cite[][§8]{crand:lion}.
+Nel caso di dipendenza non locale da $u$ in $\mathcal{I}(u,t)$, la
+questione è ancora aperta e finora non sono stati raggiunti
+risultati definitivi.
 \end{osservazione}
 
 
