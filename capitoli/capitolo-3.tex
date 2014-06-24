@@ -1,15 +1,22 @@
 \chapter{Costruzione ed analisi dello schema Semi-Lagrangiano}
 \label{cp:cp2-00}
-In questo capitolo costruiremo ed analizzeremo uno schema Semi-Lagrangiano per l'equazione di curvatura media in $\mathbb{R}^3$.
-Ricordiamo la nostra equazione :
+In questo capitolo costruiremo ed analizzeremo uno schema Semi-Lagrangiano per l'equazione di curvatura media in $\Omega\subseteq\mathbb{R}^3$:
 \begin{equation}
 \label{eq:cp3-01}
 \begin{cases}
-u_t = \Div\left(\frac{Du}{|Du|}\right)|Du|\quad (x_1,x_2,x_3)\in\mathbb{R}^3,t\in(0,T) \\
-u(x,0) = u_0(x) \qquad \quad \mathbb{R}^3\times\{t = 0\}
+u_t = \Div\left(\frac{Du}{|Du|}\right)|Du|\quad (x_1,x_2,x_3)\in\Omega,t\in(0,T) \\
+u(x,0) = u_0(x) \qquad \quad\quad\Omega\times\{t = 0\}
 \end{cases}
 \end{equation}
-con $Du$ il gradiente di $u$.
+con $Du$ il gradiente di $u$, e per la sua variante che preserva il
+volume:
+\begin{equation}
+\label{eq:cp3-01-vp}
+\begin{cases}
+ u_t=|Du|\Div{\left(\frac{Du}{|Du|}\right)}-\frac{\iint\Div{\left(\frac{Du}{|Du|}\right)}d\mu}{3V_0}x^tDu\quad (x_1,x_2,x_3)\in\Omega,t\in(0,T) \\
+u(x,0) = u_0(x) \qquad\qquad\qquad\qquad\qquad\qquad\quad\Omega\times\{t = 0\}
+\end{cases}
+\end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Section 3.1 Costruzione dello schema
 %
@@ -18,6 +25,7 @@ con $Du$ il gradiente di $u$.
 
 Partiamo dall'equazione \eqref{eq:cp3-01} e operiamo alcune manipolazioni algebriche, al fine di scrivere diversamente il termine del flusso. 
 \begin{proposizione}
+\label{prop:cp3-01}
 Vale la seguente serie di uguaglianze:
 \[
 \Div\left(\frac{Du}{|Du|}\right)|Du|=\trace\left(\left(I-\frac{DuDu^t}{|Du|^2}\right)D^2u\right)=\vec{v}_1^tD^2u\vec{v}_1+\vec{v}_2^tD^2u\vec{v}_2.
@@ -355,9 +363,9 @@ La precedente uguaglianza implica che
 \]
 sotto la condizione che $\Delta x^2=o(\Delta t)$ abbiamo che $\varepsilon\to 0$ per $\Delta t\to 0$, quindi la condizione di consistenza generalizzata che si traduce nella seguente diseguaglianza
 \[
-F_*(Du(x,t),D^2u(x,t))\le\varepsilon\Delta u(x_j,t^n)\le F^*(Du(x,t),D^2u(x,t)),
+\underline{F}(Du(x,t),D^2u(x,t))\le\varepsilon\Delta u(x_j,t^n)\le \overline{F}(Du(x,t),D^2u(x,t)),
 \]
-con $F_*$ e $F^*$ definite come in (\hyperref[eq:cp2-14]{\ref{eq:cp2-14}\ped{$cl$}}), risulta soddisfatta.  
+con $\underline{F}$ e $\overline{F}$ definite come in (\hyperref[eq:cp2-14]{\ref{eq:cp2-14}\ped{$cl$}}), risulta soddisfatta.  
 \end{itemize}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 Section 3.3
@@ -365,3 +373,100 @@ con $F_*$ e $F^*$ definite come in (\hyperref[eq:cp2-14]{\ref{eq:cp2-14}\ped{$cl
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Schema MCM \emph{volume preserving}}
 \label{cp:cp3-3}
+
+In questa sezione, costruiremo uno schema semi-lagrangiano per
+\eqref{eq:cp3-01-vp}. Utilizzando alcuni risultati ottenuti nelle
+sezioni precedenti, ed in partiocalare la
+\emph{Proposizione} \ref{prop:cp3-01}, possiamo riscriverci l'equazione \eqref{eq:cp3-01-vp} nel seguente modo
+\begin{equation}
+\label{eq:cp3-sc3-01}
+u_t = \vec{v}_1^tD^2u\vec{v}_1 +\vec{v}_2^tD^2u\vec{v}_2-\mathcal{I}(u,t)x^tDu,
+\end{equation}
+con $\mathcal{I}(u,t)$ pari a
+\begin{equation}
+\label{eq:cp3-sc3-02}
+\mathcal{I}(u,t) = \frac{\iint\Div{\left(\frac{Du}{|Du|}\right)}d\mu}{3V_0}.
+\end{equation}
+Il numeratore di \eqref{eq:cp3-sc3-02} rappresenta l'integrale della
+curvatura media (la divergenza della normale) sulla superficie
+individuata da una curva di livello di $u(x,t)$, mentre il
+denominatore il volume iniziale della medesima curva di livello. Questo
+termine, purtroppo, non è costante (tranne in alcuni casi vedere
+\emph{Osservazione} \ref{oss:cp3-sc3-01}) per cui dobbiamo
+approssimarlo. Prima di procedere, cerchiamo di trasformare
+l'integrale di superficie in un integrale di volume, come suggerito in
+\cite[][§1.5]{osher:fed}. Ricordando la definizione di superfice in
+forma level-set, data in §\ref{sec:cp1-00}, abbiamo che i punti
+appartenenti alla nostra superficie sono tutti quegli
+$x\in\Omega\subseteq\mathbb{R}^3$ tale che $u(x,t)=0$ con $t$ fissto. Per cui
+possiamo facilmente determinare se un punto $x\in\Omega$ è interno o
+esterno alla superfice, guardando semplicemente al segno locale di
+$u(x,t)$. Poniamo che se $u$ in $x$ ha segno negativo allora $x$ è un punto
+interno, se ha segno positivo è esterno e mentre se é uguale a zero
+sta sulla suferficie. Detto ciò definiamo i seguenti insiemi
+\[
+\begin{aligned}
+\Omega^{+}&=\left\{x\in\Omega \,|\, u(x,t)>0\right\} \\
+\Omega_{-}&=\left\{x\in\Omega \,|\, u(x,t)<0\right\} \\
+ \partial\Omega&=\left\{x\in\Omega \,|\, u(x,t)=0\right\}.
+\end{aligned}
+\] 
+\begin{esempio}
+Prendiamo ad esempio la funzione $u(x)=x_1^2+x_2^2+x_3^2-1$, che al livello
+zero rappresenta la sfera in $\mathbb{R}^3$ di raggio uno, allora
+abbiamo
+\[
+\begin{aligned}
+\Omega^{+}&=\left\{x\in\mathbb{R}^3 \,|\, |x|^2>1\right\} \\
+\Omega_{-}&=\left\{x\in\mathbb{R}^3 \,|\, |x|^2<1\right\} \\
+ \partial\Omega&=\left\{x\in\mathbb{R}^3 \,|\, |x|^2=0\right\}.
+\end{aligned}
+\] 
+
+\begin{figure}[!htbp]
+  \begin{center}
+  \tdplotsetmaincoords{60}{40}
+  \begin{tikzpicture}[tdplot_main_coords,gray,thick]
+   
+    \coordinate (O) at (0.66,0.0,0.0);
+       
+    \tdplotsetcoord{P}{1.3}{90}{45};
+    \tdplotsetcoord{P2}{-2.0}{120}{30};
+    \tdplotsetcoord{P3}{3.0}{60}{40};
+    \tdplotsetcoord{P4}{1.5}{97}{153};
+
+    
+    \draw [->,Mahogany!80!Mulberry](P2) to[out=50,in=130](P4);
+    \node[shape=circle,draw=gray,fill=gray,inner sep=0pt,minimum size=1mm]
+    (origin) at (O) {};
+    \node [Mahogany!80!Mulberry,left] at (origin.south) {$O$};
+    \node[] (end) at (P3) {};
+    \node [Mahogany!80!Mulberry] at (end.south) {$\Omega^+$};
+    \node[] (end1) at (P) {};
+    \node [Mahogany!80!Mulberry] at (end1.south) {$\Omega^-$};
+    \node[] (end2) at (P2) {};
+    \node [Mahogany!80!Mulberry] at (end2.south) {$\partial\Omega$};
+
+    \draw  [tdplot_main_coords,dashed] (O) ellipse (42pt and 20pt);
+    \tdplotsetthetaplanecoords{40};
+    \draw [thick,tdplot_rotated_coords](1.0,0.5,0.5) arc (0:360:1.5);
+    
+        
+  \end{tikzpicture}
+  \end{center}
+  \caption{Insiemi di punti interni ed esterni alla sfera di livello
+    zero della funzione $u(x)=|x|^2-1$}
+  \label{fig:cp3-sc3-01}
+\end{figure}
+\end{esempio}
+
+\begin{osservazione}
+Da notare che il discorso fatto fin'ora, è valido anche se prendiamo
+un livello $c\ne 0$. In quanto possiamo riformulare il tutto
+scegliendo il livello zero per la funzione  $\tilde{u}(x)=u(x)-c$.
+\end{osservazione}
+\begin{osservazione}[\emph{Quando $u$ rappresenta una sfera
+      level-set}]
+  \label{oss:cp3-sc3-01}
+ Bella
+\end{osservazione}
