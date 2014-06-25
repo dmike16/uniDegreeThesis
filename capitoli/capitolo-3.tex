@@ -22,7 +22,7 @@ u(x,0) = u_0(x) \qquad\qquad\qquad\qquad\qquad\qquad\quad\Omega\times\{t = 0\}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Costruzione dello schema MCM}
-
+\label{sec:cp3-sc3-1}
 Partiamo dall'equazione \eqref{eq:cp3-01} e operiamo alcune manipolazioni algebriche, al fine di scrivere diversamente il termine del flusso. 
 \begin{proposizione}
 \label{prop:cp3-01}
@@ -117,9 +117,10 @@ Questa costruzione non è applicabile nel caso in cui
 Du = 0 \text{ o } u_{x_1}^2+u_{x_3}^2 = 0. 
 \end{equation}
 Quindi per distinguere i due casi dal punto di vista numerico, introduciamo una soglia $s$ ed una costante $C$. In modo tale che il verificarsi del caso \eqref{eq:cp3-01-add} è rappresentato numericamente dalle disequazioni
-\[
+\begin{equation}
+\label{eq:cp3-sc3-1-01}
 |D_j^n|\le C\Delta x^s\text{ e }|(D_j^n)_1^2+(D_j^n)_3^2|\le C\Delta x^s.
-\]
+\end{equation}
 \end{osservazione}
 Nel caso in cui siamo sotto la soglia, possiamo procedere in due modi diversi.
 \begin{enumerate}
@@ -154,7 +155,7 @@ Scegliendo, ad esempio, la prima alternativa il nostro schema $\mathit{MCM}$ com
   \left\{
   \begin{aligned}
     &   &\scriptstyle|D_j^n|>&\scriptstyle C\Delta x^s\\ 
-    &\frac{1}{4}\sum_{+,-}I[u^n](x_j+\sqrt{2\Delta t}(\pm\vec{v}_{1,j}^n\pm\vec{v}_{2,j}^n)),  &\scriptstyle\mathbf{and} \\
+    &\frac{1}{4}\sum_{+,-}I[u^n](x_j+\sqrt{2\Delta t}(\pm\vec{v}_{j}^{n,1}\pm\vec{v}_{j}^{n,2})),  &\scriptstyle\mathbf{and} \\
     &  &\scriptstyle|(D_j^n)_1^2+(D_j^n)_3^2|&\scriptstyle >C\Delta x^2 \\
     &  &  \\
     &  &\scriptstyle|D_j^n|\leq&\scriptstyle C\Delta x^s \\
@@ -163,7 +164,11 @@ Scegliendo, ad esempio, la prima alternativa il nostro schema $\mathit{MCM}$ com
   \end{aligned}   
   \right.
 \end{equation}
-dove $\vec{v}_{1,j}^n=\vec{v}_1^n(D_j^n)$ e $\vec{v}_{2,j}^n=\vec{v}_2^n(D_j^n)$. 
+dove
+\begin{equation} 
+  \label{eq:cp3-sc3-1-end}
+  \vec{v}_{j}^{n,1}=\vec{v}_1(D_j^n), \quad\vec{v}_j^{n,2}=\vec{v}_2(D_j^n).
+\end{equation} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %              Section 3.2 Consistenza dello schema
@@ -192,12 +197,14 @@ E sia inoltre $\phi\in C^{\infty}(\mathbb{R}^3\times(0,t])$ e $\phi^{n_m-1}\equi
 \begin{equation}
 \label{eq:cp3-03}
 \begin{split}
-&\phi_t(x,t)+\underline{F}(D\phi(x,t),D^2\phi(x,t))\le \\
+&\phi_t(x,t)+F_*(D\phi(x,t),D^2\phi(x,t))\le \\
 &\le\liminf_{m\to\infty}\frac{\phi(x_{j_m},t^{n_m})-S(x_{j_m},\phi_{j_m}^{n_m-1},D\phi_{j_m}^{n_m-1})}{\Delta t_m}\le \\
 &\le\limsup_{m\to\infty}\frac{\phi(x_{j_m},t^{n_m})-S(x_{j_m},\phi_{j_m}^{n_m-1},D\phi_{j_m}^{n_m-1})}{\Delta t_m}\le \\
-&\le\phi_t(x,t)+\overline{F}(D\phi(x,t),D^2\phi(x,t)).
+&\le\phi_t(x,t)+F^*(D\phi(x,t),D^2\phi(x,t)),
 \end{split}
 \end{equation}
+con $F_*$ e $F^*$ rispettivamente inviluppo semicontinua inferioremnte
+e speriormente di $F$ definiti in \ref{eq:cp2-03-add}.
 \end{definizione}
 \begin{osservazione}
 Osserviamo che se $F$ è continua allora il $\limsup$ ed il $\liminf$ nell'espressione \eqref{eq:cp3-03} coincidono, quindi la definizione si riduce a quella classica di consistenza.
@@ -220,9 +227,10 @@ con $C_1$ e $C_2$ costanti positive che dipendono così come gli ordini $r$ e $q
 \subsection{Caso gradiente diverso da zero}
 
 Consideriamo il caso in cui $Du(x,t)\ne 0$ e $u_{x_1}(x,t)^2+u_{x_3}(x,t)^2\ne 0$, vista la regolarità di $u$, esiste un intorno di $(x,t)$ in cui le due espressioni precedenti si mantengono vere, quindi almeno asintoticamente:
-\[
+\begin{equation}
+  \label{eq:cp3-sc21-01}
 |D_j^n|\ge C\Delta x^s\text{ e }|(D_j^n)_1^2+((D_j^n)_3^2|\ge C\Delta x^s
-\]
+\end{equation}
 per cui possiamo applicare lo schema nella forma \eqref{eq:cp3-02}.
 
 Abbiamo definito $\sigma=[\vec{v}_1,\vec{v}_2]$ quindi prendendo $\vec{b}$ in $\Pi=\{[1,1]^t,[-1,1]^t,$ $[1,-1]^t,[-1,-1]^t\}$ possiamo riscrivere il termine generico della sommatoria in \eqref{eq:cp3-02} come
@@ -340,9 +348,9 @@ Inserendo quest'ultima espressione nella definizione di consistenza generalizzat
 Quindi per  $(\Delta t,\Delta x)\to 0$ e $(x_j,t^n)\to(x,t)$ sotto la condizione che $\Delta x^r = o(\Delta t)$ la \eqref{eq:cp3-03} risulta soddisfatta, in quanto il termine $\vec{v}_1^tD^2u(x_j,t^n)\vec{v}_1 +\vec{v}_2^tD^2u(x_j,t^n)\vec{v}_2 $ è sempre compreso tra il suo lim inf e lim sup :
 \[
 \begin{split}
-  &\underline{F}(Du(x,t),D^2u(x,t))\le-\vec{v}_1^tD^2u(x_j,t^n)\vec{v}_1
+  &F_*(Du(x,t),D^2u(x,t))\le-\vec{v}_1^tD^2u(x_j,t^n)\vec{v}_1
   -\vec{v}_2^tD^2u(x_j,t^n)\vec{v}_2\le \\
-  &\le\overline{F}(Du(x,t),D^2u(x,t))
+  &\le F^*(Du(x,t),D^2u(x,t))
 \end{split}
 \]
 con $F(Du(x,t),D^2u(x,t))=-\vec{v}_1^tD^2u(x_j,t^n)\vec{v}_1 -\vec{v}_2^tD^2u(x_j,t^n)\vec{v}_2$.
@@ -372,7 +380,7 @@ con $\underline{F}$ e $\overline{F}$ definite come in (\hyperref[eq:cp2-14]{\ref
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Schema MCM \emph{volume preserving}}
-\label{cp:cp3-3}
+\label{sec:cp3-sc3-3}
 
 In questa sezione, costruiremo uno schema semi-lagrangiano per
 \eqref{eq:cp3-01-vp}. Utilizzando alcuni risultati ottenuti nelle
@@ -392,25 +400,30 @@ curvatura media (la divergenza della normale) sulla superficie
 individuata da una curva di livello di $u(x,t)$, mentre il
 denominatore il volume iniziale della medesima curva di livello. Questo
 termine, purtroppo, non è costante (tranne in alcuni casi vedere
-\emph{Osservazione} \ref{oss:cp3-sc3-01}) per cui dobbiamo
-approssimarlo. Prima di procedere, cerchiamo di trasformare
-l'integrale di superficie in un integrale di volume, come suggerito in
-\cite[][§1.5]{osher:fed}. Ricordando la definizione di superfice in
-forma level-set, data in §\ref{sec:cp1-00}, abbiamo che i punti
+\emph{Osservazione} \ref{oss:cp3-sc3-02}) per cui dobbiamo
+approssimarlo. Prima di procedere, vediamo come riscrivere il nostro integrale
+di  superficie \cite[vedi][§1.5]{osher:fed}. Ricordando la definizione
+di superfice in forma level-set, data in §\ref{sec:cp1-00}, abbiamo che i punti
 appartenenti alla nostra superficie sono tutti quegli
-$x\in\Omega\subseteq\mathbb{R}^3$ tale che $u(x,t)=0$ con $t$ fissto. Per cui
-possiamo facilmente determinare se un punto $x\in\Omega$ è interno o
-esterno alla superfice, guardando semplicemente al segno locale di
-$u(x,t)$. Poniamo che se $u$ in $x$ ha segno negativo allora $x$ è un punto
+$x\in\Omega\subseteq\mathbb{R}^3$ tale che $u(x)=c$ con
+$c\in\mathbb{R}$ un qualsiasi livello scelto. Consideriamo superfici
+chiuse in modo tale da poter definire chiaramente zone interne e zone
+esterne e prendiamo come interfaccia $u(x)=0$, cioè scegliamo il
+livello zero, lo possiamo fare senza perdità di generalità (vedi
+\emph{Osservazione} \ref{oss:cp3-sc3-01}). In questa configurazione
+possiamo facilmente  determinare se un punto $x\in\Omega$ è interno o
+esterno alla superfice, guardando  al segno locale di $u(x)$;
+poniamo che se $u$ in $x$ ha segno negativo allora $x$ è un punto
 interno, se ha segno positivo è esterno e mentre se é uguale a zero
-sta sulla suferficie. Detto ciò definiamo i seguenti insiemi
+sta sulla suferficie. Detto ciò definiamo i seguenti insiemi (vedi Fig
+\ref{fig:cp3-sc3-01})
 \[
 \begin{aligned}
-\Omega^{+}&=\left\{x\in\Omega \,|\, u(x,t)>0\right\} \\
-\Omega_{-}&=\left\{x\in\Omega \,|\, u(x,t)<0\right\} \\
- \partial\Omega&=\left\{x\in\Omega \,|\, u(x,t)=0\right\}.
+\Omega^{+}&=\left\{x\in\Omega \,|\, u(x)>0\right\} \\
+\Omega_{-}&=\left\{x\in\Omega \,|\, u(x)<0\right\} \\
+ \partial\Omega&=\left\{x\in\Omega \,|\, u(x)=0\right\}.
 \end{aligned}
-\] 
+\]  
 \begin{esempio}
 Prendiamo ad esempio la funzione $u(x)=x_1^2+x_2^2+x_3^2-1$, che al livello
 zero rappresenta la sfera in $\mathbb{R}^3$ di raggio uno, allora
@@ -433,10 +446,10 @@ abbiamo
     \tdplotsetcoord{P}{1.3}{90}{45};
     \tdplotsetcoord{P2}{-2.0}{120}{30};
     \tdplotsetcoord{P3}{3.0}{60}{40};
-    \tdplotsetcoord{P4}{1.5}{97}{153};
-
+    \tdplotsetcoord{P4}{0.8}{97}{153};
     
     \draw [->,Mahogany!80!Mulberry](P2) to[out=50,in=130](P4);
+    \node[fill=red!15,rotate=50,scale=4.0,rounded corners] at (P4) {};
     \node[shape=circle,draw=gray,fill=gray,inner sep=0pt,minimum size=1mm]
     (origin) at (O) {};
     \node [Mahogany!80!Mulberry,left] at (origin.south) {$O$};
@@ -461,12 +474,123 @@ abbiamo
 \end{esempio}
 
 \begin{osservazione}
+  \label{oss:cp3-sc3-01}
 Da notare che il discorso fatto fin'ora, è valido anche se prendiamo
 un livello $c\ne 0$. In quanto possiamo riformulare il tutto
 scegliendo il livello zero per la funzione  $\tilde{u}(x)=u(x)-c$.
 \end{osservazione}
+Ora ricordiamo che l'\emph{integrale di superficie} di una funzione
+$f(x)$ sulla frontiera di un insieme in $\mathbb{R}^3$ è definito come \cite[vedi][§1.5]{osher:fed}
+\begin{equation}
+  \label{eq:cp3-sc3-03}
+  \int_{\Omega}f(x)\hat{\delta}(x)dx,
+\end{equation}
+con $\hat{\delta}(x)$  \emph{delta di Dirac} che taglia
+fuori tutto dal calcolo dell'integrale tranne la frontiera di
+$\Omega$. La delta di Dirac $\hat{\delta}(x)$, è definita
+(\cite[vedi][§1.5]{osher:fed}) come la
+derivata direzionale (nel senso delle distribuzioni) nella direzione normale della funzione di \emph{Heaviside}:
+\begin{equation}
+  \label{eq:cp3-sc3-04}
+  \hat{\delta}(x)=DH(u(x))\cdot\vec{n}
+\end{equation}
+ed è una funzione nella variabile multidimensionale $x$, con $H$
+funzione unidimensionale della forma 
+\[
+H(u)=
+\begin{cases}
+  0 &\text{ se $u\leq 0$} \\
+  1 &\text{ se $u>0$}
+\end{cases}
+\]
+Questa distribuzione è diversa da zero solo sull'interfaccia $\partial\Omega$
+dove $u=0$. L'equazione \eqref{eq:cp3-sc3-04} può essere riscritta come
+\[
+\hat{\delta}(x) = H'(u(x))Du(x)\cdot\frac{Du(x)}{|Du(x)|}=H'(u(x))|Du(x)|
+\]
+dove abbiamo sfruttato la definizione della normale,
+$\vec{n}(x)=Du/|Du|$. In una dimensione spaziale, vale la seguente uguaglianza
+\[
+\delta(u)=H'(u),
+\]
+con $\delta(u)$ delta di Dirac unidimensionale e $H'(u)$ derivata nel
+senso delle distribuzioni della funzione di Heaviside.
+Quindi la \eqref{eq:cp3-sc3-04} diventa
+\begin{equation}
+  \label{eq:cp3-sc3-05}
+  \hat{\delta}(x)=\delta(u(x))|Du(x)|,
+\end{equation}
+inserendo quest'ultima in \eqref{eq:cp3-sc3-03} possiamo riscriverci l'integrale di superficie come 
+\begin{equation}
+  \label{eq:cp3-sc3-06}
+  \int_{\Omega}f(x)\delta(u(x))|Du(x)|dx.
+\end{equation}
+Applicando questo risultato al numeratore di \eqref{eq:cp3-sc3-02}
+otteniamo
+\begin{equation}
+  \label{eq:cp3-sc3-07}
+\mathcal{I}(u,t) = \frac{\int_{\Omega}\Div{\left(\frac{Du}{|Du|}\right)}\delta(u(x))|Du(x,t)|dx}{3V_0}.
+\end{equation}
+Iniziamo col notare che il termine che compare all'interno
+dell'integrale insieme alla delta, non è altro che il flusso, con il
+segno meno davanti, dell'equazione classica del moto per curvatura
+media \eqref{eq:cp3-01}; quindi possiamo utilizzare l'approssimazione
+spaziale dello schema MCM presentata in §\ref{sec:cp3-sc3-1}. Mentre
+per approssimare $\delta(u)$ utilizziamo un'approssimazione
+``smeared-out'' della funzione $\delta(u)$, cioè sostituiamo
+quest'ultima con
+\begin{equation}
+  \label{eq:cp3-sc3-08}
+  \delta(u)=
+  \begin{cases}
+    0 &\text{ se $u<-\varepsilon$} \\
+    \frac{1}{2\varepsilon}+\frac{1}{2\varepsilon}\cos\left(\frac{\pi
+      u}{\varepsilon}\right) &\text{ se $\varepsilon\leq u \leq\varepsilon$} \\
+    0 &\text{ se $\varepsilon<u$}
+  \end{cases}
+\end{equation}
+con $\varepsilon=1.5\Delta x$ (come suggerito in
+\cite[][§1.5]{osher:fed}). Questa non è niente altro che la derivata
+della funzione ``spalmata'' di Heaviside:
+\[
+H(u)=
+\begin{cases}
+ 0 &\text{ se $u<-\varepsilon$} \\
+    \frac{1}{2}+\frac{u}{2\varepsilon} +\frac{1}{2\pi}\sin\left(\frac{\pi
+      u}{\varepsilon}\right) &\text{ se $\varepsilon\leq u \leq\varepsilon$} \\
+ 1 &\text{ se $\varepsilon<u$} 
+\end{cases}
+\]
+infine come metodo di intergrazione usiamo la formula del punto medio
+in $\mathbb{R}^3$.
+\begin{osservazione}
+Come osservato in \cite[][§1.5]{osher:fed}, la scelta del metodo di
+integrazione non influisce sull'errore commesso nel calcolo
+dell'integrale \eqref{eq:cp3-sc3-06} poichè l'uso della
+\eqref{eq:cp3-sc3-08} per approssimare la delta, fa si che il  metodo
+abbia un accuratezza del primo ordine.
+\end{osservazione}
+Consideriamo una griglia spaziale $x_j=(j_1\Delta x,j_2\Delta
+x,j_3\Delta x)$ con $j=(j_1,j_2,$ $j_3)$ multi-indice in $\mathbb{Z}^3$ ed una griglia temporale $t^n=n\Delta t$ con $n\in\mathbb{N}$.
+Indichiamo con $u_j^n$ l'approssimazione di $u$ nel punto della
+griglia $(x_j,t^n)$, con $D_j^n$ l'approssimazione del gradiente di
+$u$ nel suddetto punto e con $\mathcal{I}^n$ l'approssimazione al tempo $t^n$ di
+\eqref{eq:cp3-sc3-02}, ottenuta con il metodo precedentemente
+descritto. Utilizzando le differenze finite in avanti per la derivata
+temporale e le derivate direzionali con incremento $\sqrt{2\Delta t}$
+per il flusso, come fatto per MCM in §\ref{sec:cp3-sc3-1}, nel caso in
+cui siamo sopra la soglia, cioè la \eqref{eq:cp3-sc21-01} è soddisfatta abbiamo
+\begin{equation}
+  \label{eq:cp3-sc3-09}
+  u_j^{n+1}=\frac{1}{4}\sum_{+,-}I[u^n]\left(x_j(1-\mathcal{I}^n\Delta
+  t)+ \sqrt{2\Delta t}(\pm\vec{v}_j^{n,1}\pm\vec{v}_j^{n,2})\right)
+\end{equation}
+con $\vec{v}_j^{n,1}$ e $\vec{v}_j^{n,2}$ come in
+\eqref{eq:cp3-sc3-1-end}. Mentre nel coso in cui siamo sotto la
+soglia, ovvero vale la \eqref{eq:cp3-sc3-1-01}, utilizziamo lo stesso
+metodo usata nello schema MCM, cioè \eqref{eq:cp3-03-add}.
 \begin{osservazione}[\emph{Quando $u$ rappresenta una sfera
       level-set}]
-  \label{oss:cp3-sc3-01}
+  \label{oss:cp3-sc3-02}
  Bella
 \end{osservazione}
