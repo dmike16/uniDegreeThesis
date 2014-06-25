@@ -255,6 +255,7 @@ Osserviamo che anche in questo caso $F$ soddisfa le proprietà \eqref{eq:cp2-03}
 
 Le definizioni si posso estendere anche per $u$ ed $F$ arbitrarie, non necessariamente continue. Prima di vedere come, richiamiamo la definizione di inviluppo semicontinuo. Sia $h$ una funzione definita in $L\subset\mathbb{R}$ a valori in $\tilde{\mathbb{R}}=\mathbb{R}\cup\{\pm\infty\}$, definiamo inviluppo semicontinuo superiore $h^*$ e inferiore $h_*$ nel seguente modo
 \begin{subequations}
+\label{eq:cp2-03-add}
 \begin{align}
   \label{eq:cp2-03-1-add}%
   h^*(x) &= \lim_{r\downarrow 0}\sup_{\substack{|x-y|<r \\ y\in L}}h(y),\quad x\in\overline{L} \uptag{*} \\
@@ -515,12 +516,12 @@ il cui flusso continua a verificare le ipotesi del teorema.
   \label{eq:cp2-15}
   u_t(x,t)=|Du(x,t)|\Div{\left(\frac{Du(x,t)}{|Du(x,t)|}\right)}-\frac{\iint\Div{\left(\frac{Du(x,t)}{|Du(x,t)|}\right)}d\mu}{3V_0}x^tDu
 \end{equation}
-Sia $u:\Omega\times(0,T)\to\mathbb{R}$, una funzione level set di qualche superficie, allora l'integrale dell'equazione precedente lo possiamo riscrivere (vedi §\ref{cp:cp3-3})
+Sia $u:\Omega\times(0,T)\to\mathbb{R}$, una funzione level set di qualche superficie, allora l'integrale dell'equazione precedente lo possiamo riscrivere (vedi §\ref{sec:cp3-sc3-3})
 \[
 \mathcal{I}(u(x,t),t)=\frac{\int_{\Omega}-F(Du,D^2u)\delta(u(x,t))dx}{3V_0},
 \]
 Se tale termine ha una dipendenza locale da $u$ (come nel caso della
-sfera in cui risulta essere costante vedi §\ref{cp:cp3-3}) allora la \eqref{eq:cp2-15} diventa
+sfera in cui risulta essere costante vedi §\ref{sec:cp3-sc3-3}) allora la \eqref{eq:cp2-15} diventa
 \[
 u_t + F(Du,D^2u) + f(t,x,Du) = u_t +\tilde{F}(x,t,Du,D^2u)=0,
 \]
