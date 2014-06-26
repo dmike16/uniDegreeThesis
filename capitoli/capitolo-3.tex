@@ -447,8 +447,10 @@ abbiamo
     \tdplotsetcoord{P2}{-2.0}{120}{30};
     \tdplotsetcoord{P3}{3.0}{60}{40};
     \tdplotsetcoord{P4}{0.8}{97}{153};
+    \tdplotsetcoord{P5}{1.3}{-55}{40};
+
     
-    \draw [->,Mahogany!80!Mulberry](P2) to[out=50,in=130](P4);
+    \draw [->,Mahogany!80!Mulberry](P2) to[out=120,in=180](P5);
     \node[fill=red!15,rotate=50,scale=4.0,rounded corners] at (P4) {};
     \node[shape=circle,draw=gray,fill=gray,inner sep=0pt,minimum size=1mm]
     (origin) at (O) {};
@@ -458,7 +460,7 @@ abbiamo
     \node[] (end1) at (P) {};
     \node [Mahogany!80!Mulberry] at (end1.south) {$\Omega^-$};
     \node[] (end2) at (P2) {};
-    \node [Mahogany!80!Mulberry] at (end2.south) {$\partial\Omega$};
+    \node [Mahogany!80!Mulberry] at (end2.north) {$\partial\Omega$};
 
     \draw  [tdplot_main_coords,dashed] (O) ellipse (42pt and 20pt);
     \tdplotsetthetaplanecoords{40};
