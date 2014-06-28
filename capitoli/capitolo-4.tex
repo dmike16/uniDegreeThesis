@@ -1,0 +1,368 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 Chapter 4
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Risultati numerici}
+\label{cap:cp4}
+
+In questa sezione riportiamo alcuni test effettuati sia con il metodo
+MCM che con MCM \emph{volume preserving}. Il programma che fa girare
+questi due schemi è stato realizzato in \emph{C programming language},
+per il cui sorgente \cite[vedi][]{vpmcm:code}. Inizieremo col testare
+il programma su superfici standard lisce tipo sfera,toro e manubrio; e
+poi aggiungeremo alcuni tipi di rumore ripulendo le superfici con i
+due metodi evidenziandone le differenze. Infine testeremo entrambi su
+un immagine reale sia in presenza che in assenza di rumore.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 Section 4.1
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Test su superfici standard}
+\label{sec:cp4-sc1}
+Iniziamo col far evolvere una sfera, quindi prendiamo il seguente dato
+iniziale
+
+\[
+u_0(x) = \max\left(r_0^2-|x|^2,0\right)
+\]
+
+
+\begin{wrapfloat}{figure}{l}{0pt}
+\includegraphics[scale=0.50,width=0.5\textwidth]{smooth/vpmcm/sphere/sphere0}
+\caption{Sfera al tempo $t=0$, relaticva al livello $5.0$}
+\end{wrapfloat}
+
+dove abbiamo scelto $r_0=3$ e il livello $5.0$, quindi il nostro dato
+iniziale sarà una sfera di raggio $2$. Facendola evolvere usando il  metodo
+MCM (vedi \emph{Fig}\ref{fig:cp4-sc1-01}), come abbiamo anticipato
+in §\ref{sec:cp1-sc2}, la sfera perde sempre di più il suo volume, in
+quanto il raggio dimnuisce sempre di più, finchè non si annulla ad un
+tempo finito (tempo di collasso) riducendo la sfera ad un semplice punto. Mentre
+con il metodo MCM \emph{volume presetving}, il termine di trasporto
+riesce a bilanciare la perdita di volume, mantenendo la sfera pressochè
+costante;come si può notare dalla \emph{Tab}\ref{tab:cp4-sc1-01}
+ l'errore tra il volume iniziale e quello finale, si riduce
+ all'aumentare del numero dei nodi, cioè $\Delta x\to 0$.
+
+\begin{osservazione}[Approssimazione del volume]
+Il volume delle superfici, ad un dato livello,  sia al tempo iniziale
+che finale è stato apprssimato utilizzando la formula del punto medio
+in $\mathbb{R}^3$ sul seguente integrale
+\[
+\int_{\Omega\subseteq\mathbb{R}^3}(1-H(u(x)))dx
+\]
+dove $H(u(x))$ è la funzione di Heaviside definita in \eqref{eq:cp3-sc3-1-add-01}.
+\end{osservazione}
+
+\begin{table}[htb!]
+\caption{Tabella per lo schema PVMCM. Evoluzione di una sfera nel cubo $[-4,4]^3$.}
+\label{tab:cp4-sc1-01}
+\[
+\begin{array}{*{5}{c}l}
+    \toprule
+    \text{time} &\text{nodi} &\Delta t &\text{iter} &\text{CPUs}&\text{VolErr} \\
+    \midrule
+     0.05       & 50         & 0.16    & 1          & 0,4s      &7.2e^{-01}\\ 
+ %               &            & 0.04    & 3          & 1,3s      &1.4e^{-01}\\
+     0.2        &            &         & 2          & 0.8s      &1.3\\
+ %               &            & 0.04    & 3          & 1.3s      &3.5e^{-01}\\
+     0.4        &            &         & 3          & 1,3s      &2.2\\ 
+ %               &            & 0.04    & 10         & 6,1s      &9.4e^{-01}\\
+     0.8        &            &         & 5          & 2.4s      &4.4\\
+     \midrule
+     0.05       & 100        & 0.08    & 1          & 3,0s      &3.8e^{-02}\\ 
+     0.2        &            &         & 3          & 9.4s      &1.2e^{-01}\\
+     0.4        &            &         & 5          & 16,9s     &1.9e^{-01}\\ 
+     0.8        &            &         & 10         & 39s       &6.7e^{-02}\\
+    \bottomrule
+\end{array}
+\]
+\end{table}
+
+\begin{figure}[htb!]
+  \centering
+  \subfloat[][\emph{MCM: Sfera al tempo} $t=0.2$.]
+           {\includegraphics[width=.45\textwidth]{smooth/mcm/sphere/sphere50-2-02}}\quad
+  \subfloat[][\emph{MCM: Sfera al tempo} $t=0.8$.]
+           {\includegraphics[width=.45\textwidth]{smooth/mcm/sphere/sphere50-4-08}}\\
+  \subfloat[][\emph{PVMCM: Sfera al tempo} $t=0.2$.]
+           {\includegraphics[width=.45\textwidth]{smooth/vpmcm/sphere/sphere2}}\quad
+  \subfloat[][\emph{PVMCM: Sfera al tempo} $t=0.8$.]
+           {\includegraphics[width=.45\textwidth]{smooth/vpmcm/sphere/sphere4}}\quad
+  \caption{Evoluzione della Sfera}
+  \label{fig:cp4-sc1-01}
+\end{figure}
+
+\newpage
+Passiamo ora ad un'altra famosa superfice, il toro. La funzione
+level-set del toro è data da
+\[
+u_0(x) = \left(R_0-\sqrt{x^2+y^2}\right)+z^2-r_0^2.
+\]
+
+\begin{wrapfloat}{figure}{l}{0pt}
+\includegraphics[scale=0.50,width=0.5\textwidth]{smooth/vpmcm/torus/torus100-0-00}
+\caption{Toro al tempo $t=0$, relativ al livello $0$}
+\end{wrapfloat}
+
+Dove abbiamo preso $R_0=1.0$, $r_0=0.5$ e insieme di livello zero. Lo
+schema MCM (vedi \emph{Fig.} ), fa pian piano collassare il toro ad
+una circonferenza, in quanto $r_0$ diminuisce più rapidamente di
+$R_0$.  Mentre il volume preserving cerca di conservare il volume
+iniziale  allungando la superfice del toro come si vede in
+\emph{Fig}\ref{fig:cp4-sc1-02}. Un comportamento diverso si ha se
+prendiamo $R_0<r_0$, in tal caso MCM mi fa convergere il toro ad una
+sfera, che poi questa a sua volta collasserà in un punto; mentre il
+volume preserving si comporta nello stesso modo. Anche qui riportiamo
+gli errori del volume preserving nella \emph{Tab}\ref{tab:cp4-sc1-02}.
+
+\begin{figure}[htb!]
+  \centering
+  \subfloat[][\emph{MCM: Toro al tempo} $t=0.05$.]
+           {\includegraphics[width=.45\textwidth]{smooth/mcm/torus/torus100-2-005}}\quad
+  \subfloat[][\emph{MCM: Toro al tempo} $t=0.12$.]
+           {\includegraphics[width=.45\textwidth]{smooth/mcm/torus/torus100-4-012}}\\
+  \subfloat[][\emph{PVMCM: Toro al tempo} $t=0.05$.]
+           {\includegraphics[width=.45\textwidth]{smooth/vpmcm/torus/torus100-2-005}}\quad
+  \subfloat[][\emph{PVMCM: Toro al tempo} $t=0.12$.]
+           {\includegraphics[width=.45\textwidth]{smooth/vpmcm/torus/torus100-4-012}}\quad
+  \caption{Evoluzione del Toro}
+  \label{fig:cp4-sc1-02}
+\end{figure}
+
+\begin{table}[htb!]
+\caption{Tabella per lo schema PVMCM. Evoluzione del Toro nel cubo $[-2,2]^3$.}
+\label{tab:cp4-sc1-02}
+\[
+\begin{array}{*{5}{c}l}
+    \toprule
+    \text{time} &\text{nodi} &\Delta t &\text{iter} &\text{CPUs}&\text{VolErr} \\
+    \midrule
+     0.03       & 100        & 0.04    & 1          & 13s      &1.8e^{-01}\\
+     0.05       &            &         & 2          & 26s      &4.6e^{-01}\\ 
+     0.09       &            &         & 3          & 38,7s    &9.5e^{-01}\\ 
+     0.12       &            &         & 3          & 38.7s    &9,5e^{-01}\\
+     \midrule
+     0.03       & 100        & 0.04    &            &           &3.8e^{-02}\\ 
+     0.05       &            &         &            &           &1.2e^{-01}\\
+     0.09       &            &         &            &           &1.9e^{-01}\\ 
+     0.12       &            &         &            &           &6.7e^{-02}\\
+    \bottomrule
+\end{array}
+\]
+\end{table}
+
+\newpage
+
+Terminiamo questa mini sezione, presentando i risultati ottenuti
+facendo evolvere una superfice non convessa, \emph{il manubrio}.
+
+\begin{wrapfloat}{figure}{l}{0pt}
+\includegraphics[scale=0.50,width=0.5\textwidth]{smooth/vpmcm/dumbbell/dumbb100-0-00}
+\caption{Manubrio al tempo $t=0$, relativ al livello $0.1$}
+\end{wrapfloat}
+
+Tale superficie è ottenuta prendendo il massimo tra due sfere di raggo
+$R_0=0.8$ ed un cilindro di raggio $r_0=0.5$, il tutto calcolato al
+livello $0.1$. Come osservato in §\ref{sec:cp1-sc2}, l'evoluzione di
+superfici non convesse secondo il moto per curvatura media può
+generare delle singolarità. Difatti applicando lo schema MCM, il
+cilindro tende rapidamente a collassare in una linea mentre le due
+sfere continuano ad evolversi in altre sfere self-similar. Finchè il
+manubrio si divide in due sfere disconnesse, a questo puto è cambiata
+la topologia della superfice iniziale e le due sfere collassano
+separatamente in un punto (vedi \emph{Fig}\ref{fig:cp4-sc1-03}).
+Mentre il volume preserving, contrasta il collasso rapido  del
+cilindro allungando il manubrio e riesce ad ritardare il cambiamento
+topologico vedi \emph{Fig}\ref{fig:cp4-sc1-03}. Riportiamo in \emph{Tab}\ref{tab:cp4-sc1-03}  gli errori
+della conservazione del volume.
+
+\begin{table}[htb!]
+\caption{Tabella per lo schema PVMCM. Evoluzione del Manubrio nel cubo $[-2,2]^3$}
+\label{tab:cp4-sc1-03}
+\[
+\begin{array}{*{5}{c}l}
+    \toprule
+    \text{time} &\text{nodi} &\Delta t &\text{iter} &\text{CPUs}&\text{VolErr} \\
+    \midrule
+     0.04       & 100        & 0.005   & 8          & 11.5s    &6.1e^{-02}\\
+     0.06       &            &         & 12         & 19s      &1.1e^{-01}\\ 
+     0.08       &            &         & 16         & 29s      &1.5e^{-01}\\ 
+     0.09       &            &         & 18         & 34s      &1,9e^{-01}\\
+     0.1        &            &         & 20         & 39s      &2.5e^{-01}\\     
+     \bottomrule
+\end{array}
+\]
+\end{table}
+
+\begin{figure}[htb!]
+  \centering
+  \subfloat[][\emph{MCM: Manubrio al tempo} $t=0.06$.]
+           {\includegraphics[width=.45\textwidth]{smooth/mcm/dumbbell/dumbb100-2-006}}\quad
+  \subfloat[][\emph{MCM: Manubrio al tempo} $t=0.1$.]
+           {\includegraphics[width=.45\textwidth]{smooth/mcm/dumbbell/dumbb100-5-01}}\\
+  \subfloat[][\emph{PVMCM: Manubrio al tempo} $t=0.06$.]
+           {\includegraphics[width=.45\textwidth]{smooth/vpmcm/dumbbell/dumbb100-2-006}}\quad
+  \subfloat[][\emph{PVMCM: Manubrio al tempo} $t=0.1$.]
+           {\includegraphics[width=.45\textwidth]{smooth/vpmcm/dumbbell/dumbb100-5-01}}\quad
+  \caption{Evoluzione del Manubrio}
+  \label{fig:cp4-sc1-03}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 Section 4.2
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\emph{Denoising} su superfici standard}
+
+In questa sezione vediamo come i due metodi si comportano nel
+\emph{denoising}, cioè nel togliere il rumore dalle immagini. Iniziamo
+prima a ripulire le superfi standard, di cui prima abbiamo parlato,
+per poi passare ad immagini 3D reali. Per aggiungere il rumore
+utilizzeremo sia una funzione random che la funzione \emph{imnoise} di
+MATLAB, che aggiunge un rumore \emph{gaussiano}. Quest'ultima aggiunge
+più o meno rumore a seconda dei valori di media e varianza che
+inseriamo, quelli di default sono $0$ ed $0.1$. Mentre la funzione
+random genera un numero random di sfere, da noi inserito, con i centri
+in punti random appartenenti all'intervallo in considerazione e i
+raggi random scelti in un range da zero ad un numero da noi
+inserito. Ogni volta che un punto della griglia cade in una di queste
+sfere, aggiungiamo un valore random ad $u_0(x)$ scelto in un range tra
+zero ed un valore da noi inserito.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 Section 4.2.1
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\emph{Random Noise}}
+Iniziamo col analizzare il caso della sfera. Questa è stata prima
+sporcata con la funzione random e poi è stata fatta evolvere con
+entrambi i metodi.
+I dati iniziali della sfera solo identici a quelli nella sezione
+precedente, mentre il volume iniziale è stato calcolato includendo
+anche il rumore.
+
+\begin{wrapfloat}{figure}{l}{0pt}
+\includegraphics[scale=0.50,width=0.5\textwidth]{noise/randNoise/vpmcm/sphere/sphere100r-0-00}
+\caption{Sfera al tempo $t=0$, sporcata con rumore random.}
+\end{wrapfloat}
+
+ Come ci aspettavamo (vedi \emph{Fig}\ref{fig:cp4-sc2-1-01}) entrambi i
+metodi puliscono l'immagine in un tempo finito, ma il volume
+preserving si comporta meglio in quanto riesce a preservare il volume
+senza rischiare di far collassare la sfera ancor prima di averla
+pulita. Nel caso in cui il rumore non è molto, come in questo caso, il
+volume preserving perde un pò di volume nel denoising della sfera. 
+Tuttavia se prendiammo un passo temporale più piccolo (ad esempio lo
+dimezziamo rispetto al precedente valore), lasciando invariato il
+tempo di output, allora il metodo aumenta la precisione e torniamo ad
+avere un errore dell'ordine di $10^{-1}$ (vedi \emph{Tab}\ref{tab:cp4-sc2-1-01}).
+
+\begin{figure}[htb!]
+  \centering
+  \subfloat[][\emph{MCM: Sfera al tempo} $t=0.2$.]
+           {\includegraphics[width=.45\textwidth]{noise/randNoise/mcm/sphere/sphere100r-2-02}}\quad
+  \subfloat[][\emph{MCM: Sfera al tempo} $t=0.9$ con $\Delta
+    t=0.5\Delta x$.]
+           {\includegraphics[width=.45\textwidth]{noise/randNoise/mcm/sphere/sphere100r-5-dt2-09}}\\
+  \subfloat[][\emph{PVMCM: Sfera al tempo} $t=0.2$.]
+           {\includegraphics[width=.45\textwidth]{noise/randNoise/vpmcm/sphere/sphere100r-2-02}}\quad
+  \subfloat[][\emph{PVMCM: Sfera al tempo} $t=0.9$ con $\Delta
+    t=0.5\Delta x$.]
+           {\includegraphics[width=.45\textwidth]{noise/randNoise/vpmcm/sphere/sphere100r-5-dt2-09}}\quad
+  \caption{Denoising della Sfera con rumore random.}
+  \label{fig:cp4-sc2-1-01}
+\end{figure}
+
+\begin{table}[htb!]
+\caption{Tabella per lo schema PVMCM. Evoluzione del sfera, sporcata
+  con rumore random, nel cubo $[-2,2]^3$}
+\label{tab:cp4-sc2-1-01}
+\[
+\begin{array}{*{5}{c}l}
+    \toprule
+    \text{time} &\text{nodi} &\Delta t &\text{iter} &\text{CPUs}&\text{VolErr} \\
+    \midrule
+     0.05       & 100        & 0.08    & 1          & 4.7s     &2.9e^{-02}\\
+     0.2        &            &         & 3          & 17s      &1.8e^{-01}\\ 
+     0.4        &            &         & 5          & 35s      &4.0e^{-01}\\ 
+     0.8        &            &         & 10         & 91s      &1.0\\
+     0.9        &            &         &            &          &   \\
+                &            & 0.04    &            &          &   \\  
+     \bottomrule
+\end{array}
+\]
+\end{table}
+\newpage 
+Riportiamo anche i test per il toro, per cui abbiamo utilizzato i
+stessi valori di §\ref{sec:cp4-sc1}. Anche qui abbiamo
+sporcato il tutto con rumore random.
+
+\begin{wrapfloat}{figure}{l}{0pt}
+\includegraphics[width=0.5\textwidth]{noise/randNoise/vpmcm/torus/torus100r-0-00}
+\caption{Toro al tempo $t=0$, sporcata con rumore random.}
+\end{wrapfloat}
+
+In questo test comincia ad emergere in modo più esplicito la
+differenza tra i due metodi. Infatti mentre il volume preserving
+riesce a ripulire la figura dopo un dato tempo, conservando il volume 
+iniziale. L'altro fa collassare il toro ad una circonferenza prima di
+pulirlo ed in più per ottenere un risultato osservabile nello stesso
+istante temporale in cui il volume preserving completa il denoising,
+abbiamo dovuto utilizzare la metà del passo temporale del
+volume preserving (vedi \emph{Fig}). Quindi per rumori che hanno
+bisogno di un tempo maggiore per essere eliminati, senza dubbio il
+volume preserving fornisce dei risultati migliori rispetto allo schema
+MCM.
+
+\begin{table}[htb!]
+\caption{Tabella per lo schema PVMCM. Evoluzione del Toro nel cubo
+  $[-2,2]^3$, sporcato con rumore random.}
+\label{tab:cp4-sc2-1-02}
+\[
+\begin{array}{*{5}{c}l}
+    \toprule
+    \text{time} &\text{nodi} &\Delta t &\text{iter} &\text{CPUs}&\text{VolErr} \\
+    \midrule
+     0.03       & 100        & 0.01    & 2          & 38s      &1.7e^{-02}\\
+     0.05       &            &         & 4          & 51s      &3.4e^{-02}\\ 
+     0.09       &            &         & 8          & 102s     &1.3e^{-01}\\ 
+     0.12       &            &         & 10         & 129s     &2,2e^{-01}\\
+     \bottomrule
+\end{array}
+\]
+\end{table}
+
+\begin{figure}[htb!]
+  \centering
+  \subfloat[][\emph{MCM: Toro al tempo} $t=0.05$.]
+           {\includegraphics[width=.45\textwidth]{noise/randNoise/mcm/torus/torus100r-2-005}}\quad
+  \subfloat[][\emph{MCM: Toro al tempo} $t=0.12$ con $\Delta t=\Delta x/8$.]
+           {\includegraphics[width=.45\textwidth]{noise/randNoise/mcm/torus/torus100r-4-dt8-012}}\\
+  \subfloat[][\emph{PVMCM: Toro al tempo} $t=0.05$.]
+           {\includegraphics[width=.45\textwidth]{noise/randNoise/vpmcm/torus/torus100r-2-005}}\quad
+  \subfloat[][\emph{PVMCM: Toro al tempo} $t=0.12$.]
+           {\includegraphics[width=.45\textwidth]{noise/randNoise/vpmcm/torus/torus100r-4-012}}\quad
+  \caption{Evoluzione del Toro sporcato con rumore random.}
+  \label{fig:cp4-sc1-02}
+\end{figure}
+\newpage
+
+Concludiamo analizzando il comportamento dei due metodi nel denoising
+di una superficie non convessa, sempre sporcata con rumore random.
+
+\begin{wrapfloat}{figure}{l}{0pt}
+\includegraphics[width=0.5\textwidth]{noise/randNoise/vpmcm/dumbbell/dumb100r-0-00}
+\caption{Manubrio al tempo $t=0$, sporcata con rumore random.}
+\end{wrapfloat}
+
+Consideriamo il nostro manubrio definito nella sezione
+precedente. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 Section 4.3
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Immagini reali. Il \emph{Gargolye}}
