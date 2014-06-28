@@ -175,6 +175,7 @@ dove
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Consistenza dello schema MCM}
+\label{sec:cp3-sc2}
 Occupiamoci ora dell'analisi della consitenza dello schema. Prima di tutto ricordiamo che , per un dato schema numerico $S(x_j,u_j^n,Du_j^n)$ , l'errore di troncamento locale (o LTE) $\tau_j^n$ è l'errore che si genera pretendendo che la soluzione esatta soddisfi lo schema numerico :
 \[
 \tau_j^n=\frac{u(x_j,t^{n+1})-S(x_j,u(x_j,t^n),Du(x_j,t^n))}{\Delta t}
@@ -225,7 +226,7 @@ con $C_1$ e $C_2$ costanti positive che dipendono così come gli ordini $r$ e $q
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Caso gradiente diverso da zero}
-
+\label{subsec:cp3-sc2-1}
 Consideriamo il caso in cui $Du(x,t)\ne 0$ e $u_{x_1}(x,t)^2+u_{x_3}(x,t)^2\ne 0$, vista la regolarità di $u$, esiste un intorno di $(x,t)$ in cui le due espressioni precedenti si mantengono vere, quindi almeno asintoticamente:
 \begin{equation}
   \label{eq:cp3-sc21-01}
@@ -571,7 +572,29 @@ H(u)=
 \end{cases}
 \]
 infine come metodo di intergrazione usiamo la formula del punto medio
-in $\mathbb{R}^3$.
+in $\mathbb{R}^3$. 
+Consideriamo una griglia spaziale $x_j=(j_1\Delta x,j_2\Delta
+x,j_3\Delta x)$ con $j=(j_1,j_2,$ $j_3)$ multi-indice in $\mathbb{Z}^3$ ed una griglia temporale $t^n=n\Delta t$ con $n\in\mathbb{N}$.
+Indichiamo con $u_j^n$ l'approssimazione di $u$ nel punto della
+griglia $(x_j,t^n)$ e con $D_j^n$ l'approssimazione del gradiente di
+$u$ nel suddetto punto. L'approssimazione $\mathcal{I}^n$ al
+tempo $t^n$ di  \eqref{eq:cp3-sc3-02}, ottenuta con il metodo precedentemente
+descritto è pari a 
+\begin{equation}
+\label{eq:cp3-sc3-08-add}
+\mathcal{I}^n=\Delta x^3\sum_{j=1}^{n^3}\hat{u}_j^n\delta(u_j^n),
+\end{equation}
+con $\delta$ data da \eqref{eq:cp3-sc3-08} e $\hat{u}_j^n$ è paria a 
+\[
+\hat{u}_j^n=
+\begin{cases}
+\frac{\sum_{+,-}I[u^n]\left(x_j+\sqrt{2\Delta
+    t}(\pm\vec{v}_j^{n,1}\pm\vec{v}_j^{n,2})\right)-4u_j^n}{4\Delta t}
+&\text{ se vale la \eqref{eq:cp3-sc21-01}} \\
+\frac{\sum_{i\in\delta{j}}u_i^n-6u_j^n}{\Delta x^2}&\text{ se vale la \eqref{eq:cp3-sc3-1-01}}
+\end{cases}
+\]
+con $\delta(j)$ insieme degli indici dei  primi vicini a $x_j$.
 \begin{osservazione}
 Come osservato in \cite[][§1.5]{osher:fed}, la scelta del metodo di
 integrazione non influisce sull'errore commesso nel calcolo
@@ -579,13 +602,7 @@ dell'integrale \eqref{eq:cp3-sc3-06} poichè l'uso della
 \eqref{eq:cp3-sc3-08} per approssimare la delta, fa si che il  metodo
 abbia un accuratezza del primo ordine.
 \end{osservazione}
-Consideriamo una griglia spaziale $x_j=(j_1\Delta x,j_2\Delta
-x,j_3\Delta x)$ con $j=(j_1,j_2,$ $j_3)$ multi-indice in $\mathbb{Z}^3$ ed una griglia temporale $t^n=n\Delta t$ con $n\in\mathbb{N}$.
-Indichiamo con $u_j^n$ l'approssimazione di $u$ nel punto della
-griglia $(x_j,t^n)$, con $D_j^n$ l'approssimazione del gradiente di
-$u$ nel suddetto punto e con $\mathcal{I}^n$ l'approssimazione al tempo $t^n$ di
-\eqref{eq:cp3-sc3-02}, ottenuta con il metodo precedentemente
-descritto. Utilizzando le differenze finite in avanti per la derivata
+Infine utilizzando le differenze finite in avanti per la derivata
 temporale e le derivate direzionali con incremento $\sqrt{2\Delta t}$
 per il flusso, come fatto per MCM in §\ref{sec:cp3-sc3-1}, nel caso in
 cui siamo sopra la soglia, cioè la \eqref{eq:cp3-sc21-01} è soddisfatta abbiamo
@@ -595,7 +612,7 @@ cui siamo sopra la soglia, cioè la \eqref{eq:cp3-sc21-01} è soddisfatta abbiam
   t)+ \sqrt{2\Delta t}(\pm\vec{v}_j^{n,1}\pm\vec{v}_j^{n,2})\right)
 \end{equation}
 con $\vec{v}_j^{n,1}$ e $\vec{v}_j^{n,2}$ come in
-\eqref{eq:cp3-sc3-1-end}. Mentre nel coso in cui siamo sotto la
+\eqref{eq:cp3-sc3-1-end}. Mentre nel caso in cui siamo sotto la
 soglia, ovvero vale la \eqref{eq:cp3-sc3-1-01}, utilizziamo lo stesso
 metodo usato nello schema MCM, cioè \eqref{eq:cp3-03-add}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -605,10 +622,144 @@ metodo usato nello schema MCM, cioè \eqref{eq:cp3-03-add}.
 \subsection{Consistenza dello schema in un caso semplificato}
   \label{subsec:cp3-sc3-3-2}
 
-
+Analizziamo lo schema \emph{volume preserving}, descritto in
+precedenza, in un caso semplice, cioè quando il termine
+\eqref{eq:cp3-sc3-02} è costante, quindi non abbiamo bisogno
+della sua approssimazione. Questa situazione si verifica, ad esempio, quando gli
+insiemi di levello di $u(x,0)=u_0(x)$ rappresentano una sfera. Difatti
+in tale caso possiamo calcolarci esplicitamente il termine di
+trasporto che compare in \eqref{eq:cp3-01-vp}. Ricordando che
+l'equazione level-set della sfera è
+\begin{equation}
+\label{eq:cp3-sc3-10}
+u_0(x)=|x|^2-r_0^2\text{, con $x\in\mathbb{R}^3$},
+\end{equation}  
+prendendo il livello zero abbiamo
+\begin{align}
+\label{eq:cp3-sc3-11}
+|Du_0(x)|=2r_0\implies&\Div\left(\frac{Du_0(x)}{|Du_0(x)|}\right)|Du_0(x)|=\frac{2}{r_0}2r_0=4 \\
+\label{eq:cp3-sc3-12}
+&<Du_0(x),x>=2r_0^2.
+\end{align}
+Ora osserviamo che la sfera quando si evolve per curvatura media
+mantiene la sua forma, cioè per ogni tempo $t>0$ $u(x,t)$ rappresenta
+sempre una sfera (in tal caso si parla si soluzione
+\emph{self-similar}) e con l'aggiunta del termine di trasporto in
+\eqref{eq:cp3-01-vp} riusciamo a conservare il volume iniziale, di un livello
+fissato. Per cui, poichè il volume della sfera dipende dal raggio,
+ $u(x,t)=u_0(x)\,\forall\,t>0$. Quindi
+\[
+u_t(x,t)=0\implies\Div\left(\frac{Du)}{|Du)|}\right)|Du)|=\mathcal{I}<Du,x>\,
+\forall t\geq 0,
+\]
+utilizzando \eqref{eq:cp3-sc3-11} e \eqref{eq:cp3-sc3-12} abbiamo
+\[
+4=\mathcal{I}2r_0^2\implies\mathcal{I}=\frac{2}{r_0^2},
+\]
+scrivendo il raggio iniziale in dipendenza dal volume iniziale $V_0$
+otteniamo
+\begin{equation}
+\label{eq:cp3-sc3-13}
+\mathcal{I}=2\left(\frac{4\pi}{3V_0}\right)^{\frac{2}{3}}.
+\end{equation}
+Riscriviamo il nostro schema, nel caso in cui siamo sopra la soglia,
+in questo particolare scenario
+\begin{equation}
+\label{eq:cp3-sc3-14}
+u_j^{n+1}=\frac{1}{4}\sum_{+,-}I[u^n]\left(x_j(1-\mathcal{I}\Delta
+  t)+ \sqrt{2\Delta t}(\pm\vec{v}_j^{n,1}\pm\vec{v}_j^{n,2})\right)
+\end{equation}
+con $\mathcal{I}$ definito in \eqref{eq:cp3-sc3-13}. Andiamo a
+studiare la consistenza di questo schema applicando la definizione
+generale di consistenza \eqref{eq:cp3-03}. Consideriamo una
+successione di di nodi $(x_{j_m},t^{n_m})$ che tende a $(x,t)$ come in
+§\ref{subsec:cp3-sc2-1} e per semplicità notazionale omettiamo il pedice
+$m$. In questo caso semplice, la nostra $u(x,t)$ rappresenta una sfera
+quindi è una soluzione regolare di \eqref{eq:cp3-01-vp},
+lipschitiziana con costante $L_u$, con $|Du|<M$ e vale anche
+l'assunzione $|u_{tt}(x,t)|\leq C$ fatta in §\ref{subsec:cp3-sc2-1} in modo
+da limitare l'errore di troncamento per l'approssimazione
+temporale. Analizziamo il caso in cui $Du(x,t)\ne 0$ e
+$u_{x_1}(x,t)^2+u_{x_3}(x,t)^2\ne 0$. Vista la regolarità di $u$,
+esiste un intorno di $(x,t)$ in cui le due espressioni precedenti si
+mantengono vere, quindi almeno asintoticamente vale
+\eqref{eq:cp3-sc21-01}.  Iniziamo col riscriverci il termine della
+sommatoria in \eqref{eq:cp3-sc3-14} come
+\[
+I[u^n](x_j(1-\mathcal{I}\Delta t)+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b}),
+\]
+utilizzando le stesse notazioni di §\ref{subsec:cp3-sc2-1}. Operiamo,
+su tale termine, alcune manipolazioni algebriche: aggiungiamo e togliamo
+il il valore di $u$ nel punto in cui viene interpolato e aggiungiamo e
+togliamo il il valore di $u$ calcolanta in
+$x_j(1-\mathcal{I})+\sqrt{2\Delta t}\sigma(Du(x_j,t^n))\vec{b}$, dove
+abbiamo sistituito il grandiente approssimato con quello effettivo
+calcolato nel punto $(x_j,t^n)$. Ora come in \ref{subsec:cp3-sc2-1},
+sfruttando la stima dell'errore di intepolazione \eqref{eq:cp3-04}, la
+stima dell'errore di approssimazione del gradiente \eqref{eq:cp3-05} e
+la lipshtizianità di $\sigma(Du)$ e di $u$ otteniamo
+\[
+\begin{split}
+I[u^n]&(x_j(1-\mathcal{I}\Delta t)+\sigma(D_j^n)\sqrt{2\Delta
+    t}\vec{b})=\\
+=&u(x_j(1-\mathcal{I}\Delta t) +\sigma(Du(x_j,t^n))\sqrt{2\Delta t}\vec{b},t^n) +\\
+&+O(\Delta x^r)+O(\Delta x^{q-s}\sqrt{2\Delta t}).
+\end{split}
+\]
+Sviluppiamo il termine $u(x_j(1-\mathcal{I}\Delta t)
++\sigma(Du(x_j,t^n))\sqrt{2\Delta t}\vec{b},t^n)$ con un serie di
+Taylor del terzo odine in un intorno di $x_j$
+\[
+\begin{split}
+&u(x_j(1-\mathcal{I}\Delta t)+\sigma(Du(x_j,t^n))\sqrt{2\Delta t}\vec{b},t^n) = u(x_j,t^n)+ \\
+&+\left<Du(x_j,t^n),\sigma(Du(x_j,t^n))\vec{b}\right>\sqrt{2\Delta t} +\\
+&+\left(\left<D^2u(x_j,t^n)\sigma(Du(x_j,t^n))\vec{b},\sigma(Du(x_j,t^n))\vec{b}\right>-C<Du(x_j,t^n),x_j>\right)\Delta t + \\
+&+T_3(\Delta t^{\frac{3}{2}}\sigma(Du(x_j,t^n))\vec{b},D^3u(x_j,t^n))+O(\Delta t^2), 
+\end{split}
+\]
+come in §\ref{subsec:cp3-sc2-1} i termini del primo e del terzo ordine
+si eliminato quando sommiamo al variare di $\vec{b}\in\Pi$. In
+conclusione abbiamo
+\[
+\begin{split}
+& S(x_j,u(x_j,t^n),Du(x_j,t^n)) = \\
+& = u(x_j,t^n) + \vec{v}_1^tD^2u(x_j,t^n)\vec{v}_1 + \vec{v}_2^tD^2u(x_j,t^n)\vec{v}_2 -\mathcal{I}<Du(x_j,t^n),x_j>+ \\
+& + O(\Delta x^r) + O(\Delta x^{q-s}\Delta t^{\frac{1}{2}}) + O(\Delta t^2),
+\end{split}
+\]
+e sviluppando anche $u(x_j,t^{n+1})$ ed applicando la definizione
+\eqref{eq:cp3-03}, abbiamo che essa risulta soddisfatta nella forma
+classica se $\Delta x = o(\Delta t^{\frac{1}{r}})$ e $\Delta x^{q-s}=o(\Delta t^{\frac{1}{2}})$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 Section 3.4
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Risultati numerici}
 \label{sec:cp3-sc4}
+
+In questa sezione riportiamo alcuni test effettuati sia con il metodo
+MCM che con MCM \emph{volume preserving}. Il programma che fa girare
+questi due schemi è stato realizzato in \emph{C programming language},
+per il cui sorgente \cite[vedi][]{vpmcm:code}. Inizieremo col testare
+il programma su superfici standard lisce tipo sfera,toro e manubrio; e
+poi aggiungeremo alcuni tipi di rumore ripulendo le superfici con i
+due metodi evidenziandone le differenze. Infine testeremo entrambi su
+un immagine reale sia in presenza che in assenza di rumore.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 Section 3.4.1
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Test su superfici standard}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 Section 3.4.2
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\emph{Denoising} su superfici standard}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 Section 3.4.3
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Immagini reali. Il \emph{Gargolye}}
