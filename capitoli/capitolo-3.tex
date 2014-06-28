@@ -506,13 +506,14 @@ derivata direzionale (nel senso delle distribuzioni) nella direzione normale del
 \end{equation}
 ed è una funzione nella variabile multidimensionale $x$, con $H$
 funzione unidimensionale della forma 
-\[
+\begin{equation}
+\label{eq:cp3-sc3-1-add-01}
 H(u)=
 \begin{cases}
   0 &\text{ se $u\leq 0$} \\
   1 &\text{ se $u>0$}
 \end{cases}
-\]
+\end{equation}
 Questa distribuzione è diversa da zero solo sull'interfaccia $\partial\Omega$
 dove $u=0$. L'equazione \eqref{eq:cp3-sc3-04} può essere riscritta come
 \[
@@ -730,36 +731,3 @@ conclusione abbiamo
 e sviluppando anche $u(x_j,t^{n+1})$ ed applicando la definizione
 \eqref{eq:cp3-03}, abbiamo che essa risulta soddisfatta nella forma
 classica se $\Delta x = o(\Delta t^{\frac{1}{r}})$ e $\Delta x^{q-s}=o(\Delta t^{\frac{1}{2}})$.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 Section 3.4
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Risultati numerici}
-\label{sec:cp3-sc4}
-
-In questa sezione riportiamo alcuni test effettuati sia con il metodo
-MCM che con MCM \emph{volume preserving}. Il programma che fa girare
-questi due schemi è stato realizzato in \emph{C programming language},
-per il cui sorgente \cite[vedi][]{vpmcm:code}. Inizieremo col testare
-il programma su superfici standard lisce tipo sfera,toro e manubrio; e
-poi aggiungeremo alcuni tipi di rumore ripulendo le superfici con i
-due metodi evidenziandone le differenze. Infine testeremo entrambi su
-un immagine reale sia in presenza che in assenza di rumore.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 Section 3.4.1
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Test su superfici standard}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 Section 3.4.2
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{\emph{Denoising} su superfici standard}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                 Section 3.4.3
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Immagini reali. Il \emph{Gargolye}}
