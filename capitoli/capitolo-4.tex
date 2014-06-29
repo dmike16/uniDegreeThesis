@@ -311,10 +311,10 @@ iniziale. L'altro fa collassare il toro ad una circonferenza prima di
 pulirlo ed in più per ottenere un risultato osservabile nello stesso
 istante temporale in cui il volume preserving completa il denoising,
 abbiamo dovuto utilizzare la metà del passo temporale del
-volume preserving (vedi \emph{Fig}). Quindi per rumori che hanno
-bisogno di un tempo maggiore per essere eliminati, senza dubbio il
-volume preserving fornisce dei risultati migliori rispetto allo schema
-MCM.
+volume preserving (vedi \emph{Fig}\ref{fig:cp4-sc2-1-02}). Quindi per
+rumori  che hanno  bisogno di un tempo maggiore per essere eliminati,
+senza dubbio il volume preserving fornisce dei risultati migliori
+rispetto allo schema MCM.
 
 \begin{table}[htb!]
 \caption{Tabella per lo schema PVMCM. Evoluzione del Toro nel cubo
@@ -344,8 +344,8 @@ MCM.
            {\includegraphics[width=.45\textwidth]{noise/randNoise/vpmcm/torus/torus100r-2-005}}\quad
   \subfloat[][\emph{PVMCM: Toro al tempo} $t=0.12$.]
            {\includegraphics[width=.45\textwidth]{noise/randNoise/vpmcm/torus/torus100r-4-012}}\quad
-  \caption{Evoluzione del Toro sporcato con rumore random.}
-  \label{fig:cp4-sc1-02}
+  \caption{Denoising del manubrio con rumore random.}
+  \label{fig:cp4-sc2-1-02}
 \end{figure}
 \newpage
 
@@ -358,11 +358,80 @@ di una superficie non convessa, sempre sporcata con rumore random.
 \end{wrapfloat}
 
 Consideriamo il nostro manubrio definito nella sezione
-precedente. 
+precedente. Lo sporchiamo scegliendo un numero di $300$ sfere con
+raggio che varia random  da $0$ a $0.5$ ed addiamo ad aggiungere
+ valori random tra $0$ e $0.6$. Come possimao notare nella figura al
+ lato c'è molto rumore intorno al manubrio ed un piccola quantità sul
+ manubrio stesso. Entrambi i metodi elimano immediatemente il rumore
+ che circonda la figura per poi elimira gradualmente il
+ restante. Chiaremente, come nel caso de toro, lo schema MCM no
+ riesce a terminare il denoising prima che il manubrio si divida in
+ due sfere. Mentre con il volume preserving, otteniamo degli ottimi
+ risultati (\emph{Fig}\ref{fig:cp4-sc2-1-03}), riuscendo a limitare
+ l'errore co volume  iniziale in un ordine di grandezza di $10^{-1}$
+ (\emph{Tab}\ref{tab:cp4-sc2-1-03}). 
+
+\begin{table}[htb!]
+\caption{Tabella per lo schema PVMCM. Evoluzione del Manubrio nel cubo
+  $[-2.5,2.5]^3$, sporcato con rumore random.}
+\label{tab:cp4-sc2-1-03}
+\[
+\begin{array}{*{5}{c}l}
+    \toprule
+    \text{time} &\text{nodi} &\Delta t &\text{iter} &\text{CPUs}&\text{VolErr} \\
+    \midrule
+     0.04       & 100        & 0.012   & 3          & 2.7s     &5.8e^{-02}\\
+     0.06       &            &         & 5          & 4.7      &1.0e^{-01}\\ 
+     0.08       &            &         & 7          & 6.6      &1.1e^{-01}\\ 
+     0.09       &            &         & 8          & 7.8s     &1,3e^{-01}\\
+     0.14       &            &         & 10         & 10.3s    &1.7e^{-01}\\     
+     \bottomrule
+\end{array}
+\]
+\end{table}
+
+\begin{figure}[htb!]
+  \centering
+  \subfloat[][\emph{MCM: Manubrio al tempo} $t=0.06$.]
+           {\includegraphics[width=.45\textwidth]{noise/randNoise/mcm/dumbbell/dumb100r-2-006}}\quad
+  \subfloat[][\emph{MCM: Manubrio al tempo} $t=0.14$, con $\Delta
+    t=\Delta x /8$.]
+           {\includegraphics[width=.45\textwidth]{noise/randNoise/mcm/dumbbell/dumb100r-4-014}}\\
+  \subfloat[][\emph{PVMCM: Manubrio al tempo} $t=0.06$.]
+           {\includegraphics[width=.45\textwidth]{noise/randNoise/vpmcm/dumbbell/dumb100r-2-006}}\quad
+  \subfloat[][\emph{PVMCM: Manubrio al tempo} $t=0.14$, con $\Delta
+    t=\Delta x /8$.]
+           {\includegraphics[width=.45\textwidth]{noise/randNoise/vpmcm/dumbbell/dumb100r-4-dt8-014}}\quad
+  \caption{Denoising del manubrio con rumore random.}
+  \label{fig:cp4-sc2-1-03}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 Section 4.2.2
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\emph{Gaussian Noise}}
+Nel caso di rumore gaussiano, è stata usata la funzione di MATLAB
+\emph{imnoise} sulle superfici standard sfera, toro e manubrio. In
+questo caso la differenza tra i due schemi non è molto evidente in
+quanto il rumore viene eliminato in tempi brevi, quindi lo schema MCM
+non perde troppo volume. Ripotiamo in \emph{Fig}\ref{fig:cp4-sc2-2-01}
+i dati iniziali dopo l'aggiunta del rumore ed in \emph{Fig} il denoising.
+
+\begin{figure}[htb!]
+  \centering
+  \subfloat[][\emph{Sfera sporcata con rumore gaussiamo} al $t=0$.]
+           {\includegraphics[width=.45\textwidth]{noise/imnoise/mcm/sphere/sphere100i-0-00}}\quad
+  \subfloat[][\emph{Toro sporcato con rumore gaussiamo} al $t=0$.]
+           {\includegraphics[width=.45\textwidth]{noise/imnoise/mcm/torus/torus100i-0-00}}\\
+  \subfloat[][\emph{Manubrio sporcato con rumore gaussiamo} al $t=0$.]
+           {\includegraphics[width=.45\textwidth]{noise/imnoise/mcm/dumbbell/dumb149i-0-00}}\quad
+  \caption{Data iniziali genrati dalla funzione \emph{imnoise}.}
+  \label{fig:cp4-sc2-2-01}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                 Section 4.3
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
 \section{Immagini reali. Il \emph{Gargolye}}
