@@ -584,6 +584,99 @@ iterazioni temporali generando risultati come in \emph{Fig}\ref{fig:cp4-sc3-03}.
   \subfloat[][\emph{PVMCM: Gargolye al tempo} $t=0.25$ con $\Delta
     t=\Delta x/2$.]
            {\includegraphics[width=.45\textwidth]{smooth/vpmcm/gargolye/garg149-5-dt2-025}}\quad
-  \caption{Evoluzione del Gargolye.}
+  \caption{Erosione del Gargolye.}
   \label{fig:cp4-sc3-03}
 \end{figure}
+
+Andiamo ora ad aggiungere il rumore all'immagine iniziale e
+effettuiamo il denoising. Inizieremo con il rumore random. In
+\emph{Fig}\ref{fig:cp4-sc3-04-a} abbiamo aggiunto rumore inserendo
+$500$ sfere con raggio piccolo, in un range da $0$ a $0.05$ e facendo
+variare i valori del rumore tra $0$ e $0.6$. Mentre in
+\emph{Fig}\ref{fig:cp4-sc3-04-b} abbiamo preso una sola sfera con
+raggio grande e valori del rumore piccoli, in modo tale che questo si trovi maggiormente sulla superfice del gargoolye. 
+
+\begin{figure}[h!tb]
+  \centering
+  \subfloat[][\emph{Gargolye al tempo} $t=0.0$,rumore random con $500$
+    sfere con raggi tra $0$ e $0.05$ e rumore tra $0$ e $0.6$.\label{fig:cp4-sc3-04-a}]
+           {\includegraphics[width=.45\textwidth]{noise/randNoise/mcm/gargolye/garg149r4-0-00}}\quad
+  \subfloat[][\emph{Gargolye al tempo} $t=0.0$, rumore random con $1$
+    sfera con raggi0 tra $0$ e $100$ e rumore tra $0$ e
+    $0.0001$. \label{fig:cp4-sc3-04-b}]
+           {\includegraphics[width=.45\textwidth]{noise/randNoise/vpmcm/gargolye/garg149r3-0-00}}\quad
+  \caption{Gargolye con rumore random.}
+  \label{fig:cp4-sc3-04}
+\end{figure}
+
+Entrambi i metodi puliscono l'immagine in modo accettabbile e sembra
+che si comportino in modo del tutto simile (vedi
+\emph{Fig}\ref{fig:cp4-sc3-05}-\ref{fig:cp4-sc3-06}). Per osservare le
+differenze nella conservazione del volume, dobbiamo analizzare le tabelle
+\emph{Tab}\ref{tab:cp4-sc3-02}-\ref{tab:cp4-sc3-02} precedenti, in
+quanto gli errori sono simili al caso senza rumore. Questo è dovuto al
+fatto che abbiamo preso dei rumori random piccoli, data
+l'impossibilità di fare troppo iterazioni per pulire
+l'immagine. Stesse considerazioni valgono anche nel caso di rumore
+gaussiano dove abbiamo utilizzato un valore di media pari a zero e
+varianza pari a $10^-8$. In queste condizioni siamo riusciti a
+ricreare un rumore che entrambi i metodi eliminano in tempi brevi
+(\emph{Fig}\ref{fig:cp4-sc3-07}), prima di trovarci nella situazione ripotata in
+\emph{Fig}\ref{fig:cp4-sc3-03}. 
+
+\begin{figure}[h!tb]
+  \centering
+  \subfloat[][\emph{MCM: Gargolye al tempo} $t=0.01$, con $\Delta t =
+    \Delta x/8$.]
+           {\includegraphics[width=.45\textwidth]{noise/randNoise/mcm/gargolye/garg149r4-1-dt8-001}}\quad
+  \subfloat[][\emph{MCM: Gargolye al tempo} $t=0.15$, con $\Delta t =
+    \Delta x$]
+           {\includegraphics[width=.45\textwidth]{noise/randNoise/mcm/gargolye/garg149r4-4-dt-015}}\\
+  \subfloat[][\emph{VPMCM: Gargolye al tempo} $t=0.01$, con $\Delta t =
+    \Delta x/8$.]
+           {\includegraphics[width=.45\textwidth]{noise/randNoise/vpmcm/gargolye/garg149r4-1-dt8-001}}\quad
+  \subfloat[][\emph{VPMCM: Gargolye al tempo} $t=0.15$, con $\Delta t =
+    \Delta x$]
+           {\includegraphics[width=.45\textwidth]{noise/randNoise/vpmcm/gargolye/garg149r4-4-dt-015}}
+  \caption{Evoluzione del Gargolye in \emph{Fig}\ref{fig:cp4-sc3-04-a}.}
+  \label{fig:cp4-sc3-05}
+\end{figure} 
+
+\begin{figure}[h!tb]
+  \centering
+  \subfloat[][\emph{MCM: Gargolye al tempo} $t=0.01$, con $\Delta t =
+    \Delta x/8$.]
+           {\includegraphics[width=.45\textwidth]{noise/randNoise/mcm/gargolye/garg149r3-1-dt8-001}}\quad
+  \subfloat[][\emph{MCM: Gargolye al tempo} $t=0.03$, con $\Delta t =
+    \Delta x/8$]
+           {\includegraphics[width=.45\textwidth]{noise/randNoise/mcm/gargolye/garg149r3-2-dt8-003}}\\
+  \subfloat[][\emph{VPMCM: Gargolye al tempo} $t=0.01$, con $\Delta t =
+     \Delta x/8$.]
+           {\includegraphics[width=.45\textwidth]{noise/randNoise/vpmcm/gargolye/garg149r3-1-dt8-001}}\quad
+  \subfloat[][\emph{VPMCM: Gargolye al tempo} $t=0.03$, con $\Delta t =
+    \Delta x/8$]
+           {\includegraphics[width=.45\textwidth]{noise/randNoise/vpmcm/gargolye/garg149r3-2-dt8-003}}
+  \caption{Evoluzione del Gargolye in \emph{Fig}\ref{fig:cp4-sc3-04-b}.}
+  \label{fig:cp4-sc3-06}
+\end{figure}
+
+\begin{figure}[h!tb]
+  \centering
+  \subfloat[][\emph{Gargolye al tempo} $t=0.0$, con rumore gaussiano]
+           {\includegraphics[width=.45\textwidth]{noise/imnoise/mcm/gargolye/garg149i-0-00}}\\
+  \subfloat[][\emph{MCM: Gargolye al tempo} $t=0.01$, con $\Delta t =
+    \Delta x/8$.]
+           {\includegraphics[width=.45\textwidth]{noise/imnoise/mcm/gargolye/garg149i-1-dt8-001}}\quad
+  \subfloat[][\emph{MCM: Gargolye al tempo} $t=0.15$, con $\Delta t =
+    \Delta x$]
+           {\includegraphics[width=.45\textwidth]{noise/imnoise/mcm/gargolye/garg149i-3-dt-015}}\\
+  \subfloat[][\emph{VPMCM: Gargolye al tempo} $t=0.01$, con $\Delta t =
+     \Delta x/8$.]
+           {\includegraphics[width=.45\textwidth]{noise/imnoise/vpmcm/gargolye/garg149i-1-dt8-001}}\quad
+  \subfloat[][\emph{VPMCM: Gargolye al tempo} $t=0.15$, con $\Delta t =
+    \Delta x$]
+           {\includegraphics[width=.45\textwidth]{noise/imnoise/vpmcm/gargolye/garg149i-3-dt-015}}
+  \caption{Evoluzione del Gargolye con rumore gaussiano.}
+  \label{fig:cp4-sc3-07}
+\end{figure}  
+
