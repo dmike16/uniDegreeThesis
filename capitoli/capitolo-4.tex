@@ -144,10 +144,10 @@ gli errori del volume preserving nella \emph{Tab}\ref{tab:cp4-sc1-02}.
      0.09       &            &         & 3          & 38,7s    &9.5e^{-01}\\ 
      0.12       &            &         & 3          & 38.7s    &9,5e^{-01}\\
      \midrule
-     0.03       & 100        & 0.04    &            &           &3.8e^{-02}\\ 
-     0.05       &            &         &            &           &1.2e^{-01}\\
-     0.09       &            &         &            &           &1.9e^{-01}\\ 
-     0.12       &            &         &            &           &6.7e^{-02}\\
+     0.03       & 200        & 0.02    & 2          & 207s     &8.2e^{-02}\\ 
+     0.05       &            &         & 3          & 310s     &1.4e^{-01}\\
+     0.09       &            &         & 5          & 514s     &3.6e^{-01}\\ 
+     0.12       &            &         & 6          & 618s     &4.5e^{-01}\\
     \bottomrule
 \end{array}
 \]
@@ -248,7 +248,7 @@ anche il rumore.
 \caption{Sfera al tempo $t=0$, sporcata con rumore random.}
 \end{wrapfloat}
 
- Come ci aspettavamo (vedi \emph{Fig}\ref{fig:cp4-sc2-1-01}) entrambi i
+Come ci aspettavamo (\emph{Fig}\ref{fig:cp4-sc2-1-01}) entrambi i
 metodi puliscono l'immagine in un tempo finito, ma il volume
 preserving si comporta meglio in quanto riesce a preservare il volume
 senza rischiare di far collassare la sfera ancor prima di averla
@@ -288,8 +288,8 @@ avere un errore dell'ordine di $10^{-1}$ (vedi \emph{Tab}\ref{tab:cp4-sc2-1-01})
      0.2        &            &         & 3          & 17s      &1.8e^{-01}\\ 
      0.4        &            &         & 5          & 35s      &4.0e^{-01}\\ 
      0.8        &            &         & 10         & 91s      &1.0\\
-     0.9        &            &         &            &          &   \\
-                &            & 0.04    &            &          &   \\  
+     0.9        &            &         & 12         & 116s     &1.5\\
+                &            & 0.04    & 23         & 239s     &9.9e^{-01}\\  
      \bottomrule
 \end{array}
 \]
@@ -416,18 +416,68 @@ Nel caso di rumore gaussiano, è stata usata la funzione di MATLAB
 questo caso la differenza tra i due schemi non è molto evidente in
 quanto il rumore viene eliminato in tempi brevi, quindi lo schema MCM
 non perde troppo volume. Ripotiamo in \emph{Fig}\ref{fig:cp4-sc2-2-01}
-i dati iniziali dopo l'aggiunta del rumore ed in \emph{Fig} il denoising.
+i dati iniziali dopo l'aggiunta del rumore e nelle
+\emph{Fig}\ref{fig:cp4-sc2-2-02}-\ref{fig:cp4-sc2-2-04} il
+denoising. Come possiamo notare nel caso del manubrio, il rumore
+gaussiano viene eliminato in tempi brevi, prendendo un  passo
+temporale $\Delta t$ più piccolo di $\Delta x$.
+
+\begin{figure}[h!tb]
+  \centering
+  \subfloat[][\emph{Sfera} al $t=0$.]
+           {\includegraphics[width=.36\textwidth]{noise/imnoise/mcm/sphere/sphere100i-0-00}}\quad
+  \subfloat[][\emph{Toro} al $t=0$.]
+           {\includegraphics[width=.36\textwidth]{noise/imnoise/mcm/torus/torus100i-0-00}}\\
+  \subfloat[][\emph{Manubrio} al $t=0$.]
+           {\includegraphics[width=.36\textwidth]{noise/imnoise/mcm/dumbbell/dumb149i-0-00}}\quad
+  \caption{Data iniziali genrati dalla funzione \emph{imnoise}.}
+  \label{fig:cp4-sc2-2-01}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \subfloat[][\emph{MCM: Sfera al tempo} $t=0.1$.]
+           {\includegraphics[width=.36\textwidth]{noise/imnoise/mcm/sphere/sphere100i-2-01}}\quad
+  \subfloat[][\emph{MCM: Sfera al tempo} $t=0.25$.]
+           {\includegraphics[width=.36\textwidth]{noise/imnoise/mcm/sphere/sphere100i-5-025}}\\
+  \subfloat[][\emph{PVMCM: Sfera al tempo} $t=0.1$.]
+           {\includegraphics[width=.36\textwidth]{noise/imnoise/vpmcm/sphere/sphere100i-2-01}}\quad
+  \subfloat[][\emph{PVMCM: Sfera al tempo} $t=0.25$.]
+           {\includegraphics[width=.36\textwidth]{noise/imnoise/vpmcm/sphere/sphere100i-5-025}}\quad
+  \caption{Denoising della Sfera con rumore gaussiano.}
+  \label{fig:cp4-sc2-2-02}
+\end{figure}
+
+
+\begin{figure}[h!tb]
+  \centering
+  \subfloat[][\emph{MCM: Toro al tempo} $t=0.05$.]
+           {\includegraphics[width=.36\textwidth]{noise/imnoise/mcm/torus/torus100i-2-005}}\quad
+  \subfloat[][\emph{MCM: Toro al tempo} $t=0.12$.]
+           {\includegraphics[width=.36\textwidth]{noise/imnoise/mcm/torus/torus100i-5-012}}\\
+  \subfloat[][\emph{PVMCM: Toro al tempo} $t=0.05$.]
+           {\includegraphics[width=.36\textwidth]{noise/imnoise/vpmcm/torus/torus100i-2-005}}\quad
+  \subfloat[][\emph{PVMCM: Toro al tempo} $t=0.12$.]
+           {\includegraphics[width=.36\textwidth]{noise/imnoise/vpmcm/torus/torus100i-5-012}}\quad
+  \caption{Denoising del toro con rumore gaussiano.}
+  \label{fig:cp4-sc2-2-03}
+\end{figure}
 
 \begin{figure}[htb!]
   \centering
-  \subfloat[][\emph{Sfera sporcata con rumore gaussiamo} al $t=0$.]
-           {\includegraphics[width=.45\textwidth]{noise/imnoise/mcm/sphere/sphere100i-0-00}}\quad
-  \subfloat[][\emph{Toro sporcato con rumore gaussiamo} al $t=0$.]
-           {\includegraphics[width=.45\textwidth]{noise/imnoise/mcm/torus/torus100i-0-00}}\\
-  \subfloat[][\emph{Manubrio sporcato con rumore gaussiamo} al $t=0$.]
-           {\includegraphics[width=.45\textwidth]{noise/imnoise/mcm/dumbbell/dumb149i-0-00}}\quad
-  \caption{Data iniziali genrati dalla funzione \emph{imnoise}.}
-  \label{fig:cp4-sc2-2-01}
+  \subfloat[][\emph{MCM: Manubrio al tempo} $t=0.01$, con $\Delta
+   t=\Delta x /4$.]
+           {\includegraphics[width=.36\textwidth]{noise/imnoise/mcm/dumbbell/dumb149i-2-dt4-001}}\quad
+  \subfloat[][\emph{MCM: Manubrio al tempo} $t=0.01$, con $\Delta t=\Delta x /32$.]
+           {\includegraphics[width=.36\textwidth]{noise/imnoise/mcm/dumbbell/dumb149i-4-dt32-001}}\\
+  \subfloat[][\emph{PVMCM: Manubrio al tempo} $t=0.01$, con $\Delta
+    t=\Delta x /8$.]
+           {\includegraphics[width=.36\textwidth]{noise/imnoise/vpmcm/dumbbell/dumb149i-2-dt4-001}}\quad
+  \subfloat[][\emph{PVMCM: Manubrio al tempo} $t=0.01$, con $\Delta
+    t=\Delta x /32$.]
+           {\includegraphics[width=.36\textwidth]{noise/imnoise/vpmcm/dumbbell/dumb149i-4-dt32-001}}\quad
+  \caption{Denoising del manubrio con rumore gaussiano.}
+  \label{fig:cp4-sc2-2-04}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -435,3 +485,105 @@ i dati iniziali dopo l'aggiunta del rumore ed in \emph{Fig} il denoising.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Immagini reali. Il \emph{Gargolye}}
+In questa sezione andremo ad testare entrambi i metodi su di un'immagine 3D reale.  
+
+\begin{wrapfloat}{figure}{l}{0pt}
+\includegraphics[width=0.5\textwidth]{smooth/vpmcm/gargolye/garg149-0-00}
+\caption{Gargolye al tempo $t=0$ ed al livello zero, ottenuta da un scanner 3D.}
+\label{fig:cp4-sc3-01}
+\end{wrapfloat}
+
+L'immagine scelta rappresenta un \emph{gargolye} e ci è stata fornita
+dal laboratorio della focoltà di matematica dell'universita di
+Bologna. Il gargolye è stato importato grazie all'utilizzo di uno
+scanner 3D, che ci ha restituito i valori della funzione level-set che
+rappresenta tale superficie (\emph{Fig}\ref{fig:cp4-sc3-01}).  Chiaramente tale funzione non presenta le stesse regolarità di quelle utilizzate nei test
+precedenti, per cui dopo un tot di iterazioni l'immagine comincia un
+processo di erosione (\emph{Fig}\ref{fig:cp4-sc3-03}). Iniziamo col
+far evolvere ll gargolye senza l'aggiunta di rumore. Premettiamo che i
+valori del gargolye ci sono stati forniti nell'intervallo $[1,149]$ con
+$\Delta x=1$, ora in quanto utilizziamo dei metodi di approssimazione
+del volume che sono dell'ordine di $\Delta x$, abbiamo deciso di
+riscalare il tutto nell'intervallo $[-8,8]$, al fine di lavorare con
+un passo spaziale più piccolo. Il comportamento differente dei due metodi,
+data l'impossibilità, come anticipato poc'ansi, di effettuare troppe
+iterazioni ed di aumentare i nodi della griglia, non è immediatamenti
+evidente nelle immagini (\emph{Fig}\ref{fig:cp4-sc3-02}), ma si può
+dedurre dall'analisi delle
+\emph{Tab}\ref{tab:cp4-sc3-01}-\ref{tab:cp4-sc3-02}. In queste è stato
+riportato  l'errore in norma tra il volume iniziale e quello finale,
+anche se sembra alto tuttavia è da notare che il volume del gargolye è
+circa $170$ quindi l'errore relativo del metodo volume preserving
+sarebbe dell'ordine di $10^{-2}$, mentre del MCM dell'ordine di
+$10^{-1}$. Osserviamo inoltre (vedi \emph{Tab}\ref{tab:cp4-sc3-02})
+che dimezzando il passo temporale nello schema volume preserving
+l'errore migliora, tuttavia questo comporta anche l'aumento delle
+iterazioni temporali generando risultati come in \emph{Fig}\ref{fig:cp4-sc3-03}.
+
+\begin{table}[htb!]
+\caption{Tabella per lo schema MCM. Evoluzione del Gargolye nel cubo
+  $[-8,8]^3$.}
+\label{tab:cp4-sc3-01}
+\[
+\begin{array}{*{5}{c}l}
+    \toprule
+    \text{time} &\text{nodi} &\Delta t &\text{iter} &\text{CPUs}&\text{VolErr} \\
+    \midrule
+     0.01       & 149        & 0.01    & 1          & 0.7s     &13\\
+     0.05       &            & 0.02    & 2          & 1.8s     &20.5\\ 
+     0.15       &            & 0.1     & 2          & 1.8s     &24\\ 
+     0.25       &            &         & 3          & 3.4s     &32.1\\
+     0.14       &            & 0.05    & 5          & 7.7s    &40.1\\     
+     \bottomrule
+\end{array}
+\]
+\end{table}
+
+\begin{table}[htb!]
+\caption{Tabella per lo schema PVMCM. Evoluzione del Gargolye nel cubo
+  $[-8,8]^3$.}
+\label{tab:cp4-sc3-02}
+\[
+\begin{array}{*{5}{c}l}
+    \toprule
+    \text{time} &\text{nodi} &\Delta t &\text{iter} &\text{CPUs}&\text{VolErr} \\
+    \midrule
+     0.01       & 149        & 0.01    & 1          & 1.5s     &1.5\\
+     0.05       &            & 0.02    & 2          & 3.6s     &2.1\\ 
+     0.15       &            & 0.1     & 2          & 3.6s     &12.6\\ 
+     0.25       &            &         & 3          & 7.0s     &19.1\\
+     0.14       &            & 0.05    & 5          & 16.0s    &13.2\\     
+     \bottomrule
+\end{array}
+\]
+\end{table}
+
+\begin{figure}[h!tb]
+  \centering
+  \subfloat[][\emph{MCM: Gargolye al tempo} $t=0.01$, con $\Delta
+    t=\Delta x/8$.]
+           {\includegraphics[width=.45\textwidth]{smooth/mcm/gargolye/garg149-1-dt8-001}}\quad
+  \subfloat[][\emph{MCM: Gargolye al tempo} $t=0.15$, con $\Delta
+     t=\Delta x$.]
+           {\includegraphics[width=.45\textwidth]{smooth/mcm/gargolye/garg149-3-dt-015}}\\
+  \subfloat[][\emph{PVMCM: Gargolye al tempo} $t=0.01$ con $\Delta
+    t=\Delta x/8$.]
+           {\includegraphics[width=.45\textwidth]{smooth/vpmcm/gargolye/garg149-1-dt8-001}}\quad
+  \subfloat[][\emph{PVMCM: Gargolye al tempo} $t=0.15$ con $\Delta
+    t=\Delta x$.]
+           {\includegraphics[width=.45\textwidth]{smooth/vpmcm/gargolye/garg149-3-dt-015}}\quad
+  \caption{Evoluzione del Gargolye.}
+  \label{fig:cp4-sc3-02}
+\end{figure}
+
+\begin{figure}[h!tb]
+  \centering
+  \subfloat[][\emph{MCM: Gargolye al tempo} $t=0.25$, con $\Delta
+      t=\Delta x/2$.]
+           {\includegraphics[width=.45\textwidth]{smooth/mcm/gargolye/garg149-4-dt2-025}}\quad
+  \subfloat[][\emph{PVMCM: Gargolye al tempo} $t=0.25$ con $\Delta
+    t=\Delta x/2$.]
+           {\includegraphics[width=.45\textwidth]{smooth/vpmcm/gargolye/garg149-5-dt2-025}}\quad
+  \caption{Evoluzione del Gargolye.}
+  \label{fig:cp4-sc3-03}
+\end{figure}
