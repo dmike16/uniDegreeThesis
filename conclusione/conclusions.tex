@@ -7,4 +7,17 @@ risulta essere uno schema molto robusto anche per passi temporali
 ``lunghi'' (non richiede la CFL parabolica), si comporta molto bene
 per il \emph{denoising} di superfici geometriche, consentendo di
 compiere più iterazioni di filtraggio per eliminare il rumore senza
-correre il rischio del collasso in un punto. 
+correre il rischio del collasso in un punto. Tuttavia eredità anche
+alcune caratteristiche del classico MCM, come lo smussamento dei bordi
+dell'immagine e l'emergere di singolarità nel caso di superfici non
+convesse; limite quest'ultimo intrenseco nel flusso per curvatura media,
+unica soluzione sarebbe quella di sostituire il flusso con altri più
+complicati come suggerito in \cite{gui:sapiro}. Per quanto riguarda il
+caso di immagini reali, non abbiamo ottenuto risultati molto soddisfacenti
+anche se abbiamo testato il metodo su una sola immagine quindi
+si dovrebbe ampliare la casistica per vedere i vantaggi rispetto al
+cassico MCM. Per completare il lavoro si dovrebbe aggiungere  un conto
+sulla consistenza dello schema generale e sulla convergenza. Mentre
+per futuri miglioramenti si potrebbe provare ad utilizzare tecniche
+piu raffinate nell'approssimazione del termine di conservazione del
+volume. 
