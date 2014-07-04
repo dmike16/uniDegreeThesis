@@ -33,6 +33,7 @@ OUTPUT_DIR         := realese
 SOURCE_CHAPTER_DIR := capitoli
 SOURCE_INTRO_DIR   := introduzione 
 SOURCE_BIB_DIR     := bibliography
+SOURCE_CONCLUSIONS := conclusione
 SETTING_LATEX      := setting-my-thesis.sty
 
 quiet = quiet_
@@ -85,6 +86,7 @@ THESIS_DVI_OUT := $(subst ps,dvi,$(THESIS_PS_OUT))
 ALL_SOURCE     := $(wildcard $(SOURCE_CHAPTER_DIR)/*.tex)  \
                   $(wildcard *.tex)                        \
 		  $(wildcard $(SOURCE_INTRO_DIR)/*.tex)    \
+                  $(wildcard $(SOURCE_CONCLUSIONS)/*.tex)  \
 		  $(wildcard $(SOURCE_BIB_DIR)/*.bib)
 BIB_SOURCE     := $(wildcard $(SOURCE_BIB_DIR)/*.bib)
 MAIN_SOURCE    := thesis_degree.tex
