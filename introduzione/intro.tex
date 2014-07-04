@@ -1,5 +1,90 @@
-\chapter*{INTRODUZIONE}
+\chapter*{Introduzione}
 \phantomsection
 \addcontentsline{toc}{chapter}{Introduzione}
-WORKING IN PROGRESS \cite[vedi][]{vpmcm:code} e \cite[vedi][23]{giga:main} e
-\cite[vedi][cp 3]{gui:sapiro} e \cite[vedi][cp 3-5]{fed:drag}, \cite[vedi][]{fed:drag,giga:main,crand:lion,yun:giga} e \cite[vedi][]{bi:chow,dog:noch}.
+
+Un campo della matematica che in questi anni si sta sviluppando
+notevolmente, è quello che si occupa del trattamento delle immagini
+sia 2D che 3D. E se da un lato sono migliorati i strumeti di
+acquisizione delle stesse (come  scanner 2D/3D), dall'altro si sta
+sviluppando sempre più l'idea, già da anni consolidata, di utilizare
+equazioni alle derivate parziali (PDE) nel trattamento delle
+immagini. Questa si basa sul concetto di \emph{scale-space} o
+\emph{rappresentazione multiscala}, in cui l'immagine
+iniziale $u_0(x)$ viene racchiusa in una famiglia $u(x,t)$, con
+$t\in\mathbb{R}^+$ parametrizzante la scala, attraverso l'azione di un
+\emph{kernel} (filtro) $K(\cdot,t)$ su di essa. Uno dei filtri più
+usati  e studiati è quello \emph{gaussiano}, in questo caso  $u(x,t)$
+è definita dalla convoluzione del filtro con $u_0(x)$ e può essere
+vista come la soluzione dell'equazione del calore con dato iniziale $u_0(x)$
+\[
+u_t=\Delta u.
+\]
+Una \emph{scale-space} cosi costruita  è stato dimostrato avere, tra
+le proprità principali, la linearità e la \emph{cusualità}, cioè
+non viene aggiunta  ``informazione'' quando ci spostiamo da una scala
+$t_1$ ad una $t_2>t_1$, che matematicamente può essere tradotto con il
+principio del massimo ed  è anche legata alla proprietà di
+\emph{semi-gruppo}, vale a dire che $u(x,t_2)$ può essere ottenuta da
+$u(x,t_1)$ senza conoscere $u_0(x)$, con $t_1<t_2$.   Nonostante queste
+buone proprietà, tuttavia, il flusso calorico classico presenta alcuni
+problemi, in particolare non è intrinseco alla giometria
+dell'immagine. Questo problema è stato risolto
+(\cite[][]{sapiro:tann}) sostituendo il flusso calorico classico con
+un flusso  geometrico, che in generale dipende da caretteristiche
+geometriche dell'oggetto in esame come ad esempio la curavtura. Uno
+\emph{scale-space} che si evolve secondo questi flussi, essendo
+ottenuto come soluzione di un PDE, continua a soddisfare le proprietà
+di causualità (principio del massimo) e di semi gruppo ed in più è
+intrinseco alle proprietà dell'oggetto in esame. 
+Questo concetto è alla base di molte applicazioni nella computer
+grafica e nell'analisi dell'immagini, in modo particolare può essere
+usato per processi di \emph{denoising} di un immagine. E' noto che
+quando acquisiamo o inviamo un immagine questa si può deteriorare, cioè 
+viene aggiunto del \emph{rumore}, e quindi abbiamo bisogno di
+filtrarla per eliminare le discontinuità. Il modello di filtraggio per
+immagini 3D che presentiamo in questo lavoro, si basa su uno dei flussi più
+studiati nella letteratura, il flusso per curvatura media che rientra
+nel gruppo dei flussi geometrici precedenti. Questo, tuttavia presenta
+dei limiti, in quanto è stato dimostrato che superfici convesse tendono a
+collassare in un punto, mentre superfici non convesse posso subire dei
+cambiamenti topologici generando delle singolarità; un degli esempi
+più famosi nella letteratura è quello del manubrio (\emph{dumbbell}). 
+Grazie al lavoro di Sapiro in \cite[][]{gui:sapiro}, dove il flusso
+per curvatura media è stato riscritto in modo tale da conservare il
+volume e alla rappresentaizone \emph{level-set} delle superfici
+introdotta da Oscher e Sethian, abbiamo riscritto l'equazione per
+curvatura media che preserva il volume ottenendo un PDE parabolico non
+lineare del secondo ordine, singolare nei punti dove il gradiente della
+soluzione si annulla. Quindi è stato necessario immergere il tutto
+nella teoria delle soluzioni viscose; anche se, eccecion fatta per
+alcuni casi particolari, ancora non sono stati raggiunti risultati
+definitivi sull'esistenza e unicità delle soluzioni nel caso della
+nostra equazione. Discretizzando tale equazione con uno schema
+semi-lagrangiano e un schema \emph{ad hoc} nel caso di gradiente
+nullo; abbiamo ralizzato un algoritmo di filtraggio (scritto
+in\emph{C-Language}) che preserva il volume; testandolo sia su superfici
+geometriche che su immagini reali. Abbiamo messo in evidenza come il metodo
+\emph{volume preserving}, nel caso di superfici geometriche, riesce a
+superare alcuni limiti dello schema classico, tra cui il collasso in
+un punto di superfici convesse e ad ritardare i cambiamenti topologici
+che emergono per quelle non convesse, come nel caso del manubrio,
+mentre nel caso dell'immagine reale, su cui l'abbiamo testato, non
+sone emerse le differenze a causa  dell'impossibilità di effettuare
+troppe iterazioni.
+
+La tesi è strutturata come segue: nel Capitolo §\ref{cap:cap1} abbiamo
+richiamato alcune nozioni sulle superfici in forma level-set,
+presentato l'equazione di evoluzione per curvatura media, calcolato il
+termine che ci conserva il volume e riscritto il tutto in formulazione
+level-set. Nel capitolo §\ref{cp:cp2}, abbiamo esposto i concetti
+realitivi a soluzioni di viscosità, riportando alcuni teoremi di
+esistenza e unicità in casi particolari, necessari per fornire un
+robusto background teorico alla nostra equazione. Lo schema del moto
+per curvatura media classico (MCM) e la sua versione che preserva il
+volume (VPMCM) sono stati ottenuti nel capitolo §\ref{cp:cp2-00},
+riportando anche il conto per la consistanza di MCM e di una versione
+semplificata di PVMCM. Infine nel capitolo §\ref{cap:cp4} abbiamo
+sia mostato il buon comportamento dello schema VPMCM nel caso di superfici
+geometriche, sia in presenza che in assenza di rumore, e testato su di
+un'immagine reale riportando le dovute considerazioni. 
+   
