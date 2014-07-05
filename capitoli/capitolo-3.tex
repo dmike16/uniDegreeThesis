@@ -105,7 +105,7 @@ Quindi nel caso in cui $Du \ne 0$ e $u_{x_1}^2+u_{x_3}^2\ne 0$ otteniamo :
 \]
 Osservando tale approssimazione, possiamo notare che i punti $(x + \sqrt{2\Delta t}(\pm\vec{v}_1 \pm\vec{v}_2))$ non necessariamente saranno i nodi della griglia, quindi è necessario introdurre un operatore di interpolazione $I[\cdot]$.
 Per completare la costruzione consideriamo una griglia spaziale $x_j=(j_1\Delta x,j_2\Delta x,j_3\Delta x)$ con $j=(j_1,j_2,j_3)$ multi-indice in $\mathbb{Z}^3$ ed una griglia temporale $t^n=n\Delta t$ con $n\in\mathbb{N}$.
-Indichiamo con $u_j^n$ l'approssimazione di $u$ nel punto della griglia $(x_j,t^n)$ e con $D_j^n$ l'approssimazione del gradiente di $u$ nel suddetto punto. Quindi il nostro schema semi-lagrangiano risulta :
+Indichiamo con $u_j^n$ l'approssimazione di $u$ nel punto della griglia $(x_j,t^n)$ e con $D_j^n$ l'approssimazione del gradiente di $u$ nel suddetto punto. Quindi il nostro schema Semi-Lagrangiano risulta :
 \begin{equation}
 \label{eq:cp3-02}
 u_j^{n+1} = \frac{1}{4}\sum_{+,-}I[u^n](x_j+\sqrt{2\Delta t}(\pm\vec{v}_1\pm\vec{v}_2)).
@@ -138,15 +138,22 @@ dove $\delta(j)=\left\{(j_1\pm 1,j_2,j_3),(j_1,j_2\pm 1,j_3),(j_1,j_2,j_3\pm 1)\
 \end{aligned}
 \]
 scegliendo $\varepsilon=\frac{\Delta x^2}{6\Delta t}$ otteniamo la \eqref{eq:cp3-03-add}.
-Tale scelta è giustificata dal fatto che, come vedremo nella sezione successiva, il moto per curvature media è consistente con l'approssimazione dell'equazione del calore a patto di adottare, come soluzione viscosa, la definizione (riferimento formula) proposta da \emph{Crandall} \cite[vedi][]{crand:lion}.
+Tale scelta è giustificata dal fatto che, come vedremo nella sezione
+successiva, il moto per curvature media è consistente con
+l'approssimazione dell'equazione del calore a patto di adottare nella
+definizione di soluzioni viscose il flusso \eqref{eq:cp2-14} definito da
+\emph{Crandall} in \cite[][]{crand:lion}.
 
   \item Utilizziamo l'approssimazione dell'equazione $u_t=\frac{1}{2}\Delta u$:
     \begin{equation}
       \label{eq:cp-04-add}
       u_j^{n+1}=u_j^n +\frac{1}{2}\frac{\Delta t}{\Delta x^2}\left(6u_j^n - \sum_{i\in\delta(j)}u_i^n\right).
     \end{equation}
-Tale scelta è giustificata, in quanto il moto per curvatura media risulta essere consistente con l'equazione $u_t=\frac{1}{2}\Delta u$, (vedi sezione successiva) prendendo come soluzione viscosa la definizione standard (riferimento formula) \cite[vedi][]{fed:drag}. L'unico problema è che la \eqref{eq:cp-04-add}
-richiede una $\mathit{CFL}$ parabolica, che non è presente nel nostro schema essendo \emph{semi-lagrangiano}; un modo per aggirare il problema è quello di usare uno schema implicito nell'approssimazione di  $u_t=\frac{1}{2}\Delta u$.
+Tale scelta è giustificata, in quanto il moto per curvatura media
+risulta essere consistente con l'equazione $u_t=\frac{1}{2}\Delta u$,
+prendendo nella definizione di soluzione viscosa il flusso 
+\eqref{eq:cp2-13} come in \cite[][]{fed:drag}. L'unico problema è
+che la \eqref{eq:cp-04-add} richiede una $\mathit{CFL}$ parabolica, che non è presente nel nostro schema essendo \emph{semi-lagrangiano}; un modo per aggirare il problema è quello di usare uno schema implicito nell'approssimazione di  $u_t=\frac{1}{2}\Delta u$.
 \end{enumerate}
 Scegliendo, ad esempio, la prima alternativa il nostro schema $\mathit{MCM}$ completo diventa:
 \begin{equation}
@@ -204,8 +211,8 @@ E sia inoltre $\phi\in C^{\infty}(\mathbb{R}^3\times(0,t])$ e $\phi^{n_m-1}\equi
 &\le\phi_t(x,t)+F^*(D\phi(x,t),D^2\phi(x,t)),
 \end{split}
 \end{equation}
-con $F_*$ e $F^*$ rispettivamente inviluppo semicontinua inferioremnte
-e speriormente di $F$ definiti in \ref{eq:cp2-03-add}.
+con $F_*$ e $F^*$ rispettivamente inviluppo semicontinuo inferioremnte
+e speriormente di $F$ definiti in \eqref{eq:cp2-03-add}.
 \end{definizione}
 \begin{osservazione}
 Osserviamo che se $F$ è continua allora il $\limsup$ ed il $\liminf$ nell'espressione \eqref{eq:cp3-03} coincidono, quindi la definizione si riduce a quella classica di consistenza.
@@ -238,7 +245,7 @@ Abbiamo definito $\sigma=[\vec{v}_1,\vec{v}_2]$ quindi prendendo $\vec{b}$ in $\
 \[
 I[u^n](x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b}).
 \]
-Ora calcolando lo jacobiano di $\sigma$ per un qualsiasi vettore $p$ in $\mathbb{R}^3$ (senza riportare tutto il conto) si dimostra che:
+Ora calcolando lo jacobiano di $\sigma$ per un qualsiasi vettore $p$ in $\mathbb{R}^3$ (senza riportare il conto) si dimostra che:
 \[
 \left|J_{\sigma}(p)\right|^2=\frac{1}{p_1^2+p_3^2},
 \]
@@ -248,9 +255,9 @@ Inoltre, avendo preso la $u$ sufficientemente regolare, anche essa sarà lipschi
 \begin{equation}
 \label{eq:cp3-06}
 \begin{split}
-& I[u^n](x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b}) = I[u^n](x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b}) - \\
-& +u(x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b},t^n) + u(x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b},t^n)- \\
-& + u(x_j+\sigma(Du(x_j,t^n))\sqrt{2\Delta t}\vec{b},t^n)+ u(x_j+\sigma(Du(x_j,t^n))\sqrt{2\Delta t}\vec{b},t^n).
+& I[u^n](x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b}) = I[u^n](x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b}) + \\
+& -u(x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b},t^n) + u(x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b},t^n)+ \\
+& - u(x_j+\sigma(Du(x_j,t^n))\sqrt{2\Delta t}\vec{b},t^n)+ u(x_j+\sigma(Du(x_j,t^n))\sqrt{2\Delta t}\vec{b},t^n).
 \end{split}
 \end{equation}
 Stimiamo la parte destra di \eqref{eq:cp3-06}. Per la prima differenza applichiamo la stima dell'errore di interpolazione quindi
@@ -303,7 +310,21 @@ Ora sviluppando  anche il termine $u(x_j,t^{n+1})$ e applicando la definizione g
 & +O(\frac{\Delta x^r}{\Delta t}) + O(\frac{\Delta x^{q-s}}{\Delta t^{\frac{1}{2}}}) + O(\Delta t)
 \end{split}
 \]
-questa per $(\Delta t,\Delta x)\to 0$ e $(x_j,t^n)\to(x,t)$ risulta soddisfatta, nella forma classica, se $\Delta x = o(\Delta t^{\frac{1}{r}})$ e $\Delta x^{q-s}=o(\Delta t^{\frac{1}{2}})$
+questa per $(\Delta t,\Delta x)\to 0$ e $(x_j,t^n)\to(x,t)$ risulta
+soddisfatta, nella forma classica, se $\Delta x = o(\Delta
+t^{\frac{1}{r}})$ e $\Delta x^{q-s}=o(\Delta t^{\frac{1}{2}})$
+
+\begin{osservazione}
+Nel caso $r=q=2$ ed $s=1$ si ha $\Delta x=o(\Delta
+t^{\frac{1}{2}})$. Ponendo $\Delta t = \Delta x^{\alpha}$, affinchè il
+metodo sia consistente, $\alpha$ deve verificare
+$1-\frac{\alpha}{2}>0$ e quindi $\alpha < 2$. Per cui lo schema, pur
+essendo esplicito, permette passi in tempi lunghi e non richiede di
+verificare la condizione di tipo CFL parabolica, tipica degli schemi
+espliciti alle differenze finiti per equazioni paraboliche. Tale
+condizione è molto restrittiva sulla lunghezza dei passi in tempo,
+perchè richiede $\Delta t=O(\Delta x^2)$.
+\end{osservazione}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                   SubSection 3.2.2 Caso DU = 0
 %
@@ -342,7 +363,7 @@ Inserendo quest'ultima espressione nella definizione di consistenza generalizzat
 \[
 \begin{split}
   &\frac{u(x_j,t^{n+1})-S(x_j,u(x_j,t^n),Du(x_j,t^n))}{\Delta t}= \frac{u(x_j,t^{n+1})-u(x_j,t^n)}{\Delta t} + \\
-  &  -\vec{v}_1^tD^2u(x_j,t^n)\vec{v}_1 -\vec{v}_2^tD^2u(x_j,t^n)\vec{v}_2 + 
+  &  -\vec{v}_1^tD^2u(x_j,t^n)\vec{v}_1 -\vec{v}_2^tD^2u(x_j,t^n)\vec{v}_2  
    + O(\Delta t) + O(\frac{\Delta x^r}{\Delta t}).
 \end{split}
 \]
@@ -490,14 +511,14 @@ un livello $c\ne 0$. In quanto possiamo riformulare il tutto
 scegliendo il livello zero per la funzione  $\tilde{u}(x)=u(x)-c$.
 \end{osservazione}
 Ora ricordiamo che l'\emph{integrale di superficie} di una funzione
-$f(x)$ sulla frontiera di un insieme in $\mathbb{R}^3$ è definito come \cite[vedi][§1.5]{osher:fed}
+$f(x)$ sulla frontiera di un insieme in $\mathbb{R}^3$ può essere definito come \cite[vedi][§1.5]{osher:fed}
 \begin{equation}
   \label{eq:cp3-sc3-03}
   \int_{\Omega}f(x)\hat{\delta}(x)dx,
 \end{equation}
 con $\hat{\delta}(x)$  \emph{delta di Dirac}, che taglia
 fuori tutto dal calcolo dell'integrale tranne la frontiera di
-$\Omega$. La delta di Dirac $\hat{\delta}(x)$, è definita
+$\Omega$. La delta di Dirac $\hat{\delta}(x)$, può essere definita
 (\cite[vedi][§1.5]{osher:fed}) come la
 derivata direzionale (nel senso delle distribuzioni) nella direzione normale della funzione di \emph{Heaviside}:
 \begin{equation}
@@ -718,7 +739,7 @@ Taylor del terzo odine in un intorno di $x_j$
 &+T_3(\Delta t^{\frac{3}{2}}\sigma(Du(x_j,t^n))\vec{b},D^3u(x_j,t^n))+O(\Delta t^2), 
 \end{split}
 \]
-come in §\ref{subsec:cp3-sc2-1} i termini del primo e del terzo ordine
+I termini del primo e del terzo ordine
 si eliminato quando sommiamo al variare di $\vec{b}\in\Pi$. In
 conclusione abbiamo
 \[

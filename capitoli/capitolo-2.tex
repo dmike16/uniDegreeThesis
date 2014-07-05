@@ -3,7 +3,7 @@
 In questa sezione richiamiamo alcune nozioni base sulle soluzioni
 viscose di equazioni alle derivate parziali (PDE) del secondo ordine e
 della loro variante parbolica. Per un'analisi approfondita di teoremi
-e preposizioni rimandiamo il lettore ai lavori \cite[vedi][]{fed:drag,giga:main,crand:lion,yun:giga}.
+e preposizioni rimandiamo il lettore ai lavori \cite[][]{fed:drag,giga:main,crand:lion,yun:giga}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %                            Section 2.1
@@ -64,7 +64,8 @@ u_k(x)=
   \label{fig:cp2-01}
 \end{figure}
 
-Nel 1982 Crandal e Lions introdussero una differente nozione di soluzione debole (soluzioni viscose \cite[vedi][]{crand:lion}) per molte equazioni del primo e del secondo ordine, soddisfacente proprietà di esistenza, unicità e stabiltà. 
+Nel 1982 Crandal e Lions introdussero una differente nozione di
+soluzione debole (soluzioni viscose, vedi \cite[][]{crand:lion}) per molte equazioni del primo e del secondo ordine, soddisfacente proprietà di esistenza, unicità e stabiltà. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %                            Section 2.2
@@ -77,7 +78,7 @@ Inziamo col introdurre la definizione di soluzione viscosa per PDE del secondo o
 \label{eq:cp2-02}
 F(x,u,Du,D^2u) = 0\text{ con }F:\mathbb{R}^N\times\mathbb{R}\times\mathbb{R}^N\times S(N)\to \mathbb{R},
 \end{equation}
-con $S(N)$ insieme delle matrici simmetriche $N\times N$, $u$ una funzione a volori reali definita in un sottoinsieme $\mathcal{O}$ di $\mathbb{R}^N$ e $Du$,$D^2u$ corrispondono al gradiente ed alla matrice delle derivate seconde di $u$. Al fine di applicare la teoria a un equazione del tipo \eqref{eq:cp2-02} (\cite[][2]{crand:lion}), richiederemo che $F$ soddisfi le seguenti propietà
+con $S(N)$ insieme delle matrici simmetriche $N\times N$, $u$ una funzione a volori reali definita in un sottoinsieme $\mathcal{O}$ di $\mathbb{R}^N$ e $Du$,$D^2u$ corrispondono al gradiente ed alla matrice delle derivate seconde di $u$. Al fine di applicare la teoria a un equazione del tipo \eqref{eq:cp2-02} (\cite[][]{crand:lion}), richiederemo che $F$ soddisfi le seguenti propietà
 \begin{gather}
 \label{eq:cp2-03}
 F(x,r,p,X) \leq F(x,s,p,X) \quad \forall\,r\leq s,\\
@@ -128,7 +129,7 @@ Similmente, una sopra soluzione viscosa di $F=0$ su $\mathcal{O}$ è una funzion
 Infine, $u$ è una soluzione viscosa se è sia sotto che sopra soluzione.
 \end{definizione}
 Dove $J_{\mathcal{O}}^{2,+}u(x)$ rappresenta il \emph{superjet} del secondo ordine di $u$ nel puto $x$. Più precisamente sia $\mathcal{O}\subset\mathbb{R}^N$ arbitrario%
-\footnote{Nelle dimostrazioni di esistenza, unicità e confronto viene preso localmento compatto \cite[vedi][10 §1]{crand:lion}.}
+\footnote{Nelle dimostrazioni di esistenza, unicità e confronto viene preso localmento compatto \cite[][10 §1]{crand:lion}.}
 ,  $u:\mathcal{O}\to\mathbb{R}$ e $\hat{x}\in\mathcal{O}$ allora
 \[
 J_{\mathcal{O}}^{2,+}u(\hat{x}) = \left\{(p,X)\in\mathbb{R}^n\times S(N):\,\text{ vale la \eqref{eq:cp2-05} per }\mathcal{O}\ni x\to\hat{x}\right\},
@@ -153,7 +154,11 @@ Nella definizione di soluzione viscosa, la richiesta di continuità di $u$ può 
 \end{enumerate}  
 
 Seguendo la discussione fatta ad inizio sezione, se $u$ è una soluzione viscosa di $F\leq 0$, $\phi\in C^2$ in un intorno di $\mathcal{O}$ e $u-\phi$ ha un massimo locale in $\hat{x}\in\mathcal{O}$, allora è vera la \eqref{eq:cp2-01-add} ( stesso ragionamento per le sopra soluzioni). Questo motiva la richiesta per $u$ di essere semicontinua dall'alto (rispettivamente dal basso per le sopra soluzioni), in quanto è facile produrre massimi per funzioni semicontinue dall'alto.
-Possiamo dire di più, la validità di \eqref{eq:cp2-01-add} per tutte le $\phi\in C^2$ tale che $u-\phi$ ha un massimo locale relativo ad $\mathcal{O}$, con $u$ semicontinua dall'alto, equivale a dire che $u$ è una sotto soluzione viscosa.  Infatti si può mostrare il seguente lemma (per maggiori dettagli \cite[vedi][§3]{giga:main})
+Possiamo dire di più, la validità di \eqref{eq:cp2-01-add} per tutte
+le $\phi\in C^2$ tale che $u-\phi$ ha un massimo locale relativo ad
+$\mathcal{O}$, con $u$ semicontinua dall'alto, equivale a dire che $u$
+è una sotto soluzione viscosa.  Infatti si può mostrare il seguente
+lemma (per maggiori dettagli vedi \cite[][§3]{giga:main})
 \begin{lemma}
   \label{lem:cp2-01}
  Sia $\hat{x}\in\mathcal{O}$ localmente compatto%
@@ -194,7 +199,9 @@ Il problema è che $\varepsilon(x)$ non è detto che sia $C^2$. Poniamo
 \[
 \omega_0(\sigma)=\sup\left\{\frac{|\varepsilon(x)|}{|x|^2}; |x|\leq\sigma,x\in\mathcal{O}\right\}
 \]
-così che $\omega_0$ è una funzione da $[0,\infty)$ in $[0,\infty)$ non decrescente e continua in $\sigma=0$ con $\omega_0(0)=0$, applicando un risultato noto \cite[vedi][§2 Lemma 2.1.9]{giga:main}, allora esiste una funzione $\theta\in C^2[0,\infty)$ tale che
+così che $\omega_0$ è una funzione da $[0,\infty)$ in $[0,\infty)$ non
+    decrescente e continua in $\sigma=0$ con $\omega_0(0)=0$,
+    applicando un risultato noto, vedi \cite[][§2 Lemma 2.1.9]{giga:main}, allora esiste una funzione $\theta\in C^2[0,\infty)$ tale che
 \[
 \begin{aligned}
 &\omega_0(\sigma)|\sigma|^2\leq\theta(\sigma)\text{ per }\sigma\geq 0,\\
@@ -251,7 +258,10 @@ a+F(t,x,u(t,x),p,X)\geq 0\text{ per }(t,x)\in\mathcal{O}_T,(a,p,X)\in\mathcal{P}
 e quindi un soluzione viscosa se sono verificate entrambe le diseguaglianze.
 
 \begin{osservazione}
-Osserviamo che anche in questo caso $F$ soddisfa le proprietà \eqref{eq:cp2-03} e \eqref{eq:cp2-04}. Ed inoltre anche per i ``semijets'' parbolici vale un lemma del tipo \ref{lem:cp2-01} \cite[vedi][§3]{giga:main}.
+Osserviamo che anche in questo caso $F$ soddisfa le proprietà
+\eqref{eq:cp2-03} e \eqref{eq:cp2-04}. Ed inoltre anche per i
+``semijets'' parbolici vale un lemma del tipo \ref{lem:cp2-01}, vedi
+\cite[][§3]{giga:main}. 
 \end{osservazione}
 
 Le definizioni si posso estendere anche per $u$ ed $F$ arbitrarie, non necessariamente continue. Prima di vedere come, richiamiamo la definizione di inviluppo semicontinuo. Sia $h$ una funzione definita in $L\subset\mathbb{R}$ a valori in $\tilde{\mathbb{R}}=\mathbb{R}\cup\{\pm\infty\}$, definiamo inviluppo semicontinuo superiore $h^*$ e inferiore $h_*$ nel seguente modo
@@ -276,7 +286,7 @@ Una funzione $u:\mathcal{O}\to\mathbb{R}$ è chiamata una sotto soluzione viscos
 \]
 \end{definizione}
 \begin{osservazione}
-Applicando il lemma \ref{lem:cp2-01} possiamo dara una definizione generica di soluzione viscosa per l'equazione \eqref{eq:cp2-02} utilizzando i ``superjets'' e ``subjets''.
+Applicando il \emph{Lemma} \ref{lem:cp2-01} possiamo dara una definizione generica di soluzione viscosa per l'equazione \eqref{eq:cp2-02} utilizzando i ``superjets'' e ``subjets''.
 \end{osservazione}
 Una definizione generica analoga vale anche nel caso di equazioni paraboliche del tipo \eqref{eq:cp2-08}.
 \begin{definizione}
@@ -290,7 +300,7 @@ Una funzione $u:\mathcal{O}_T\to\mathbb{R}$ è chiamata una sotto soluzione visc
 \]
 \end{definizione}
 \begin{osservazione}
-In questo caso chiaramente $F$ è definita in $W_T$ denso in $\mathcal{O}_T\times\mathbb{R}\times\mathbb{R}^N\times S(N)$. E anche in questo caso possiamo dara una definizione che coinvolge i ``superjets'' e ``subjets'' parabolici, grazie ad una variante del lemma \ref{lem:cp2-01}. 
+In questo caso chiaramente $F$ è definita in $W_T$ denso in $\mathcal{O}_T\times\mathbb{R}\times\mathbb{R}^N\times S(N)$. E anche in questo caso possiamo dara una definizione che coinvolge i ``superjets'' e ``subjets'' parabolici, grazie ad una variante del \emph{Lemma} \ref{lem:cp2-01}. 
 \end{osservazione}
 Per risultati di esistenza, unicità e confronto sia per equazioni del tipo \eqref{eq:cp2-02} che \eqref{eq:cp2-08} \cite[vedi][]{crand:lion,giga:main,yun:giga}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -417,7 +427,7 @@ Per completare questa sezione, e per definire le soluzioni nel caso particolare 
 \[
 F(p,X)=-\trace\left(\left(I-\overline{p}\otimes\overline{p}\right)X\right)
 \]
-in $p=0$, punto in cui è discontinua. In questo scenario c'è abbastanza arbitrarietà nello scegliere il valore di $F$, questo perchè come osservato da Crandal e Lions nell'analisi dell'equazione andiamo a porre $X=0$ quando $p=0$, quindi il valore in $p=0$ non importa purchè sia consistente  \cite[vedi][§9 p53]{crand:lion}.
+in $p=0$, punto in cui è discontinua. In questo scenario c'è abbastanza arbitrarietà nello scegliere il valore di $F$, questo perchè come osservato da Crandal e Lions nell'analisi dell'equazione andiamo a porre $X=0$ quando $p=0$, quindi il valore in $p=0$ non importa purchè sia consistente, vedi \cite[][§9]{crand:lion}.
 \begin{enumi}
   \item Una prima possibilità è quella di calcolare esplicitamente gli inviluppi semicontinui $F_*$ e $F^*$ usando le definizione \eqref{eq:cp2-03-1-add} e \eqref{eq:cp2-03-2-add}, facciamo il conto per $F_*$
 \[
@@ -439,9 +449,10 @@ quindi
 \[
 \inf_{\substack{|\overline{q}|=1 \\ \overline{q}\in \mathbb{R}^N\setminus\{0\}}}\trace\left(\left(\overline{q}\otimes\overline{q}\right)X\right) = \inf_{\substack{|\overline{q}|=1 \\ \overline{q}\in \mathbb{R}^N\setminus\{0\}}}\sum_{i=1}^nq_i^2\lambda_i(X)
 \]
-con $q_i$ componenti del vettore $\overline{q}$. Il termine a destra dell'uguaglianza precednte è pari a $\lambda_{\text{min}}(X)$, mentre se ripetiamo il calcolo per $F^*$ nell'espressione precedente otterremo un $\sup\sum_{i=1}^nq_i^2\lambda_i(X)$ che è pari a $\lambda_{\text{max}}(X)$ (vedi \emph{osservazione} \ref{oss:cp2-02}).
+con $q_i$ componenti del vettore $\overline{q}$. Il termine a destra dell'uguaglianza precednte è pari a $\lambda_{\text{min}}(X)$, mentre se ripetiamo il calcolo per $F^*$ nell'espressione precedente otterremo un $\sup\sum_{i=1}^nq_i^2\lambda_i(X)$ che è pari a $\lambda_{\text{max}}(X)$ (vedi \emph{Osservazione} \ref{oss:cp2-02}).
 Quindi $F^*$ e $F_*$ da usare nella definizione \ref{def:cp2-02} di soluzioni viscose per l'equazione del moto per curvatura media, sono
 \begin{subequations}
+\label{eq:cp2-13}
 \begin{align}
   \label{eq:cp2-13-1}%
   F_*(p,X) &=%
@@ -485,7 +496,7 @@ con $\hat{\lambda}_i=(\lambda_i-\lambda_1)>0$ e $\hat{q}=(q_2,\dots,q_n)$, $|\ha
 
 \end{itemize}
 \end{osservazione}
-  \item Una altra definizione è quella proposta da Crandal e Lions \cite[vedi][§9]{crand:lion}
+  \item Una altra definizione è quella proposta da Crandal e Lions in \cite[][§9]{crand:lion}
 \begin{subequations}
 \label{eq:cp2-14}
 \begin{align}
@@ -504,7 +515,7 @@ con $\hat{\lambda}_i=(\lambda_i-\lambda_1)>0$ e $\hat{q}=(q_2,\dots,q_n)$, $|\ha
 \end{align}
 \end{subequations}
 Queste  sono  \eqref{eq:cp2-14-1} semicontinua inferiormente e
-\eqref{eq:cp2-14-2} superiormente per $n=2,3$, \cite[vedi][§9]{crand:lion}.
+\eqref{eq:cp2-14-2} superiormente per $n=2,3$, vedi \cite[][§9]{crand:lion}.
 \end{enumi}
 \begin{osservazione}
 Osserviamo che i teoremi sopra esposti valgono nel caso di moto per curvaura media, come abbiamo mostrato,  ed anche per la sua  generalizzazione cioè
@@ -551,7 +562,7 @@ con qualche costante $C>0$ indipendente da $x$,
 $y\in\overline{\Omega}$ e $p\in\mathbb{R}^N$. Sotto queste ipotesi,
 risultati di confronto e esistenza vengono raggiunti da Crandal e
 Lions, Giga e Goto, nel caso $\Omega$ limitato, per approfondimenti,
-teoremi e dimostrazioni \cite[vedi][§3]{giga:main} e
+teoremi e dimostrazioni vedi \cite[][§3]{giga:main} e
 \cite[][§8]{crand:lion}.
 Nel caso di dipendenza non locale da $u$ in $\mathcal{I}(u,t)$, la
 questione è ancora aperta e finora non sono stati raggiunti

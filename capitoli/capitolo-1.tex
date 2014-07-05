@@ -3,7 +3,7 @@
 In questa sezione richiamiamo la definizione di superfice in forma
 level-set e introduciamo il moto per curvatura media per superfici,
 devirandone un sua formulazione che preserva il volume, per uteriori
-dettagli si veda \cite{gui:sapiro,sapiro:tann}.
+dettagli si veda \cite[][]{gui:sapiro,sapiro:tann}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % Section 1.1
@@ -149,7 +149,7 @@ abbiamo
 (\Div_S X)(x)=\trace\left(\left(I_3 - \vec{n}(x)\otimes\vec{n}(x)\right) (\nabla X(x))^t\right)
 \end{equation}
 dalla quale si evince che la divergenza di superfice è indipendente dalla scelta della base ortonormale di $T_xS$ e dall'orientazione di $\vec{n}(x)$.
-Ora, sia $\vec{n}$ un campo unitario normale su una $C^2$ superfice $S$ e $k_1(x),k_2(x)$ le sue curvature principali in $x$ nella direzione $\vec{n}$, cioè gli autovalori della mappa di Weigarten in un base ortonormale $\{\tau^l;l=1,2\}$ di $T_xS$. Si definiscono \emph{curvatura media}\footnote{In alcuni testi è definita coma la media delle curvature principali, quindi differisce dalla nostra defnizione solo per un fattore moltiplicativo. \cite[vedi][cp 1.3]{giga:main}.} \,%
+Ora, sia $\vec{n}$ un campo unitario normale su una $C^2$ superfice $S$ e $k_1(x),k_2(x)$ le sue curvature principali in $x$ nella direzione $\vec{n}$, cioè gli autovalori della mappa di Weigarten in un base ortonormale $\{\tau^l;l=1,2\}$ di $T_xS$. Si definiscono \emph{curvatura media}\footnote{In alcuni testi è definita coma la media delle curvature principali, quindi differisce dalla nostra defnizione solo per un fattore moltiplicativo. \cite[][]{giga:main}.} \,%
  e \emph{curvatura gaussiana} rispettivamente,
 \begin{equation}
 \label{eq:cp-1-1-06}
@@ -175,14 +175,16 @@ H=\Div\left(\frac{Du}{|Du|}\right)(x).
 \]
 \begin{osservazione}
 \label{oss:cp1-1-01}
-Sia $S$ una $C^2$ superfice intorno ad un punto $x_0\in S$,  $\vec{n}$ un vettore unitario normale intorno ad $x_0$ e $\{\tau^l;l=1,2\}$ una base ortonormale di $T_xS$ . Vogliamo dare un senso a \eqref{eq:cp1-1-05}. Prendiamo $\theta\in\mathbb{R}^3$ e vediamo come agiscono le due matrici su tale vettore.
+Sia $S$ una $C^2$ superfice intorno ad un punto $x_0\in S$,  $\vec{n}$
+un vettore unitario normale intorno ad $x_0$ e $\{\tau^l;l=1,2\}$ una
+base ortonormale di $T_xS$ . Vogliamo dimostrare l'uguaglianza \eqref{eq:cp1-1-05}. Prendiamo $\theta\in\mathbb{R}^3$ e vediamo come agiscono le due matrici su tale vettore.
 \[
 \begin{aligned}
 &\left(\sum_{l=1}^2\tau^l\otimes\tau^l\right)\theta = \sum_l\underbrace{\left(\sum_{j=1}^3\theta_j\tau_j^l\right)}_{{}=\alpha_l}\tau^l=\nu \in T_{x_0}S\\
 &\left(I_3-\vec{n}(x_0)\otimes\vec{n}(x_0)\right)\theta = \theta - \left(\sum_{j=1}^3\theta_jn_j\right)\vec{n}(x_0)=\nu' 
 \end{aligned}
 \]
-osserviamo che, da calcolo diretto, $<\nu',\vec{n}(x_0)>=0$ quindi questo ci dice che anche $\nu'\in T_{x_0}S$, cioè esistono de $\beta_l$ tale che $\nu'=\sum_{l=1}^2\beta_l\tau^l$. Inoltre si può dimostrare, con un semplice calcolo, che entrambe le matrici quando vengo moltiplicate per un generico vettore $\tau\in T_{x_0}S$ (quindi che già appartiene allo spazio tangente) danno come risultato $\tau$ stesso. Quindi possiamo dire che le due matrici proiettano un vettore di $\mathbb{R}^3$ nello spazio tangente. Per dimostrare l'uguaglianza tra loro, basta provare che $\nu=\nu'$ questo è vero se e solo se $\alpha_l=\beta_l\,\forall l$. Ricordando che $\alpha_l=<\theta,\tau^l>$, calcoliamoci il genrico $\beta_l$
+osserviamo che, da calcolo diretto, $<\nu',\vec{n}(x_0)>=0$ quindi questo ci dice che anche $\nu'\in T_{x_0}S$, cioè esistono dei $\beta_l$ tale che $\nu'=\sum_{l=1}^2\beta_l\tau^l$. Inoltre si può dimostrare, con un semplice calcolo, che entrambe le matrici quando vengono moltiplicate per un generico vettore $\tau\in T_{x_0}S$ (quindi che già appartiene allo spazio tangente) danno come risultato $\tau$ stesso. Quindi possiamo dire che le due matrici proiettano un vettore di $\mathbb{R}^3$ nello spazio tangente. Per dimostrare l'uguaglianza tra loro, basta provare che $\nu=\nu'$ questo è vero se e solo se $\alpha_l=\beta_l\,\forall l$. Ricordando che $\alpha_l=<\theta,\tau^l>$, calcoliamoci il genrico $\beta_l$
 \[
 \beta_l=<\nu',\tau^l>=<\theta,\tau^l>-\left(\sum_{j=1}^3\theta_jn_j\right)<\vec{n}(x_0),\tau^l>=\alpha_l
 \]
@@ -210,7 +212,7 @@ Se $\beta$ non dipende dalla parametrizzazione, ma è una caratteristica geometr
 \end{equation}
 \end{lemma}
 
-Per la dimostrazione del lemma \cite[vedi][cp 2]{gui:sapiro}, soffermiamoci qui solo sulle conseguenze.
+Per la dimostrazione del lemma si veda \cite[][]{gui:sapiro}, soffermiamoci qui solo sulle conseguenze.
 In poche parole, se la componente normale della velocità dipende soltato da caratteristiche geometriche della curva, l'evoluzione della famiglia è influenzata solo da quest'ultima componente; mentre la componente tangenziale influisce esclusivamente sulla parametrizzazione.
 Consideriamo ora un flusso geometrico di superfici della forma:
 \[
@@ -223,10 +225,15 @@ dove la velocità $\beta$ è una funzione della curvatura media. In particolare 
 \end{equation}
 con $\mathcal{S}(p,0)=S_0$ dato iniziale.
 \begin{osservazione}
-Questo flusso è quello che in letteratura viene anche chiamato \emph{gradient discendent flow} , in quanto la superficie si evolve cercando di minimizzare l'area. 
+Questo flusso è quello che in letteratura viene anche chiamato
+\emph{gradient discendent flow} per moto per curvatura media e fa
+evolvere la  superficie cercando di minimizzare l'area. 
 \end{osservazione}
 \begin{osservazione}
-Come provato nell'articolo \cite[vedi][]{bi:chow} , questo flusso deforma superfici convesse in un punto, ma superfici non covesse posso, per esempio, dividersi prima di diventare convesse generando delle singolarità. Facciamo alcuni semplici esempi.
+Questo flusso fa evolvere superfici convesse in un punto. Superfici
+non covesse durante l'evoluzione possono dividersi prima di diventare
+convesse come descritto in \cite[][]{gui:sapiro}. Facciamo alcuni
+semplici esempi. 
 \end{osservazione}
 
 \begin{esempio}[The Sphere]
@@ -280,7 +287,8 @@ Quindi la sfera si ridurrà ad un punto in un tempo finito $\hat{t}$, che è chi
 \end{esempio}
 
 \begin{esempio}[The Dumbbell]
-Il manubrio(dumbbell) può essere considerato come due spfere di equal raggio, connesse da un cilindro. Assumendo che le due sfere sono molto grandi ed il cilindro lungo e fino; l'evoluzione per curvatura media fa collassare velocemente il cilindro in una linea e le due sfere si evolvono più lentamente sempre in sfere più piccole. Dopo un certo tempo il manubrio si divide in due sfere disconnesse, in questa situazione si è verificato un cambiamento della topologia della superficie e quindi non si può più parlare di vettore normale e di curvatura. A questo punto le due sfere si evolvono separatamente fin a collassare in due punti (ved figura \ref{fig:cp-122}). 
+Il manubrio(dumbbell) può essere considerato come due spfere di raggio
+uguale, connesse da un cilindro. Assumendo che le due sfere sono molto grandi ed il cilindro lungo e fino; l'evoluzione per curvatura media fa collassare velocemente il cilindro in una linea e le due sfere si evolvono più lentamente sempre in sfere più piccole. Dopo un certo tempo il manubrio si divide in due sfere disconnesse, in questa situazione si è verificato un cambiamento della topologia della superficie e quindi non si può più parlare di vettore normale e di curvatura. A questo punto le due sfere si evolvono separatamente fin a collassare in due punti (ved figura \ref{fig:cp-122}). 
 
 \begin{figure}[!hptb]
 \begin{center}
@@ -403,7 +411,7 @@ con $n$ tale che $\psi^{-n+1}(t)H=\tilde{H}$. Uno dei vantaggi di questa normali
 \end{aligned}
 \]
 
-Poichè la geometria dell'evolulzione è influenzata solo dalla componente normale della velocità, utilizzando il Lemma \ref{lemm:cp-121} otteniamo:
+Poichè la geometria dell'evolulzione è influenzata solo dalla componente normale della velocità, utilizzando il \emph{Lemma} \ref{lemm:cp-121} otteniamo:
 \[
 \frac{\partial\mathcal{\tilde{S}}(\tau)}{\partial\tau}=\psi^{-n-1}\psi_t\left<\mathcal{\tilde{S}}(\tau),\vec{n}\right>\vec{n}+\tilde{H}\vec{n}.
 \]
@@ -424,8 +432,9 @@ allora il tasso di cambiamento del volume è dato da
 \label{eq:cp-124}
 \frac{d V}{d t}=-\iint\beta d\mu
 \end{equation}
-con $d\mu$ elemento infinitesimo di superficie, vedere \emph{Osservazione} \ref{oss:cp-122}.
- Applicando la \eqref{eq:cp-124} giungiamo a:
+con $d\mu$ elemento infinitesimo di superficie, (vedere
+\emph{Osservazione} \ref{oss:cp-122}).  Applicando la \eqref{eq:cp-124}
+giungiamo a: 
 \[
 \tilde{V}_{\tau}=\iint(\psi^{-n-1}\psi_t\tilde{\rho}-\tilde{H})d\tilde{\mu},
 \]
@@ -446,7 +455,7 @@ mettendo insieme questa con l'espressione precedente otteniamo:
 \[
 \psi^{-n-1}\psi_t=\frac{\iint\tilde{H}d\tilde{\mu}}{3V_0},
 \]
-e finalmente l'equazione \emph{volume preserving} cercata:
+e finalmente otteniamo l'equazione \emph{volume preserving} cercata:
 \begin{equation}
 \label{eq:cp-126}
 \frac{\partial\mathcal{\tilde{S}}(\tau)}{\partial\tau}=\left(\tilde{H}-\frac{\tilde{\rho}\iint\tilde{H}d\tilde{\mu}}{3V_0}\right).
@@ -480,7 +489,8 @@ si definisce \emph{shape derivate} o derivata Euleriana di $J(\Gamma)$ in $\Gamm
 \[
 dJ(\Gamma;\vec{V}) = \lim_{t\to 0}\frac{1}{t}(J(\Gamma_t)-J(\Gamma)).
 \]
-Per ottenere la \eqref{eq:cp-124} dobbiamo calcolarci questa shape derivate e per farlo useremo il \emph{Corollario 4.1} dell'articolo \cite[vedi][]{dog:noch} con $\gamma$ dipendente solo dal punto $x$ e dalla normale unitaria $\vec{n}$: 
+Per ottenere la \eqref{eq:cp-124} dobbiamo calcolarci questa shape
+derivate e per farlo useremo il \emph{Corollario} 4.1 dell'articolo \cite[][]{dog:noch} con $\gamma$ dipendente solo dal punto $x$ e dalla normale unitaria $\vec{n}$: 
 \begin{equation}
 \label{eq:cp-121-add}
 \gamma(x,\vec{n})=-\frac{1}{3}<\mathcal{S},\vec{n}> = -\frac{1}{3}\sum_{i=1}^3x_in_i.
@@ -494,8 +504,8 @@ dove:
   \item $\partial_n\gamma=<D_x\gamma,\vec{n}>$, sarebbe la derivata partiale rispetto ad $x$ nella direzione della normale;
   \item $\gamma_y=D_n\gamma$, indica il grandiente di $\gamma$ rispetto alla normale;
   \item $[\cdot]_{\Gamma}$, rappresenta la proiezione sul piano tangente;
-  \item $\Div_{\Gamma}\vec{W}=\left(\Div\vec{W}-\vec{n}\cdot D\vec{W} \cdot \vec{n}\right)_{|\Gamma}$, denota la divergenza tangensiale di $\vec{W}$, propriamente esteso in un intorno di $\Gamma$;
-  \item $\Div_{\Gamma}[\gamma_y]_{\Gamma}=\Div_{\Gamma}[\gamma_y]-H<\gamma_y,\vec{n}>$, con $\Div_{\Gamma}[\gamma_y]$ calcolata nel \emph{Lemma 3.3} di \cite[vedi][]{dog:noch};
+  \item $\Div_{\Gamma}\vec{W}=\left(\Div\vec{W}-\vec{n}\cdot D\vec{W} \cdot \vec{n}\right)_{|\Gamma}$, denota la divergenza tangenziale di $\vec{W}$, propriamente esteso in un intorno di $\Gamma$;
+  \item $\Div_{\Gamma}[\gamma_y]_{\Gamma}=\Div_{\Gamma}[\gamma_y]-H<\gamma_y,\vec{n}>$, con $\Div_{\Gamma}[\gamma_y]$ calcolata nel \emph{Lemma} 3.3 di \cite[][]{dog:noch};
   \item $V=<\vec{V},\vec{n}>$, componente normale del campo vettoriale.
 \end{itemize}
 Calcolandoci queste quantità per $\gamma$ pari a \eqref{eq:cp-121-add} e ricordando che nel nostro caso la componente normale del campo è $\beta$,  otteniamo:
