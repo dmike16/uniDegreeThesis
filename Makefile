@@ -29,12 +29,14 @@ $(CURDIR)/Makefile Makefile: ;
 PHONY += all
 _all: all
 
-OUTPUT_DIR         := realese
-SOURCE_CHAPTER_DIR := capitoli
-SOURCE_INTRO_DIR   := introduzione 
-SOURCE_BIB_DIR     := bibliography
-SOURCE_CONCLUSIONS := conclusione
-SETTING_LATEX      := setting-my-thesis.sty
+OUTPUT_DIR           := realese
+SOURCE_CHAPTER_DIR   := capitoli
+SOURCE_INTRO_DIR     := introduzione 
+SOURCE_BIB_DIR       := bibliography
+SOURCE_CONCLUSIONS   := conclusione
+SOURCE_TALK	     := slide
+SETTING_LATEX        := settings-my-thesis.sty
+SETTING_LATEX_BEAMER := settings-my-talk.sty
 
 quiet = quiet_
 Q     = @
@@ -89,6 +91,9 @@ ALL_SOURCE     := $(wildcard $(SOURCE_CHAPTER_DIR)/*.tex)  \
                   $(wildcard $(SOURCE_CONCLUSIONS)/*.tex)  \
 		  $(wildcard $(SOURCE_BIB_DIR)/*.bib)
 BIB_SOURCE     := $(wildcard $(SOURCE_BIB_DIR)/*.bib)
+TALK_OUT       := talkVPMCM.pdf
+TALK_MAIN      := talkVPMCM.tex
+ALL_TALK_SOURCE:= $(wildcard $(SOURCE_TALK)/*.tex)
 MAIN_SOURCE    := thesis_degree.tex
 
 # Using the latex compiler
@@ -142,6 +147,14 @@ endif
 $(THESIS_BIB_OUT): $(BIB_SOURCE)
 	$(call latex-biber-compile,$(MAIN_SOURCE),$@)
 $(SETTING_LATEX):
+
+#Build talk with beamer class
+PHONY += talk
+talk: $(TALK_OUT)
+	$(MV) $(notdir $<) $(OUTPUT_DIR)
+
+$(TALK_OUT): $(TALK_MAIN) $(ALL_TALK_SOURCE)
+	$(call latex-compile,$^)
 #Build and show pdf output
 PHONY += show_pdf
 show_pdf : $(THESIS_PDF_OUT)

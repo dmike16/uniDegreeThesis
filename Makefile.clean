@@ -12,9 +12,14 @@ clean : rm-files := $(patsubst %,%/*~,$(SOURCE_INTRO_DIR))    \
 clean : rm-files += $(patsubst %,%/*~,$(SOURCE_CHAPTER_DIR))  \
 		$(patsubst %,%/*.aux,$(SOURCE_CHAPTER_DIR))  \
 		$(patsubst %,%/*.log,$(SOURCE_CHAPTER_DIR))  \
-		$(patsubst %,%/*.toc,$(SOURCE_CHAPTER_DIR))
+		$(patsubst %,%/*.toc,$(SOURCE_CHAPTER_DIR)) 
+
+clean : rm-files += $(patsubst %,%/*~,$(SOURCE_TALK))  \
+		$(patsubst %,%/*.aux,$(SOURCE_TALK))  \
+		$(patsubst %,%/*.log,$(SOURCE_TALK))  \
+		$(patsubst %,%/*.toc,$(SOURCE_TALK))
 	 
 
-clean : rm-files  += *~ *.aux *.log *.toc *.out *.out.ps *.lof *.bcf *.bbl *.run.xml *.blg
+clean : rm-files  += *~ *.aux *.log *.toc *.out *.out.ps *.lof *.bcf *.bbl *.run.xml *.blg *nav *snm
 
 clean : rm-dirs	  := $(OUTPUT_DIR)
