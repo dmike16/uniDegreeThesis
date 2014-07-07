@@ -10,6 +10,9 @@
 *.blg
 *.lof
 *.xml
+*.nav
+*.out
+*.snm
 # Editor Backuped Fils
 *~
 #*#
