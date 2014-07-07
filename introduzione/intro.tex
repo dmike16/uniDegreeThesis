@@ -4,22 +4,22 @@
 
 Un campo della matematica che in questi anni si sta sviluppando
 notevolmente, è quello che si occupa del trattamento delle immagini
-sia 2D che 3D. E se da un lato sono migliorati i strumeti di
+sia 2D che 3D. Se da un lato sono migliorati gli strumeti di
 acquisizione delle stesse (come  scanner 2D/3D), dall'altro si sta
 sviluppando sempre più l'idea, già da anni consolidata, di utilizare
 equazioni alle derivate parziali (PDE) nel trattamento delle
-immagini. Questa si basa sul concetto di \emph{scale-space} o
+immagini. L'idea si basa sul concetto di \emph{scale-space} o
 \emph{rappresentazione multiscala}, in cui l'immagine
 iniziale $u_0(x)$ viene racchiusa in una famiglia $u(x,t)$, con
 $t\in\mathbb{R}^+$ parametrizzante la scala, attraverso l'azione di un
-\emph{kernel} (filtro) $K(\cdot,t)$ su di essa. Uno dei filtri più
+\emph{kernel} (filtro) $K(\cdot,t)$. Uno dei filtri più
 usati  e studiati è quello \emph{gaussiano}, in questo caso  $u(x,t)$
 è definita dalla convoluzione del filtro con $u_0(x)$ e può essere
 vista come la soluzione dell'equazione del calore con dato iniziale $u_0(x)$
 \[
-u_t=\Delta u,
+u_t=\Delta u.
 \]
-quindi il fatto chiave è che uno \emph{scale-space} può essere
+Quindi il fatto chiave è che uno \emph{scale-space} può essere
 ottenuto come una soluzione di un'equazione di evoluzione alle
 derivate parziali. 
 %le proprità principali, la linearità e la \emph{cusualità}, cioè
@@ -49,43 +49,53 @@ studiati nella letteratura, il flusso per curvatura media. Questo,
 tuttavia presenta dei limiti, in quanto è stato dimostrato che
 superfici convesse evolvono in un punto, mentre superfici
 non convesse posso subire dei cambiamenti topologici generando delle
-singolarità; un degli esempi più famosi nella letteratura è quello del
-manubrio (\emph{dumbbell}). Grazie al lavoro di Sapiro in
-\cite[][]{gui:sapiro}, dove il flusso per curvatura media è stato
-riscritto in modo tale da conservare il volume e alla rappresentaizone
+singolarità. Il colasso in un punto è, come si può intuire, un aspetto
+limitante nel denoising soprattutto quando abbiamo a che fare con
+rumore che per essere eliminato necessita di molte iterazioni
+di filtraggio. Nel lavoro di Sapiro \cite[][]{gui:sapiro}, il
+flusso per curvatura media è stato riscritto in modo tale da
+conservare il volume. Tramite la rappresentaizone 
 \emph{level-set} delle superfici introdotta da Oscher e Sethian,
 abbiamo riscritto l'equazione per curvatura media che preserva il
-volume ottenendo un PDE parabolico non lineare del secondo ordine,
-singolare nei punti dove il gradiente della soluzione si
-annulla. Quindi è stato necessario immergere il tutto nella teoria
-delle soluzioni viscose; anche se, eccecion fatta per alcuni casi
+volume ottenendo un PDE parabolico non lineare del secondo ordine
+singolare nei punti dove il gradiente della soluzione si annulla, con
+il flusso formato da due termini di cui uno descrive l'evoluzione 
+per curvatura media e l'altro è un termine di trasporto che conserva
+il volume. Quindi è stato necessario immergere il tutto nella teoria
+delle soluzioni viscose; anche se, eccezion fatta per alcuni casi
 particolari, ancora non sono stati raggiunti risultati definitivi
 sull'esistenza e unicità delle soluzioni nel caso della nostra
 equazione. Discretizzando tale equazione con uno schema
-semi-lagrangiano e un schema \emph{ad hoc} nel caso di gradiente 
-nullo; abbiamo ralizzato un algoritmo di filtraggio (scritto
-in\emph{C-Language}) che preserva il volume; testandolo sia su superfici
-geometriche che su immagini reali. Abbiamo messo in evidenza come il metodo
-\emph{volume preserving}, nel caso di superfici geometriche, riesce a
-superare alcuni limiti dello schema classico, tra cui il collasso in
-un punto di superfici convesse e ad ritardare i cambiamenti topologici
-che emergono per quelle non convesse, come nel caso del manubrio,
-mentre nel caso dell'immagine reale, su cui l'abbiamo testato, non
-sone emerse le differenze a causa  dell'impossibilità di effettuare
-troppe iterazioni.
-
+Semi-Lagrangiano e un schema \emph{ad hoc} nel caso di gradiente 
+nullo abbiamo ralizzato un algoritmo di filtraggio (scritto
+in\emph{C-Language}) che preserva il volume. Abbiamo iniziato a
+testarlo sull'evoluzione di superfici geometriche, prive di rumore,
+confrontandolo con lo schema MCM e verificando che il volume viene
+preservato. Una volta constatato il correto funzionamento del metodo,
+siamo passati al filtraggio di superfici 3D, su cui è stato aggiunto
+del rumore, simulato sia con una distribuzione gaussiana (tecnica
+standard) sia con una funzione che aggiunge dei dischi di rumore
+random. Nel caso di superfici geometriche, si riesce a ripulire la
+figura superando i limiti dello schema classico, tra cui il collasso
+in un punto di superfici convesse ed a ritardare i cambiamenti topologici che
+emergono per quelle non convesse, come nel caso del manubrio; mentre
+sono rimasti i fenomeni di smussamento dei contorni tipici di MCM.
+Nel caso dell'immagine reale, su cui l'abbiamo testato, non sono
+emerse troppe differenze a causa dell'impossibilità di effettuare troppe
+iterazioni.
+ 
 La tesi è strutturata come segue: nel Capitolo §\ref{cap:cap1} abbiamo
 richiamato alcune nozioni sulle superfici in forma level-set,
 presentato l'equazione di evoluzione per curvatura media, calcolato il
 termine che ci conserva il volume e riscritto il tutto in formulazione
-level-set. Nel capitolo §\ref{cp:cp2}, abbiamo esposto i concetti
+level-set. Nel Capitolo §\ref{cp:cp2}, abbiamo esposto i concetti
 realitivi a soluzioni di viscosità, riportando alcuni teoremi di
 esistenza e unicità in casi particolari, necessari per fornire un
 robusto background teorico alla nostra equazione. Lo schema del moto
 per curvatura media classico (MCM) e la sua versione che preserva il
-volume (VPMCM) sono stati ottenuti nel capitolo §\ref{cp:cp2-00},
+volume (VPMCM) sono stati ottenuti nel Capitolo §\ref{cp:cp2-00},
 riportando anche il conto per la consistanza di MCM e di una versione
-semplificata di PVMCM. Infine nel capitolo §\ref{cap:cp4} abbiamo
+semplificata di PVMCM. Infine nel Capitolo §\ref{cap:cp4} abbiamo
 sia mostato il buon comportamento dello schema VPMCM nel caso di superfici
 geometriche, sia in presenza che in assenza di rumore, e testato su di
 un'immagine reale riportando le dovute considerazioni. 
