@@ -28,13 +28,13 @@ file-exists = $(wildcard $1)
 # $(call latex-compile,source_code)
 # Compile the main source code with latex
 define latex-compile
- $(LATEX) $1
+ $(LATEX) $(TEXFLAGS) $1
  $(LATEX) $1
 endef
 
 # $(call latex-biber-compile,source_code,bcf_file)
 # Compile the main sorce and add the bibliography
 define latex-biber-compile
- $(LATEX) $1
+ $(LATEX) $(TEXFLAGS) $1
  $(BIB)   $2
 endef

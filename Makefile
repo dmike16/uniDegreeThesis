@@ -58,6 +58,7 @@ BIB		:= biber
 DVIPS		:= dvips
 PSPDF		:= ps2pdf
 SETTINGS	:= -o
+TEX_FLAGS       := -file-line-error
 
 #Use as default ps viwer *gv*, you can change it setting by CMD line
 #-----------------------------
