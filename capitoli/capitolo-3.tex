@@ -293,7 +293,7 @@ Sviluppiamo ora $u(x_j+\sigma(Du(x_j,t^n))\sqrt{2\Delta t}\vec{b},t^n)$ con una 
 &+T_3(\Delta t^{\frac{3}{2}}\sigma(Du(x_j,t^n))\vec{b},D^3u(x_j,t^n))+O(\Delta t^2), 
 \end{split}
 \end{equation}
-non abbiamo esplicitato i termini del terzo ordine in quanto , mettondo tutto insieme, si eliminano cosi come i termini del primo ordine data la simmetria dei $4$ punti $x_j+\sigma(Du(x_j,t^n))\vec{b}\sqrt{2\Delta t}$ con $b\in\Pi$. Alla fine otteniamo che:
+non abbiamo esplicitato i termini del terzo ordine in quanto , mettendo tutto insieme, si eliminano cosi come i termini del primo ordine data la simmetria dei $4$ punti $x_j+\sigma(Du(x_j,t^n))\vec{b}\sqrt{2\Delta t}$ con $b\in\Pi$. Alla fine otteniamo che:
 \begin{equation}
 \label{eq:cp3-010}
 \begin{split}
@@ -333,7 +333,7 @@ perchè richiede $\Delta t=O(\Delta x^2)$.
 
 Nel caso in cui il gradiente è nullo le successioni convergenti a $(x,t)$ possono avere sottosuccessioni di nodi sia sotto che sopra la soglia, quindi dobbiamo distinguere due casi:
 \begin{itemize}
-  \item \textsf{Caso} $\mathrm{|D_j^n|\ge C\Delta x^s\land|(D_j^n)_1^2+((D_j^n)_3^2|\ge C\Delta x^s}$. In questo caso ci troviamo sopra la soglia. Quindi possiamo utilizzare lo schema nella forma \eqref{eq:cp3-02} e ripetere i passaggi precedenti eliminado qualsiasi riferimento a $\sigma(Du(x_t,t^n))$, in quanto non possiamo assicurare la convergenza di $\sigma(D_j^n)$ a $\sigma(Du(x_t,t^n))$. In particolare abbiamo:
+  \item \textsf{Caso} $|Du(x,t)|=0$ $\mathrm{|D_j^n|\ge C\Delta x^s\land|(D_j^n)_1^2+((D_j^n)_3^2|\ge C\Delta x^s}$. In questo caso ci troviamo sopra la soglia. Quindi possiamo utilizzare lo schema nella forma \eqref{eq:cp3-02} e ripetere i passaggi precedenti eliminado qualsiasi riferimento a $\sigma(Du(x_t,t^n))$, in quanto non possiamo assicurare la convergenza di $\sigma(D_j^n)$ a $\sigma(Du(x_t,t^n))$. In particolare abbiamo:
 \[
   \begin{split}
     & I[u^n](x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b}) = I[u^n](x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b}) - \\
@@ -376,7 +376,7 @@ Quindi per  $(\Delta t,\Delta x)\to 0$ e $(x_j,t^n)\to(x,t)$ sotto la condizione
 \end{split}
 \]
 con $F(Du(x,t),D^2u(x,t))=-\vec{v}_1^tD^2u(x_j,t^n)\vec{v}_1 -\vec{v}_2^tD^2u(x_j,t^n)\vec{v}_2$.
-  \item \textsf{Caso} $\mathrm{|D_j^n|< C\Delta x^s\land |(D_j^n)_1^2+((D_j^n)_3^2|< C\Delta x^s}$. Tale disuguaglianze implicano che ci troviamo sotto la soglia. Per cui utilizziamo, ad esempio, lo schema nella forma \eqref{eq:cp3-03-add}, che rappresenta una discretizzazione dell'equazione del calore:
+  \item \textsf{Caso} $|Du(x,t)|=0$ $\mathrm{|D_j^n|< C\Delta x^s\land |(D_j^n)_1^2+((D_j^n)_3^2|< C\Delta x^s}$. Tale disuguaglianze implicano che ci troviamo sotto la soglia. Per cui utilizziamo, ad esempio, lo schema nella forma \eqref{eq:cp3-03-add}, che rappresenta una discretizzazione dell'equazione del calore:
 \[
 S(x_j,u(x_j,t^n),Du(x_j,t^n))=\frac{1}{6}\sum_{i\in\delta(j)}u(x_i,t^n).
 \]
@@ -716,7 +716,7 @@ il il valore di $u$ nel punto in cui viene interpolato e aggiungiamo e
 togliamo il il valore di $u$ calcolanta in
 $x_j(1-\mathcal{I})+\sqrt{2\Delta t}\sigma(Du(x_j,t^n))\vec{b}$, dove
 abbiamo sistituito il grandiente approssimato con quello effettivo
-calcolato nel punto $(x_j,t^n)$. Ora come in \ref{subsec:cp3-sc2-1},
+calcolato nel punto $(x_j,t^n)$. Ora come in §\ref{subsec:cp3-sc2-1},
 sfruttando la stima dell'errore di intepolazione \eqref{eq:cp3-04}, la
 stima dell'errore di approssimazione del gradiente \eqref{eq:cp3-05} e
 la lipshtizianità di $\sigma(Du)$ e di $u$ otteniamo

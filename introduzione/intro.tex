@@ -4,9 +4,9 @@
 
 Un campo della matematica che in questi anni si sta sviluppando
 notevolmente, è quello che si occupa del trattamento delle immagini
-sia 2D che 3D. Se da un lato sono migliorati gli strumeti di
+sia 2D che 3D. Se da un lato sono migliorati gli strumenti di
 acquisizione delle stesse (come  scanner 2D/3D), dall'altro si sta
-sviluppando sempre più l'idea, già da anni consolidata, di utilizare
+sviluppando sempre più l'idea, già da anni consolidata, di utilizzare
 equazioni alle derivate parziali (PDE) nel trattamento delle
 immagini. L'idea si basa sul concetto di \emph{scale-space} o
 \emph{rappresentazione multiscala}, in cui l'immagine
@@ -41,7 +41,7 @@ derivate parziali.
 Questo concetto è alla base di molte applicazioni nella computer
 grafica e nell'analisi dell'immagini, in modo particolare può essere
 usato per processi di \emph{denoising} di un immagine. E' noto che
-quando acquisiamo o inviamo un immagine questa si può deteriorare, cioè 
+quando acquisiamo o inviamo un'immagine questa si può deteriorare, cioè 
 viene aggiunto del \emph{rumore}, e quindi abbiamo bisogno di
 filtrarla per eliminare le discontinuità. Il modello di filtraggio per
 immagini 3D che presentiamo in questo lavoro, si basa su uno dei flussi più
@@ -54,18 +54,18 @@ limitante nel denoising soprattutto quando abbiamo a che fare con
 rumore che per essere eliminato necessita di molte iterazioni
 di filtraggio. Nel lavoro di Sapiro \cite[][]{gui:sapiro}, il
 flusso per curvatura media è stato riscritto in modo tale da
-conservare il volume. Tramite la rappresentaizone 
-\emph{level-set} delle superfici introdotta da Oscher e Sethian,
-abbiamo riscritto l'equazione per curvatura media che preserva il
-volume ottenendo un PDE parabolico non lineare del secondo ordine
-singolare nei punti dove il gradiente della soluzione si annulla, con
-il flusso formato da due termini di cui uno descrive l'evoluzione 
-per curvatura media e l'altro è un termine di trasporto che conserva
-il volume. Quindi è stato necessario immergere il tutto nella teoria
-delle soluzioni viscose; anche se, eccezion fatta per alcuni casi
-particolari, ancora non sono stati raggiunti risultati definitivi
-sull'esistenza e unicità delle soluzioni nel caso della nostra
-equazione. Discretizzando tale equazione con uno schema
+conservare il volume, riuscendo a superare il collasso in un
+punto. Tramite la rappresentaizone \emph{level-set} delle superfici
+introdotta da Oscher e Sethian, abbiamo riscritto l'equazione per
+curvatura media che preserva il volume ottenendo un PDE parabolico non
+lineare del secondo ordine singolare nei punti dove il gradiente della
+soluzione si annulla, con il flusso formato da due termini di cui uno
+descrive l'evoluzione  per curvatura media e l'altro è un termine di
+trasporto che conserva il volume. Quindi è stato necessario immergere
+il tutto nella teoria delle soluzioni viscose; anche se, eccezion
+fatta per alcuni casi particolari, ancora non sono stati raggiunti
+risultati definitivi sull'esistenza e unicità delle soluzioni nel caso
+della nostra equazione. Discretizzando tale equazione con uno schema
 Semi-Lagrangiano e un schema \emph{ad hoc} nel caso di gradiente 
 nullo abbiamo ralizzato un algoritmo di filtraggio (scritto
 in\emph{C-Language}) che preserva il volume. Abbiamo iniziato a
