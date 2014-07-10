@@ -19,7 +19,7 @@ e il gradiente di $u$
 \[
  Du=\left(\frac{\partial u}{\partial x_1},\dots,\frac{\partial u}{\partial x_3}\right)
 \]
-non svanisce su $S$. Tale rappresentazione è chiamta \emph{level-set}. Se $u$ può essere presa $C^{\infty}$ in $U$, diremo che la superficie $S$ è regolare intorno ad $x_0$ e se $u$ è anche definita intorno ad ogni punto di $x_0\in S$, allora si parla semplicemetne di superficie regolare. Questa rappresentazione può essere estesa anche ad insiemi dipendenti dal tempo. Difatti diremo che una famiglia $S_t$ è una superficie regolare che si evolve nel tempo se esiste una funzione $u(x.t)$ definita per ogni $x\in S_t$ e $t\in I$ tale che:
+non svanisce su $S$. Tale rappresentazione è chiamta \emph{level-set}. Se $u$ può essere presa $C^{\infty}$ in $U$, diremo che la superficie $S$ è regolare intorno ad $x_0$ e se $u$ è anche definita intorno ad ogni punto di $x_0\in S$, allora si parla semplicemente di superficie regolare. Questa rappresentazione può essere estesa anche ad insiemi dipendenti dal tempo. Difatti diremo che una famiglia $S_t$ è una superficie regolare che si evolve nel tempo se esiste una funzione $u(x,t)$ definita per ogni $x\in S_t$ e $t\in I\subset\mathbb{R}$ tale che:
 \[
 S_t=\left\{x\in S_t; u(x,t)=0\right\},
 \]
@@ -107,7 +107,11 @@ quindi $\vec{A}\tau\in T_xS$. L'operatore lineare $\vec{A}=\vec{A}_x$ da $T_xS$ 
 \label{eq:cp1-1-03}
 B_x(\tau,\eta)=\left<\vec{A}\tau,\eta\right>
 \end{equation}
-è chiamata la \emph{seconda forma fondamentale} (nella direzione di $\vec{n}(x)$) in $x\in S$. Per vedere il significato geometrico di $B_x$, per $\tau,\eta\in  T_xS$ sia $\phi$ una funzione  definita da un intorno dell'origine di $\mathbb{R}^2$ in $S\subset\mathbb{R}^3$ tale che
+è chiamata la \emph{seconda forma fondamentale} (nella direzione di
+$\vec{n}(x)$) in $x\in S$. Per vedere il significato geometrico di
+$B_x$, per $\tau,\eta\in  T_xS$ sia $\phi$ una funzione  definita da
+un intorno dell'origine di $\mathbb{R}^2$ in $S\subset\mathbb{R}^3$,
+con le dovute regolarità, tale che
 \[
 \frac{\partial\phi}{\partial x_1}(0,0)=\tau,\quad\frac{\partial\phi}{\partial x_2}(0,0)=\eta,\quad\phi(0,0)=x.
 \]
