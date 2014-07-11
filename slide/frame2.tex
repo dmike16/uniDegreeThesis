@@ -20,7 +20,7 @@
        \]
      \end{block}
 \end{frame}
-\subsection{Limiti}
+\subsection*{Limiti}
 \begin{frame}{Collasso in un punto}
   \begin{columns}[c]
     \begin{column}{6cm}
@@ -70,28 +70,26 @@
     \end{columns}
 \end{frame}
 
-\subsection{Versione PVMCM}
+\subsection*{Versione PVMCM}
 \begin{frame}{Flusso \emph{volume preserving}}
   \begin{columns}[c]
     \begin{column}{6cm}
-      \begin{block}{Riscalatura del \emph{time-scale}}
-        Cambiando la scale temporale affinchè \alert{$Volume_t\equiv
-          0$}, otteniamo una nuova equazione
+      \begin{block}{Processo di nomalizzazione}
+        Cambiamo la scala temporale e prendiamo
+        $\mathcal{\tilde{S}}=\psi(t)\mathcal{S}$  affinchè
+        \alert{$Volume_t\equiv 0$}, ottendo una nuova equazione 
         \[
         \begin{aligned}
-          \mathcal{S}_t&=\mathcal{H}-\frac{\rho\iint\mathcal{H}d\mu}{3V_0},\\
+          \mathcal{S}_t&=\left(\mathcal{H}-\frac{\rho\iint\mathcal{H}d\mu}{3V_0}\right)\mathcal{N},\\
           \rho &=-<\mathcal{S},\mathcal{N}>
         \end{aligned}
         \]
        \end{block}
-      \begin{exampleblock}{Evoluzione della Sfera}
-      
-      \end{exampleblock}
-    \end{column}
+   \end{column}
     \begin{column}[c]{4cm}
-       %\begin{center}
-     %\only<2->{\animategraphics[autoplay,loop,width=1.0\textwidth,height=0.45\textheight]{0.8}{smooth/mcm/dumbbell/dumbb100-}{0}{5}}
-     %\end{center}
+       \begin{center}
+     \only<2->{\animategraphics[autoplay,loop,width=1.0\textwidth,height=0.45\textheight]{0.8}{smooth/vpmcm/sphere/sphere}{0}{4}}
+     \end{center}
     \end{column}
     \end{columns}
 \end{frame}
