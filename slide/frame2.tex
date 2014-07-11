@@ -1,15 +1,97 @@
-\section{Do stanno i pazzi?}
-\begin{frame}[<+->]
-  \frametitle{I pazzi se so persi}
-  \framesubtitle{Non ne diamo una dimo}
-  \begin{teorema}
-I pazzi stanno a ceccano
-  \end{teorema}
-  \begin{proof}
-    \begin{enumerate}
-    \item Sia dato un ceccanese
-    \item è pazzo
-    \item banale
-    \end{enumerate}
-  \end{proof}
+\section{Modello}
+\begin{frame}{Moto per curvatura media}
+     \begin{block}{}
+       \begin{itemize}
+       \item $S$ superfice regolare in $\mathbb{R}^3$
+       \item $\mathcal{S}(p,t)$ parametrizzazione di $S$
+       \item $\mathcal{N}(x,t)$ vettore unitario normale regolare
+       \item $\mathcal{H}=-\Div(\mathcal{N})\mathcal{N}$ vettore curvatura media
+       \end{itemize}
+     \end{block}
+     \begin{block}{}
+       $(x_1,x_2,x_3)\in S_t$ evolve seconde il sitema parabolico
+       \[
+       \left\{
+       \begin{aligned}
+         &\mathcal{S}_t(p,t)=-\Div(\mathcal{N})\mathcal{N}\text{ $t>0$} \\
+         &\mathcal{S}(0)=S
+       \end{aligned}
+       \right.
+       \]
+     \end{block}
+\end{frame}
+\subsection{Limiti}
+\begin{frame}{Collasso in un punto}
+  \begin{columns}[c]
+    \begin{column}{6cm}
+      \begin{block}{Superfici convesse}
+       Superfici convesse  evolvono in un
+       punto in un tempo finito.
+       \end{block}
+      \begin{exampleblock}{Evoluzione della Sfera}
+        Una famiglia di sfere $\mathcal{S}(p,t)=S^2(R(t))$ con
+        $R(0)=R_0$, si evolve secondo
+        \[
+        \begin{aligned}
+          \overset{\displaystyle.}{R}(t) &= -\frac{2}{R(t)},\,
+          R(0)=R_0,\Rightarrow\\
+          R(t)&=\sqrt{R_0^2-4t}\Rightarrow, \\
+          R(0)&=0 \Longleftrightarrow t=\frac{R_0^2}{4}<\infty 
+        \end{aligned}
+        \]
+      \end{exampleblock}
+    \end{column}
+    \begin{column}[c]{4cm}
+       \begin{center}
+     \only<2->{\animategraphics[autoplay,loop,width=1.0\textwidth,height=0.45\textheight]{0.8}{smooth/mcm/sphere/sphere50-}{0}{4}}
+     \end{center}
+    \end{column}
+    \end{columns}
+\end{frame}
+\begin{frame}{Possibili cambiamenti topologici e singolarità}
+  \begin{columns}[c]
+    \begin{column}{6cm}
+      \begin{block}{Superfici non convesse}
+       Superfici non convesse possono subire cambiamenti topologici
+       generando delle singolartà. 
+       \end{block}
+      \begin{exampleblock}{Evoluzione del Manubrio}
+        Il manubrio può essere considerato come due sfere di equal
+        raggio connesse da un cilindro. A causa del collasso del
+        cilindro in una linea, il manubrio si spezza in due sfere
+        disconnesse.
+      \end{exampleblock}
+    \end{column}
+    \begin{column}[c]{4cm}
+       \begin{center}
+     \only<2->{\animategraphics[autoplay,loop,width=1.0\textwidth,height=0.45\textheight]{0.8}{smooth/mcm/dumbbell/dumbb100-}{0}{5}}
+     \end{center}
+    \end{column}
+    \end{columns}
+\end{frame}
+
+\subsection{Versione PVMCM}
+\begin{frame}{Flusso \emph{volume preserving}}
+  \begin{columns}[c]
+    \begin{column}{6cm}
+      \begin{block}{Riscalatura del \emph{time-scale}}
+        Cambiando la scale temporale affinchè \alert{$Volume_t\equiv
+          0$}, otteniamo una nuova equazione
+        \[
+        \begin{aligned}
+          \mathcal{S}_t&=\mathcal{H}-\frac{\rho\iint\mathcal{H}d\mu}{3V_0},\\
+          \rho &=-<\mathcal{S},\mathcal{N}>
+        \end{aligned}
+        \]
+       \end{block}
+      \begin{exampleblock}{Evoluzione della Sfera}
+      
+      \end{exampleblock}
+    \end{column}
+    \begin{column}[c]{4cm}
+       %\begin{center}
+     %\only<2->{\animategraphics[autoplay,loop,width=1.0\textwidth,height=0.45\textheight]{0.8}{smooth/mcm/dumbbell/dumbb100-}{0}{5}}
+     %\end{center}
+    \end{column}
+    \end{columns}
 \end{frame}

@@ -1,35 +1,86 @@
 % Talk of Volume Preserving Mean Curvature Motion
-\documentclass{beamer}
+\documentclass[10pt]{beamer}
 \usepackage{settings-my-talk}
-\includeonly{ slide/frame1,%
-              slide/frame2,%
-              slide/frame3,%
-              }
+\includeonlyframes{ slide/frame1,%
+                    slide/frame2,%
+                    slide/frame3,%
+                   }
 
-\title[Ancora lontana]{Belal zio fratella}
-\author{Michele Cipolla}
-\date{}
-\logo{\includegraphics[width=0.5\textwidth]{graphics/logo/logoSapienza}}
-
-\usetheme{AnnArbor}
-\useoutertheme[right]{sidebar}
-\setbeamercovered{dynamic}
-
-
+%
+%
+% General Informations
+\title{Uno schema Semi-Lagrangiano per il moto per curvatura media che
+  preserva il volume}
+\author{Michele Cipolla \\
+\texttt{cipmiky@gmail.com}}
+\institute[Dip. Matematica]{Univeristà la Sapienza di Roma}
+\date{23 Luglio 2014}
+%\logo{\includegraphics[width=0.05\textwidth]{logoSapienzaHalf}}
+%
+%
+% Customize Theme
+%\definecolor{sapC}{rgb}{0.53,0.15,0.15}
+%\usetheme{Antibes}
+%\usetheme{Berlin}
+%\usetheme{Berkeley}
+\usetheme{CambridgeUS}
+%\setbeamercolor*{structure}{fg=sapC}
+%\setbeamerfont{size=\Large, series=\bfseries,
+%  family=\rmfamily}
+\setbeamertemplate{headline}
+{%
+  \begin{beamercolorbox}{section in head/foot}
+    \vskip2pt \insertnavigation{\paperwidth}\vskip2pt
+   \end{beamercolorbox}
+}
+\setbeamertemplate{footline}
+{%
+  \begin{beamercolorbox}{section in head/foot}
+    \vskip2pt \insertpagenumber\vskip2pt
+   \end{beamercolorbox}
+}
+%
+%
+%
 \begin{document}
-
+%
+%
+% Title page
 \begin{frame}
 \titlepage
 \end{frame}
-
-\begin{frame}
-\frametitle{Da definire}
+%
+%
+% Table of contents
+\section*{Outline}
+\begin{frame}{Outline}
 \tableofcontents
 \end{frame}
-
+%
+%
+% Central Frame
 \include{slide/frame1}
 \include{slide/frame2}
 \include{slide/frame3}
+%
+%
+% Reference 
+\begin{frame}{Referenze}
+\begin{thebibliography}{Goldbach, 1742}
+\bibitem{Goldbach1742}[Goldbach, 1742]
+  Christian Goldbach
+  \newblock A open problem
+  \newblock \emph{Letter to Leonhard Eulero}, 1742.
+
+\bibitem{Goldbach1742}[Goldbach, 1742]
+  Christian Goldbach
+  \newblock A open problem
+  \newblock \emph{Letter to Leonhard Eulero}, 1742.
+\end{thebibliography}
+\end{frame}
+%
+%
+%
 \end{document}
 
 
