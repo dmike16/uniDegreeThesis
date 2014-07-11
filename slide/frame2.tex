@@ -50,7 +50,7 @@
 \end{frame}
 \begin{frame}{Possibili cambiamenti topologici e singolarità}
   \begin{columns}[c]
-    \begin{column}{6cm}
+    \begin{column}{5cm}
       \begin{block}{Superfici non convesse}
        Superfici non convesse possono subire cambiamenti topologici
        generando delle singolartà. 
@@ -62,7 +62,7 @@
         disconnesse.
       \end{exampleblock}
     \end{column}
-    \begin{column}[c]{4cm}
+    \begin{column}[c]{5cm}
        \begin{center}
      \only<2->{\animategraphics[autoplay,loop,width=1.0\textwidth,height=0.45\textheight]{0.8}{smooth/mcm/dumbbell/dumbb100-}{0}{5}}
      \end{center}
@@ -72,24 +72,35 @@
 
 \subsection*{Versione PVMCM}
 \begin{frame}{Flusso \emph{volume preserving}}
-  \begin{columns}[c]
+  \begin{columns}[T]
     \begin{column}{6cm}
       \begin{block}{Processo di nomalizzazione}
-        Cambiamo la scala temporale e prendiamo
-        $\mathcal{\tilde{S}}=\psi(t)\mathcal{S}$  affinchè
-        \alert{$Volume_t\equiv 0$}, ottendo una nuova equazione 
-        \[
-        \begin{aligned}
-          \mathcal{S}_t&=\left(\mathcal{H}-\frac{\rho\iint\mathcal{H}d\mu}{3V_0}\right)\mathcal{N},\\
-          \rho &=-<\mathcal{S},\mathcal{N}>
-        \end{aligned}
-        \]
-       \end{block}
-   \end{column}
-    \begin{column}[c]{4cm}
-       \begin{center}
-     \only<2->{\animategraphics[autoplay,loop,width=1.0\textwidth,height=0.45\textheight]{0.8}{smooth/vpmcm/sphere/sphere}{0}{4}}
-     \end{center}
+        Cambiamo la scala temporale
+        \begin{itemize}
+        \item $\mathcal{\tilde{S}(\tau)}=\psi(t)\mathcal{S}(t)$ 
+        \item $\psi^2(t)=\frac{\partial\tau}{\partial t}$
+        \end{itemize}
+         in modo tale che \alert{$Volume_{\tau}\equiv 0$}, ottenendo   
+         \begin{itemize}
+         \item $\mathcal{\tilde{S}}_t=\left(\mathcal{\tilde{H}}-\frac{\rho\iint\mathcal{\tilde{H}}d\mu}{3V_0}\right)\mathcal{N}$
+         \item $\rho =-<\mathcal{\tilde{S}},\mathcal{N}>$
+         \end{itemize}
+      \end{block}
     \end{column}
-    \end{columns}
+    \begin{column}[T]{4cm}
+      %       \begin{center}
+      %     \only<2->{\animategraphics[autoplay,loop,width=1.0\textwidth,height=0.45\textheight]{0.8}{smooth/vpmcm/sphere/sphere}{0}{4}}
+      %     \end{center}
+      \begin{exampleblock}{Evoluzione della sfera}
+        \begin{itemize}
+        \item $\tau(t)=-T\ln(T-t)$ con $T=\frac{R_0^2}{4}$ tempo di
+          collasso
+        \item $\tilde{V}=\psi^3(t)V$
+        \item $\tilde{V}=\left(\frac{T}{T-t}\right)^{\frac{3}{2}}V$
+        \item $V=\frac{4}{3}\pi(R_0^2-4t)^{\frac{3}{2}}$
+        \item $\tilde{V}=\frac{4}{3}\pi R_0^3=V_0$
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
 \end{frame}
