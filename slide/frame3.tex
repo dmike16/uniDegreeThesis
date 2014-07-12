@@ -1,10 +1,148 @@
-\section{Problemi aperti}
-\begin{frame}
-  \frametitle{Perche non li chidono dentro na cosa}
-  \begin{block}{Problemi risolti}
-    Perche ono li bruciano?
+\section{Formulazione level-set}
+\begin{frame}{MCM \emph{volume preserving} in forma level-set}
+  \begin{block}{Superfici come insiemi di livello}
+    La superfice regolare $S$ è rappresentata come il livello $0$ di
+    una funzione ausiliaria $u(x)\in C^{\infty}(\Omega)$
+    \begin{itemize}
+      \item $S=\{x\in\Omega | u(x)=0\}$ e $Du(x)\neq 0$ in $S$
+      \item $\mathcal{N}=-\frac{Du(x)}{|Du(x)|}$ vettore normale
+        regolare
+    \end{itemize}
   \end{block}
-  \begin{block}{hih}
-    Daje...o no?
+  \begin{block}{Equazione in forma level-set}
+    La famiglia di curve che si evolve $S_t=\{x\in\Omega | u(x,t)=0\}$
+    è ottenuta dalla soluzione di
+    \[
+      (\text{VPMCM})\,u_t=|Du(x,t)|\Div\left(\frac{Du(x,t)}{|Du(x,t)|}\right)-\frac{\iint\Div\left(\frac{Du(x,t)}{|Du(x,t)|}\right)d\mu}{3V_0}x^tDu(x,t). 
+      \]
+  \end{block}
+\end{frame}
+\subsection*{Riscrittura del flusso}
+\begin{frame}{Flusso VPMCM}
+  Il flusso VPMCM è costituito da una parte MCM più un termine di trasporto.
+  \begin{block}{Parte MCM} 
+    \begin{itemize}
+    \item
+      $|Du(x,t)|\Div\left(\frac{Du(x,t)}{|Du(x,t)|}\right)=tr\left(P(Du)D^2u\right)$
+    \item $P(b)=I-\frac{b}{|b|}\otimes\frac{b}{|b|}$ con
+      $b\in\mathbb{R}^3$, con $P(b)^2=P(b)$
+    \item $P(b)$ proietta ogni $x\in\mathbb{R}^3$ nel piano $\perp b$
+    \end{itemize}
+  \end{block}
+  \begin{block}{Termine di traporto}
+     Coefficente della parte di trasporto
+    \[
+    \mathcal{I}(\mathcal{H}(u),t)=\frac{\iint\Div\left(\frac{Du(x,t)}{|Du(x,t)|}\right)d\mu}{3V_0}
+    \] 
+    il quale è non locale. Abbiamo bisogno di un metodo per
+    approssimarlo.
+  \end{block}
+\end{frame}
+
+\subsection*{Calcolo del termine di conservazione del volume}
+\begin{frame}{Flusso VPMCM nel caso della sfera}
+  \begin{columns}[T]
+    \begin{column}{6.5cm}
+      \begin{exampleblock}{Caso semplificato, evoluzione della sfera}
+        $S(R(t))$ famiglia di sfera in forma level-set
+        \begin{itemize}
+        \item $S_0=\{x\in\mathbb{R}^3| |x|^2-R_0^2=0\}$
+        \item $V(R(t))=V_0\Rightarrow R(t)=R_0$
+        \item $\mathcal{I}(\mathcal{H}(u),t)=2\frac{4\pi}{3V_0}R_0=2\left(\frac{4\pi}{3V_0}\right)^\frac{2}{3}$.
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+    \begin{column}[T]{3.5cm}
+      \begin{center}
+        \only<2->{\animategraphics[autoplay,loop,width=1.0\textwidth,height=0.45\textheight]{0.8}{smooth/vpmcm/sphere/sphere}{0}{4}}
+      \end{center}
+  \end{column}
+\end{columns}
+\end{frame}
+\subsection*{Soluzioni viscose}
+\begin{frame}{Problema ben posto nella teoria viscosa}
+     \begin{block}{Classe dell'equazione}
+       La nostra equazione VPMCM \alert{$u_t-F(x,u,Du,D^2u)=0$}
+       rappresenta un PDE parabolico non lineare singolare nei punti in cui
+       il grandiente di $u$ si annulla ed è ben posto nella teoria
+       delle solulzioni viscose. $F$ del tipo
+       \begin{itemize}
+         \item $F:\Omega\times\mathbb{R}\times\mathbb{R}^n\times
+           S(n)\to\mathbb{R}$, $S(n)$ matrici simmetriche e
+           $\Omega\subset\mathbb{R}^n$
+         \item $u_t=F(x,r,p,X)$
+       \end{itemize}
+     \end{block}
+\end{frame}
+
+\begin{frame}{Soluzioni di viscosità}
+  \begin{definizione}
+    Sia $\Omega$ aperto di $\mathbb{R}^n$ e $T>0$. Sia $F$ continua in
+    $W=\overline{\Omega}\times
+    [0,T]\times\mathbb{R}\times\mathbb{R}^n\times S(n)$ a valori in
+    $\mathbb{R}$. Sia $\mathcal{O}$ aperto in $\Omega\times(0,T)$.
+    \begin{itemize}
+      \item Una funzione $u:\mathcal{O}\to\mathbb{R}$ semicontinua
+        superiormente è una \alert{sotto
+          soluzione viscosa} di 
+        \[
+        u_t-F(x,t,u,Du,D^2u)=0
+        \]
+        in $\mathcal{O}$ se per ogni $\phi\in C^2(\mathcal{O})$ e
+        $\hat{z}=(\hat{x},\hat{t})\in\mathcal{O}$ tale che $(u-\phi)$ ha
+        massimo in $\hat{z}$ allora
+        \[
+        \phi_t(\hat{z})+F(\hat{z},u(\hat{z}),Du(\hat{z}),D^2u(\hat{z}))\leq 0
+        \]
+        \item $u$ semicontinua inferiomente e una \alert{sopra
+          soluzione viscosa}  in $\mathcal{O}$ se per ogni coppia
+          $phi$ e $\hat{z}$ tale che $(u-\phi)$ ha min in $\hat{z}$
+          vale che
+          \[
+          \phi_t(\hat{z})+F(\hat{z},u(\hat{z}),Du(\hat{z}),D^2u(\hat{z}))\geq 0
+          \]
+        \end{itemize}
+  \end{definizione}
+\end{frame}
+\begin{frame}{Propietà di confronto}
+  \begin{osservazione}
+    Nel caso $F$ non sia continua, la definizione di solulzione
+    viscosa continua a valere per l'inviluppo semicontinuo di
+    $F$. Ricordiamo che data $h$ definita in $L\subset\mathbb{R}^n$
+    \begin{itemize}
+    \item  invluppo semicontinuo inferiore $h_*(x)=\lim_{r\to
+      0}\inf\{h(y); y\in B_r(x)\cap L\}$ con $x\in\overline{L}$
+    \item inviluppo semicontinuo superiore $h^*(x)=\lim_{r\to
+      0}\sup\{h(y);y\in B_r(x)\cap L\}$ con $x\in\overline{L}$
+    \end{itemize}
+  \end{osservazione}
+  \begin{block}{Propietà di confronto}
+    Se $u$ è una sotto soluzione in $Q=\Omega\times[0,T)$ e
+      $v$ una sopra  soluzione sempre in $Q$,  allora $u\leq
+      v$ in $\mathcal{O}$ se $u\leq v$ sulla frontiera prabolica 
+    \[
+    \partial_pQ=\Omega\times\{0\}\cup\partial\Omega\times[0,T).
+    \]
+  \end{block}
+\end{frame}
+\begin{frame}{Esistenza e confronto in MCM e VPMCM}
+  \begin{block}{Problema risolto}
+    Nel caso MCM il flusso $F(p,X)=-tr(P(p)X)$ verifica
+    \begin{enumerate}
+    \item \alert{propria}: $F(x,r,p,X)\leq F(x,s,p,X)$ per $r\leq
+      s$ e $\forall\,p\in\mathbb{R}^n$,$X\in S(n)$
+    \item \alert{ellittica degenere}: $F(x,r,p,X)\leq
+      F(x,r,p,Y)$ per $X\geq Y$
+    \item \alert{geometrica}: $F(x,\lambda p,\lambda X+\sigma
+      p\otimes p)=\lambda F(x,p,X)$, $\lambda >0,\sigma\in\mathbb{R}$
+      \item $-\infty<F_*(x,0,O)=F^*(x,0,O)<\infty$
+    \end{enumerate}
+    sotto queste propietà valgono risultati di esistenza e confronto.
+  \end{block}
+  \begin{block}{Non abbiamo risultati definitivi}
+    Nel caso VPMCM $F(x,u,p,X)=-tr(P(p)X)+b(u,t)x^tp$ non possiamo
+    utilizzare i risultati precedenti in quanto per esempio non è
+    \alert{propria} è neanche \alert{giometrica}, sopravvive sollo la
+    proprietà di \alert{degenere ellitticità}.
   \end{block}
 \end{frame}

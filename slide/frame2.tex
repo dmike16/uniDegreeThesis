@@ -36,7 +36,7 @@
           \overset{\displaystyle.}{R}(t) &= -\frac{2}{R(t)},\,
           R(0)=R_0,\Rightarrow\\
           R(t)&=\sqrt{R_0^2-4t}\Rightarrow, \\
-          R(0)&=0 \Longleftrightarrow t=\frac{R_0^2}{4}<\infty 
+          R(t)&=0 \Longleftrightarrow t=\frac{R_0^2}{4}<\infty 
         \end{aligned}
         \]
       \end{exampleblock}
@@ -88,12 +88,10 @@
       \end{block}
     \end{column}
     \begin{column}[T]{4cm}
-      %       \begin{center}
-      %     \only<2->{\animategraphics[autoplay,loop,width=1.0\textwidth,height=0.45\textheight]{0.8}{smooth/vpmcm/sphere/sphere}{0}{4}}
-      %     \end{center}
       \begin{exampleblock}{Evoluzione della sfera}
         \begin{itemize}
-        \item $\tau(t)=-T\ln(T-t)$ con $T=\frac{R_0^2}{4}$ tempo di
+        \item $\tau(t)=\int_0^t\frac{T}{T-\tilde{t}}d\tilde{t}$ con
+          $T=\frac{R_0^2}{4}$ tempo di 
           collasso
         \item $\tilde{V}=\psi^3(t)V$
         \item $\tilde{V}=\left(\frac{T}{T-t}\right)^{\frac{3}{2}}V$
