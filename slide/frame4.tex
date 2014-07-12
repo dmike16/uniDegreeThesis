@@ -1,4 +1,97 @@
 \section{Schema Numerico Semi-Lagrangiano}
-\begin{frame}
+\begin{frame}{Strumenti iniziali}
+  \begin{itemize}
+    \item $\Omega$ dominio limitato in $\mathbb{R}^3$
+    \item $\partial\Omega=\{x\in\Omega; u(x)=0\}$ superfice chiusa in form
+      level-set, $\partial\Omega$ rappresenta l'\alert{interfaccia} al
+      livello zero. 
+    \item $\Omega^{-}=\{x\in\Omega; u(x)<0\}$
+    \item $\Omega_{+}=\{x\in\Omega; u(x)>0\}$
+  \end{itemize}
 
+  \begin{center}
+  \tdplotsetmaincoords{60}{40}
+  \begin{tikzpicture}[tdplot_main_coords,gray,thick]
+    \definecolor{sapC}{rgb}{0.54,0.14,0.14}
+    \coordinate (O) at (0.66,0.0,0.0);
+       
+    \tdplotsetcoord{P}{1.3}{90}{45};
+    \tdplotsetcoord{P2}{-2.0}{120}{30};
+    \tdplotsetcoord{P3}{3.0}{60}{40};
+    \tdplotsetcoord{P4}{0.8}{97}{153};
+    \tdplotsetcoord{P5}{1.3}{-55}{40};
+
+    
+    \draw [->,sapC](P2) to[out=120,in=180](P5);
+    \node[fill=red!15,rotate=50,scale=4.0,rounded corners] at (P4) {};
+    \node[shape=circle,draw=gray,fill=gray,inner sep=0pt,minimum size=1mm]
+    (origin) at (O) {};
+    \node [left,sapC] at (origin.south) {$O$};
+    \node[] (end) at (P3) {};
+    \node [sapC] at (end.south) {$\Omega^+$};
+    \node[] (end1) at (P) {};
+    \node [sapC] at (end1.south) {$\Omega^-$};
+    \node[] (end2) at (P2) {};
+    \node [sapC] at (end2.north) {$\partial\Omega$};
+
+    \draw  [tdplot_main_coords,dashed] (O) ellipse (42pt and 20pt);
+    \tdplotsetthetaplanecoords{40};
+    \draw [thick,tdplot_rotated_coords](1.0,0.5,0.5) arc (0:360:1.5);
+    
+        
+  \end{tikzpicture}
+ \end{center}
 \end{frame}
+
+\begin{frame}{Riscriviamo il termine MCM}
+  Ricordiamo il flusso MCM essere $tr(P(Du)D^2u)$ con
+  $P(Du)=I-\frac{Du\otimes Du}{|Du|^2}$
+  \begin{enumerate}
+    \item $tr(P(Du)D^2u)=v_1^tD^2uv_1+v_2^tD^2uv_2$
+    \item $P(Du)$ matrice di proiezione sul piano tangente alla
+      superfice, di rango $2$
+    \item  $v_1$ e $v_1$ autovettori ortonormali di $P$ 
+      \[
+      v_1=
+      \begin{bmatrix}
+        \frac{-u_{x_3}}{\sqrt{u_{x_1}^2+u_{x_3}^2}} \\
+        0 \\
+        \frac{u_{x_1}}{\sqrt{u_{x_1}^2+u_{x_3}^2}}
+      \end{bmatrix}
+      \quad
+      v_2=\frac{1}{|Du|}
+      \begin{bmatrix}
+        \frac{-u_{x_1}u_{x_2}}{\sqrt{u_{x_1}^2+u_{x_3}^2}} \\
+        \sqrt{u_{x_1}^2+u_{x_3}^2} \\
+        \frac{-u_{x_2}u_{x_3}}{\sqrt{u_{x_1}^2+u_{x_3}^2}}
+      \end{bmatrix}
+      \]
+    \item per $v_1$ e $v_2$ si verifica che 
+    \[
+    P(Du)=\sum_{i=1}^2v_i\otimes v_i=\sigma\sigma^t\quad\text{con }
+    \sigma=[v_1,v_2] 
+    \]
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{Riscriviamo l'integrale nel termine del trasporto}
+ L'integrale diventa
+ $\iint_{\partial\Omega}\Div\left(\frac{Du}{|Du|}\right)d\mu=\int_{\Omega}\Div\left(\frac{Du}{|Du|}\right)|Du|\delta(u)dx$.
+ \begin{itemize}
+   \item L'integrale di superfice di una funzione $f(x)$ si può
+     definire anche come 
+     \[
+     \int_{\Omega}f(x)\hat{\delta}(x)dx
+     \]   
+   \item $\hat{\delta}(x)=DH(u(x))\cdot\mathcal{V}$ delta
+     multidimensionale con $\mathcal{V}$ normale esterna ed 
+     \[
+     H(u(x))=
+     \begin{cases}
+       0 &\text{ se }u\leq 0 \\
+       1 &\text{ se }u > 0
+     \end{cases}
+     \]
+     \item $\hat{\delta}(x)=H'(u(x))Du\cdot\frac{Du}{|Du|}=\delta(u)|Du|$
+ \end{itemize}
+ \end{frame}
