@@ -47,10 +47,10 @@
   Ricordiamo il flusso MCM essere $tr(P(Du)D^2u)$ con
   $P(Du)=I-\frac{Du\otimes Du}{|Du|^2}$
   \begin{enumerate}
-    \item $tr(P(Du)D^2u)=v_1^tD^2uv_1+v_2^tD^2uv_2$
     \item $P(Du)$ matrice di proiezione sul piano tangente alla
-      superfice, di rango $2$
-    \item  $v_1$ e $v_1$ autovettori ortonormali di $P$ 
+      superfice, di rango $2$ con due autovettori relativi
+      all'autovalore $\lambda=1$ 
+    \item  $v_1$ e $v_2$ autovettori ortonormali di $P$ 
       \[
       v_1=
       \begin{bmatrix}
@@ -74,24 +74,83 @@
   \end{enumerate}
 \end{frame}
 
+\begin{frame}{Riscriviamo il flusso MCM}
+  \begin{alertblock}{Flusso MCM}
+    Vale la seguente uguaglianza
+    \[
+    F_{\text{MCM}}(Du,D^2u)=v_1^tD^2uv_1+v_2^tD^2uv_2
+    \]
+  \end{alertblock}
+  \begin{block}{Esplicitazione del conto}
+  Sostituiamo l'espressione  $P(p)=\sum_{i=1}^2v_i\otimes
+  v_i=\sum_{i=1}^2v_iv_i^t$ nel flusso MCM, ottenendo
+  \[
+  \begin{aligned}
+    tr(P(Du)D^2u)&=tr((v_1v_1^t+v_2v_2^t)D^2u)=\\
+    &tr((v_1v_1^t)D^2u+(v_2v_2^t)D^2u).
+  \end{aligned}
+  \]
+  Traccia opertatore lineare
+  \[
+  \begin{aligned}
+    F_{\text{MCM}}(Du,D^2u)&=tr((v_1v_1^t)D^2u)+tr(v_2v_2^t)D^2u)=\\
+    &v_1^tD^2uv_1+v_2^tD^2uv_2.
+  \end{aligned}
+    \]
+  \end{block}
+\end{frame}
+
 \begin{frame}{Riscriviamo l'integrale nel termine del trasporto}
- L'integrale diventa
- $\iint_{\partial\Omega}\Div\left(\frac{Du}{|Du|}\right)d\mu=\int_{\Omega}\Div\left(\frac{Du}{|Du|}\right)|Du|\delta(u)dx$.
- \begin{itemize}
-   \item L'integrale di superfice di una funzione $f(x)$ si può
-     definire anche come 
-     \[
-     \int_{\Omega}f(x)\hat{\delta}(x)dx
-     \]   
-   \item $\hat{\delta}(x)=DH(u(x))\cdot\mathcal{V}$ delta
-     multidimensionale con $\mathcal{V}$ normale esterna ed 
-     \[
-     H(u(x))=
-     \begin{cases}
-       0 &\text{ se }u\leq 0 \\
-       1 &\text{ se }u > 0
-     \end{cases}
-     \]
-     \item $\hat{\delta}(x)=H'(u(x))Du\cdot\frac{Du}{|Du|}=\delta(u)|Du|$
- \end{itemize}
+     L'integrale
+    $\iint_{\partial\Omega}\Div\left(\frac{Du}{|Du|}\right)d\mu$ lo
+    possiamo riscrivere come
+    \[
+    \int_{\Omega}\Div\left(\frac{Du}{|Du|}\right)|Du|\delta(u)dx
+    \]
+    \begin{itemize}
+    \item L'integrale di superfice di una funzione $f(x)$ si può
+      definire anche come 
+      \[
+      \int_{\Omega}f(x)\hat{\delta}(x)dx
+      \]   
+    \item $\hat{\delta}(x)=DH(u(x))\cdot\mathcal{V}$ delta
+      multidimensionale con $\mathcal{V}$ normale esterna ed 
+      \[
+      H(u(x))=
+      \begin{cases}
+        0 &\text{ se }u\leq 0 \\
+        1 &\text{ se }u > 0
+      \end{cases}
+      \]
+    \item $\hat{\delta}(x)=H'(u(x))Du\cdot\frac{Du}{|Du|}=\delta(u)|Du|$
+    \end{itemize}
  \end{frame}
+
+\begin{frame}{Schema Semi-Lagrangiano VPMCM. Caso $Du\neq 0$}
+  \begin{block}{Equazione di partenza}
+    \[
+    u_t=v_1^tD^2uv_1+v_2^tD^2uv_2 - \frac{\int_{\Omega}F_{\text{MCM}}(Du,D^2u)\delta(u)dx}{3V_0}x^tDu
+    \]
+  \end{block}
+ \begin{block}{Griglia spaziale e temporale}
+    \begin{itemize}
+      \item $x_j=(j_1\Delta x,j_2\Delta x,j_3\Delta x)$,
+        $j\in\mathbb{Z}^3$
+      \item $t^n=n\Delta t$, $n\in\mathbb{N}$
+    \end{itemize}
+  \end{block}
+  \begin{block}{Punti principali della costruzione}
+    \begin{enumerate}
+      \item approssimare l'integrale $\mathcal{I}$ al tempo $t$
+      \item approssimare il vettori $v_1$ e $v_2$
+      \item approssimare flusso MCM più termine di Trasporto
+      \item approssimare $u_t$
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Approssimazione dell'integrale}
+  \begin{itemize}
+    \item m
+  \end{itemize}
+\end{frame}
