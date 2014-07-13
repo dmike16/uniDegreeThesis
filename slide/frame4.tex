@@ -160,25 +160,99 @@
   \end{block}
   \begin{block}{Punti principali della costruzione}
     \begin{enumerate}
-    \item approssimare flusso VPMCM
-    \item approssimare l'integrale $\mathcal{I}$ al tempo $t$
-    \item approssimare $u_t$
+    \item Approssimazione flusso VPMCM più discretizzazione temporale
+    \item Schema \emph{ad hoc} nel caso sotto la soglia
+    \item Approssimazione del coefficente del trasporto $\mathcal{I}$
+      al tempo $t$ 
     \end{enumerate}
   \end{block}
-  %\begin{block}{Approssimazione di $v_1$ e $v_2$}
-  %  Differenze finite centrare di passo $\Delta x$ 
-  %  \[
-  %  Du\simeq D_j^n\quad v_1(D_j^n)=v_{j,1}^n\quad v_2(D_j^n)=v_{j,2}^n
-  %  \]
-  %\end{block}
 \end{frame}
-
+ 
 \begin{frame}{Approssimazione flusso VPMCM. Caso sopra la soglia}
-
+  \begin{alertblock}{Flusso VPMCM}
+    $F_{\text{VPMCM}}=v_1^tD^2uv_1+v_2^tD^2uv_2 -
+    \mathcal{I}(u,t)x^tDu$
+    \end{alertblock}
+  \begin{itemize}
+    \item $\mathcal{I}^n$ opportuna approssimazione del coefficente
+      del trasporto al  tempo $t^n$
+    \item Differenze finite centrare di passo $\Delta x$ 
+      \[
+      Du\simeq D_j^n\quad v_1(D_j^n)=v_{j,1}^n\quad v_2(D_j^n)=v_{j,2}^n
+      \]
+    \item Derivate direzionali nelle \alert{quattro} direzioni $(\pm
+      v_1\pm v_2)$ per la parte MCM con passo $\sqrt{2\Delta t}$ più
+      trasporto lungo la caratteristica
+      \[
+      \begin{aligned}
+        &F_{\text{VPMCM}}\simeq\frac{1}{4\Delta
+          t}(u(x_j(1-\mathcal{I}^n\Delta t)+\sqrt{2\Delta
+          t}(v_{j,1}^n+v_{j,2}^n),t)+ \\
+        &u(x_j(1-\mathcal{I}^n\Delta t)+\sqrt{2\Delta
+          t}(v_{j,1}^n-v_{j,2}^n),t)+\\
+        &u(x_j(1-\mathcal{I}^n\Delta t)+\sqrt{2\Delta
+          t}(-v_{j,1}^n+v_{j,2}^n),t)+\\
+        &u(x_j(1-\mathcal{I}^n\Delta t)+\sqrt{2\Delta
+          t}(-v_{j,1}^n-v_{j,2}^n),t)-4u_j^n)
+      \end{aligned}
+      \]
+  \end{itemize}
 \end{frame}
 
+\begin{frame}{Schema SL VPMCM sopra la soglia}
+  \begin{alertblock}{VPMCM \emph{fully discrete}}
+    \begin{itemize}
+    \item Approssimazione coefficente del trasporto $\mathcal{I}^n$
+    \item Differenze finite centrate per $D_j^n$ più
+      $v_i(D_j^n)=v_{j,i}^n$
+    \item Approssimazione del flusso $F_{VPMCM}$
+    \item Differenze finite in avanti per
+      $u_t\simeq\frac{u(x_j,t^{n+1})-u(x_j,t^n)}{\Delta t}$
+    \item Interpolazione lineare $I[\cdot]$ nei punti
+      $x_j(1-\mathcal{I}^n\Delta t)+\sqrt{2\Delta t}(\pm
+      v_{j,1}^n\pm v_{j,2}^n)$
+    \end{itemize}
+    \[
+    \begin{aligned}
+        u_j^{n+1}&=\frac{1}{4}(I[u^n](x_j(1-\mathcal{I}^n\Delta t)+\sqrt{2\Delta
+          t}(v_{j,1}^n+v_{j,2}^n))+ \\
+        &I[u^n](x_j(1-\mathcal{I}^n\Delta t)+\sqrt{2\Delta
+          t}(v_{j,1}^n-v_{j,2}^n))+\\
+        &I[u^n](x_j(1-\mathcal{I}^n\Delta t)+\sqrt{2\Delta
+          t}(-v_{j,1}^n+v_{j,2}^n))+\\
+        &I[u^n](x_j(1-\mathcal{I}^n\Delta t)+\sqrt{2\Delta
+          t}(-v_{j,1}^n-v_{j,2}^n))
+    \end{aligned}
+    \]
+  \end{alertblock}
+\end{frame}
+ 
 \begin{frame}{Approssimazione flusso VPMCM. Caso sotto la soglia}
-
+  Nel caso sotto la soglia $|D_j^n|\leq C\Delta x$ o
+  $(D_j^n)_1^2+(D_j^n)_3^2\leq C\Delta x$, 
+  \[
+  u_j^{n+1}=\frac{1}{6}\sum_{i\in D(j)}u_i^n
+  \]
+con $D(j)=\{j\pm e_i\Delta x\,,i=1,2,3\}$, che rappresenta
+l'approssimazione dell'equazione del calore
+\[
+u_t=\varepsilon \Delta u,\quad \varepsilon=\frac{\Delta x^2}{6\Delta t}
+\]
+Questo metodo è lo stesso utilizzato nello schema classico MCM e 
+risulta consistente con $\underline{F}(Du,D^2u)$ e
+$\overline{F}(Du,D^2u)$ suggerite da \emph{Crandall and Lions}.
+\[
+\underline{F}=
+\begin{cases}
+-\Div\left(\frac{Du}{|Du|}\right)|Du| &\text{ se }Du\neq 0\\
+-2||D^2u|| &\text{ se }Du=0
+\end{cases}\,\,
+\overline{F}=
+\begin{cases}
+-\Div\left(\frac{Du}{|Du|}\right)|Du| &\text{ se }Du\neq 0\\
+2||D^2u|| &\text{ se }Du=0
+\end{cases}
+\]
 \end{frame}
 
 \begin{frame}{Approssimazione dell'integrale. Caso sopra la soglia}
@@ -205,17 +279,28 @@
               u_j^n}{\varepsilon}} &-\varepsilon\leq u_j^n\leq\varepsilon \\
           0  &\varepsilon< u_j^n
         \end{cases}
-        \]
-      \item \alert{formula del punto medio
-        composita} $\mathcal{I}(u,t)\simeq\Delta x^3\sum_{j=1}^{|G^x|}F_j^n\tilde{\delta}(u_j^n)$ 
+        \] 
   \end{itemize}
 \end{frame}
-
+ 
 \begin{frame}{Approssimazione dell'integrale. Caso sotto la soglia}
-
+  Nel caso sotto la soglia utilizziamo la stessa approssimazione del
+  flusso dello schema MCM classico, cosistente con la definizione
+  proposta da \emph{Crandall e Lions} di $\overline{F}$ e
+  $\underline{F}$
+  \[
+  F_{\text{MCM}}=\varepsilon\Delta u\quad \varepsilon=\frac{\Delta
+    x^2}{6\Delta t}
+  \]
+  \begin{itemize}
+  \item Differenze finite centrate per $\Delta u$
+    \[
+    F_{\text{MCM}}\simeq\frac{\sum_{i\in D(j)}u_i^n -6u_j^n}{6\Delta t}
+    \]
+  \end{itemize}
+  \begin{alertblock}{Formula del punto medio Compisita}
+    \[
+    \mathcal{I}^n=\frac{1}{3V_0}\Delta x^3\sum_{j=1}^{|G^x|}F_j^n\tilde{\delta}(u_j^n)
+    \]
+  \end{alertblock}
 \end{frame}
-
-\begin{frame}{Schema SL VPMCM completo}
-
-\end{frame}
-
