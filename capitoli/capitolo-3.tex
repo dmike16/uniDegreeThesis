@@ -166,7 +166,7 @@ Scegliendo, ad esempio, la prima alternativa il nostro schema $\mathit{MCM}$ com
     &  &\scriptstyle|(D_j^n)_1^2+(D_j^n)_3^2|&\scriptstyle >C\Delta x^2 \\
     &  &  \\
     &  &\scriptstyle|D_j^n|\leq&\scriptstyle C\Delta x^s \\
-     & \frac{1}{6}\sum_{i\in\delta(j)}u_i^n,   &\scriptstyle\mathbf{and} \\
+     & \frac{1}{6}\sum_{i\in\delta(j)}u_i^n,   &\scriptstyle\mathbf{or} \\
   &  &\scriptstyle|(D_j^n)_1^2+(D_j^n)_3^2| &\scriptstyle\leq C\Delta x^s.
   \end{aligned}   
   \right.
@@ -333,7 +333,7 @@ perchè richiede $\Delta t=O(\Delta x^2)$.
 
 Nel caso in cui il gradiente è nullo le successioni convergenti a $(x,t)$ possono avere sottosuccessioni di nodi sia sotto che sopra la soglia, quindi dobbiamo distinguere due casi:
 \begin{itemize}
-  \item \textsf{Caso} $|Du(x,t)|=0\land\mathrm{|D_j^n|\ge C\Delta x^s\land|(D_j^n)_1^2+((D_j^n)_3^2|\ge C\Delta x^s}$. In questo caso ci troviamo sopra la soglia. Quindi possiamo utilizzare lo schema nella forma \eqref{eq:cp3-02} e ripetere i passaggi precedenti eliminado qualsiasi riferimento a $\sigma(Du(x_t,t^n))$, in quanto non possiamo assicurare la convergenza di $\sigma(D_j^n)$ a $\sigma(Du(x_t,t^n))$. In particolare abbiamo:
+  \item \textsf{Caso} $|Du(x,t)|=0,\mathrm{|D_j^n|\ge C\Delta x^s\land|(D_j^n)_1^2+((D_j^n)_3^2|\ge C\Delta x^s}$. In questo caso ci troviamo sopra la soglia. Quindi possiamo utilizzare lo schema nella forma \eqref{eq:cp3-02} e ripetere i passaggi precedenti eliminado qualsiasi riferimento a $\sigma(Du(x_t,t^n))$, in quanto non possiamo assicurare la convergenza di $\sigma(D_j^n)$ a $\sigma(Du(x_t,t^n))$. In particolare abbiamo:
 \[
   \begin{split}
     & I[u^n](x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b}) = I[u^n](x_j+\sigma(D_j^n)\sqrt{2\Delta t}\vec{b}) - \\
@@ -376,7 +376,7 @@ Quindi per  $(\Delta t,\Delta x)\to 0$ e $(x_j,t^n)\to(x,t)$ sotto la condizione
 \end{split}
 \]
 con $F(Du(x,t),D^2u(x,t))=-\vec{v}_1^tD^2u(x_j,t^n)\vec{v}_1 -\vec{v}_2^tD^2u(x_j,t^n)\vec{v}_2$.
-  \item \textsf{Caso} $|Du(x,t)|=0\land\mathrm{|D_j^n|< C\Delta x^s\land |(D_j^n)_1^2+((D_j^n)_3^2|< C\Delta x^s}$. Tale disuguaglianze implicano che ci troviamo sotto la soglia. Per cui utilizziamo, ad esempio, lo schema nella forma \eqref{eq:cp3-03-add}, che rappresenta una discretizzazione dell'equazione del calore:
+  \item \textsf{Caso} $|Du(x,t)|=0,\mathrm{|D_j^n|< C\Delta x^s\lor |(D_j^n)_1^2+((D_j^n)_3^2|< C\Delta x^s}$. Tale disuguaglianze implicano che ci troviamo sotto la soglia. Per cui utilizziamo, ad esempio, lo schema nella forma \eqref{eq:cp3-03-add}, che rappresenta una discretizzazione dell'equazione del calore:
 \[
 S(x_j,u(x_j,t^n),Du(x_j,t^n))=\frac{1}{6}\sum_{i\in\delta(j)}u(x_i,t^n).
 \]
@@ -577,7 +577,7 @@ quest'ultima con
   \begin{cases}
     0 &\text{ se $u<-\varepsilon$} \\
     \frac{1}{2\varepsilon}+\frac{1}{2\varepsilon}\cos\left(\frac{\pi
-      u}{\varepsilon}\right) &\text{ se $\varepsilon\leq u \leq\varepsilon$} \\
+      u}{\varepsilon}\right) &\text{ se $-\varepsilon\leq u \leq\varepsilon$} \\
     0 &\text{ se $\varepsilon<u$}
   \end{cases}
 \end{equation}
@@ -589,7 +589,7 @@ H(u)=
 \begin{cases}
  0 &\text{ se $u<-\varepsilon$} \\
     \frac{1}{2}+\frac{u}{2\varepsilon} +\frac{1}{2\pi}\sin\left(\frac{\pi
-      u}{\varepsilon}\right) &\text{ se $\varepsilon\leq u \leq\varepsilon$} \\
+      u}{\varepsilon}\right) &\text{ se $-\varepsilon\leq u \leq\varepsilon$} \\
  1 &\text{ se $\varepsilon<u$} 
 \end{cases}
 \]
