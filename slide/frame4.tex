@@ -131,7 +131,8 @@
     \begin{itemize}
       \item $x_j=(j_1\Delta x,j_2\Delta x,j_3\Delta x)$,
         $j\in\mathbb{Z}^3$ e $t^n=n\Delta t$, $n\in\mathbb{N}$
-      \item $(x_j,t^n)$ punto della griglia $G^x\times G^t$
+      \item $(x_j,t^n)$ punto della griglia $G_{\Delta x}\times
+        G^{\Delta t}$
       \item $u_j^n$ approssimazione di $u(x_j,t^n)$
       \item $D_j^n$ approssimazione di $Du(x_j,t^n)$
     \end{itemize}
@@ -300,7 +301,87 @@ $\overline{F}(Du,D^2u)$ suggerite da \emph{Crandall and Lions}.
   \end{itemize}
   \begin{alertblock}{Formula del punto medio Compisita}
     \[
-    \mathcal{I}^n=\frac{1}{3V_0}\Delta x^3\sum_{j=1}^{|G^x|}F_j^n\tilde{\delta}(u_j^n)
+    \mathcal{I}^n=\frac{1}{3V_0}\Delta x^3\sum_{j=1}^{|G_{\Delta x}|}F_j^n\tilde{\delta}(u_j^n)
     \]
   \end{alertblock}
 \end{frame}
+
+\begin{frame}{Consistenza generalizzata}
+  \begin{definizione}[Consistenza]
+    Sia $\phi\in C^{\infty}(\mathbb{R}^3\times[0,T])$ e $(\Delta
+    x_m,\Delta t_m)\to 0$ e  $(x_{n_m},t^{n_m})\to 0$  per
+    $m\to\infty$, con $(\Delta x_m,\Delta t_m)$  seguenza di
+    parametri di discretizzazione e $(x_{j_m},t^{n_m})$ seguenza di
+    nodi. Allora lo schema $S$ è consistente con
+    \[
+    \phi_t(x,t)+F(x,D\phi,D^2\phi)=0
+    \]
+    se
+    \[
+    \left\{
+    \begin{aligned}
+      &\liminf_{m\to\infty}\frac{\phi(x_j,t_{n_m+1})-S_{j_m}(\phi^{n_m})}{\Delta
+        t_m}\geq\phi_t(x,t)+F_*(x,D\phi,D^2\phi)
+        \\
+       &\limsup_{m\to\infty}\frac{\phi(x_j,t_{n_m+1})-S_{j_m}(\phi^{n_m})}{\Delta
+          t_m}\leq\phi_t(x,t)+F^*(x,D\phi,D^2\phi)
+    \end{aligned}
+    \right.
+    \]
+    con $F_*$ inviluppo semicontinuo inferiore e $F^*$ inviluppo
+    semicontinuo superiore.
+  \end{definizione}
+\end{frame}
+
+\begin{frame}{Consistenza caso sfera con $Du\neq 0$}
+  \begin{alertblock}{Schema sopra la soglia per la sfera}
+   \[
+     u_j^{n+1}=\frac{1}{4}\sum_{+,-}(I[u^n](x_j(1-C\Delta
+     t)+\sqrt{2\Delta t}(\pm v_{j,1}^n\pm v_{j,2}^n))
+    \]
+    con $C=2\left(\frac{4\pi}{3V_0}\right)^\frac{2}{3}$.
+  \end{alertblock}
+  Supponiamo
+  \begin{itemize}
+    \item $u$ sufficentemente regolare
+    \item $||I[u^n](\cdot)-u(\cdot,t^n)||=O(\Delta x^2)$ errore di
+      interpolazione 
+    \item $|D_j^n-Du(x_j,t^n)|=O(\Delta x^2)$ errore approssimazione
+      del gradiente
+   \end{itemize}
+  Osserviamo \\ 
+      $|J_{\sigma}(p)|=\frac{1}{p_1^2+p_3^2}$ con $p=Du$ e
+      $\sigma=[v_1,v_2]$ matrice $3\times 2$,  poichè vale
+      $(D_j^n)_1^2+(D_j^n)_3^2\geq C\Delta x$ allora $\sigma$ è
+      lipschitiziana con $L_{\sigma_j^n}=\frac{1}{C\Delta x}$.  
+ \end{frame}
+
+\begin{frame}{Consistenza caso $Du\neq 0$}
+Iniziamo la stima per \alert{$v_1+v_2=\sigma(D_j^n)b$} con $b=[1,1]^t$
+\[
+\begin{aligned}
+  &I[u^n](x_j-x_jC\Delta t +\sqrt{2\Delta t}\sigma(D_j^n)b,t^n)=\\
+  &u(x_j-x_jC\Delta t +\sqrt{2\Delta t}\sigma(Du(x_j,t^n))b,t^n)+\\
+  &O(\Delta x^2) + O(\Delta x\Delta t^{\frac{1}{2}}) 
+\end{aligned}
+\]
+Espansione di Taylor del terzo ordine otteniamo
+\[
+\begin{aligned}
+&u(x_j-x_jC\Delta t +\sqrt{2\Delta
+    t}(v_1+v_2),t^n)=u(x_j,t^n)+\\
+&<Du(x_j,t^n),(v_1+v_2)>\sqrt{2\Delta t}+\Delta
+  t<D^2u(x_j,t^n)(v_1+v_2),(v_1+v_2)>+\\
+&-C<Du(x_j,t^n),x_j>\Delta t+T_3\Delta^{\frac{3}{2}} +O(\Delta t^2)
+\end{aligned}
+\]
+Ripetendo il calcolo per $(\pm v_1\pm v_2)$ e sommando abbiamo
+\[
+\begin{aligned}
+S_j(u^n)&=u(x_j,t^n)+v_1^tD^2u(x_j,t^n)v_1+v_2^tD^2u(x_j,t^n)v_2-Cx^tDu(x_j,t^n)+\\
+&O(\Delta x^2)+ O(\Delta x\Delta t^{\frac{1}{2}})+ O(\Delta t^2)
+\end{aligned}
+\]
+\end{frame}
+
+
