@@ -378,10 +378,35 @@ Espansione di Taylor del terzo ordine otteniamo
 Ripetendo il calcolo per $(\pm v_1\pm v_2)$ e sommando abbiamo
 \[
 \begin{aligned}
-S_j(u^n)&=u(x_j,t^n)+v_1^tD^2u(x_j,t^n)v_1+v_2^tD^2u(x_j,t^n)v_2-Cx^tDu(x_j,t^n)+\\
+S_j(u^n)&=u(x_j,t^n)+\Delta t(v_1^tD^2u(x_j,t^n)v_1+v_2^tD^2u(x_j,t^n)v_2-Cx^tDu(x_j,t^n))+\\
 &O(\Delta x^2)+ O(\Delta x\Delta t^{\frac{1}{2}})+ O(\Delta t^2)
 \end{aligned}
 \]
 \end{frame}
 
+\begin{frame}{Consistenza caso $Du\neq 0$}
+In conclusione utilizziamo la definizione di consistenza generalizzata
+\[
+\begin{aligned}
+\frac{u(x_j,t^{n+1})-S_j(u^n)}{\Delta
+  t}&=u_t(x_j,t^n)-v_1^tD^2u(x_j,t^n)v_1-v_2D^2u(x_j,t^n)v_2+\\
+& Cx^tDu(x_j,t^n)+O(\Delta x^2\Delta t^{-1})+O(\Delta x\Delta
+t^{-\frac{1}{2}})+O(\Delta t)
+\end{aligned}
+\]
+\begin{alertblock}{Conclusione}
+Poniamo ad esempio $\Delta t=\Delta x^{\alpha}$, affinchè il metodo
+sia consistente per $(\Delta x,\Delta t)\to 0$ e $(x_j,t^n)\to (x,j)$
+abbiamo 
+\[
+\begin{aligned}
+&L_{\Delta x}\simeq\Delta x^{2-\alpha}+\Delta
+x^{1-\frac{\alpha}{2}}+\Delta x \\
+&\Delta x^{2-\alpha}\to 0\land\Delta x^{1-\frac{\alpha}{2}}\to 0\Rightarrow0<\alpha<2
+\end{aligned}
+\]
+Quindi il metodo non richiede una CFL parabolica, per la quale
+$\Delta t=O(\Delta x^2)$.
+\end{alertblock}
+\end{frame}
 
