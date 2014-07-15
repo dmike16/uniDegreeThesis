@@ -63,7 +63,7 @@
 
 \begin{frame}{Problema ben posto nella teoria viscosa}
      \begin{block}{Classe dell'equazione}
-       La nostra equazione VPMCM \alert{$u_t-F(x,u,Du,D^2u)=0$}
+       La nostra equazione VPMCM \alert{$u_t+F(x,u,Du,D^2u)=0$}
        rappresenta un PDE parabolico non lineare singolare nei punti in cui
        il grandiente di $u$ si annulla ed è ben posto nella teoria
        delle solulzioni viscose. $F$ del tipo
@@ -71,7 +71,7 @@
          \item $F:\Omega\times\mathbb{R}\times\mathbb{R}^n\times
            S(n)\to\mathbb{R}$, $S(n)$ matrici simmetriche e
            $\Omega\subset\mathbb{R}^n$
-         \item $u_t=F(x,r,p,X)$
+         \item $u_t+F(x,r,p,X)=0$
        \end{itemize}
      \end{block}
 \end{frame}
@@ -87,20 +87,20 @@
         superiormente è una \alert{sotto
           soluzione viscosa} di 
         \[
-        u_t-F(x,t,u,Du,D^2u)=0
+        u_t+F(x,t,u,Du,D^2u)=0
         \]
         in $\mathcal{O}$ se per ogni $\phi\in C^2(\mathcal{O})$ e
         $\hat{z}=(\hat{x},\hat{t})\in\mathcal{O}$ tale che $(u-\phi)$ ha
         massimo in $\hat{z}$ allora
         \[
-        \phi_t(\hat{z})+F(\hat{z},u(\hat{z}),Du(\hat{z}),D^2u(\hat{z}))\leq 0
+        \phi_t(\hat{z})+F(\hat{z},\phi(\hat{z}),D\phi(\hat{z}),D^2\phi(\hat{z}))\leq 0
         \]
         \item $u$ semicontinua inferiomente e una \alert{sopra
           soluzione viscosa}  in $\mathcal{O}$ se per ogni coppia
-          $phi$ e $\hat{z}$ tale che $(u-\phi)$ ha min in $\hat{z}$
+          $\phi$ e $\hat{z}$ tale che $(u-\phi)$ ha min in $\hat{z}$
           vale che
           \[
-          \phi_t(\hat{z})+F(\hat{z},u(\hat{z}),Du(\hat{z}),D^2u(\hat{z}))\geq 0
+          \phi_t(\hat{z})+F(\hat{z},\phi(\hat{z}),D\phi(\hat{z}),D^2\phi(\hat{z}))\geq 0
           \]
         \end{itemize}
   \end{definizione}
