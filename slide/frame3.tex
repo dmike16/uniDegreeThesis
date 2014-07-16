@@ -10,56 +10,52 @@
     \end{itemize}
   \end{block}
   \begin{block}{Equazione in forma level-set}
-    La famiglia di curve che si evolve $S_t=\{x\in\Omega | u(x,t)=0\}$
-    è ottenuta dalla soluzione di
-    \[
-      (\text{VPMCM})\,u_t=|Du(x,t)|\Div\left(\frac{Du(x,t)}{|Du(x,t)|}\right)-\frac{\iint\Div\left(\frac{Du(x,t)}{|Du(x,t)|}\right)d\mu}{3V_0}x^tDu(x,t). 
-      \]
-      ricordando che la \alert{velocità normale$=\frac{u_t}{|Du|}$}.
+    La famiglia di curve regolare $S_t$
+    \begin{itemize}
+      \item $S_t=\{x\in\Omega | u(x,t)=0\}$ con $u(x,t)$ definita in
+        $\Omega\times I$ e tale che $Du(x,t)\neq 0$ in $S_t$
+      \item $x_0\in S_{t_0}$, $x(t)\in S_t$ curva regolare in
+        $I_{\delta}(t_0)$ tale che $x(t_0)=x_0$
+      \item $u(x(t),t)=0$ derivando \alert{velocità normale}$=\frac{u_t(x_0,t_0)}{|Du(x_0,t_0)|}$
+    \end{itemize}
   \end{block}
 \end{frame}
 
 \begin{frame}{Flusso VPMCM}
-  Il flusso VPMCM è costituito da una parte MCM più un termine di trasporto.
-  \begin{block}{Parte MCM} 
-    \begin{itemize}
-    \item
-      $|Du(x,t)|\Div\left(\frac{Du(x,t)}{|Du(x,t)|}\right)=tr\left(P(Du)D^2u\right)$
-    \item $P(b)=I-\frac{b}{|b|}\otimes\frac{b}{|b|}$ con
-      $b\in\mathbb{R}^3$, con $P(b)^2=P(b)$
-    \item $P(b)$ proietta ogni $x\in\mathbb{R}^3$ nel piano $\perp b$
-    \end{itemize}
-  \end{block}
-  \begin{block}{Termine di traporto}
-     Coefficente della parte di trasporto
+  In forma level-set abbiamo
     \[
-    \mathcal{I}(\mathcal{H}(u),t)=\frac{\iint\Div\left(\frac{Du(x,t)}{|Du(x,t)|}\right)d\mu}{3V_0}
-    \] 
-    il quale è non locale. Abbiamo bisogno di un metodo per
-    approssimarlo.
+      (\text{VPMCM})\,u_t=|Du(x,t)|\Div\left(\frac{Du(x,t)}{|Du(x,t)|}\right)-\frac{\iint\Div\left(\frac{Du(x,t)}{|Du(x,t)|}\right)d\mu}{3V_0}x^tDu(x,t). 
+      \]
+  \begin{block}{Parte MCM e termine di traporto} 
+    \begin{itemize}
+    \item parte MCM 
+      \[
+      |Du(x,t)|\Div\left(\frac{Du(x,t)}{|Du(x,t)|}\right)=tr(P(Du)D^2u)
+      \]
+      \item $P(Du)=I-\frac{b\otimes }{|b|^2}\,b\in\mathbb{R}^3$
+        matrice di proezione sul piano ortogonale a $b$
+      \item parte di trasporto, non locale. 
+        \[
+        \mathcal{I}(\mathcal{H}(u),t)=\frac{\iint\Div\left(\frac{Du(x,t)}{|Du(x,t)|}\right)d\mu}{3V_0}
+        \]
+     \end{itemize}
   \end{block}
 \end{frame}
 
+\begin{frame}{Vantaggi forma level-set}
+ \begin{block}{Vantaggi}
+   \begin{itemize}
+     \item Forma level-set scritta in un sistema di coodinate fisso
+     \item I cambiamenti topologici non sono un problema. Topologia di
+       $u$ è fissa.
+     \item L'emergere di discontinuità, per alcune velocità è ben
+       posto nella teoria viscosa
+   \end{itemize}
+ \end{block}
 
-\begin{frame}{Flusso VPMCM nel caso della sfera}
-  \begin{columns}[T]
-    \begin{column}{6.5cm}
-      \begin{exampleblock}{Caso semplificato, evoluzione della sfera}
-        $S(R(t))$ famiglia di sfera in forma level-set
-        \begin{itemize}
-        \item $S_0=\{x\in\mathbb{R}^3| |x|^2-R_0^2=0\}$
-        \item $V(R(t))=V_0\Rightarrow R(t)=R_0$
-        \item $\mathcal{I}(\mathcal{H}(u),t)=2\frac{4\pi}{3V_0}R_0=2\left(\frac{4\pi}{3V_0}\right)^\frac{2}{3}$.
-        \end{itemize}
-      \end{exampleblock}
-    \end{column}
-    \begin{column}[T]{3.5cm}
-      \begin{center}
-        \only<2->{\animategraphics[autoplay,loop,width=1.0\textwidth,height=0.45\textheight]{0.8}{smooth/vpmcm/sphere/sphere}{0}{4}}
-      \end{center}
-  \end{column}
-\end{columns}
 \end{frame}
+
+
 
 \begin{frame}{Problema ben posto nella teoria viscosa}
      \begin{block}{Classe dell'equazione}
@@ -138,7 +134,7 @@
       F(x,r,p,Y)$ per $X\geq Y$
     \item \alert{geometrica}: $F(x,\lambda p,\lambda X+\sigma
       p\otimes p)=\lambda F(x,p,X)$, $\lambda >0,\sigma\in\mathbb{R}$
-      \item $-\infty<F_*(x,0,O)=F^*(x,0,O)<\infty$
+    %  \item $-\infty<F_*(x,0,O)=F^*(x,0,O)<\infty$
     \end{enumerate}
     sotto queste propietà valgono risultati di esistenza e confronto.
   \end{block}

@@ -1,6 +1,7 @@
 \section{Schema Numerico Semi-Lagrangiano}
 \begin{frame}{Strumenti iniziali}
   \begin{itemize}
+    \item $S$ superfice regolare chiusa
     \item $\Omega$ dominio limitato in $\mathbb{R}^3$
     \item $\partial\Omega=\{x\in\Omega; u(x)=0\}$ superfice chiusa in form
       level-set, $\partial\Omega$ rappresenta l'\alert{interfaccia} al
@@ -103,7 +104,7 @@
 \begin{frame}{Riscriviamo l'integrale nel termine del trasporto}
      L'integrale
     $\iint_{\partial\Omega}\Div\left(\frac{Du}{|Du|}\right)d\mu$ lo
-    possiamo riscrivere come
+    possiamo riscrivere come per $Du\neq 0$
     \[
     \int_{\Omega}\Div\left(\frac{Du}{|Du|}\right)|Du|\delta(u)dx
     \]
@@ -161,7 +162,7 @@
   \end{block}
   \begin{block}{Punti principali della costruzione}
     \begin{enumerate}
-    \item Approssimazione flusso VPMCM più discretizzazione temporale
+    \item Approssimazione flusso VPMCM sopra la soglia
     \item Schema \emph{ad hoc} nel caso sotto la soglia
     \item Approssimazione del coefficente del trasporto $\mathcal{I}$
       al tempo $t$ 
@@ -306,10 +307,30 @@ $\overline{F}(Du,D^2u)$ suggerite da \emph{Crandall and Lions}.
   \end{alertblock}
 \end{frame}
 
+\begin{frame}{Flusso VPMCM nel caso della sfera}
+  \begin{columns}[T]
+    \begin{column}{6.5cm}
+      \begin{exampleblock}{Caso semplificato, evoluzione della sfera}
+        $S(R(t))$ famiglia di sfera in forma level-set
+        \begin{itemize}
+        \item $S_0=\{x\in\mathbb{R}^3| |x|^2-R_0^2=0\}$
+        \item $V(R(t))=V_0\Rightarrow R(t)=R_0$
+        \item $\mathcal{I}(\mathcal{H}(u),t)=2\frac{4\pi}{3V_0}R_0=2\left(\frac{4\pi}{3V_0}\right)^\frac{2}{3}$.
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+    \begin{column}[T]{3.5cm}
+      \begin{center}
+        \only<2->{\animategraphics[autoplay,loop,width=1.0\textwidth,height=0.45\textheight]{0.8}{smooth/vpmcm/sphere/sphere}{0}{4}}
+      \end{center}
+  \end{column}
+\end{columns}
+\end{frame}
+
 \begin{frame}{Consistenza generalizzata}
   \begin{definizione}[Consistenza]
     Sia $\phi\in C^{\infty}(\mathbb{R}^3\times[0,T])$ e $(\Delta
-    x_m,\Delta t_m)\to 0$ e  $(x_{n_m},t^{n_m})\to 0$  per
+    x_m,\Delta t_m)\to (x,t)$ e  $(x_{n_m},t^{n_m})\to 0$  per
     $m\to\infty$, con $(\Delta x_m,\Delta t_m)$  seguenza di
     parametri di discretizzazione e $(x_{j_m},t^{n_m})$ seguenza di
     nodi. Allora lo schema $S$ è consistente con
