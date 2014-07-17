@@ -545,7 +545,7 @@ Nella sezione precedente abbiamo visto come risolvere il problema del collasso, 
 
 \end{itemize}
 
-Tutti questi problemi hanno portato allo svilupparsi di tecniche \emph{level-set}. Alla base di questo approccio c'è l'idea di vedere la nostra superficie come  insieme di livello di una funzione. Utilizziamo la rappresentazione introdotta in §\ref{sec:cp1-00} con $S_t$ una superfice regolare che si evolve nel tempo in qualche intervallo temporale. Consideriamo una curva $x(t)$ in $\mathbb{R}^3$ su $S_t$ definita in $(t-\delta,t+\delta)$, con $\delta>0$ tale che $x(t)\in S_t$ e $x(t_0)=x_0$. Dalla definizione di $S_t$ deve essere $u(x(t),t)=0$ per $t$ vicino a $t_0$, quindi differenziando  $u(x(t),t)$ ed evalutandola nel punto $(x_0,t_0)$ otteniamo:
+Tutti questi problemi hanno portato allo svilupparsi di tecniche \emph{level-set}. Alla base di questo approccio c'è l'idea di vedere la nostra superficie come  insieme di livello di una funzione. Utilizziamo la rappresentazione introdotta in §\ref{sec:cp1-00} con $S_t$ una superfice regolare che si evolve nel tempo in qualche intervallo temporale. Consideriamo una curva $x(t)$ in $\mathbb{R}^3$ su $S_t$ definita in $(t_0-\delta,t_0+\delta)$, con $\delta>0$ tale che $x(t)\in S_t$ e $x(t_0)=x_0$. Dalla definizione di $S_t$ deve essere $u(x(t),t)=0$ per $t$ vicino a $t_0$, quindi differenziando  $u(x(t),t)$ ed evalutandola nel punto $(x_0,t_0)$ otteniamo:
 \[
 u_t(x_0,t_0)+\left<\frac{dx}{dt}(t_0),Du(x_0,t_0)\right>=0,
 \]
