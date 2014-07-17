@@ -44,6 +44,32 @@
  \end{center}
 \end{frame}
 
+\begin{frame}{Riscriviamo l'integrale nel termine del trasporto}
+     L'integrale
+    $\iint_{\partial\Omega}\Div\left(\frac{Du}{|Du|}\right)d\mu$ lo
+    possiamo riscrivere come per $Du\neq 0$
+    \[
+    \int_{\Omega}\Div\left(\frac{Du}{|Du|}\right)|Du|\delta(u)dx
+    \]
+    \begin{itemize}
+    \item L'integrale di superfice di una funzione $f(x)$ si può
+      definire anche come 
+      \[
+      \int_{\Omega}f(x)\hat{\delta}(x)dx
+      \]   
+    \item $\hat{\delta}(x)=DH(u(x))\cdot\mathcal{V}$ delta
+      multidimensionale con $\mathcal{V}$ normale esterna ed 
+      \[
+      H(u(x))=
+      \begin{cases}
+        0 &\text{ se }u\leq 0 \\
+        1 &\text{ se }u > 0
+      \end{cases}
+      \]
+    \item $\hat{\delta}(x)=H'(u(x))Du\cdot\frac{Du}{|Du|}=\delta(u)|Du|$
+    \end{itemize}
+ \end{frame}
+
 \begin{frame}{Riscriviamo il termine MCM}
   Ricordiamo il flusso MCM essere $tr(P(Du)D^2u)$ con
   $P(Du)=I-\frac{Du\otimes Du}{|Du|^2}$
@@ -100,32 +126,6 @@
     \]
   \end{block}
 \end{frame}
-
-\begin{frame}{Riscriviamo l'integrale nel termine del trasporto}
-     L'integrale
-    $\iint_{\partial\Omega}\Div\left(\frac{Du}{|Du|}\right)d\mu$ lo
-    possiamo riscrivere come per $Du\neq 0$
-    \[
-    \int_{\Omega}\Div\left(\frac{Du}{|Du|}\right)|Du|\delta(u)dx
-    \]
-    \begin{itemize}
-    \item L'integrale di superfice di una funzione $f(x)$ si può
-      definire anche come 
-      \[
-      \int_{\Omega}f(x)\hat{\delta}(x)dx
-      \]   
-    \item $\hat{\delta}(x)=DH(u(x))\cdot\mathcal{V}$ delta
-      multidimensionale con $\mathcal{V}$ normale esterna ed 
-      \[
-      H(u(x))=
-      \begin{cases}
-        0 &\text{ se }u\leq 0 \\
-        1 &\text{ se }u > 0
-      \end{cases}
-      \]
-    \item $\hat{\delta}(x)=H'(u(x))Du\cdot\frac{Du}{|Du|}=\delta(u)|Du|$
-    \end{itemize}
- \end{frame}
 
 \begin{frame}{Schema Semi-Lagrangiano VPMCM}
   \begin{block}{Griglia spaziale e temporale}
@@ -280,7 +280,14 @@ $\overline{F}(Du,D^2u)$ suggerite da \emph{Crandall and Lions}.
          \frac{1}{2\varepsilon}+\frac{1}{2\varepsilon}\cos{\frac{\pi
               u_j^n}{\varepsilon}} &-\varepsilon\leq u_j^n\leq\varepsilon \\
           0  &\varepsilon< u_j^n
-        \end{cases}
+        \end{cases},\
+         \tilde{H}(u)=
+    \begin{cases}
+      0 &\\%u<-\varepsilon \\
+      \frac{1}{2}+\frac{u}{2\varepsilon}+\frac{1}{2\pi}\sin{\frac{u\pi}{\varepsilon}}
+        &\\%-\varepsilon\leq u\leq\varepsilon \\
+        1 &%u>\varepsilon
+    \end{cases}
         \] 
   \end{itemize}
 \end{frame}
@@ -330,7 +337,7 @@ $\overline{F}(Du,D^2u)$ suggerite da \emph{Crandall and Lions}.
 \begin{frame}{Consistenza generalizzata}
   \begin{definizione}[Consistenza]
     Sia $\phi\in C^{\infty}(\mathbb{R}^3\times[0,T])$ e $(\Delta
-    x_m,\Delta t_m)\to (x,t)$ e  $(x_{n_m},t^{n_m})\to 0$  per
+    x_m,\Delta t_m)\to 0$ e  $(x_{n_m},t^{n_m})\to (x,t)$  per
     $m\to\infty$, con $(\Delta x_m,\Delta t_m)$  seguenza di
     parametri di discretizzazione e $(x_{j_m},t^{n_m})$ seguenza di
     nodi. Allora lo schema $S$ è consistente con
@@ -378,7 +385,7 @@ $\overline{F}(Du,D^2u)$ suggerite da \emph{Crandall and Lions}.
  \end{frame}
 
 \begin{frame}{Consistenza caso $Du\neq 0$}
-Iniziamo la stima per \alert{$v_1+v_2=\sigma(D_j^n)b$} con $b=[1,1]^t$
+Iniziamo la stima per \alert{$v_{j,1}^n+v_{j,2}^n=\sigma(D_j^n)b$} con $b=[1,1]^t$
 \[
 \begin{aligned}
   &I[u^n](x_j-x_jC\Delta t +\sqrt{2\Delta t}\sigma(D_j^n)b,t^n)=\\
@@ -422,8 +429,9 @@ abbiamo
 \[
 \begin{aligned}
 &L_{\Delta x}\simeq\Delta x^{2-\alpha}+\Delta
-x^{1-\frac{\alpha}{2}}+\Delta x \\
-&\Delta x^{2-\alpha}\to 0\land\Delta x^{1-\frac{\alpha}{2}}\to 0\Rightarrow0<\alpha<2
+x^{1-\frac{\alpha}{2}}+\Delta x^{\alpha} \\
+&\Delta x^{2-\alpha}\to 0\land\Delta x^{1-\frac{\alpha}{2}}\to 0\land
+\Delta x^{\alpha}\to 0 \Rightarrow0<\alpha<2
 \end{aligned}
 \]
 Quindi il metodo non richiede una CFL parabolica, per la quale
