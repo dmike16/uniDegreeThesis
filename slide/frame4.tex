@@ -44,6 +44,32 @@
  \end{center}
 \end{frame}
 
+\begin{frame}{Riscriviamo l'integrale nel termine del trasporto}
+     L'integrale
+    $\iint_{\partial\Omega}\Div\left(\frac{Du}{|Du|}\right)d\mu$ lo
+    possiamo riscrivere come per $Du\neq 0$
+    \[
+    \int_{\Omega}\Div\left(\frac{Du}{|Du|}\right)|Du|\delta(u)dx
+    \]
+    \begin{itemize}
+    \item L'integrale di superfice di una funzione $f(x)$ si può
+      definire anche come 
+      \[
+      \int_{\Omega}f(x)\hat{\delta}(x)dx
+      \]   
+    \item $\hat{\delta}(x)=DH(u(x))\cdot\mathcal{V}$ delta
+      multidimensionale con $\mathcal{V}$ normale esterna ed 
+      \[
+      H(u(x))=
+      \begin{cases}
+        0 &\text{ se }u\leq 0 \\
+        1 &\text{ se }u > 0
+      \end{cases}
+      \]
+    \item $\hat{\delta}(x)=H'(u(x))Du\cdot\frac{Du}{|Du|}=\delta(u)|Du|$
+    \end{itemize}
+ \end{frame}
+
 \begin{frame}{Riscriviamo il termine MCM}
   Ricordiamo il flusso MCM essere $tr(P(Du)D^2u)$ con
   $P(Du)=I-\frac{Du\otimes Du}{|Du|^2}$
@@ -101,32 +127,6 @@
   \end{block}
 \end{frame}
 
-\begin{frame}{Riscriviamo l'integrale nel termine del trasporto}
-     L'integrale
-    $\iint_{\partial\Omega}\Div\left(\frac{Du}{|Du|}\right)d\mu$ lo
-    possiamo riscrivere come per $Du\neq 0$
-    \[
-    \int_{\Omega}\Div\left(\frac{Du}{|Du|}\right)|Du|\delta(u)dx
-    \]
-    \begin{itemize}
-    \item L'integrale di superfice di una funzione $f(x)$ si può
-      definire anche come 
-      \[
-      \int_{\Omega}f(x)\hat{\delta}(x)dx
-      \]   
-    \item $\hat{\delta}(x)=DH(u(x))\cdot\mathcal{V}$ delta
-      multidimensionale con $\mathcal{V}$ normale esterna ed 
-      \[
-      H(u(x))=
-      \begin{cases}
-        0 &\text{ se }u\leq 0 \\
-        1 &\text{ se }u > 0
-      \end{cases}
-      \]
-    \item $\hat{\delta}(x)=H'(u(x))Du\cdot\frac{Du}{|Du|}=\delta(u)|Du|$
-    \end{itemize}
- \end{frame}
-
 \begin{frame}{Schema Semi-Lagrangiano VPMCM}
   \begin{block}{Griglia spaziale e temporale}
     \begin{itemize}
@@ -171,7 +171,7 @@
 \end{frame}
  
 \begin{frame}{Approssimazione flusso VPMCM. Caso sopra la soglia}
-  \begin{alertblock}{Flusso VPMCM}
+  \only<1>{\begin{alertblock}{Flusso VPMCM}
     $F_{\text{VPMCM}}=v_1^tD^2uv_1+v_2^tD^2uv_2 -
     \mathcal{I}(u,t)x^tDu$
     \end{alertblock}
@@ -182,23 +182,55 @@
       \[
       Du\simeq D_j^n\quad v_1(D_j^n)=v_{j,1}^n\quad v_2(D_j^n)=v_{j,2}^n
       \]
-    \item ?Derivate direzionali nelle \alert{quattro} direzioni $(\pm
-      v_1\pm v_2)$ per la parte MCM con passo $\sqrt{2\Delta t}$ più
-      trasporto lungo la caratteristica
+    \item \alert{Flusso MCM}: discretizziamo usando incrementi direzionali
+      nelle \alert{quattro} direzioni $(\pm v_1\pm v_2)$ con passo
+      $\sqrt{2\Delta t}=\rho$
       \[
       \begin{aligned}
-        &F_{\text{VPMCM}}\simeq\frac{1}{4\Delta
-          t}(u(x_j(1-\mathcal{I}^n\Delta t)+\sqrt{2\Delta
-          t}(v_{j,1}^n+v_{j,2}^n),t)+ \\
-        &u(x_j(1-\mathcal{I}^n\Delta t)+\sqrt{2\Delta
-          t}(v_{j,1}^n-v_{j,2}^n),t)+\\
-        &u(x_j(1-\mathcal{I}^n\Delta t)+\sqrt{2\Delta
-          t}(-v_{j,1}^n+v_{j,2}^n),t)+\\
-        &u(x_j(1-\mathcal{I}^n\Delta t)+\sqrt{2\Delta
-          t}(-v_{j,1}^n-v_{j,2}^n),t)-4u_j^n)
+        &F_{\text{MCM}}(Du,D^2u)\simeq\frac{1}{2\rho^2}(u(x_j+\rho(v_1+v_2),t)+u(x_j+\rho(v_1-v_2),t)+\\ 
+        &u(x_j+\rho(-v_1+v_2),t)+u(x_j+\rho(-v_1-v_2))-4u_j^n).
       \end{aligned}
       \]
-  \end{itemize}
+  \end{itemize}}
+      \only<2>{
+        Serie di Taylor nella direzione $v_1+v_2$ 
+          \[
+          \begin{aligned}
+            &u(x+\sqrt{2\Delta t}(v_1+v_2),t^n)=u(x,t^n)+\\
+            &<Du(x,t^n),(v_1+v_2)>\sqrt{2\Delta t}+\Delta
+            t<D^2u(x_j,t^n)(v_1+v_2),(v_1+v_2)>+\\
+            &+T_3\Delta^{\frac{3}{2}} +O(\Delta t^2)
+          \end{aligned}
+          \]
+          Sviluppando nelle altre direzioni e sommando riusciamo ad
+          approssimare il flusso con un errore dell'ordine
+          $O(\Delta t^2)$.
+          \[
+          v_1^tD^2uv_1+v_2^tD^2uv_2 =\frac{1}{4\Delta t}\sum_{+,-}
+          u(x_j+\sqrt{2\Delta t}(\pm v_1 \pm
+          v_2),t^n)-4u(x,t)+O(\Delta t^2)
+          \]
+      }
+
+       \only<3>{ 
+         \begin{itemize}
+           \item Incrementi nelle \alert{quattro} direzioni $(\pm
+         v_1\pm v_2)$ più ci andiamo a ricostruire la parte di
+         trasporto indietro lungo la caratteristica
+         \[
+         \begin{aligned}
+           &F_{\text{VPMCM}}\simeq\frac{1}{4\Delta
+          t}(u(x_j(1-\mathcal{I}^n\Delta t)+\sqrt{2\Delta
+             t}(v_{j,1}^n+v_{j,2}^n),t)+ \\
+           &u(x_j(1-\mathcal{I}^n\Delta t)+\sqrt{2\Delta
+             t}(v_{j,1}^n-v_{j,2}^n),t)+\\
+           &u(x_j(1-\mathcal{I}^n\Delta t)+\sqrt{2\Delta
+             t}(-v_{j,1}^n+v_{j,2}^n),t)+\\
+           &u(x_j(1-\mathcal{I}^n\Delta t)+\sqrt{2\Delta
+             t}(-v_{j,1}^n-v_{j,2}^n),t)-4u_j^n)
+         \end{aligned}
+         \]
+       \end{itemize}}
 \end{frame}
 
 \begin{frame}{Schema SL VPMCM sopra la soglia}
@@ -257,55 +289,19 @@ $\overline{F}(Du,D^2u)$ suggerite da \emph{Crandall and Lions}.
 \]
 \end{frame}
 
-\begin{frame}{Approssimazione dell'integrale. Caso sopra la soglia}
+\begin{frame}{Approssimazione dell'integrale}
   Integrale $\mathcal{I}(u,t)=\int_{\Omega}F_{\text{MCM}}(Du,D^2u)\delta(u)dx$
   \begin{itemize}
-    \item \alert{Flusso MCM}: discretizziamo usando le derivate direzionali
-      nelle \alert{quattro} direzioni $(\pm v_1\pm v_2)$ con passo
-      $\sqrt{2\Delta t}=\rho$
-      \[
-      \begin{aligned}
-      &F_{\text{MCM}}(Du,D^2u)\simeq\frac{1}{2\rho^2}(u(x_j+\rho(v_1+v_2),t)+u(x_j+\rho(v_1-v_2),t)+\\ 
-      &u(x_j+\rho(-v_1+v_2),t)+u(x_j+\rho(-v_1-v_2))-4u_j^n).
-      \end{aligned}
-      \]
-      usando l'operatore di interpolazione lineare $I[\cdot]$ nei
-      punti $x_j+\rho(\pm v_1\pm v_2)$ 
-    \item \alert{delta}: usiamo la derivata della funzione
+    \item delta: usiamo la derivata della funzione
       \emph{smeared-out} di Heaviside con $\varepsilon=1.5\Delta x$
-      \[
-        \tilde{\delta}(u_j^n)=
-        \begin{cases}
-          0  &u_j^n<-\varepsilon \\
-         \frac{1}{2\varepsilon}+\frac{1}{2\varepsilon}\cos{\frac{\pi
-              u_j^n}{\varepsilon}} &-\varepsilon\leq u_j^n\leq\varepsilon \\
-          0  &\varepsilon< u_j^n
-        \end{cases}
-        \] 
+      %\includegraphics{}
+        \item Formula del punto medio Composita
+          \[
+          \mathcal{I}^n=\frac{1}{3V_0}\Delta x^3\sum_{j=1}^{|G_{\Delta x}|}F_j^n\tilde{\delta}(u_j^n)
+          \]
   \end{itemize}
 \end{frame}
- 
-\begin{frame}{Approssimazione dell'integrale. Caso sotto la soglia}
-  Nel caso sotto la soglia utilizziamo la stessa approssimazione del
-  flusso dello schema MCM classico, cosistente con la definizione
-  proposta da \emph{Crandall e Lions} di $\overline{F}$ e
-  $\underline{F}$
-  \[
-  F_{\text{MCM}}=\varepsilon\Delta u\quad \varepsilon=\frac{\Delta
-    x^2}{6\Delta t}
-  \]
-  \begin{itemize}
-  \item Differenze finite centrate per $\Delta u$
-    \[
-    F_{\text{MCM}}\simeq\frac{\sum_{i\in D(j)}u_i^n -6u_j^n}{6\Delta t}
-    \]
-  \end{itemize}
-  \begin{alertblock}{Formula del punto medio Composita}
-    \[
-    \mathcal{I}^n=\frac{1}{3V_0}\Delta x^3\sum_{j=1}^{|G_{\Delta x}|}F_j^n\tilde{\delta}(u_j^n)
-    \]
-  \end{alertblock}
-\end{frame}
+
 
 \begin{frame}{Flusso VPMCM nel caso della sfera}
   \begin{columns}[T]
