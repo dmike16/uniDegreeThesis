@@ -16,7 +16,7 @@
         $\Omega\times I$ e tale che $Du(x,t)\neq 0$ in $S_t$
       \item $x_0\in S_{t_0}$, $x(t)\in S_t$ curva regolare in
         $I_{\delta}(t_0)$ tale che $x(t_0)=x_0$
-      \item $u(x(t),t)=0$ derivando \alert{velocità normale}$<\frac{dx}{dt}(t_0),\mathcal{N}>=\frac{u_t(x_0,t_0)}{|Du(x_0,t_0)|}$
+      \item $u(x(t),t)=0$ derivando \alert{velocità normale}$=\frac{u_t(x_0,t_0)}{|Du(x_0,t_0)|}$
     \end{itemize}
   \end{block}
 \end{frame}
@@ -32,7 +32,7 @@
       \[
       |Du(x,t)|\Div\left(\frac{Du(x,t)}{|Du(x,t)|}\right)=tr(P(Du)D^2u)
       \]
-      \item $P(b)=I-\frac{b\otimes b}{|b|^2}\,b\in\mathbb{R}^3$
+      \item $P(Du)=I-\frac{b\otimes }{|b|^2}\,b\in\mathbb{R}^3$
         matrice di proezione sul piano ortogonale a $b$
       \item parte di trasporto, non locale. 
         \[
@@ -89,14 +89,14 @@
         $\hat{z}=(\hat{x},\hat{t})\in\mathcal{O}$ tale che $(u-\phi)$ ha
         massimo in $\hat{z}$ allora
         \[
-        \phi_t(\hat{z})+F(\hat{z},u(\hat{z}),D\phi(\hat{z}),D^2\phi(\hat{z}))\leq 0
+        \phi_t(\hat{z})+F(\hat{z},\phi(\hat{z}),D\phi(\hat{z}),D^2\phi(\hat{z}))\leq 0
         \]
         \item $u$ semicontinua inferiomente e una \alert{sopra
           soluzione viscosa}  in $\mathcal{O}$ se per ogni coppia
           $\phi$ e $\hat{z}$ tale che $(u-\phi)$ ha min in $\hat{z}$
           vale che
           \[
-          \phi_t(\hat{z})+F(\hat{z},u(\hat{z}),D\phi(\hat{z}),D^2\phi(\hat{z}))\geq 0
+          \phi_t(\hat{z})+F(\hat{z},\phi(\hat{z}),D\phi(\hat{z}),D^2\phi(\hat{z}))\geq 0
           \]
         \end{itemize}
   \end{definizione}
@@ -114,7 +114,6 @@
       0}\sup\{h(y);y\in B_r(x)\cap L\}$ con $x\in\overline{L}$
     \end{itemize}
   \end{osservazione}
-
   \begin{block}{Propietà di confronto}
     Se $u$ è una sotto soluzione in $Q=\Omega\times[0,T)$ e
       $v$ una sopra  soluzione sempre in $Q$,  allora $u\leq
