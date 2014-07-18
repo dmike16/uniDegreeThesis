@@ -206,9 +206,9 @@
           approssimare il flusso con un errore dell'ordine
           $O(\Delta t^2)$.
           \[
-          v_1^tD^2uv_1+v_2^tD^2uv_2 =\frac{1}{4\Delta t}\sum_{+,-}
+          v_1^tD^2uv_1+v_2^tD^2uv_2 =\frac{1}{4\Delta t}(\sum_{+,-}
           u(x_j+\sqrt{2\Delta t}(\pm v_1 \pm
-          v_2),t^n)-4u(x,t)+O(\Delta t^2)
+          v_2),t^n)-4u(x,t))+O(\Delta t^2)
           \]
       }
 
@@ -294,7 +294,7 @@ $\overline{F}(Du,D^2u)$ suggerite da \emph{Crandall and Lions}.
   \begin{itemize}
     \item delta: usiamo la derivata della funzione
       \emph{smeared-out} di Heaviside con $\varepsilon=1.5\Delta x$
-      %\includegraphics{}
+      \includegraphics[width=0.3\textwidth]{graphics/heavside/heavside}
         \item Formula del punto medio Composita
           \[
           \mathcal{I}^n=\frac{1}{3V_0}\Delta x^3\sum_{j=1}^{|G_{\Delta x}|}F_j^n\tilde{\delta}(u_j^n)
