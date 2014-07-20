@@ -109,7 +109,7 @@
     \]
   \end{alertblock}
   \begin{block}{Esplicitazione del conto}
-  Sostituiamo l'espressione  $P(p)=\sum_{i=1}^2v_i\otimes
+  Sostituiamo l'espressione  $P(Du)=\sum_{i=1}^2v_i\otimes
   v_i=\sum_{i=1}^2v_iv_i^t$ nel flusso MCM, ottenendo
   \[
   \begin{aligned}
@@ -353,7 +353,8 @@ Referenza: \emph{Level set Methods} di Osher,Fedkiw.
   \end{definizione}
 \end{frame}
 
-\begin{frame}{Consistenza caso sfera con $Du\neq 0$ e $(Du)_1^2+(Du)_3^2=0$}
+\begin{frame}{Consistenza caso sfera con $Du\neq 0$ e
+    $(Du)_1^2+(Du)_3^2\neq 0$}
   \begin{alertblock}{Schema sopra la soglia per la sfera}
    \[
      u_j^{n+1}=\frac{1}{4}\sum_{+,-}(I[u^n](x_j(1-C\Delta
@@ -376,7 +377,7 @@ Referenza: \emph{Level set Methods} di Osher,Fedkiw.
       lipschitiziana con $L_{\sigma_j^n}=\frac{1}{C\Delta x}$.  
  \end{frame}
 
-\begin{frame}{Consistenza caso $Du\neq 0$}
+\begin{frame}{Consistenza caso sopra la soglia}
 Iniziamo la stima per \alert{$v_1+v_2=\sigma(D_j^n)b$} con $b=[1,1]^t$
 \[
 \begin{aligned}
@@ -404,7 +405,7 @@ S_j(u^n)&=u(x_j,t^n)+\Delta t(v_1^tD^2u(x_j,t^n)v_1+v_2^tD^2u(x_j,t^n)v_2-Cx^tDu
 \]
 \end{frame}
 
-\begin{frame}{Consistenza caso $Du\neq 0$}
+\begin{frame}{Consistenza caso sopra la soglia}
 In conclusione utilizziamo la definizione di consistenza generalizzata
 \[
 \begin{aligned}
