@@ -14,8 +14,8 @@
     \begin{itemize}
       \item $S_t=\{x\in\Omega | u(x,t)=0\}$ con $u(x,t)$ definita in
         $\Omega\times I$ e tale che $Du(x,t)\neq 0$ in $S_t$
-      \item $x_0\in S_{t_0}$, $x(t)\in S_t$ curva regolare in
-        $I_{\delta}(t_0)$ tale che $x(t_0)=x_0$
+      \item $x_0\in S_{t_0}$, $x(t)$ curva regolare in
+        $I_{\delta}(t_0)$ tale che $x(t)\in S_t,x(t_0)=x_0$
       \item $u(x(t),t)=0$ derivando $u_t(x_0,t_0)=<\frac{dx}{dt}(t_0),\mathcal{N}>|Du(x_0,t_0)|$
     \end{itemize}
   \end{block}
@@ -62,60 +62,60 @@
  \end{block}
 \end{frame}
 
-\begin{frame}{Soluzioni di viscosità}
-  \begin{definizione}
-    Sia $\Omega$ aperto di $\mathbb{R}^n$ e $T>0$. Sia $F$ continua in
-    $W=\overline{\Omega}\times
-    [0,T]\times\mathbb{R}\times\mathbb{R}^n\times S(n)$ a valori in
-    $\mathbb{R}$. Sia $\mathcal{O}$ aperto in $\Omega\times(0,T)$.
-    \begin{itemize}
-      \item Una funzione $u:\mathcal{O}\to\mathbb{R}$ semicontinua
-        superiormente è una \alert{sotto
-          soluzione viscosa} di 
-        \[
-        u_t+F(x,t,u,Du,D^2u)=0
-        \]
-        in $\mathcal{O}$ se per ogni $\phi\in C^2(\mathcal{O})$ e
-        $\hat{z}=(\hat{x},\hat{t})\in\mathcal{O}$ tale che $(u-\phi)$ ha
-        massimo in $\hat{z}$ allora
-        \[
-        \phi_t(\hat{z})+F(\hat{z},\phi(\hat{z}),D\phi(\hat{z}),D^2\phi(\hat{z}))\leq 0
-        \]
-        \item $u$ semicontinua inferiomente e una \alert{sopra
-          soluzione viscosa}  in $\mathcal{O}$ se per ogni coppia
-          $\phi$ e $\hat{z}$ tale che $(u-\phi)$ ha min in $\hat{z}$
-          vale che
-          \[
-          \phi_t(\hat{z})+F(\hat{z},\phi(\hat{z}),D\phi(\hat{z}),D^2\phi(\hat{z}))\geq 0
-          \]
-        \end{itemize}
-  \end{definizione}
-\end{frame}
+%\begin{frame}{Soluzioni di viscosità}
+%  \begin{definizione}
+%    Sia $\Omega$ aperto di $\mathbb{R}^n$ e $T>0$. Sia $F$ continua in
+%    $W=\overline{\Omega}\times
+%    [0,T]\times\mathbb{R}\times\mathbb{R}^n\times S(n)$ a valori in
+%    $\mathbb{R}$. Sia $\mathcal{O}$ aperto in $\Omega\times(0,T)$.
+%    \begin{itemize}
+%      \item Una funzione $u:\mathcal{O}\to\mathbb{R}$ semicontinua
+%        superiormente è una \alert{sotto
+%          soluzione viscosa} di 
+%        \[
+%        u_t+F(x,t,u,Du,D^2u)=0
+%        \]
+%        in $\mathcal{O}$ se per ogni $\phi\in C^2(\mathcal{O})$ e
+%        $\hat{z}=(\hat{x},\hat{t})\in\mathcal{O}$ tale che $(u-\phi)$ ha
+%        massimo in $\hat{z}$ allora
+%        \[
+%        \phi_t(\hat{z})+F(\hat{z},\phi(\hat{z}),D\phi(\hat{z}),D^2\phi(\hat{z}))\leq 0
+%        \]
+%        \item $u$ semicontinua inferiomente e una \alert{sopra
+%          soluzione viscosa}  in $\mathcal{O}$ se per ogni coppia
+%          $\phi$ e $\hat{z}$ tale che $(u-\phi)$ ha min in $\hat{z}$
+%          vale che
+%          \[
+%          \phi_t(\hat{z})+F(\hat{z},\phi(\hat{z}),D\phi(\hat{z}),D^2\phi(\hat{z}))\geq 0
+ %         \]
+ %       \end{itemize}
+ % \end{definizione}
+%\end{frame}
 
-\begin{frame}{Proprietà di confronto}
-  \begin{osservazione}
-    Nel caso $F$ non sia continua, la definizione di solulzione
-    viscosa continua a valere per l'inviluppo semicontinuo di
-    $F$. Ricordiamo che data $h$ definita in $L\subset\mathbb{R}^n$
-    \begin{itemize}
-    \item  invluppo semicontinuo inferiore $h_*(x)=\lim_{r\to
-      0}\inf\{h(y); y\in B_r(x)\cap L\}$ con $x\in\overline{L}$
-    \item inviluppo semicontinuo superiore $h^*(x)=\lim_{r\to
-      0}\sup\{h(y);y\in B_r(x)\cap L\}$ con $x\in\overline{L}$
-    \end{itemize}
-  \end{osservazione}
-  \begin{block}{Propietà di confronto}
-    Se $u$ è una sotto soluzione in $Q=\Omega\times[0,T)$ e
-      $v$ una sopra  soluzione sempre in $Q$,  allora $u\leq
-      v$ in $\mathcal{O}$ se $u\leq v$ sulla frontiera prabolica 
-    \[
-    \partial_pQ=\Omega\times\{0\}\cup\partial\Omega\times[0,T).
-    \]
-  \end{block}
-\end{frame}
+%\begin{frame}{Proprietà di confronto}
+%  \begin{osservazione}
+%    Nel caso $F$ non sia continua, la definizione di solulzione
+%    viscosa continua a valere per l'inviluppo semicontinuo di
+%    $F$. Ricordiamo che data $h$ definita in $L\subset\mathbb{R}^n$
+%    \begin{itemize}
+%    \item  invluppo semicontinuo inferiore $h_*(x)=\lim_{r\to
+%      0}\inf\{h(y); y\in B_r(x)\cap L\}$ con $x\in\overline{L}$
+%    \item inviluppo semicontinuo superiore $h^*(x)=\lim_{r\to
+%      0}\sup\{h(y);y\in B_r(x)\cap L\}$ con $x\in\overline{L}$
+%    \end{itemize}
+%  \end{osservazione}
+%  \begin{block}{Propietà di confronto}
+%    Se $u$ è una sotto soluzione in $Q=\Omega\times[0,T)$ e
+%      $v$ una sopra  soluzione sempre in $Q$,  allora $u\leq
+%      v$ in $\mathcal{O}$ se $u\leq v$ sulla frontiera prabolica 
+%    \[
+%    \partial_pQ=\Omega\times\{0\}\cup\partial\Omega\times[0,T).
+%    \]
+%  \end{block}
+%\end{frame}
 
 \begin{frame}{Esistenza e confronto in MCM e VPMCM}
-\hypertarget{jumptoend}{}
+%\hypertarget{jumptoend}{}
   \begin{block}{Problema risolto}
     Nel caso MCM il flusso $F(p,X)=-tr(P(p)X)$ verifica
     \begin{enumerate}
@@ -137,4 +137,5 @@
     utilizzare i risultati precedenti. Non abbiamo trovato risultati
     definitivi su questi tipi di equazioni.
   \end{block}
+Referenza: \emph{Surface Evolution Equation} di Giga.
 \end{frame}

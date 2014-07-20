@@ -1,20 +1,21 @@
 \section{Modello}
 \begin{frame}{Moto per curvatura media}
        \begin{itemize}
-       \item $S$ superfice regolare in $\mathbb{R}^3$
-       \item $\mathcal{S}(p,t)$ parametrizzazione di $S$
-       \item $\mathcal{N}(x,t)$ vettore unitario normale regolare
+       \item $\mathcal{S}(p,t)$ famiglia di superfici regolari
+       \item $\mathcal{N}(x,t)$ vettore unitario normale regolare con
+         $x=(x_1,x_2,x_3)\in S(t)$
        \item $\mathcal{H}=-\Div(\mathcal{N})\mathcal{N}$ vettore curvatura media
        \end{itemize}
-       $(x_1,x_2,x_3)\in S_t$ evolve seconde il sitema parabolico
+       evolve seconde il sitema parabolico
        \[
        \left\{
        \begin{aligned}
-         &\mathcal{S}_t(p,t)=-\Div(\mathcal{N})\mathcal{N}\text{ $t>0$} \\
+         &\frac{\partial\mathcal{S}}{\partial t}=-\Div(\mathcal{N})\mathcal{N}\text{ $t>0$} \\
          &\mathcal{S}(0)=S
        \end{aligned}
        \right.
        \]
+Referenza: \emph{Geometric Partial Differential Equations} di Sapiro.
 \end{frame}
 
 \begin{frame}{Collasso in un punto}
@@ -99,4 +100,5 @@
       \end{exampleblock}
     \end{column}
   \end{columns}
+Referenza: \emph{Geometric Partial Differential Equations} di Sapiro.
 \end{frame}

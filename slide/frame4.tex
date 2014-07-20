@@ -1,8 +1,8 @@
 \section{Schema Numerico Semi-Lagrangiano}
 \begin{frame}{Strumenti iniziali}
   \begin{itemize}
-    \item $S$ superfice regolare chiusa
     \item $\Omega$ dominio limitato in $\mathbb{R}^3$
+    \item $S$ superfice regolare chiusa in forma level-set
     \item $\partial\Omega=\{x\in\Omega; u(x)=0\}$ superfice chiusa in form
       level-set, $\partial\Omega$ rappresenta l'\alert{interfaccia} al
       livello zero. 
@@ -287,6 +287,7 @@ $\overline{F}(Du,D^2u)$ suggerite da \emph{Crandall and Lions}.
 2||D^2u|| &\text{ se }Du=0
 \end{cases}
 \]
+Referenza: \emph{User's Guide} di Crandall,Ishii,Lions.
 \end{frame}
 
 \begin{frame}{Approssimazione dell'integrale}
@@ -299,7 +300,9 @@ $\overline{F}(Du,D^2u)$ suggerite da \emph{Crandall and Lions}.
           \[
           \mathcal{I}^n=\frac{1}{3V_0}\Delta x^3\sum_{j=1}^{|G_{\Delta x}|}F_j^n\tilde{\delta}(u_j^n)
           \]
+          
   \end{itemize}
+Referenza: \emph{Level set Methods} di Osher,Fedkiw.
 \end{frame}
 
 
@@ -350,7 +353,7 @@ $\overline{F}(Du,D^2u)$ suggerite da \emph{Crandall and Lions}.
   \end{definizione}
 \end{frame}
 
-\begin{frame}{Consistenza caso sfera con $Du\neq 0$}
+\begin{frame}{Consistenza caso sfera con $Du\neq 0$ e $(Du)_1^2+(Du)_3^2=0$}
   \begin{alertblock}{Schema sopra la soglia per la sfera}
    \[
      u_j^{n+1}=\frac{1}{4}\sum_{+,-}(I[u^n](x_j(1-C\Delta
@@ -360,7 +363,7 @@ $\overline{F}(Du,D^2u)$ suggerite da \emph{Crandall and Lions}.
   \end{alertblock}
   Supponiamo
   \begin{itemize}
-    \item $u$ sufficentemente regolare
+    \item $u$ sufficentemente regolare con $|u_{tt}|<M$
     \item $||I[u^n](\cdot)-u(\cdot,t^n)||=O(\Delta x^2)$ errore di
       interpolazione 
     \item $|D_j^n-Du(x_j,t^n)|=O(\Delta x^2)$ errore approssimazione
@@ -389,7 +392,7 @@ Espansione di Taylor del terzo ordine otteniamo
     t}(v_1+v_2),t^n)=u(x_j,t^n)+\\
 &<Du(x_j,t^n),(v_1+v_2)>\sqrt{2\Delta t}+\Delta
   t<D^2u(x_j,t^n)(v_1+v_2),(v_1+v_2)>+\\
-&-C<Du(x_j,t^n),x_j>\Delta t+T_3\Delta^{\frac{3}{2}} +O(\Delta t^2)
+&-C<Du(x_j,t^n),x_j>\Delta t+T_3\Delta t^{\frac{3}{2}} +O(\Delta t^2)
 \end{aligned}
 \]
 Ripetendo il calcolo per $(\pm v_1\pm v_2)$ e sommando abbiamo
