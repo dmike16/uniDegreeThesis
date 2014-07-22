@@ -1,7 +1,7 @@
 \section{Formulazione level-set}
 \begin{frame}{MCM \emph{volume preserving} in forma level-set}
   \begin{block}{Superfici come insiemi di livello}
-    La superfice regolare $S$ è rappresentata come il livello $0$ di
+    La superficie regolare $S$ è rappresentata come il livello $0$ di
     una funzione ausiliaria $u(x)\in C^{\infty}(\Omega)$
     \begin{itemize}
       \item $S=\{x\in\Omega | u(x)=0\}$ e $Du(x)\neq 0$ in $S$
@@ -10,12 +10,12 @@
     \end{itemize}
   \end{block}
   \begin{block}{Equazione in forma level-set}
-    La famiglia di curve regolare $S_t$
+    La famiglia di superfici regolari $S(t)$
     \begin{itemize}
-      \item $S_t=\{x\in\Omega | u(x,t)=0\}$ con $u(x,t)$ definita in
-        $\Omega\times I$ e tale che $Du(x,t)\neq 0$ in $S_t$
-      \item $x_0\in S_{t_0}$, $x(t)$ curva regolare in
-        $I_{\delta}(t_0)$ tale che $x(t)\in S_t,x(t_0)=x_0$
+      \item $S(t)=\{x\in\Omega | u(x,t)=0\}$ con $u(x,t)$ definita in
+        $\Omega\times I$ e tale che $Du(x,t)\neq 0$ in $S(t)$
+      \item $x_0\in S(t_0)$, $x(t)$ curva regolare in
+        $I_{\delta}(t_0)$ tale che $x(t)\in S(t),x(t_0)=x_0$
       \item $u(x(t),t)=0$ derivando $u_t(x_0,t_0)=<\frac{dx}{dt}(t_0),\mathcal{N}>|Du(x_0,t_0)|$
     \end{itemize}
   \end{block}
@@ -32,7 +32,7 @@
       |Du(x,t)|\Div\left(\frac{Du(x,t)}{|Du(x,t)|}\right)=tr(P(Du)D^2u)
       \]
       \item $P(b)=I-\frac{b\otimes b}{|b|^2}\,b\in\mathbb{R}^3$
-        matrice di proezione sul piano ortogonale a $b$, semidefinita
+        matrice di proiezione sul piano ortogonale a $b$, semidefinita
         positiva con rango $2$ singolare in $Du=0$
       \item parte di trasporto, non locale. 
         \[
@@ -45,7 +45,7 @@
 \begin{frame}{Vantaggi forma level-set}
  \begin{block}{Vantaggi}
    \begin{itemize}
-     \item Forma level-set scritta in un sistema di coodinate fisso
+     \item Forma level-set scritta in un sistema di coordinate fisso
      \item I cambiamenti topologici non sono un problema. Topologia di
        $u$ è fissa.
      \item \hyperlink{jumptoend}{Soluzioni che presentano singolarità nel
@@ -127,7 +127,7 @@
       p\otimes p)=\lambda F(x,p,X)$, $\lambda >0,\sigma\in\mathbb{R}$
     %  \item $-\infty<F_*(x,0,O)=F^*(x,0,O)<\infty$
     \end{enumerate}
-    sotto queste propietà valgono risultati di esistenza e confronto.
+    sotto queste proprietà valgono risultati di esistenza e confronto.
   \end{block}
   \begin{block}{Non abbiamo risultati definitivi}
     Nel caso VPMCM $F(x,u,p,X)=-tr(P(p)X)+b(u)x^tp$. In generale
@@ -137,5 +137,5 @@
     utilizzare i risultati precedenti. Non abbiamo trovato risultati
     definitivi su questi tipi di equazioni.
   \end{block}
-Referenza: \emph{Surface Evolution Equation} di Giga.
+Referenza: Y. Chen, Y. Giga e S.Goto (1991).
 \end{frame}

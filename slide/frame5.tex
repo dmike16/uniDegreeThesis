@@ -4,11 +4,11 @@
     Approssimiamo il volume, applicando la formula del punto medio
     composita a
     \[
-    \int_{\Omega}(1-H(u(x)))dx\simeq\Delta x^3\sum_{i=1}^{|G_{\Delta x}|}(1-\tilde{H}(u(x)))
+    \int_{\Omega}(1-H(u(x)))dx\simeq\Delta x^3\sum_{i=1}^{|G_{\Delta x}|}(1-H_{\varepsilon}(u_i^n))
     \]
     con
     \[
-    \tilde{H}(u)=
+    H_{\varepsilon}(u)=
     \begin{cases}
       0 &u<-\varepsilon \\
       \frac{1}{2}+\frac{u}{2\varepsilon}+\frac{1}{2\pi}\sin{\frac{u\pi}{\varepsilon}}
@@ -149,11 +149,11 @@
 \begin{frame}{Immagine reale 3D}
  \begin{columns}[T]
     \begin{column}{4cm}
-      \begin{block}{\emph{Gargolye}}
+      \begin{block}{\emph{Gargoyle}}
         \begin{itemize}
         \item Immagine ottenuta da uno scanner 3D
         \item La funzione level-set non è regolare come le precedenti 
-        \item Il metodo si comporta bene solo per poco iterazioni
+        \item Il metodo si comporta bene solo per poche iterazioni
         \item Abbiamo usato rumori piccoli
         \item Non sono molto evidenti le differenze con MCM
         \end{itemize}
